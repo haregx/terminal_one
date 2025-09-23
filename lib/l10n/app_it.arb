@@ -1,0 +1,76 @@
+{
+  "@@locale": "it",
+  "appTitle": "Terminal.One",
+  "homeScreenTitle": "Home",
+  "welcomeMessage": "Benvenuto in Terminal.One",
+  "enterAccessCode": "Inserisci il tuo codice promozionale",
+  "verifyCode": "Verifica Codice",
+  "submit": "Invia",
+  "continueText": "Continua",
+  "secureTerminalAccess": "Accesso Sicuro al Terminale",
+  "login": "Accedi",
+  "enterPin": "Inserisci il tuo PIN",
+  "forgotPin": "Password dimenticata?",
+  "clearCode": "Cancella Codice",
+  "codeInputProgress": "Codice inserito: {enteredDigits} di {totalDigits}",
+  "@codeInputProgress": {
+    "placeholders": {
+      "enteredDigits": {
+        "type": "int"
+      },
+      "totalDigits": {
+        "type": "int"
+      }
+    }
+  },
+  "codeCompleted": "Codice completato: {code}",
+  "@codeCompleted": {
+    "placeholders": {
+      "code": {
+        "type": "String"
+      }
+    }
+  },
+  "promoCodeSignupText": "Per ulteriori codici promozionali, accedi",
+  "toRegistration": "Registrati",
+  "toLogin": "Accedi",
+  "whatIsPromoCode": "Cos'è un Codice Promozionale?",
+  "promoCodeExplanation": "Un codice promozionale è un codice sconto speciale che ricevi dalle aziende. Con questo codice, puoi usufruire di sconti, rimborsi o offerte speciali. Inserisci semplicemente il tuo codice qui e scopri quali vantaggi ti aspettano!",
+  "understood": "Capito",
+  "emailAddress": "Indirizzo Email",
+  "emailHint": "erika@esempio.com",
+  "emailValidationError": "Inserisci un indirizzo email valido",
+  "password": "Password",
+  "passwordHint": "Inserisci una password sicura",
+  "passwordRequirements": "Requisiti password:",
+  "passwordMinLength": "Almeno 8 caratteri",
+  "passwordNeedNumber": "Almeno un numero",
+  "passwordNeedUppercase": "Almeno una lettera maiuscola",
+  "passwordNeedLowercase": "Almeno una lettera minuscola",
+  "showPassword": "Mostra password",
+  "hidePassword": "Nascondi password",
+  "passwordStrengthWeak": "Debole",
+  "passwordStrengthMedium": "Media",
+  "passwordStrengthGood": "Buona",
+  "passwordStrengthStrong": "Forte",
+  "confirmPassword": "Conferma Password",
+  "confirmPasswordHint": "Ripeti la tua password",
+  "passwordsDoNotMatch": "Le password non corrispondono",
+  "registerTitle": "Crea Account",
+  "registerButton": "Registrati",
+  "backToLogin": "Torna all'Accesso",
+  "or": "o",
+  "loginDescription": "Accedi con il tuo indirizzo email e password.",
+  "registerDescription": "Crea un nuovo account con il tuo indirizzo email e una password sicura.",
+  "passwordRequest": "Richiedi Nuova Password",
+  "passwordRequestDescription": "Inserisci il tuo indirizzo email e ti invieremo una nuova password.",
+  "sendPasswordRequest": "Richiedi Nuova Password",
+  "passwordRequestSent": "Una nuova password è stata inviata al tuo indirizzo email.",
+  "passwordRequestSuccess": "Una email per il reset della password è stata inviata a {email}.",
+  "@passwordRequestSuccess": {
+    "description": "Messaggio di successo per la richiesta di reset della password, include l'email dell'utente.",
+    "placeholders": {"email": {"type": "String"}}
+  },
+  "passwordRequestFailed": "La richiesta di reset della password non è riuscita. Controlla i dati inseriti.",
+  "genericError": "Si è verificato un errore. Riprova più tardi."
+}

@@ -1,0 +1,15 @@
+include: package:flutter_lints/flutter.yaml
+
+analyzer:
+  exclude:
+    # Exclude ARB files from analysis - they have their own validation via gen-l10n
+    - "lib/l10n/*.arb"
+    # Exclude generated localization files
+    - "lib/l10n/app_localizations*.dart"
+    - "**/*.g.dart"
+    - "**/*.freezed.dart"
+  
+linter:
+  rules:
+    # Disable rules that cause issues with ARB files
+    avoid_web_libraries_in_flutter: false

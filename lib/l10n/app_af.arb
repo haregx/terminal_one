@@ -1,0 +1,76 @@
+{
+  "@@locale": "af",
+  "appTitle": "Terminal.One",
+  "homeScreenTitle": "Tuis",
+  "welcomeMessage": "Welkom by Terminal.One",
+  "enterAccessCode": "Voer jou promosiekode in",
+  "verifyCode": "Verifieer Kode",
+  "submit": "Stuur",
+  "continueText": "Gaan voort",
+  "secureTerminalAccess": "Veilige Terminaal Toegang",
+  "login": "Teken In",
+  "enterPin": "Voer jou PIN in",
+  "forgotPin": "Wagwoord vergeet?",
+  "clearCode": "Maak Kode Skoon",
+  "codeInputProgress": "Kode ingevoer: {enteredDigits} van {totalDigits}",
+  "@codeInputProgress": {
+    "placeholders": {
+      "enteredDigits": {
+        "type": "int"
+      },
+      "totalDigits": {
+        "type": "int"
+      }
+    }
+  },
+  "codeCompleted": "Kode voltooi: {code}",
+  "@codeCompleted": {
+    "placeholders": {
+      "code": {
+        "type": "String"
+      }
+    }
+  },
+  "promoCodeSignupText": "Vir meer promosiekodes, teken in",
+  "toRegistration": "Registreer",
+  "toLogin": "Teken In",
+  "whatIsPromoCode": "Wat is 'n Promosiekode?",
+  "promoCodeExplanation": "'n Promosiekode is 'n spesiale afslagkode wat jy van maatskappye ontvang. Met hierdie kode kan jy afslag, terugbetalings of spesiale aanbiedinge gebruik. Voer eenvoudig jou kode hier in en ontdek watter voordele vir jou wag!",
+  "understood": "Verstaan",
+  "emailAddress": "E-pos Adres",
+  "emailHint": "erika@voorbeeld.com",
+  "emailValidationError": "Voer asseblief 'n geldige e-pos adres in",
+  "password": "Wagwoord",
+  "passwordHint": "Voer 'n veilige wagwoord in",
+  "passwordRequirements": "Wagwoord vereistes:",
+  "passwordMinLength": "Ten minste 8 karakters",
+  "passwordNeedNumber": "Ten minste een nommer",
+  "passwordNeedUppercase": "Ten minste een hoofletter",
+  "passwordNeedLowercase": "Ten minste een kleinletter",
+  "showPassword": "Wys wagwoord",
+  "hidePassword": "Versteek wagwoord",
+  "passwordStrengthWeak": "Swak",
+  "passwordStrengthMedium": "Gemiddeld",
+  "passwordStrengthGood": "Goed",
+  "passwordStrengthStrong": "Sterk",
+  "confirmPassword": "Bevestig Wagwoord",
+  "confirmPasswordHint": "Herhaal jou wagwoord",
+  "passwordsDoNotMatch": "Wagwoorde stem nie ooreen nie",
+  "registerTitle": "Skep Rekening",
+  "registerButton": "Registreer",
+  "backToLogin": "Terug na Teken In",
+  "or": "of",
+  "loginDescription": "Teken in met jou e-pos adres en wagwoord.",
+  "registerDescription": "Skep 'n nuwe rekening met jou e-pos adres en 'n veilige wagwoord.",
+  "passwordRequest": "Versoek Nuwe Wagwoord",
+  "passwordRequestDescription": "Voer jou e-pos adres in en ons sal vir jou 'n nuwe wagwoord stuur.",
+  "sendPasswordRequest": "Versoek Nuwe Wagwoord",
+  "passwordRequestSent": "'n Nuwe wagwoord is na jou e-pos adres gestuur.",
+  "passwordRequestSuccess": "'n E-pos vir wagwoordherstel is na {email} gestuur.",
+  "@passwordRequestSuccess": {
+    "description": "Suksesboodskap vir wagwoordherstel versoek, sluit die gebruiker se e-pos in.",
+    "placeholders": {"email": {"type": "String"}}
+  },
+  "passwordRequestFailed": "Wagwoordherstel versoek het misluk. Kontroleer asseblief jou inskrywing.",
+  "genericError": "'n Fout het voorgekom. Probeer asseblief later weer."
+}

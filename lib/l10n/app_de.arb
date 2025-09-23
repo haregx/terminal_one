@@ -1,0 +1,76 @@
+{
+  "@@locale": "de",
+  "appTitle": "Terminal.One",
+  "homeScreenTitle": "Startseite",
+  "welcomeMessage": "Willkommen bei Terminal.One",
+  "enterAccessCode": "Gib deinen Promo-Code ein",
+  "verifyCode": "Code prüfen",
+  "submit": "Absenden",
+  "continueText": "Weiter",
+  "secureTerminalAccess": "Sicherer Terminal-Zugang",
+  "login": "Anmelden",
+  "enterPin": "Gib deine PIN ein",
+  "forgotPin": "Kennwort vergessen?",
+  "clearCode": "Code löschen",
+  "codeInputProgress": "Code eingegeben: {enteredDigits} von {totalDigits}",
+  "@codeInputProgress": {
+    "placeholders": {
+      "enteredDigits": {
+        "type": "int"
+      },
+      "totalDigits": {
+        "type": "int"
+      }
+    }
+  },
+  "codeCompleted": "Code vollständig: {code}",
+  "@codeCompleted": {
+    "placeholders": {
+      "code": {
+        "type": "String"
+      }
+    }
+  },
+  "promoCodeSignupText": "Für mehr Promo-Codes melde dich an",
+  "toRegistration": "Registrieren",
+  "toLogin": "Anmelden",
+  "whatIsPromoCode": "Was ist ein Promo-Code?",
+  "promoCodeExplanation": "Ein Promo-Code ist ein spezieller Rabattcode, den du von Unternehmen erhältst. Mit diesem Code kannst du Vergünstigungen, Rabatte oder besondere Angebote nutzen. Gib einfach deinen Code hier ein und entdecke, welche Vorteile auf dich warten!",
+  "understood": "Verstanden",
+  "emailAddress": "E-Mail-Adresse",
+  "emailHint": "erika@example.com", 
+  "emailValidationError": "Bitte gültige E-Mail-Adresse eingeben",
+  "password": "Kennwort",
+  "passwordHint": "Sicheres Kennwort eingeben",
+  "passwordRequirements": "Passwort-Anforderungen:",
+  "passwordMinLength": "Mindestens 8 Zeichen",
+  "passwordNeedNumber": "Mindestens eine Ziffer",
+  "passwordNeedUppercase": "Mindestens ein Großbuchstabe", 
+  "passwordNeedLowercase": "Mindestens ein Kleinbuchstabe",
+  "showPassword": "Passwort anzeigen",
+  "hidePassword": "Passwort verbergen",
+  "passwordStrengthWeak": "Schwach",
+  "passwordStrengthMedium": "Mittel", 
+  "passwordStrengthGood": "Gut",
+  "passwordStrengthStrong": "Stark",
+  "confirmPassword": "Kennwort bestätigen",
+  "confirmPasswordHint": "Kennwort wiederholen",
+  "passwordsDoNotMatch": "Passwörter stimmen nicht überein",
+  "registerTitle": "Konto erstellen",
+  "registerButton": "Registrieren",
+  "backToLogin": "Zurück zur Anmeldung",
+  "or": "oder",
+  "loginDescription": "Melde dich mit deiner E-Mail-Adresse und deinem Kennwort an.",
+  "registerDescription": "Erstelle ein neues Konto mit deiner E-Mail-Adresse und einem sicheren Kennwort.",
+  "passwordRequest": "Kennwort anfordern",
+  "passwordRequestDescription": "Gib deine E-Mail-Adresse ein und wir senden dir ein neues Kennwort.",
+  "sendPasswordRequest": "Neues Kennwort anfordern",
+  "passwordRequestSent": "Ein neues Kennwort wurde an deine E-Mail-Adresse gesendet.",
+  "passwordRequestSuccess": "Eine E-Mail zum Zurücksetzen wurde an {email} gesendet.",
+  "@passwordRequestSuccess": {
+    "description": "Erfolgsmeldung für Passwort-Reset, enthält die E-Mail des Nutzers.",
+    "placeholders": {"email": {"type": "String"}}
+  },
+  "passwordRequestFailed": "Passwort-Anfrage fehlgeschlagen. Bitte überprüfe Deine Eingaben.",
+  "genericError": "Es ist ein Fehler aufgetreten. Bitte versuche es später erneut."
+}
