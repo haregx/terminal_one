@@ -26,6 +26,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   final AuthService _authService = AuthService();
   bool _isLoading = false;
 
+  // Handles the registration process, including API call and error handling
   Future<void> _performRegistration() async {
     setState(() { _isLoading = true; });
     try {
@@ -34,41 +35,41 @@ class _RegisterScreenState extends State<RegisterScreen> {
         loginname: _emailController.text,
         emailAddress: _emailController.text,
         password: _passwordController.text,
-        apiKey: 'TERMINAL_ONE_DEV_KEY', // ggf. aus Config holen
+        apiKey: 'TERMINAL_ONE_DEV_KEY', // Consider loading from config
       );
       if (result.isSuccessfulRegister) {
-        debugPrint('Registrierung erfolgreich: PubGuid=${result.pubGuid}');
+        debugPrint('Registration successful: PubGuid=${result.pubGuid}');
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Dein Account wurde erfolgreich erstellt!')),
+          SnackBar(content: Text('Your account has been created successfully!')),
         );
       } else {
-        debugPrint('Registrierung fehlgeschlagen: ${result.errorMessage}');
+        debugPrint('Registration failed: ${result.errorMessage}');
         String userMessage;
         switch (result.code) {
           case 2001:
-            userMessage = 'Diese E-Mail ist bereits registriert.';
+            userMessage = 'This email is already registered.';
             break;
           case 2000:
-            userMessage = 'Dieser Loginname ist bereits vergeben.';
+            userMessage = 'This login name is already taken.';
             break;
           case 1005:
-            userMessage = 'Das Passwort ist nicht sicher genug.';
+            userMessage = 'The password is not secure enough.';
             break;
           case 1012:
-            userMessage = 'Ungültige E-Mail-Adresse.';
+            userMessage = 'Invalid email address.';
             break;
           default:
             userMessage = result.errorMessage.isNotEmpty && result.errorMessage != 'null'
               ? result.errorMessage
-              : 'Registrierung fehlgeschlagen. Bitte überprüfe Deine Eingaben.';
+              : 'Registration failed. Please check your input.';
         }
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text(userMessage)),
         );
       }
     } catch (e, stack) {
-      debugPrint('Registrierungs-Fehler: $e\n$stack');
-      String userMessage = 'Es ist ein Fehler aufgetreten. Bitte versuche es später erneut.';
+      debugPrint('Registration error: $e\n$stack');
+      String userMessage = 'An error occurred. Please try again later.';
       if (e is AuthenticationException) {
         final authEx = e;
         if (authEx.message.isNotEmpty && authEx.message != 'null') {
@@ -82,6 +83,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       setState(() { _isLoading = false; });
     }
   }
+  // Controllers and focus nodes for form fields
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _confirmPasswordController = TextEditingController();
@@ -94,6 +96,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   bool _isConfirmPasswordValid = false;
   String _currentPassword = ''; // Track password for InputPasswordConfirm
   
+  // Returns true if the register button should be enabled
   bool get _canRegister => _isEmailValid && _isPasswordValid && _isConfirmPasswordValid;
 
   @override
@@ -106,10 +109,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
       });
     });
     
-    // Fix für Simulator: Auto-Focus auf Email-Feld nach Screen-Aufbau
+    // Autofocus the email field after the screen is built (for simulator/dev convenience)
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (mounted) {
-        // Kleine Verzögerung für bessere Simulator-Kompatibilität
         Future.delayed(const Duration(milliseconds: 300), () {
           if (mounted) {
             _emailFocus.requestFocus();
@@ -121,6 +123,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   @override
   void dispose() {
+    // Dispose controllers and focus nodes to avoid memory leaks
     _emailController.dispose();
     _passwordController.dispose();
     _confirmPasswordController.dispose();
@@ -136,7 +139,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
     
     return GestureDetector(
       onTap: () {
-        // Simulator-Fix: Verstecke Tastatur und reaktiviere Focus-System
+        // Hide keyboard and refocus email field if empty (simulator/dev convenience)
         FocusScope.of(context).unfocus();
         Future.delayed(const Duration(milliseconds: 100), () {
           if (mounted && _emailController.text.isEmpty) {
@@ -160,22 +163,18 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             maxWidth: 600.0, // Same constraint as ResponsiveLayout
                           ),
                           child: Padding(
-                            padding: EdgeInsets.symmetric(
-                              horizontal: ResponsiveSpacing.medium(context),
-                              vertical: ResponsiveSpacing.medium(context),
-                            ),
+                            padding: EdgeInsets.all(16.0),
                             child: FocusTraversalGroup(
                               policy: OrderedTraversalPolicy(),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.center,
+                                spacing: ResponsiveSpacing.large(context),
                                 children: [
                                   // App Logo
                                   const AppLogo(
                                     size: LogoSize.medium,
                                     variant: LogoVariant.minimal,
                                   ),
-                                  SizedBox(height: ResponsiveSpacing.large(context)),
-                                  
                                   // Description
                                   Text(
                                     localizations.registerDescription,
@@ -184,8 +183,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                     ),
                                     textAlign: TextAlign.center,
                                   ),
-                                  SizedBox(height: ResponsiveSpacing.large(context)),
-                                  
                                   // Email Input
                                   FocusTraversalOrder(
                                     order: const NumericFocusOrder(1),
@@ -199,14 +196,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                         });
                                       },
                                       onSubmitted: (_) {
-                                        // Bei Enter/Tab: Fokus auf Passwort-Feld
+                                        // On Enter/Tab: focus password field
                                         _passwordFocus.requestFocus();
                                       },
                                     ),
                                   ),
-                                  
-                                  SizedBox(height: ResponsiveSpacing.medium(context)),
-                                  
                                   // Password Input
                                   FocusTraversalOrder(
                                     order: const NumericFocusOrder(2),
@@ -220,14 +214,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                         });
                                       },
                                       onSubmitted: (_) {
-                                        // Bei Enter/Tab: Fokus auf Passwort-Bestätigung
+                                        // On Enter/Tab: focus confirm password field
                                         _confirmPasswordFocus.requestFocus();
                                       },
                                     ),
                                   ),
-                                  
-                                  SizedBox(height: ResponsiveSpacing.medium(context)),
-                                  
                                   // Confirm Password Input
                                   FocusTraversalOrder(
                                     order: const NumericFocusOrder(3),
@@ -248,17 +239,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                       },
                                     ),
                                   ),
-                                  
-                                  SizedBox(height: LayoutConstants.codeInputButtonSpacing),
-                                  
                                   // Register button
                                   PrimaryButton(
                                     label: localizations.registerButton,
                                     enabled: _canRegister && !_isLoading,
                                     onPressed: _canRegister && !_isLoading ? _performRegistration : null,
                                   ),
-                                  
-                                  SizedBox(height: ResponsiveSpacing.large(context)),
                                 ],
                               ),
                             ),

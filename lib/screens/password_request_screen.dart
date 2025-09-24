@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/foundation.dart';
+import 'package:terminal_one/utils/layout_constants.dart';
+import 'package:terminal_one/utils/responsive_layout.dart';
 import '../components/buttons/primary_button.dart';
 import '../components/inputs/input_email.dart';
 import '../l10n/app_localizations.dart';
@@ -21,12 +23,16 @@ class PasswordRequestScreen extends StatefulWidget {
 }
 
 class _PasswordRequestScreenState extends State<PasswordRequestScreen> {
+  // Controller for the email input field
   final TextEditingController _emailController = TextEditingController();
+  // Focus node for the email input field
   final FocusNode _emailFocus = FocusNode();
+  // Tracks if the entered email is valid
   bool _isEmailValid = false;
 
   @override
   void dispose() {
+    // Dispose controllers and focus nodes to avoid memory leaks
     _emailController.dispose();
     _emailFocus.dispose();
     super.dispose();
@@ -36,13 +42,12 @@ class _PasswordRequestScreenState extends State<PasswordRequestScreen> {
   void initState() {
     super.initState();
     
-    // Initial validation check
+    // Initial validation check for the email field
     _validateInitialState();
     
-    // Fix für Simulator: Auto-Focus auf Email-Feld nach Screen-Aufbau
+    // Autofocus the email field after the screen is built (for simulator/dev convenience)
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (mounted) {
-        // Kleine Verzögerung für bessere Simulator-Kompatibilität
         Future.delayed(const Duration(milliseconds: 300), () {
           if (mounted) {
             _emailFocus.requestFocus();
@@ -52,15 +57,17 @@ class _PasswordRequestScreenState extends State<PasswordRequestScreen> {
     });
   }
 
+  // Checks the initial state of the email field and updates the button state
   void _validateInitialState() {
-    // Beim Start ist das Feld leer, also Button deaktiviert
     setState(() {
-      _isEmailValid = _emailController.text.isNotEmpty && 
-                     _emailController.text.contains('@') && 
-                     _emailController.text.contains('.');
+      _isEmailValid = 
+        _emailController.text.isNotEmpty && 
+        _emailController.text.contains('@') && 
+        _emailController.text.contains('.');
     });
   }
 
+  // Handles the password reset request, including API call and error handling
   Future<void> _handlePasswordRequest() async {
     if (!_isEmailValid) return;
     final authService = AuthService();
@@ -73,6 +80,7 @@ class _PasswordRequestScreenState extends State<PasswordRequestScreen> {
       if (!mounted) return;
       if (result.code == 0) {
         final email = _emailController.text.trim();
+        // Show success message and return to previous screen with email
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(AppLocalizations.of(context)!.passwordRequestSuccess(email)),
@@ -81,6 +89,7 @@ class _PasswordRequestScreenState extends State<PasswordRequestScreen> {
         );
         Navigator.of(context).pop(email);
       } else {
+        // Show error message if request failed
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(result.errorMessage.isNotEmpty && result.errorMessage != 'null'
@@ -92,6 +101,7 @@ class _PasswordRequestScreenState extends State<PasswordRequestScreen> {
       }
     } catch (e) {
       if (!mounted) return;
+      // Show generic error message for unexpected errors
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text(AppLocalizations.of(context)!.genericError),
@@ -107,12 +117,19 @@ class _PasswordRequestScreenState extends State<PasswordRequestScreen> {
       title: Text(AppLocalizations.of(context)!.passwordRequest),
       body: GestureDetector(
         onTap: () {
-          FocusScope.of(context).requestFocus(_emailFocus);
+           // Hide keyboard and refocus email field if empty (simulator/dev convenience)
+          FocusScope.of(context).unfocus();
+          Future.delayed(const Duration(milliseconds: 100), () {
+            if (mounted && _emailController.text.isEmpty) {
+              _emailFocus.requestFocus();
+            }
+          });
         },
         child: LayoutBuilder(
           builder: (context, constraints) {
             return Column(
               children: [
+                // Main content area (expanded)
                 Expanded(
                   child: SingleChildScrollView(
                     child: Center(
@@ -125,18 +142,21 @@ class _PasswordRequestScreenState extends State<PasswordRequestScreen> {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
+                                // App logo
                                 const AppLogo(
                                   size: LogoSize.medium,
                                   variant: LogoVariant.minimal,
                                 ),
-                                const SizedBox(height: 20),
+                                SizedBox(height: ResponsiveSpacing.large(context)),
+                                // Description text
                                 Text(AppLocalizations.of(context)!.passwordRequestDescription,
                                   textAlign: TextAlign.center,
                                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                                     color: Theme.of(context).colorScheme.onSurface.withAlpha(180),
                                   ),
                                 ),
-                                const SizedBox(height: 20),
+                                SizedBox(height: ResponsiveSpacing.large(context)),
+                                // Email input field with keyboard shortcut for submit
                                 FocusTraversalOrder(
                                   order: const NumericFocusOrder(1),
                                   child: CallbackShortcuts(
@@ -160,7 +180,8 @@ class _PasswordRequestScreenState extends State<PasswordRequestScreen> {
                                     ),
                                   ),
                                 ),
-                                const SizedBox(height: 20),
+                                 SizedBox(height: LayoutConstants.codeInputButtonSpacing),
+                                // Button to send password reset request
                                 PrimaryButton(
                                   label: AppLocalizations.of(context)!.sendPasswordRequest,
                                   enabled: _isEmailValid,
