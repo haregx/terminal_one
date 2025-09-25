@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
@@ -131,8 +133,16 @@ class AuthService {
 
         // API-Service mit Token konfigurieren
         _apiService.setAuthToken(loginResult.userGuid);
-        
-        debugPrint('Login successful: UserGuid=${loginResult.userGuid.substring(0, 10)}...');
+        if (loginResult.code == 0) {
+          debugPrint('Login successful: UserGuid=${loginResult.userGuid.substring(0, 10)}...');
+        }
+        else if (loginResult.code == 1) {
+          debugPrint('Login successful with restrictions: PubGuid=${loginResult.pubGuid.substring(0, 10)}...');
+        }
+        else {
+          debugPrint('Login failed: bad code ${loginResult.code}');
+          throw AuthenticationException('Login failed: bad code ${loginResult.code}');
+        }
       } else {
         // Login fehlgeschlagen
         throw AuthenticationException(loginResult.errorMessage);

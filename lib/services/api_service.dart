@@ -51,10 +51,16 @@ class ApiService {
         },
         onResponse: (response, handler) {
           debugPrint('✅ API Response: ${response.statusCode} ${response.requestOptions.uri}');
+          if (response.data != null) {
+            debugPrint('📥 JSON: ${response.data is String ? response.data : response.data.toString()}');
+          }
           handler.next(response);
         },
         onError: (error, handler) {
           debugPrint('❌ API Error: ${error.message}');
+          if (error.response?.data != null) {
+            debugPrint('📥 JSON (Error): ${error.response!.data is String ? error.response!.data : error.response!.data.toString()}');
+          }
           handler.next(error);
         },
       ));
@@ -63,8 +69,11 @@ class ApiService {
 
   /// Auth-Token setzen
   void setAuthToken(String token) {
+    debugPrint('user token ? $token, is _dio null? ${_dio == null}');
     if (_dio != null) {
+      debugPrint('Setting auth token in headers _dio ${_dio!.options.headers} , token $token');
       _dio!.options.headers['Authorization'] = 'Bearer $token';
+      debugPrint('Current headers: ${_dio!.options.headers}');
     }
   }
 

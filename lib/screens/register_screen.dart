@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import '../l10n/app_localizations.dart';
 import '../utils/responsive_layout.dart';
-import '../utils/layout_constants.dart';
 import '../widgets/glassmorphism_scaffold.dart';
 import '../widgets/app_logo.dart';
 import '../components/buttons/primary_button.dart';

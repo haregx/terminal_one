@@ -5,7 +5,6 @@ import 'package:terminal_one/components/buttons/secondary_button.dart';
 import 'package:terminal_one/components/spacer/separator_withtext.dart';
 import '../utils/responsive_layout.dart';
 import '../widgets/glassmorphism_scaffold.dart';
-import '../widgets/platform_widgets.dart';
 import '../widgets/app_logo.dart';
 import '../components/buttons/primary_button.dart';
 import '../components/inputs/input_email.dart';
@@ -108,9 +107,19 @@ class _LoginScreenState extends State<LoginScreen> {
 
       if (!mounted) return;
 
+      debugPrint('Login successful with code: ${loginResult.code}');
       // Handle successful login
-      debugPrint('Login successful: UserGuid=loginResult.userGuid.substring(0, 10)}...');
-      
+      if (loginResult.code == 0) {
+        debugPrint('Login successful: UserGuid=${loginResult.userGuid.substring(0, 10)}...');
+      }
+      debugPrint('Login successful: PubGuid=${loginResult.pubGuid.substring(0, 10)}...');
+
+      // handle PIN required
+      if (loginResult.code == 1) {
+        // TODO: Navigate to PIN Page
+        debugPrint('Authenticated with restrictions');
+      }
+
       // Additional login handling for first login or password change
       if (loginResult.isFirstLogin) {
         // TODO: Navigate to welcome page

@@ -41,7 +41,12 @@ class ClientException extends ApiException {
 
 /// Authentication-Fehler (401, 403)
 class AuthenticationException extends ApiException {
-  const AuthenticationException(super.message, {super.statusCode, super.data});
+  const AuthenticationException(
+    super.message, 
+    {
+      super.statusCode, super.data
+    }
+  );
   
   @override
   String toString() => 'AuthenticationException: $message (Status: $statusCode)';
