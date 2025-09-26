@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/foundation.dart';
-import 'package:terminal_one/api_services/password_request_service.dart';
+import 'package:terminal_one/api_services/auth/password_request_service.dart';
 import 'package:terminal_one/api_services/simple_https_post.dart';
 import 'package:terminal_one/components/snackbars/fancy_success_snackbar.dart';
 import 'package:terminal_one/utils/layout_constants.dart';
 import 'package:terminal_one/utils/responsive_layout.dart';
-import '../components/buttons/primary_button.dart';
-import '../components/inputs/input_email.dart';
-import '../l10n/app_localizations.dart';
-import '../widgets/app_logo.dart';
-import '../widgets/glassmorphism_scaffold.dart';
+import '../../components/buttons/primary_button.dart';
+import '../../components/inputs/input_email.dart';
+import '../../l10n/app_localizations.dart';
+import '../../widgets/app_logo.dart';
+import '../../widgets/glassmorphism_scaffold.dart';
 
 /// PasswordRequestScreen - Screen for requesting password reset
 /// 

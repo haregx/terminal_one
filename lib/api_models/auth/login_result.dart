@@ -1,4 +1,4 @@
-import 'api_result.dart';
+import '../api_result.dart';
 
 /// Login Result Model (entspricht C# LoginResult : Result)
 class LoginResult extends ApiResult {

@@ -97,43 +97,87 @@ class SimpleHttpsPostMethodNotAllowedException implements Exception {
 }
 
 class ErrorCodes {
-  static String translate (int code) {
+  static String translate(int code) {
     switch (code) {
-        case 1000: // BadUser
-          return 'Ungültiger Benutzer';
-        case 1005: // BadPassword
-          return 'Falsches Passwort';
-        case 1001: // UserLocked
-          return 'Benutzer ist gesperrt';
-        case 1002: // UserDeleted
-          return 'Benutzer wurde gelöscht';
-        case 1003: // UserNotConfirmedByUser
-          return 'Benutzer nicht bestätigt';
-        case 1004: // UserNotConfirmedByAdmin
-          return 'Benutzer nicht von Admin bestätigt';
-        case 1014: // BadToken
-          return 'Ungültiger Token';
-        case 1500: // TooManyLogins
-          return 'Zu viele Login-Versuche';
-        case 2001: // DuplicateEmail
-          return 'E-Mail bereits vorhanden';
-        case 2000: // DuplicateLogin
-          return 'Login bereits vorhanden';
-        case 1012: // BadEmail
-          return 'Ungültige E-Mail-Adresse';
-        case 1007: // ConfirmCodeExpired
-          return 'Bestätigungscode abgelaufen';
-        case 1006: // BadConfirmCode
-          return 'Ungültiger Bestätigungscode';
-        case 1404: // NotFound
-          return 'Nicht gefunden';
-        case 10002: // DatabaseError
-          return 'Datenbankfehler';
-        case 10003: // NullRequest
-          return 'Leere Anfrage';
-        default:
-          return 'Fehler Code: $code';
-      }
+      case 10000: // BadApi
+        return 'Ungültige API-Anfrage';
+      case 10001: // BadModel
+        return 'Ungültiges Datenmodell';
+      case 10002: // DatabaseError
+        return 'Datenbankfehler';
+      case 10003: // NullRequest
+        return 'Leere Anfrage';
+      case 10004: // EmptyRequest
+        return 'Leere Anfrage';
+
+      case 1000: // BadUser
+        return 'Ungültiger Benutzer';
+      case 1001: // UserLocked
+        return 'Benutzer ist gesperrt';
+      case 1002: // UserDeleted
+        return 'Benutzer wurde gelöscht';
+      case 1003: // UserNotConfirmedByUser
+        return 'Benutzer nicht bestätigt';
+      case 1004: // UserNotConfirmedByAdmin
+        return 'Benutzer nicht von Admin bestätigt';
+      case 1005: // BadPassword
+        return 'Falsches Passwort';
+      case 1006: // BadConfirmCode
+        return 'Ungültiger Bestätigungscode';
+      case 1007: // ConfirmCodeExpired
+        return 'Bestätigungscode abgelaufen';
+      case 1008: // IsConfirmed
+        return 'Benutzer ist bestätigt';
+      case 1009: // NoAdmin
+        return 'Keine Admin-Berechtigung';
+      case 1010: // BadContact
+        return 'Ungültiger Kontakt';
+      case 1012: // BadEmail
+        return 'Ungültige E-Mail-Adresse';
+      case 1013: // BadPhone
+        return 'Ungültige Telefonnummer';
+      case 1014: // BadToken
+        return 'Ungültiger Token';
+      case 1015: // BadQrCode
+        return 'Ungültiger QR-Code';
+      case 1016: // BadQrCodeExpired
+        return 'QR-Code abgelaufen';
+
+      case 1404: // NotFound
+        return 'Nicht gefunden';
+      case 1111: // ContactModified
+        return 'Kontakt wurde geändert';
+
+      case 1500: // TooManyLogins
+        return 'Zu viele Login-Versuche';
+      case 1600: // SingleSignonFailed
+        return 'Single-Sign-On fehlgeschlagen';
+      case 1601: // JobFailed
+        return 'Job fehlgeschlagen';
+
+      case 2000: // DuplicateLogin
+        return 'Login bereits vorhanden';
+      case 2001: // DuplicateEmail
+        return 'E-Mail bereits vorhanden';
+      case 2002: // DuplicatePhone
+        return 'Telefonnummer bereits vorhanden';
+
+      case 3000: // ExcelError
+        return 'Excel-Fehler';
+      case 4000: // ConfirmCodeNotSend / MailNotSend
+        return 'Bestätigungscode oder E-Mail konnte nicht gesendet werden';
+
+      case 5404: // ContactNotFound
+        return 'Kontakt nicht gefunden';
+      case 5405: // ContactQRCodeExpired
+        return 'Kontakt-QR-Code abgelaufen';
+      case 6000: // AIError
+        return 'KI-Fehler';
+      case 999999: // NullResult
+        return 'Kein Ergebnis';
+      default:
+        return 'Fehler Code: $code';
+    }
   }
 }
 

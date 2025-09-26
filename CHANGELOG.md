@@ -1,3 +1,8 @@
+
+# Changelog
+## [Unreleased] - 2025-09-26
+
+- ErrorCodes in `simple_https_post.dart` extended and consolidated: All relevant API error codes are now translated clearly and user-friendly.
 - Confirmed: `lib/api_services/login.dart` is obsolete after migration to `LoginService` and can be deleted if present.
 - Added `RegisterService` in `lib/api_services/register_service.dart` for modular user registration logic.
 - Added `PasswordRequestService` in `lib/api_services/password_request_service.dart` for modular password reset logic.

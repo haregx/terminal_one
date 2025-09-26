@@ -13,7 +13,7 @@ import '../widgets/glassmorphism_scaffold.dart';
 import '../widgets/app_logo.dart';
 import '../providers/theme_provider.dart';
 import '../l10n/app_localizations.dart';
-import 'login_screen.dart';
+import 'auth/login_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   final int codeLength;

@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:lucide_icons/lucide_icons.dart';
-import 'package:terminal_one/api_services/login_service.dart';
+import 'package:terminal_one/api_services/auth/login_service.dart';
 import 'package:terminal_one/api_services/simple_https_post.dart';
 import 'package:terminal_one/components/buttons/ghost_button.dart';
 import 'package:terminal_one/components/buttons/secondary_button.dart';
 import 'package:terminal_one/components/snackbars/fancy_success_snackbar.dart';
 import 'package:terminal_one/components/spacer/separator_withtext.dart';
-import '../utils/responsive_layout.dart';
-import '../widgets/glassmorphism_scaffold.dart';
-import '../widgets/app_logo.dart';
-import '../components/buttons/primary_button.dart';
-import '../components/inputs/input_email.dart';
-import '../components/inputs/input_password.dart';
-import '../l10n/app_localizations.dart';
+import '../../utils/responsive_layout.dart';
+import '../../widgets/glassmorphism_scaffold.dart';
+import '../../widgets/app_logo.dart';
+import '../../components/buttons/primary_button.dart';
+import '../../components/inputs/input_email.dart';
+import '../../components/inputs/input_password.dart';
+import '../../l10n/app_localizations.dart';
 import 'register_screen.dart';
 import 'password_request_screen.dart';
 

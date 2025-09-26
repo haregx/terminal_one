@@ -1,4 +1,4 @@
-import 'api_result.dart';
+import '../api_result.dart';
 
 /// Register Result Model (entspricht C# RegisterResult : Result)
 class RegisterResult extends ApiResult {
@@ -48,7 +48,7 @@ class RegisterResult extends ApiResult {
   }
 
   /// Hilfsmethoden für Register-spezifische Prüfungen
-  bool get isSuccessfulRegister => code == ApiResult.ok || code == ApiResult.okWithRestrictions;
+  //bool get isSuccessfulRegister => code == ApiResult.ok || code == ApiResult.okWithRestrictions;
   bool get needsConfirmation => confirmedBy != confirmationByAdmin;
   bool get isConfirmedByEmail => confirmedBy == confirmationByEmail;
   bool get isConfirmedByAdmin => confirmedBy == confirmationByAdmin;

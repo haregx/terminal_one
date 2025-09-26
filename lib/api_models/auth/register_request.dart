@@ -1,26 +1,30 @@
-import 'api_request.dart';
+import '../api_request.dart';
 
-/// Login Request Model (entspricht C# Login : Request)
-class LoginRequest extends ApiRequest {
+/// Register Request Model (entspricht C# Register : Request)
+class RegisterRequest extends ApiRequest {
   final String loginname;
+  final String emailAddress;
   final String password;
 
-  const LoginRequest({
+  const RegisterRequest({
     required this.loginname,
+    required this.emailAddress,
     required this.password,
     required super.apiKey,
     super.vendor,
   });
 
   /// Factory constructor für einfache Erstellung
-  factory LoginRequest.create({
+  factory RegisterRequest.create({
     required String loginname,
+    required String emailAddress,
     required String password,
     required String apiKey,
     int? vendor,
   }) {
-    return LoginRequest(
+    return RegisterRequest(
       loginname: loginname,
+      emailAddress: emailAddress,
       password: password,
       apiKey: apiKey,
       vendor: vendor ?? ApiRequest.kwizzi,
@@ -33,12 +37,13 @@ class LoginRequest extends ApiRequest {
     return {
       ...baseJson,
       'loginname': loginname,
+      'emailAddress': emailAddress,
       'password': password,
     };
   }
 
   @override
   String toString() {
-    return 'LoginRequest(loginname: $loginname, vendor: $vendor)'; // Passwort nicht loggen!
+    return 'RegisterRequest(loginname: $loginname, emailAddress: $emailAddress, vendor: $vendor)'; // Passwort nicht loggen!
   }
 }

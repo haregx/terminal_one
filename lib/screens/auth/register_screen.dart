@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import '../l10n/app_localizations.dart';
-import '../utils/responsive_layout.dart';
-import '../widgets/glassmorphism_scaffold.dart';
-import '../widgets/app_logo.dart';
-import '../components/buttons/primary_button.dart';
-import '../components/inputs/input_email.dart';
-import '../components/inputs/input_password.dart';
-import '../components/inputs/input_password_confirm.dart';
-import 'package:terminal_one/api_services/register_service.dart';
+import '../../l10n/app_localizations.dart';
+import '../../utils/responsive_layout.dart';
+import '../../widgets/glassmorphism_scaffold.dart';
+import '../../widgets/app_logo.dart';
+import '../../components/buttons/primary_button.dart';
+import '../../components/inputs/input_email.dart';
+import '../../components/inputs/input_password.dart';
+import '../../components/inputs/input_password_confirm.dart';
+import 'package:terminal_one/api_services/auth/register_service.dart';
 import 'package:terminal_one/api_services/simple_https_post.dart';
 
 /// RegisterScreen - User registration form

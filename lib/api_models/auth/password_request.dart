@@ -1,4 +1,4 @@
-import 'api_request.dart';
+import '../api_request.dart';
 
 /// PasswordRequest Model (entspricht C# PasswordRequest : Request)
 class PasswordRequest extends ApiRequest {
