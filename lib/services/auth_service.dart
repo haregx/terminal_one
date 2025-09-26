@@ -1,6 +1,3 @@
-import 'dart:math';
-
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import '../models/login_request.dart';
@@ -263,7 +260,7 @@ class AuthService {
         _userRightId = int.tryParse(userRightIdString);
       }
       
-      debugPrint('🔐 Loaded from storage: UserGuid=${_userGuid != null ? _userGuid!.substring(0, 10) + "..." : "null"}, ApiKey=${_apiKey != null ? "present" : "null"}');
+      debugPrint('🔐 Loaded from storage: UserGuid=${_userGuid != null ? "${_userGuid!.substring(0, 10)}..." : "null"}, ApiKey=${_apiKey != null ? "present" : "null"}');
       
       // Wenn UserGuid vorhanden, im ApiService setzen
       if (_userGuid != null) {

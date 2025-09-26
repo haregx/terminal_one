@@ -2,7 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 import 'package:terminal_one/components/buttons/ghost_button.dart';
 import 'package:terminal_one/components/buttons/secondary_button.dart';
+import 'package:terminal_one/components/snackbars/fancy_success_snackbar.dart';
 import 'package:terminal_one/components/spacer/separator_withtext.dart';
+import 'package:terminal_one/models/api_request.dart';
+import 'package:terminal_one/models/login_request.dart';
+import 'package:terminal_one/services/simple_https_post.dart';
 import '../utils/responsive_layout.dart';
 import '../widgets/glassmorphism_scaffold.dart';
 import '../widgets/app_logo.dart';
@@ -10,9 +14,6 @@ import '../components/buttons/primary_button.dart';
 import '../components/inputs/input_email.dart';
 import '../components/inputs/input_password.dart';
 import '../l10n/app_localizations.dart';
-import '../services/auth_service.dart';
-import '../services/api_exceptions.dart';
-import '../providers/auth_state_provider.dart';
 import '../config/api_config.dart';
 import 'register_screen.dart';
 import 'password_request_screen.dart';
@@ -45,8 +46,6 @@ class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController _passwordController = TextEditingController();
   final FocusNode _emailFocus = FocusNode();
   final FocusNode _passwordFocus = FocusNode();
-  final AuthService _authService = AuthService();
-  final AuthStateNotifier _authStateNotifier = AuthStateNotifier();
   
   bool _isEmailValid = false;
   bool _isPasswordValid = false;
@@ -86,143 +85,6 @@ class _LoginScreenState extends State<LoginScreen> {
     _emailFocus.dispose();
     _passwordFocus.dispose();
     super.dispose();
-  }
-
-  // Handles the login process, including API call and error handling
-  void _handleLogin() async {
-    if (!_canLogin) return;
-
-    setState(() {
-      _isLoading = true;
-    });
-
-    try {
-      // API login request
-      final loginResult = await _authService.login(
-        context: context,
-        loginname: _emailController.text.trim(),
-        password: _passwordController.text,
-        apiKey: EnvironmentConfig.apiKey,
-      );
-
-      if (!mounted) return;
-
-      debugPrint('Login successful with code: ${loginResult.code}');
-      // Handle successful login
-      if (loginResult.code == 0) {
-        debugPrint('Login successful: UserGuid=${loginResult.userGuid.substring(0, 10)}...');
-      }
-      debugPrint('Login successful: PubGuid=${loginResult.pubGuid.substring(0, 10)}...');
-
-      // handle PIN required
-      if (loginResult.code == 1) {
-        // TODO: Navigate to PIN Page
-        debugPrint('Authenticated with restrictions');
-      }
-
-      // Additional login handling for first login or password change
-      if (loginResult.isFirstLogin) {
-        // TODO: Navigate to welcome page
-        debugPrint('First login detected');
-      }
-      
-      if (loginResult.needsPasswordChange) {
-        // TODO: Navigate to password change page
-        debugPrint('Password change required');
-      }
-      
-      // Notify AuthStateNotifier of successful login
-      _authStateNotifier.onLoginSuccess();
-      // AuthGuard will automatically navigate to HomeScreen
-
-    } on ValidationException catch (e) {
-      if (!mounted) return;
-      // Show validation errors
-      _showErrorDialog(
-        'Input error',
-        _formatValidationErrors(e.validationErrors),
-      );
-    } on AuthenticationException catch (e) {
-      if (!mounted) return;
-      // Show authentication errors with user-friendly messages
-      String userMessage;
-      switch (e.message) {
-        case 'Ungültiger Benutzer':
-          userMessage = 'Username or password is incorrect.';
-          break;
-        case 'Falsches Passwort':
-          userMessage = 'Username or password is incorrect.';
-          break;
-        case 'Benutzer ist gesperrt':
-          userMessage = 'Your account is locked. Please contact support.';
-          break;
-        case 'E-Mail bereits vorhanden':
-          userMessage = 'This email is already registered.';
-          break;
-        default:
-          userMessage = e.message.isNotEmpty && e.message != 'null'
-            ? e.message
-            : 'Login failed. Please check your credentials.';
-      }
-      _showErrorDialog(
-        'Login failed',
-        userMessage,
-      );
-    } on NetworkException {
-      if (!mounted) return;
-      // Show network error
-      _showErrorDialog(
-        'Connection error',
-        'Please check your internet connection and try again.',
-      );
-    } catch (e) {
-      if (!mounted) return;
-      // Show unknown error
-      _showErrorDialog(
-        'Error',
-        'An unexpected error occurred. Please try again.',
-      );
-      debugPrint('Unexpected login error: $e');
-    } finally {
-      if (mounted) {
-        setState(() {
-          _isLoading = false;
-        });
-      }
-    }
-  }
-
-  /// Shows an error dialog with the given title and message
-  void _showErrorDialog(String title, String message) {
-    showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: Text(title),
-        content: Text(message),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.of(context).pop(),
-            child: const Text('OK'),
-          ),
-        ],
-      ),
-    );
-  }
-
-  /// Formats validation errors for display in the error dialog
-  String _formatValidationErrors(Map<String, List<String>>? errors) {
-    if (errors == null || errors.isEmpty) {
-      return 'Please check your input.';
-    }
-
-    final buffer = StringBuffer();
-    errors.forEach((field, messages) {
-      for (final message in messages) {
-        buffer.writeln('• $message');
-      }
-    });
-
-    return buffer.toString().trim();
   }
 
   @override
@@ -361,4 +223,46 @@ class _LoginScreenState extends State<LoginScreen> {
       ),
     );
   }
+  
+  void _handleLogin() async {
+    if (!_canLogin) return;
+
+    setState(() {
+      _isLoading = true;
+    });
+
+    final url = '${ApiConfig.baseUrl}/Users/Login';
+    final jsonBody = LoginRequest(
+      loginname: _emailController.text.trim(),
+      password: _passwordController.text,
+      apiKey: ApiConfig.apiKey,
+      vendor: ApiRequest.kwizzi
+    ).toJson();
+
+    try {
+      var response = await SimpleHttpsPost.postJson(
+        url: url, 
+        jsonBody: jsonBody
+      );
+      if (!mounted) return;
+      debugPrint('✅ Login response: $response');
+      // Handle successful login
+      ScaffoldMessenger.of(context).showSnackBar(
+         FancySuccessSnackbar.build('Du wurdest erfolgreich angemeldet!'),
+      );
+
+    } catch (e) {
+      debugPrint('❌ Login error: ${e.runtimeType}');
+      debugPrint('❌ Error details: $e');
+      HttpsErrorHandler.handle(context, e);
+    }
+    finally {
+      if (mounted) {
+        setState(() {
+          _isLoading = false;
+        });
+      }
+    } 
+  }
 }
+

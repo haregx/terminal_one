@@ -61,6 +61,20 @@ class ApiService {
           if (error.response?.data != null) {
             debugPrint('📥 JSON (Error): ${error.response!.data is String ? error.response!.data : error.response!.data.toString()}');
           }
+          // Log platform info for debugging (especially for web exceptions)
+          debugPrint('Platform: ${identical(0, 0.0) ? "Web" : "Mobile/Desktop"}');
+          debugPrint('Error type: ${error.runtimeType}');
+          debugPrint('Error details: ${error.toString()}');
+          if (error.requestOptions != null) {
+            debugPrint('Request URL: ${error.requestOptions.uri}');
+            debugPrint('Request Method: ${error.requestOptions.method}');
+            debugPrint('Request Headers: ${error.requestOptions.headers}');
+            debugPrint('Request Data: ${error.requestOptions.data}');
+          }
+          if (error.response != null) {
+            debugPrint('Response Status: ${error.response?.statusCode}');
+            debugPrint('Response Headers: ${error.response?.headers}');
+          }
           handler.next(error);
         },
       ));

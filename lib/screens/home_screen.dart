@@ -70,7 +70,8 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return GlassmorphismScaffold(
-      title: Text(AppLocalizations.of(context)!.homeScreenTitle),
+    //  title: Text(AppLocalizations.of(context)!.homeScreenTitle),
+      title: Text(''),
       actions: [
         Padding(
           padding: const EdgeInsets.only(right: 16.0, left: 8.0),
