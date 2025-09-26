@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart'; // for kIsWeb
 import 'dart:convert';
 import 'dart:io';
 import 'dart:async';
@@ -28,7 +29,7 @@ class SimpleHttpsPost {
         headers: defaultHeaders,
         body: json.encode(jsonBody),
       );
-      debugPrint('⬅️ Response Status: ${response.statusCode}');
+      debugPrint('⬅️ Response StatusCode: ${response.statusCode}');
       debugPrint('⬅️ Response JSON: ${response.body}');
       if (response.statusCode >= 200 && response.statusCode < 300) {
         return json.decode(response.body) as Map<String, dynamic>;
@@ -40,15 +41,27 @@ class SimpleHttpsPost {
       } else if (response.statusCode == 404) {
         debugPrint('❌ Error 404: Not Found. URL: $url');
         throw SimpleHttpsPostNotFoundException(url);
+      } else if (response.statusCode == 405) {
+        debugPrint('❌ Error 405: Method Not Allowed. URL: $url');
+        throw SimpleHttpsPostMethodNotAllowedException(url);
       } else {
         throw Exception('HTTP ${response.statusCode}: ${response.reasonPhrase}\n${response.body}');
       }
-    } on SocketException catch (e) {
-      debugPrint('❌ Network error (SocketException): $e');
-      throw SimpleHttpsPostNetworkException();
-    } on TimeoutException catch (e) {
-      debugPrint('❌ Network error (TimeoutException): $e');
-      throw SimpleHttpsPostNetworkException();
+    } catch (e) {
+      if (kIsWeb) {
+        // Web: network errors are usually ClientException or browser errors
+        if (e is http.ClientException || e.toString().contains('Failed to fetch')) {
+          debugPrint('❌ Network error (Web): $e');
+          throw SimpleHttpsPostNetworkException();
+        }
+      } else {
+        // Mobile/Desktop: handle SocketException/TimeoutException
+        if (e is SocketException || e is TimeoutException) {
+          debugPrint('❌ Network error (Native): $e');
+          throw SimpleHttpsPostNetworkException();
+        }
+      }
+      rethrow;
     }
   }
 } // End of SimpleHttpsPost class
@@ -75,7 +88,13 @@ class SimpleHttpsPostNetworkException implements Exception {
   String toString() => 'No internet connection or server not reachable.';
 }
 
-
+// Exception for HTTP 405 Method Not Allowed
+class SimpleHttpsPostMethodNotAllowedException implements Exception {
+  final String url;
+  SimpleHttpsPostMethodNotAllowedException(this.url);
+  @override
+  String toString() => '405 Method Not Allowed: $url';
+}
 
 class ErrorCodes {
   static String translate (int code) {

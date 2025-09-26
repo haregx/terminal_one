@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/foundation.dart';
+import 'package:terminal_one/components/snackbars/fancy_success_snackbar.dart';
+import 'package:terminal_one/models/api_request.dart';
+import 'package:terminal_one/models/password_request.dart';
+import 'package:terminal_one/services/simple_https_post.dart';
 import 'package:terminal_one/utils/layout_constants.dart';
 import 'package:terminal_one/utils/responsive_layout.dart';
 import '../components/buttons/primary_button.dart';
@@ -67,7 +71,7 @@ class _PasswordRequestScreenState extends State<PasswordRequestScreen> {
     });
   }
 
-  // Handles the password reset request, including API call and error handling
+/*  // Handles the password reset request, including API call and error handling
   Future<void> _handlePasswordRequest() async {
     if (!_isEmailValid) return;
     final authService = AuthService();
@@ -110,6 +114,7 @@ class _PasswordRequestScreenState extends State<PasswordRequestScreen> {
       );
     }
   }
+  */
 
   @override
   Widget build(BuildContext context) {
@@ -202,4 +207,45 @@ class _PasswordRequestScreenState extends State<PasswordRequestScreen> {
       ),
     );
   }
-}
+  
+  void _handlePasswordRequest() async {
+    if (!_isEmailValid) return;
+
+    setState(() {
+      //_isLoading = true;
+    });
+
+    final url = '${ApiConfig.baseUrl}/Users/PasswordRequest';
+    final jsonBody = PasswordRequest(
+      loginname: _emailController.text.trim(),
+      apiKey: ApiConfig.apiKey,
+      vendor: ApiRequest.kwizzi
+    ).toJson();
+
+    try {
+      var response = await SimpleHttpsPost.postJson(
+        url: url, 
+        jsonBody: jsonBody
+      );
+      if (!mounted) return;
+      debugPrint('✅ Password request response: $response');
+      // Handle successful password request
+      ScaffoldMessenger.of(context).showSnackBar(
+        FancySuccessSnackbar.build('Dir wurde an deine E-Mail-Adresse ${_emailController.text.trim()} ein neues Kennwort gesendet.'),
+      );
+      Navigator.of(context).pop(_emailController.text.trim());
+
+    } catch (e) {
+      debugPrint('❌ Password request error: ${e.runtimeType}');
+      debugPrint('❌ Error details: $e');
+      HttpsErrorHandler.handle(context, e);
+    }
+    finally {
+      if (mounted) {
+        setState(() {
+       //   _isLoading = false;
+        });
+      }
+    } 
+  }
+ }
