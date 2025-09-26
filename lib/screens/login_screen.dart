@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:lucide_icons/lucide_icons.dart';
-import 'package:terminal_one/api_services/login.dart';
+import 'package:terminal_one/api_services/login_service.dart';
+import 'package:terminal_one/api_services/simple_https_post.dart';
 import 'package:terminal_one/components/buttons/ghost_button.dart';
 import 'package:terminal_one/components/buttons/secondary_button.dart';
+import 'package:terminal_one/components/snackbars/fancy_success_snackbar.dart';
 import 'package:terminal_one/components/spacer/separator_withtext.dart';
 import '../utils/responsive_layout.dart';
 import '../widgets/glassmorphism_scaffold.dart';
@@ -83,16 +85,23 @@ class _LoginScreenState extends State<LoginScreen> {
     super.dispose();
   }
 
-  void _triggerLogin() {
-    if (_canLogin) {
-      handleLogin(
-        context: context,
-        email: _emailController.text,
-        password: _passwordController.text,
-        onStart: () => setState(() => _isLoading = true),
-        onFinish: () => setState(() => _isLoading = false),
-        mounted: mounted,
+  final LoginService _loginService = LoginService();
+
+  void _handleLogin() async {
+    if (!_canLogin) return;
+    setState(() => _isLoading = true);
+    final result = await _loginService.login(
+      _emailController.text,
+      _passwordController.text,
+    );
+    setState(() => _isLoading = false);
+    if (!mounted) return;
+    if (result.isSuccess) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        FancySuccessSnackbar.build('You have been successfully logged in!'),
       );
+    } else {
+      HttpsErrorHandler.handle(context, result.error as Object);
     }
   }
 
@@ -173,7 +182,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                               _isPasswordValid = isValid;
                                             });
                                           },
-                                          onSubmitted: (_) => _triggerLogin(),
+                                          onSubmitted: (_) => _handleLogin(),
                                         ),
                                       ),
                                       GhostButton(
@@ -185,7 +194,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                       PrimaryButton(
                                         label: localizations.login,
                                         enabled: _canLogin,
-                                        onPressed: _canLogin ? _triggerLogin : null,
+                                        onPressed: _canLogin ? _handleLogin : null,
                                       ),
                                     ],
                                   ),

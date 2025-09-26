@@ -7,6 +7,8 @@ import '../components/buttons/primary_button.dart';
 import '../components/inputs/input_email.dart';
 import '../components/inputs/input_password.dart';
 import '../components/inputs/input_password_confirm.dart';
+import 'package:terminal_one/api_services/register_service.dart';
+import 'package:terminal_one/api_services/simple_https_post.dart';
 
 /// RegisterScreen - User registration form
 /// 
@@ -21,6 +23,7 @@ class RegisterScreen extends StatefulWidget {
 
 class _RegisterScreenState extends State<RegisterScreen> {
   bool _isLoading = false;
+  final RegisterService _registerService = RegisterService();
 
   // Handles the registration process, including API call and error handling
   
@@ -74,13 +77,31 @@ class _RegisterScreenState extends State<RegisterScreen> {
     super.dispose();
   }
 
+  void _handleRegistration() async {
+    if (!_canRegister || _isLoading) return;
+    setState(() => _isLoading = true);
+    final result = await _registerService.register(
+      email: _emailController.text,
+      password: _passwordController.text,
+      confirmPassword: _confirmPasswordController.text,
+    );
+    setState(() => _isLoading = false);
+    if (!mounted) return;
+    if (result.isSuccess) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Registrierung erfolgreich!')),
+      );
+      Navigator.of(context).pop(_emailController.text.trim());
+    } else {
+      HttpsErrorHandler.handle(context, result.error as Object);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final localizations = AppLocalizations.of(context)!;
-    
     return GestureDetector(
       onTap: () {
-        // Hide keyboard and refocus email field if empty (simulator/dev convenience)
         FocusScope.of(context).unfocus();
         Future.delayed(const Duration(milliseconds: 100), () {
           if (mounted && _emailController.text.isEmpty) {
@@ -95,14 +116,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
             builder: (context, constraints) {
               return Column(
                 children: [
-                  // Top section: Takes remaining space after bottom section
                   Expanded(
                     child: SingleChildScrollView(
                       child: Center(
                         child: ConstrainedBox(
-                          constraints: BoxConstraints(
-                            maxWidth: 600.0, // Same constraint as ResponsiveLayout
-                          ),
+                          constraints: BoxConstraints(maxWidth: 600.0),
                           child: Padding(
                             padding: EdgeInsets.all(16.0),
                             child: FocusTraversalGroup(
@@ -111,12 +129,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 spacing: ResponsiveSpacing.large(context),
                                 children: [
-                                  // App Logo
-                                  const AppLogo(
-                                    size: LogoSize.medium,
-                                    variant: LogoVariant.minimal,
-                                  ),
-                                  // Description
+                                  const AppLogo(size: LogoSize.medium, variant: LogoVariant.minimal),
                                   Text(
                                     localizations.registerDescription,
                                     style: Theme.of(context).textTheme.bodyMedium?.copyWith(
@@ -124,7 +137,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                     ),
                                     textAlign: TextAlign.center,
                                   ),
-                                  // Email Input
                                   FocusTraversalOrder(
                                     order: const NumericFocusOrder(1),
                                     child: InputEmail(
@@ -132,17 +144,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                       focusNode: _emailFocus,
                                       textInputAction: TextInputAction.next,
                                       onValidationChanged: (isValid) {
-                                        setState(() {
-                                          _isEmailValid = isValid;
-                                        });
+                                        setState(() { _isEmailValid = isValid; });
                                       },
-                                      onSubmitted: (_) {
-                                        // On Enter/Tab: focus password field
-                                        _passwordFocus.requestFocus();
-                                      },
+                                      onSubmitted: (_) { _passwordFocus.requestFocus(); },
                                     ),
                                   ),
-                                  // Password Input
                                   FocusTraversalOrder(
                                     order: const NumericFocusOrder(2),
                                     child: InputPassword(
@@ -150,17 +156,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                       focusNode: _passwordFocus,
                                       textInputAction: TextInputAction.next,
                                       onValidationChanged: (isValid) {
-                                        setState(() {
-                                          _isPasswordValid = isValid;
-                                        });
+                                        setState(() { _isPasswordValid = isValid; });
                                       },
-                                      onSubmitted: (_) {
-                                        // On Enter/Tab: focus confirm password field
-                                        _confirmPasswordFocus.requestFocus();
-                                      },
+                                      onSubmitted: (_) { _confirmPasswordFocus.requestFocus(); },
                                     ),
                                   ),
-                                  // Confirm Password Input
                                   FocusTraversalOrder(
                                     order: const NumericFocusOrder(3),
                                     child: InputPasswordConfirm(
@@ -169,22 +169,19 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                       textInputAction: TextInputAction.done,
                                       originalPassword: _currentPassword,
                                       onValidationChanged: (isValid) {
-                                        setState(() {
-                                          _isConfirmPasswordValid = isValid;
-                                        });
+                                        setState(() { _isConfirmPasswordValid = isValid; });
                                       },
                                       onSubmitted: (_) {
                                         if (_canRegister && !_isLoading) {
-                                        // _performRegistration();
+                                          _handleRegistration();
                                         }
                                       },
                                     ),
                                   ),
-                                  // Register button
                                   PrimaryButton(
                                     label: localizations.registerButton,
                                     enabled: _canRegister && !_isLoading,
-                                    onPressed: _canRegister && !_isLoading ? null /* _performRegistration*/ : null,
+                                    onPressed: _canRegister && !_isLoading ? _handleRegistration : null,
                                   ),
                                 ],
                               ),

@@ -1,3 +1,10 @@
+- Added `RegisterService` in `lib/api_services/register_service.dart` for modular user registration logic.
+- Added `PasswordRequestService` in `lib/api_services/password_request_service.dart` for modular password reset logic.
+- Removed obsolete `lib/api_services/login.dart` after migration to `LoginService`.
+## [Unreleased] - 2025-09-26
+- Refactored login logic: migrated from callback-based function to LoginService class in `lib/api_services/login_service.dart`.
+- Updated `LoginScreen` to use `LoginService` for authentication, improving modularity and testability.
+- Fixed type safety in error handling for login result.
 ## [2025-09-26]
 - Refactored login logic into login.dart for better separation of concerns
 - Improved error handling and context management in login flow

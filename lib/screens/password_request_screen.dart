@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/foundation.dart';
-import 'package:terminal_one/api_models/api_request.dart';
-import 'package:terminal_one/api_models/password_request.dart';
+import 'package:terminal_one/api_services/password_request_service.dart';
 import 'package:terminal_one/api_services/simple_https_post.dart';
 import 'package:terminal_one/components/snackbars/fancy_success_snackbar.dart';
 import 'package:terminal_one/utils/layout_constants.dart';
@@ -10,7 +9,6 @@ import 'package:terminal_one/utils/responsive_layout.dart';
 import '../components/buttons/primary_button.dart';
 import '../components/inputs/input_email.dart';
 import '../l10n/app_localizations.dart';
-import '../config/api_config.dart';
 import '../widgets/app_logo.dart';
 import '../widgets/glassmorphism_scaffold.dart';
 
@@ -162,44 +160,22 @@ class _PasswordRequestScreenState extends State<PasswordRequestScreen> {
     );
   }
   
+  final PasswordRequestService _passwordRequestService = PasswordRequestService();
+
   void _handlePasswordRequest() async {
     if (!_isEmailValid) return;
-
-    setState(() {
-      //_isLoading = true;
-    });
-
-    final url = '${ApiConfig.baseUrl}/Users/PasswordRequest';
-    final jsonBody = PasswordRequest(
-      loginname: _emailController.text.trim(),
-      apiKey: ApiConfig.apiKey,
-      vendor: ApiRequest.kwizzi
-    ).toJson();
-
-    try {
-      var response = await SimpleHttpsPost.postJson(
-        url: url, 
-        jsonBody: jsonBody
-      );
-      if (!mounted) return;
-      debugPrint('✅ Password request response: $response');
-      // Handle successful password request
+    //setState(() { _isLoading = true; });
+    final result = await _passwordRequestService.requestPassword(_emailController.text);
+    //setState(() { _isLoading = false; });
+    if (!mounted) return;
+    if (result.isSuccess) {
       ScaffoldMessenger.of(context).showSnackBar(
         FancySuccessSnackbar.build('Dir wurde an deine E-Mail-Adresse ${_emailController.text.trim()} ein neues Kennwort gesendet.'),
       );
       Navigator.of(context).pop(_emailController.text.trim());
-
-    } catch (e) {
-      debugPrint('❌ Password request error: ${e.runtimeType}');
-      debugPrint('❌ Error details: $e');
-      HttpsErrorHandler.handle(context, e);
+    } else {
+      HttpsErrorHandler.handle(context, result.error as Object);
     }
-    finally {
-      if (mounted) {
-        setState(() {
-       //   _isLoading = false;
-        });
-      }
-    } 
+    // End of _handlePasswordRequest
   }
- }
+}
