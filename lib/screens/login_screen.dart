@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:lucide_icons/lucide_icons.dart';
+import 'package:terminal_one/api_services/login.dart';
 import 'package:terminal_one/components/buttons/ghost_button.dart';
 import 'package:terminal_one/components/buttons/secondary_button.dart';
-import 'package:terminal_one/components/snackbars/fancy_success_snackbar.dart';
 import 'package:terminal_one/components/spacer/separator_withtext.dart';
-import 'package:terminal_one/models/api_request.dart';
-import 'package:terminal_one/models/login_request.dart';
-import 'package:terminal_one/services/simple_https_post.dart';
 import '../utils/responsive_layout.dart';
 import '../widgets/glassmorphism_scaffold.dart';
 import '../widgets/app_logo.dart';
@@ -14,7 +11,6 @@ import '../components/buttons/primary_button.dart';
 import '../components/inputs/input_email.dart';
 import '../components/inputs/input_password.dart';
 import '../l10n/app_localizations.dart';
-import '../config/api_config.dart';
 import 'register_screen.dart';
 import 'password_request_screen.dart';
 
@@ -85,6 +81,19 @@ class _LoginScreenState extends State<LoginScreen> {
     _emailFocus.dispose();
     _passwordFocus.dispose();
     super.dispose();
+  }
+
+  void _triggerLogin() {
+    if (_canLogin) {
+      handleLogin(
+        context: context,
+        email: _emailController.text,
+        password: _passwordController.text,
+        onStart: () => setState(() => _isLoading = true),
+        onFinish: () => setState(() => _isLoading = false),
+        mounted: mounted,
+      );
+    }
   }
 
   @override
@@ -164,9 +173,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                               _isPasswordValid = isValid;
                                             });
                                           },
-                                          onSubmitted: (_) {
-                                            if (_canLogin) _handleLogin();
-                                          },
+                                          onSubmitted: (_) => _triggerLogin(),
                                         ),
                                       ),
                                       GhostButton(
@@ -178,7 +185,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                       PrimaryButton(
                                         label: localizations.login,
                                         enabled: _canLogin,
-                                        onPressed: _canLogin ? _handleLogin : null,
+                                        onPressed: _canLogin ? _triggerLogin : null,
                                       ),
                                     ],
                                   ),
@@ -223,46 +230,6 @@ class _LoginScreenState extends State<LoginScreen> {
       ),
     );
   }
-  
-  void _handleLogin() async {
-    if (!_canLogin) return;
-
-    setState(() {
-      _isLoading = true;
-    });
-
-    final url = '${ApiConfig.baseUrl}/Users/Login';
-    final jsonBody = LoginRequest(
-      loginname: _emailController.text.trim(),
-      password: _passwordController.text,
-      apiKey: ApiConfig.apiKey,
-      vendor: ApiRequest.kwizzi
-    ).toJson();
-
-    try {
-      var response = await SimpleHttpsPost.postJson(
-        url: url, 
-        jsonBody: jsonBody
-      );
-      if (!mounted) return;
-      debugPrint('✅ Login response: $response');
-      // Handle successful login
-      ScaffoldMessenger.of(context).showSnackBar(
-         FancySuccessSnackbar.build('Du wurdest erfolgreich angemeldet!'),
-      );
-
-    } catch (e) {
-      debugPrint('❌ Login error: ${e.runtimeType}');
-      debugPrint('❌ Error details: $e');
-      HttpsErrorHandler.handle(context, e);
-    }
-    finally {
-      if (mounted) {
-        setState(() {
-          _isLoading = false;
-        });
-      }
-    } 
-  }
 }
+
 

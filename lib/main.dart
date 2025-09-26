@@ -1,23 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'core/auth_guard.dart';
+import 'package:terminal_one/screens/home_screen.dart';
 import 'l10n/app_localizations.dart';
 import 'themes/app_theme.dart';
 import 'providers/theme_provider.dart';
-import 'services/api_service.dart';
-import 'config/api_config.dart';
+
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  
-  // API-Service mit korrekter Config initialisieren
-  ApiService().initialize(
-    baseUrl: EnvironmentConfig.baseUrl,
-    timeout: ApiConfig.timeout,
-    headers: ApiConfig.defaultHeaders,
-  );
-  
-  // AuthGuard übernimmt das Laden der Token
   
   runApp(const MainApp());
 }
@@ -60,11 +50,8 @@ class _MainAppState extends State<MainApp> {
             Locale('pt'), // Portuguese
             Locale('af'), // Afrikaans
           ],
-          
-          home: AuthGuard(
-            codeLength: 6, // Configure code length here (4-12 digits supported)
-            themeProvider: _themeProvider, // Pass theme provider to auth guard
-          ),
+
+          home: HomeScreen(themeProvider: _themeProvider),
         );
       },
     );

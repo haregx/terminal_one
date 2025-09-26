@@ -7,8 +7,6 @@ import '../components/buttons/primary_button.dart';
 import '../components/inputs/input_email.dart';
 import '../components/inputs/input_password.dart';
 import '../components/inputs/input_password_confirm.dart';
-import '../services/auth_service.dart';
-import '../services/api_exceptions.dart';
 
 /// RegisterScreen - User registration form
 /// 
@@ -22,66 +20,10 @@ class RegisterScreen extends StatefulWidget {
 }
 
 class _RegisterScreenState extends State<RegisterScreen> {
-  final AuthService _authService = AuthService();
   bool _isLoading = false;
 
   // Handles the registration process, including API call and error handling
-  Future<void> _performRegistration() async {
-    setState(() { _isLoading = true; });
-    try {
-      final result = await _authService.register(
-        context: context,
-        loginname: _emailController.text,
-        emailAddress: _emailController.text,
-        password: _passwordController.text,
-        apiKey: 'TERMINAL_ONE_DEV_KEY', // Consider loading from config
-      );
-      if (result.isSuccessfulRegister) {
-        debugPrint('Registration successful: PubGuid=${result.pubGuid}');
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Your account has been created successfully!')),
-        );
-      } else {
-        debugPrint('Registration failed: ${result.errorMessage}');
-        String userMessage;
-        switch (result.code) {
-          case 2001:
-            userMessage = 'This email is already registered.';
-            break;
-          case 2000:
-            userMessage = 'This login name is already taken.';
-            break;
-          case 1005:
-            userMessage = 'The password is not secure enough.';
-            break;
-          case 1012:
-            userMessage = 'Invalid email address.';
-            break;
-          default:
-            userMessage = result.errorMessage.isNotEmpty && result.errorMessage != 'null'
-              ? result.errorMessage
-              : 'Registration failed. Please check your input.';
-        }
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(userMessage)),
-        );
-      }
-    } catch (e, stack) {
-      debugPrint('Registration error: $e\n$stack');
-      String userMessage = 'An error occurred. Please try again later.';
-      if (e is AuthenticationException) {
-        final authEx = e;
-        if (authEx.message.isNotEmpty && authEx.message != 'null') {
-          userMessage = authEx.message;
-        }
-      }
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(userMessage)),
-      );
-    } finally {
-      setState(() { _isLoading = false; });
-    }
-  }
+  
   // Controllers and focus nodes for form fields
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
@@ -233,7 +175,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                       },
                                       onSubmitted: (_) {
                                         if (_canRegister && !_isLoading) {
-                                          _performRegistration();
+                                        // _performRegistration();
                                         }
                                       },
                                     ),
@@ -242,7 +184,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                   PrimaryButton(
                                     label: localizations.registerButton,
                                     enabled: _canRegister && !_isLoading,
-                                    onPressed: _canRegister && !_isLoading ? _performRegistration : null,
+                                    onPressed: _canRegister && !_isLoading ? null /* _performRegistration*/ : null,
                                   ),
                                 ],
                               ),

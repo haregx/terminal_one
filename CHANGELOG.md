@@ -1,3 +1,12 @@
+## [2025-09-26]
+- Refactored login logic into login.dart for better separation of concerns
+- Improved error handling and context management in login flow
+## [2025-09-26]
+- Added platform_utils.dart for platform detection and utilities
+- Added platform_base_screen.dart and platform_screen_mixin.dart as templates for platform abstraction (currently not used in active code)
+## [2025-09-26]
+- Added platform_utils.dart for platform detection and utilities
+- Added platform_base_screen.dart and platform_screen_mixin.dart as templates for platform abstraction (currently not used in active code)
 
 # Changelog: Web Compatibility & Password Request Refactoring
 
@@ -15,11 +24,12 @@
 ## Detailed Changes
 
 ### lib/screens/password_request_screen.dart
-- Switched password reset API request to SimpleHttpsPost
-- Success snackbar on successful request (`FancySuccessSnackbar`)
-- Centralized error handling with `HttpsErrorHandler.handle(context, e)`
-- Navigation pop with email after successful request
+- Password reset now uses SimpleHttpsPost for API requests (web-compatible)
+- Success snackbar (`FancySuccessSnackbar`) shown after successful password request
+- Centralized error handling via `HttpsErrorHandler.handle(context, e)` for all API errors
+- Navigation pops with email after success
 - Old AuthService logic commented out
+- Improved UI feedback and error logging for all platforms
 
 ### lib/services/simple_https_post.dart
 - Logging: response status code is now always logged
