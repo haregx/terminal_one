@@ -71,51 +71,6 @@ class _PasswordRequestScreenState extends State<PasswordRequestScreen> {
     });
   }
 
-/*  // Handles the password reset request, including API call and error handling
-  Future<void> _handlePasswordRequest() async {
-    if (!_isEmailValid) return;
-    final authService = AuthService();
-    try {
-        final result = await authService.passwordRequest(
-          context: context,
-        loginname: _emailController.text.trim(),
-        apiKey: ApiConfig.apiKey,
-      );
-      if (!mounted) return;
-      if (result.code == 0) {
-        final email = _emailController.text.trim();
-        // Show success message and return to previous screen with email
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(AppLocalizations.of(context)!.passwordRequestSuccess(email)),
-            backgroundColor: Theme.of(context).colorScheme.primary,
-          ),
-        );
-        Navigator.of(context).pop(email);
-      } else {
-        // Show error message if request failed
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(result.errorMessage.isNotEmpty && result.errorMessage != 'null'
-                ? result.errorMessage
-                : AppLocalizations.of(context)!.passwordRequestFailed),
-            backgroundColor: Theme.of(context).colorScheme.error,
-          ),
-        );
-      }
-    } catch (e) {
-      if (!mounted) return;
-      // Show generic error message for unexpected errors
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text(AppLocalizations.of(context)!.genericError),
-          backgroundColor: Theme.of(context).colorScheme.error,
-        ),
-      );
-    }
-  }
-  */
-
   @override
   Widget build(BuildContext context) {
     return GlassmorphismScaffold(
