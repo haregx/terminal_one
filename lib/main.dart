@@ -6,6 +6,9 @@ import 'package:terminal_one/screens/home_screen.dart';
 import 'l10n/app_localizations.dart';
 import 'themes/app_theme.dart';
 import 'providers/theme_provider.dart';
+import 'package:flutter/foundation.dart';
+import 'package:device_frame/device_frame.dart';
+import 'components/web_status_bar.dart';
 
 
 void main() async {
@@ -43,18 +46,14 @@ class _MainAppState extends State<MainApp> {
 
   @override
   Widget build(BuildContext context) {
-    return ListenableBuilder(
+    Widget app = ListenableBuilder(
       listenable: _themeProvider,
       builder: (context, child) {
         return MaterialApp(
           title: 'Terminal One',
-          
-          // Theme configuration
           theme: AppTheme.lightTheme,
           darkTheme: AppTheme.darkTheme,
           themeMode: _themeProvider.themeMode,
-          
-          // Localization configuration
           localizationsDelegates: const [
             AppLocalizations.delegate,
             GlobalMaterialLocalizations.delegate,
@@ -62,17 +61,43 @@ class _MainAppState extends State<MainApp> {
             GlobalCupertinoLocalizations.delegate,
           ],
           supportedLocales: const [
-            Locale('en'), // English
-            Locale('de'), // German
-            Locale('fr'), // French
-            Locale('it'), // Italian
-            Locale('pt'), // Portuguese
-            Locale('af'), // Afrikaans
+            Locale('en'),
+            Locale('de'),
+            Locale('fr'),
+            Locale('it'),
+            Locale('pt'),
+            Locale('af'),
           ],
-
           home: HomeScreen(themeProvider: _themeProvider),
         );
       },
     );
+    if (kIsWeb && (defaultTargetPlatform == TargetPlatform.macOS || defaultTargetPlatform == TargetPlatform.windows || defaultTargetPlatform == TargetPlatform.linux)) {
+      return Directionality(
+        textDirection: TextDirection.ltr,
+        child: Center(
+          child: ConstrainedBox(
+            constraints: const BoxConstraints(
+              maxWidth: 559, // 430 * 1.3
+              maxHeight: 1211, // 932 * 1.3
+            ),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 8),
+              child: DeviceFrame(
+                device: Devices.ios.iPhone16Pro,
+                screen: Column(
+                  children: [
+                    const WebStatusBar(),
+                    Expanded(child: app),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ),
+      );
+    } else {
+      return app;
+    }
   }
 }

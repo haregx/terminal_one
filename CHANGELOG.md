@@ -14,6 +14,11 @@
 - Added PrivacySwitch to PasswordRequestScreen. Users must accept the privacy policy to enable password reset requests. Tapping the label opens the PrivacyScreen for review.
 - Improved privacy acceptance logic: Registration and password reset now require explicit privacy policy acceptance.
 - Added PrivacySwitch to RegisterScreen. Users must accept the privacy policy to enable registration. Tapping the label opens the PrivacyScreen for review.
+- Web view now uses DeviceFrame with iPhone 16 Pro size (430x932 px), scaled to 1.3x (559x1211 px) for desktop browsers only. On mobile browsers, the app displays natively without a device frame.
+- WebStatusBar is used for the simulated status bar in web DeviceFrame mode; MinimalWebAppBar has been removed from all screens and codebase.
+- All AppBars in GlassmorphismScaffold and relevant screens now use WebStatusBar for web, ensuring consistent appearance and correct Material context.
+- Lucide icons import corrected to `lucide_icons` everywhere.
+- General code cleanup: removed unused imports and obsolete files related to MinimalWebAppBar.
 
 ## 2025-09-26
 - ErrorCodes in `simple_https_post.dart` extended and consolidated: All relevant API error codes are now translated clearly and user-friendly.

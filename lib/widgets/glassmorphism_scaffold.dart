@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../components/web_status_bar.dart';
 
 /// Glassmorphism Scaffold - Wiederverwendbares Scaffold mit dezenten Glassmorphism-Effekten
 /// 
@@ -49,16 +50,23 @@ class GlassmorphismScaffold extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isWeb = Theme.of(context).platform == TargetPlatform.fuchsia || Theme.of(context).platform == TargetPlatform.linux || Theme.of(context).platform == TargetPlatform.windows;
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.surface,
-      appBar: showAppBar ? AppBar(
-        title: title,
-        centerTitle: centerTitle,
-        leading: leading,
-        actions: actions,
-        backgroundColor: Theme.of(context).colorScheme.surface.withAlpha(242), // 95% Sichtbarkeit (255 * 0.95 = 242)
-        elevation: 0,
-        scrolledUnderElevation: 0,
+      appBar: showAppBar ? (isWeb
+        ? PreferredSize(
+            preferredSize: const Size.fromHeight(44),
+            child: const WebStatusBar(),
+          )
+        : AppBar(
+            title: title,
+            centerTitle: centerTitle,
+            leading: leading,
+            actions: actions,
+            backgroundColor: Theme.of(context).colorScheme.surface.withAlpha(242),
+            elevation: 0,
+            scrolledUnderElevation: 0,
+          )
       ) : null,
       body: Container(
         decoration: BoxDecoration(

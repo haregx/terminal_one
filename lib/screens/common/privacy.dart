@@ -13,6 +13,7 @@ class _PrivacyScreenState extends State<PrivacyScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Privacy Policy'),
+        leading: BackButton(),
       ),
       body: const Padding(
         padding: EdgeInsets.all(24.0),

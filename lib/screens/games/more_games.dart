@@ -13,8 +13,8 @@ class _MoreGamesScreenState extends State<MoreGamesScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Mehr Promo-Games'),
-       // leading: const Icon(LucideIcons.gamepad2),
+        title: const Text('More Games'),
+        leading: BackButton(),
       ),
       body: Center(
         child: Column(
