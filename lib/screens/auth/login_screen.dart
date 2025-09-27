@@ -17,7 +17,6 @@ import '../../components/inputs/input_password.dart';
 import '../../l10n/app_localizations.dart';
 import '../../utils/secure_storage.dart';
 import '../home_screen.dart';
-import '../../providers/theme_provider.dart';
 import 'register_screen.dart';
 import 'password_request_screen.dart';
 

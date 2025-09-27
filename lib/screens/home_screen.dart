@@ -89,12 +89,12 @@ class _HomeScreenState extends State<HomeScreen> {
             icon: const Icon(Icons.logout),
             tooltip: 'Logout',
             onPressed: () async {
-              await Provider.of<AuthProvider>(context, listen: false).setLoggedIn(false);
               debugPrint('🚪 User logged out.');
               if (!mounted) return;
               ScaffoldMessenger.of(context).showSnackBar(
                 FancySuccessSnackbar.build('You have been logged out.'),
               );
+              await Provider.of<AuthProvider>(context, listen: false).setLoggedIn(false);
             },
           ),
       ],
