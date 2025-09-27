@@ -7,8 +7,11 @@ import '../../components/buttons/primary_button.dart';
 import '../../components/inputs/input_email.dart';
 import '../../components/inputs/input_password.dart';
 import '../../components/inputs/input_password_confirm.dart';
+import '../../components/switches/privacy.dart';
 import 'package:terminal_one/api_services/auth/register_service.dart';
 import 'package:terminal_one/api_services/simple_https_post.dart';
+
+import '../common/privacy.dart';
 
 /// RegisterScreen - User registration form
 /// 
@@ -22,6 +25,7 @@ class RegisterScreen extends StatefulWidget {
 }
 
 class _RegisterScreenState extends State<RegisterScreen> {
+  bool _privacyAccepted = false;
   bool _isLoading = false;
   final RegisterService _registerService = RegisterService();
 
@@ -41,7 +45,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   String _currentPassword = ''; // Track password for InputPasswordConfirm
   
   // Returns true if the register button should be enabled
-  bool get _canRegister => _isEmailValid && _isPasswordValid && _isConfirmPasswordValid;
+  bool get _canRegister => _isEmailValid && _isPasswordValid && _isConfirmPasswordValid && _privacyAccepted;
 
   @override
   void initState() {
@@ -177,6 +181,20 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                         }
                                       },
                                     ),
+                                  ),
+                                  PrivacySwitch(
+                                    value: _privacyAccepted,
+                                    onChanged: (val) {
+                                      setState(() { _privacyAccepted = val; });
+                                    },
+                                      onLabelTap: () {
+                                        Navigator.of(context).push(
+                                          MaterialPageRoute(
+                                            builder: (context) => PrivacyScreen(),
+                                          ),
+                                        );
+                                      },
+                                    label: 'I accept the privacy policy',
                                   ),
                                   PrimaryButton(
                                     label: localizations.registerButton,

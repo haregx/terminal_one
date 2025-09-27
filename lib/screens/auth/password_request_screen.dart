@@ -12,6 +12,9 @@ import '../../l10n/app_localizations.dart';
 import '../../widgets/app_logo.dart';
 import '../../widgets/glassmorphism_scaffold.dart';
 
+import '../../components/switches/privacy.dart';
+import '../common/privacy.dart';
+
 /// PasswordRequestScreen - Screen for requesting password reset
 /// 
 /// Simple screen that allows users to enter their email address
@@ -30,6 +33,7 @@ class _PasswordRequestScreenState extends State<PasswordRequestScreen> {
   final FocusNode _emailFocus = FocusNode();
   // Tracks if the entered email is valid
   bool _isEmailValid = false;
+  bool _privacyAccepted = false;
 
   @override
   void dispose() {
@@ -138,11 +142,27 @@ class _PasswordRequestScreenState extends State<PasswordRequestScreen> {
                                   ),
                                 ),
                                  SizedBox(height: LayoutConstants.codeInputButtonSpacing),
+                                // Privacy policy acceptance switch
+                                PrivacySwitch(
+                                  value: _privacyAccepted,
+                                  onChanged: (val) {
+                                    setState(() { _privacyAccepted = val; });
+                                  },
+                                  onLabelTap: () {
+                                    Navigator.of(context).push(
+                                      MaterialPageRoute(
+                                        builder: (context) => PrivacyScreen(),
+                                      ),
+                                    );
+                                  },
+                                  label: 'I accept the privacy policy',
+                                ),
+                                SizedBox(height: LayoutConstants.codeInputButtonSpacing),
                                 // Button to send password reset request
                                 PrimaryButton(
                                   label: AppLocalizations.of(context)!.sendPasswordRequest,
-                                  enabled: _isEmailValid,
-                                  onPressed: _isEmailValid ? _handlePasswordRequest : null,
+                                  enabled: _isEmailValid && _privacyAccepted,
+                                  onPressed: _isEmailValid && _privacyAccepted ? _handlePasswordRequest : null,
                                 ),
                               ],
                             ),

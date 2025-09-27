@@ -11,6 +11,9 @@
 - Improved context safety after async calls in LoginScreen (mounted check).
 - Various UI texts and icons now adapt to login status for better user experience.
 - Added logout button to HomeScreen AppBar, visible only when user is logged in. Logout resets login state, shows a FancySuccessSnackbar, and navigates to LoginScreen.
+- Added PrivacySwitch to PasswordRequestScreen. Users must accept the privacy policy to enable password reset requests. Tapping the label opens the PrivacyScreen for review.
+- Improved privacy acceptance logic: Registration and password reset now require explicit privacy policy acceptance.
+- Added PrivacySwitch to RegisterScreen. Users must accept the privacy policy to enable registration. Tapping the label opens the PrivacyScreen for review.
 
 ## 2025-09-26
 - ErrorCodes in `simple_https_post.dart` extended and consolidated: All relevant API error codes are now translated clearly and user-friendly.
