@@ -3,6 +3,7 @@ import 'package:lucide_icons/lucide_icons.dart';
 import 'package:provider/provider.dart';
 import 'package:terminal_one/components/buttons/ghost_button.dart';
 import 'package:terminal_one/components/buttons/secondary_button.dart';
+import 'package:terminal_one/components/snackbars/fancy_success_snackbar.dart';
 import 'package:terminal_one/components/spacer/separator_withtext.dart';
 import 'package:terminal_one/providers/auth_provider.dart';
 import 'package:terminal_one/utils/responsive_layout.dart';
@@ -85,6 +86,19 @@ class _HomeScreenState extends State<HomeScreen> {
             },
           ),
         ),
+        if (Provider.of<AuthProvider>(context).isLoggedIn)
+          IconButton(
+            icon: const Icon(Icons.logout),
+            tooltip: 'Logout',
+            onPressed: () async {
+              await Provider.of<AuthProvider>(context, listen: false).setLoggedIn(false);
+              debugPrint('🚪 User logged out.');
+              if (!mounted) return;
+              ScaffoldMessenger.of(context).showSnackBar(
+                FancySuccessSnackbar.build('You have been logged out.'),
+              );
+            },
+          ),
       ],
       body: SafeArea(
         child: LayoutBuilder(
