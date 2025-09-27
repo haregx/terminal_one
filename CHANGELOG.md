@@ -1,23 +1,27 @@
+# CHANGELOG
 
-# Changelog
-## [Unreleased] - 2025-09-26
+## 2025-09-27
+- Changed the application ID everywhere in the project from `com.example.terminal_one` to `com.hareg.terminalone` for consistent identification, deployment, and branding across all platforms and configuration files.
+- Added theme mode persistence: The app now saves and restores the selected theme (light, dark, or system) using SharedPreferences. If no theme is saved, the system theme is used by default.
+- Added systemwide AuthProvider for persistent login state using flutter_secure_storage and Provider.
+- Integrated AuthProvider in main.dart for global login status management and logging with emoji icons.
+- LoginScreen now sets isLoggedIn to true after successful login (without restrictions).
+- HomeScreen and SecondaryButton now show different text and icon depending on login status; if logged in, button navigates to MoreGamesScreen.
+- Created MoreGamesScreen as a new stateful screen for promo games.
+- Improved context safety after async calls in LoginScreen (mounted check).
+- Various UI texts and icons now adapt to login status for better user experience.
 
+## 2025-09-26
 - ErrorCodes in `simple_https_post.dart` extended and consolidated: All relevant API error codes are now translated clearly and user-friendly.
 - Confirmed: `lib/api_services/login.dart` is obsolete after migration to `LoginService` and can be deleted if present.
 - Added `RegisterService` in `lib/api_services/register_service.dart` for modular user registration logic.
 - Added `PasswordRequestService` in `lib/api_services/password_request_service.dart` for modular password reset logic.
 - Removed obsolete `lib/api_services/login.dart` after migration to `LoginService`.
-## [Unreleased] - 2025-09-26
 - Refactored login logic: migrated from callback-based function to LoginService class in `lib/api_services/login_service.dart`.
 - Updated `LoginScreen` to use `LoginService` for authentication, improving modularity and testability.
 - Fixed type safety in error handling for login result.
-## [2025-09-26]
 - Refactored login logic into login.dart for better separation of concerns
 - Improved error handling and context management in login flow
-## [2025-09-26]
-- Added platform_utils.dart for platform detection and utilities
-- Added platform_base_screen.dart and platform_screen_mixin.dart as templates for platform abstraction (currently not used in active code)
-## [2025-09-26]
 - Added platform_utils.dart for platform detection and utilities
 - Added platform_base_screen.dart and platform_screen_mixin.dart as templates for platform abstraction (currently not used in active code)
 

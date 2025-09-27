@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:lucide_icons/lucide_icons.dart';
+import 'package:provider/provider.dart';
 import 'package:terminal_one/components/buttons/ghost_button.dart';
 import 'package:terminal_one/components/buttons/secondary_button.dart';
 import 'package:terminal_one/components/spacer/separator_withtext.dart';
+import 'package:terminal_one/providers/auth_provider.dart';
 import 'package:terminal_one/utils/responsive_layout.dart';
 import '../components/buttons/primary_button.dart';
 import '../components/inputs/input_code_group.dart';
@@ -14,6 +16,7 @@ import '../widgets/app_logo.dart';
 import '../providers/theme_provider.dart';
 import '../l10n/app_localizations.dart';
 import 'auth/login_screen.dart';
+import 'games/more_games.dart';
 
 class HomeScreen extends StatefulWidget {
   final int codeLength;
@@ -174,18 +177,35 @@ class _HomeScreenState extends State<HomeScreen> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             spacing: ResponsiveSpacing.large(context),
                             children: [
-                              SeparatorWithText(text: AppLocalizations.of(context)!.promoCodeSignupText),
+                              SeparatorWithText(
+                                text: Provider.of<AuthProvider>(context).isLoggedIn
+                                  ? 'Mehr Promo-Codes?'
+                                  : AppLocalizations.of(context)!.promoCodeSignupText,
+                              ),
                               SecondaryButton(
                                 onPressed: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => const LoginScreen(),
-                                    ),
-                                  );
+                                  if (Provider.of<AuthProvider>(context, listen: false).isLoggedIn) {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => const MoreGamesScreen(),
+                                      ),
+                                    );
+                                  } else {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => const LoginScreen(),
+                                      ),
+                                    );
+                                  }
                                 },
-                                leading: LucideIcons.logIn,
-                                label: AppLocalizations.of(context)!.toLogin,
+                                leading: Provider.of<AuthProvider>(context).isLoggedIn
+                                  ? LucideIcons.gamepad2
+                                  : LucideIcons.logIn,
+                                label: Provider.of<AuthProvider>(context).isLoggedIn
+                                  ? 'Mehr Promo-Codes'
+                                  : AppLocalizations.of(context)!.toLogin,
                               ),
                             ],
                         

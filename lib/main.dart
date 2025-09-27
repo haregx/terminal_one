@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'providers/auth_provider.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:terminal_one/screens/home_screen.dart';
 import 'l10n/app_localizations.dart';
@@ -8,8 +10,25 @@ import 'providers/theme_provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  
-  runApp(const MainApp());
+  final authProvider = AuthProvider();
+  // Warten bis geladen
+  while (!authProvider.isInitialized) {
+    await Future.delayed(const Duration(milliseconds: 10));
+  }
+  authProvider.addListener(() {
+    debugPrint(authProvider.isLoggedIn
+      ? '✅ User is logged in.'
+      : '🔒 No user logged in.');
+  });
+  debugPrint(authProvider.isLoggedIn
+    ? '✅ User is logged in.'
+    : '🔒 No user logged in.');
+  runApp(
+    ChangeNotifierProvider.value(
+      value: authProvider,
+      child: const MainApp(),
+    ),
+  );
 }
 
 class MainApp extends StatefulWidget {

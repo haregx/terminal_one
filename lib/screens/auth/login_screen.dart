@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:lucide_icons/lucide_icons.dart';
+import 'package:provider/provider.dart';
 import 'package:terminal_one/api_services/auth/login_service.dart';
 import 'package:terminal_one/api_services/simple_https_post.dart';
 import 'package:terminal_one/components/buttons/ghost_button.dart';
 import 'package:terminal_one/components/buttons/secondary_button.dart';
 import 'package:terminal_one/components/snackbars/fancy_success_snackbar.dart';
 import 'package:terminal_one/components/spacer/separator_withtext.dart';
+import 'package:terminal_one/providers/auth_provider.dart';
 import '../../utils/responsive_layout.dart';
 import '../../widgets/glassmorphism_scaffold.dart';
 import '../../widgets/app_logo.dart';
@@ -13,6 +15,9 @@ import '../../components/buttons/primary_button.dart';
 import '../../components/inputs/input_email.dart';
 import '../../components/inputs/input_password.dart';
 import '../../l10n/app_localizations.dart';
+import '../../utils/secure_storage.dart';
+import '../home_screen.dart';
+import '../../providers/theme_provider.dart';
 import 'register_screen.dart';
 import 'password_request_screen.dart';
 
@@ -97,9 +102,35 @@ class _LoginScreenState extends State<LoginScreen> {
     setState(() => _isLoading = false);
     if (!mounted) return;
     if (result.isSuccess) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        FancySuccessSnackbar.build('You have been successfully logged in!'),
-      );
+      if (result.hasRestrictions) {
+        debugPrint('🗝️ Login JSON (with restrictions): ${result.data.toString()}');
+        ScaffoldMessenger.of(context).showSnackBar(
+          FancySuccessSnackbar.build('Login successful, but with restrictions.'),
+        );
+      } else {
+        debugPrint('🗝️ Login JSON: ${result.data.toString()}');
+        // Write userGuid to secure storage
+        final userGuid = result.data['userGuid']?.toString();
+        if (userGuid != null && userGuid.isNotEmpty) {
+          try {
+            await SecureStorage.writeUserGuid(userGuid);
+            debugPrint('🔒 userGuid saved to secure storage: $userGuid');
+            if (!mounted) return;
+            Provider.of<AuthProvider>(context, listen: false).setLoggedIn(true);
+            ScaffoldMessenger.of(context).showSnackBar(
+              FancySuccessSnackbar.build('You have been successfully logged in!'),
+            );
+            Navigator.of(context).pushAndRemoveUntil(
+              MaterialPageRoute(
+                builder: (context) => HomeScreen(themeProvider: ThemeProvider()),
+              ),
+              (route) => false,
+            );
+          } catch (e, stack) {
+            debugPrint('❌ Failed to save userGuid: $e\n$stack');
+          }
+        }
+      }
     } else {
       HttpsErrorHandler.handle(context, result.error as Object);
     }
