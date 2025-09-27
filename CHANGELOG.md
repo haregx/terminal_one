@@ -19,6 +19,10 @@
 - All AppBars in GlassmorphismScaffold and relevant screens now use WebStatusBar for web, ensuring consistent appearance and correct Material context.
 - Lucide icons import corrected to `lucide_icons` everywhere.
 - General code cleanup: removed unused imports and obsolete files related to MinimalWebAppBar.
+- Removed unused dev dependencies: `json_serializable` and `build_runner` from pubspec.yaml. These packages were not used for code generation or build processes in the current codebase.
+- Refactored Provider structure: ThemeProvider and AuthProvider are now provided globally via MultiProvider in main.dart.
+- Removed the themeProvider constructor parameter from HomeScreen and LoginScreen. ThemeProvider is now accessed via Provider.of<ThemeProvider>(context).
+- This change ensures reliable theme switching and global state management.
 
 ## 2025-09-26
 - ErrorCodes in `simple_https_post.dart` extended and consolidated: All relevant API error codes are now translated clearly and user-friendly.

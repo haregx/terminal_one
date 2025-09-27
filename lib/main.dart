@@ -27,8 +27,11 @@ void main() async {
     ? '✅ User is logged in.'
     : '🔒 No user logged in.');
   runApp(
-    ChangeNotifierProvider.value(
-      value: authProvider,
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider.value(value: authProvider),
+        ChangeNotifierProvider(create: (_) => ThemeProvider()),
+      ],
       child: const MainApp(),
     ),
   );
@@ -42,35 +45,31 @@ class MainApp extends StatefulWidget {
 }
 
 class _MainAppState extends State<MainApp> {
-  final ThemeProvider _themeProvider = ThemeProvider();
+  // ThemeProvider wird jetzt über Provider bereitgestellt
 
   @override
   Widget build(BuildContext context) {
-    Widget app = ListenableBuilder(
-      listenable: _themeProvider,
-      builder: (context, child) {
-        return MaterialApp(
-          title: 'Terminal One',
-          theme: AppTheme.lightTheme,
-          darkTheme: AppTheme.darkTheme,
-          themeMode: _themeProvider.themeMode,
-          localizationsDelegates: const [
-            AppLocalizations.delegate,
-            GlobalMaterialLocalizations.delegate,
-            GlobalWidgetsLocalizations.delegate,
-            GlobalCupertinoLocalizations.delegate,
-          ],
-          supportedLocales: const [
-            Locale('en'),
-            Locale('de'),
-            Locale('fr'),
-            Locale('it'),
-            Locale('pt'),
-            Locale('af'),
-          ],
-          home: HomeScreen(themeProvider: _themeProvider),
-        );
-      },
+    final themeProvider = Provider.of<ThemeProvider>(context);
+    Widget app = MaterialApp(
+      title: 'Terminal One',
+      theme: AppTheme.lightTheme,
+      darkTheme: AppTheme.darkTheme,
+      themeMode: themeProvider.themeMode,
+      localizationsDelegates: const [
+        AppLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: const [
+        Locale('en'),
+        Locale('de'),
+        Locale('fr'),
+        Locale('it'),
+        Locale('pt'),
+        Locale('af'),
+      ],
+      home: const HomeScreen(),
     );
     if (kIsWeb && (defaultTargetPlatform == TargetPlatform.macOS || defaultTargetPlatform == TargetPlatform.windows || defaultTargetPlatform == TargetPlatform.linux)) {
       return Directionality(

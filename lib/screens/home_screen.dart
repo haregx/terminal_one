@@ -21,11 +21,9 @@ import 'games/more_games.dart';
 
 class HomeScreen extends StatefulWidget {
   final int codeLength;
-  final ThemeProvider themeProvider;
   const HomeScreen({
     super.key,
     this.codeLength = 6,
-    required this.themeProvider,
   });
 
   @override
@@ -73,16 +71,16 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final themeProvider = Provider.of<ThemeProvider>(context);
     return GlassmorphismScaffold(
-    //  title: Text(AppLocalizations.of(context)!.homeScreenTitle),
       title: Text(''),
       actions: [
         Padding(
           padding: const EdgeInsets.only(right: 16.0, left: 8.0),
           child: ThemeToggle(
-            themeMode: widget.themeProvider.themeMode,
+            themeMode: themeProvider.themeMode,
             onThemeChanged: (ThemeMode newMode) {
-              widget.themeProvider.setThemeMode(newMode);
+              themeProvider.setThemeMode(newMode);
             },
           ),
         ),
