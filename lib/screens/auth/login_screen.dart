@@ -19,6 +19,7 @@ import '../../utils/secure_storage.dart';
 import '../home_screen.dart';
 import 'register_screen.dart';
 import 'password_request_screen.dart';
+import 'pincode_screen.dart';
 
 /// LoginScreen - Enhanced login screen with consistent design
 ///
@@ -105,6 +106,10 @@ class _LoginScreenState extends State<LoginScreen> {
         debugPrint('🗝️ Login JSON (with restrictions): ${result.data.toString()}');
         ScaffoldMessenger.of(context).showSnackBar(
           FancySuccessSnackbar.build('Login successful, but with restrictions.'),
+        );
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => PincodeScreen(pubGuid: result.data['pubGuid'].toString() ?? '', confirmedIdent: result.data['confirmedIdent'].toString() ?? '')),
         );
       } else {
         debugPrint('🗝️ Login JSON: ${result.data.toString()}');

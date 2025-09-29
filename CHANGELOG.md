@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## 2025-09-29
+- PromoCodeCard: Redesigned the promo area at the bottom left as a red full circle, partially outside the card. Text position and layout repeatedly optimized.
+- PromoCodeCard: Colors for light and dark mode adjusted (card background, gradient, circle, promo code container and text).
+- PromoCodeCard: Promo code container is darker in dark mode and text is white for better readability.
+- PromoCodeCard: Description text limited to max. 2 lines, with ellipsis for overflow.
+- MoreGamesScreen: Cards are now scrollable, with SafeArea and consistent glassmorphism background.
+- MoreGamesScreen: Multiple different imageUrls for the cards.
+- Various UI fixes and fine-tuning for card layout, colors and text.
+
 ## 2025-09-27
 - Changed the application ID everywhere in the project from `com.example.terminal_one` to `com.hareg.terminalone` for consistent identification, deployment, and branding across all platforms and configuration files.
 - Added theme mode persistence: The app now saves and restores the selected theme (light, dark, or system) using SharedPreferences. If no theme is saved, the system theme is used by default.
