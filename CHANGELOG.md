@@ -1,5 +1,73 @@
 # CHANGELOG
 
+## [Unreleased] - 2025-10-06
+
+### Added
+- **Background System**: Implemented comprehensive background image system with `assets/background/backgound.png`
+  - Created `AppBackground` widget for centralized background management
+  - Theme-aware opacity (Light mode: 20%, Dark mode: 30%)
+  - Enhanced Light mode with additional white overlay gradient for better readability
+  - Background extends behind transparent AppBar for immersive experience
+
+- **App Icon**: Generated app icons for all platforms using `flutter_launcher_icons`
+  - Source: `assets/images/c2f.png`
+  - iOS App Store compatible (alpha channel removed)
+  - Generated for Android, iOS, Web, Windows, and macOS
+
+- **Splash Screen**: Created native splash screen system using `flutter_native_splash`
+  - Uses enlarged version of app icon (`c2f_splash.png` - 512px)
+  - Theme-aware background colors (White for light mode, Black for dark mode)
+  - Automatic timing with app initialization
+  - Cross-platform support (Android, iOS, Web)
+
+### Enhanced
+- **GlassmorphismScaffold**: Major redesign for background integration
+  - AppBar now fully transparent with `extendBodyBehindAppBar: true`
+  - Background covers entire screen including AppBar area
+  - Maintains proper text visibility with automatic foreground colors
+
+- **SafeArea System**: Replaced `SafeArea` with custom `AppBarAwareSafeArea`
+  - Accounts for transparent AppBar height (`kToolbarHeight`)
+  - Consistent content positioning across all screens
+  - Prevents content from hiding under transparent AppBar
+
+- **Screen Layout Consistency**: Updated all screens for uniform spacing
+  - `HomeScreen`: Updated to use `AppBarAwareSafeArea`
+  - `LoginScreen`: Updated to use `AppBarAwareSafeArea`
+  - `RegisterScreen`: Updated to use `AppBarAwareSafeArea`
+  - `PincodeScreen`: Updated to use `AppBarAwareSafeArea`
+  - `MoreGamesScreen`: Updated to use `AppBarAwareSafeArea`
+  - `PasswordRequestScreen`: Fixed content positioning with `AppBarAwareSafeArea`
+  - `PrivacyScreen`: Fixed content positioning with `AppBarAwareSafeArea`
+
+### Fixed
+- **Content Positioning**: Resolved text starting too high on password request and privacy screens
+- **Light Mode Optimization**: Improved background contrast in light mode with enhanced gradient overlay
+- **Dependencies**: Moved `flutter_native_splash` from dev_dependencies to dependencies for runtime usage
+
+### Technical Details
+- **Assets Configuration**: Added `assets/images/` and `assets/background/` to pubspec.yaml
+- **New Widgets**:
+  - `AppBackground`: Centralized background management with theme awareness
+  - `AppBarAwareSafeArea`: Custom SafeArea for transparent AppBar compatibility
+- **Image Processing**: Used macOS `sips` tool to create enlarged splash screen image
+- **Package Integrations**:
+  - `flutter_launcher_icons: ^0.13.1` for app icon generation
+  - `flutter_native_splash: ^2.4.1` for splash screen implementation
+
+### Dependencies Added
+```yaml
+dependencies:
+  flutter_native_splash: ^2.4.1
+
+dev_dependencies:
+  flutter_launcher_icons: ^0.13.1
+```
+
+---
+
+## Previous Releases
+
 ## 2025-09-29
 - PromoCodeCard: Redesigned the promo area at the bottom left as a red full circle, partially outside the card. Text position and layout repeatedly optimized.
 - PromoCodeCard: Colors for light and dark mode adjusted (card background, gradient, circle, promo code container and text).
@@ -46,62 +114,3 @@
 - Improved error handling and context management in login flow
 - Added platform_utils.dart for platform detection and utilities
 - Added platform_base_screen.dart and platform_screen_mixin.dart as templates for platform abstraction (currently not used in active code)
-
-# Changelog: Web Compatibility & Password Request Refactoring
-
-## Date: September 26, 2025
-
-### Summary
-- Password request screen now uses SimpleHttpsPost for API requests
-- Improved error handling and logging for web and mobile/native
-- Added support for HTTP status 405 (Method Not Allowed)
-- Success and error snackbars for user feedback
-- Web-specific error handling (CORS, network errors)
-
----
-
-## Detailed Changes
-
-### lib/screens/password_request_screen.dart
-- Password reset now uses SimpleHttpsPost for API requests (web-compatible)
-- Success snackbar (`FancySuccessSnackbar`) shown after successful password request
-- Centralized error handling via `HttpsErrorHandler.handle(context, e)` for all API errors
-- Navigation pops with email after success
-- Old AuthService logic commented out
-- Improved UI feedback and error logging for all platforms
-
-### lib/services/simple_https_post.dart
-- Logging: response status code is now always logged
-- Error handling for web: `kIsWeb` checks for network errors as `ClientException` or "Failed to fetch"
-- Error handling for mobile/desktop: catches `SocketException` and `TimeoutException`
-- New exception class for HTTP 405: `SimpleHttpsPostMethodNotAllowedException`
-- Exception classes are now correctly at top-level
-
-### lib/components/snackbars/fancy_success_snackbar.dart
-- Success snackbar for positive feedback
-
-### web_entrypoint.dart
-- Empty file for future web-specific logic
-
----
-
-## Notes
-- For web, the backend must be configured for CORS, otherwise requests are blocked or treated as 404/network errors
-- The API should be prepared for the new error codes and methods
-
----
-
-## Example Error Handling
-```dart
-try {
-  var response = await SimpleHttpsPost.postJson(...);
-  // Success
-} catch (e) {
-  HttpsErrorHandler.handle(context, e);
-}
-```
-
----
-
-**Author:** Harry Reger
-**Commit:** 2a9826912f1fed5fa34339b223d3cb2b189da38e

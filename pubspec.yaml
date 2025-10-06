@@ -18,11 +18,13 @@ dependencies:
   shared_preferences: ^2.5.3
   provider: ^6.1.5+1
   device_frame: ^1.4.0
+  flutter_native_splash: ^2.4.1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^5.0.0
+  flutter_launcher_icons: ^0.13.1
  
 
 flutter:
@@ -30,3 +32,39 @@ flutter:
   
   # Enable automatic code generation for internationalization
   generate: true
+  
+  assets:
+    - assets/background/
+    - assets/images/
+
+# Flutter Launcher Icons Konfiguration
+flutter_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/images/c2f.png"
+  remove_alpha_ios: true # Entfernt Alpha-Kanal für iOS App Store Kompatibilität
+  min_sdk_android: 21 # Android 5.0
+  web:
+    generate: true
+    image_path: "assets/images/c2f.png"
+    background_color: "#hexcode"
+    theme_color: "#hexcode"
+  windows:
+    generate: true
+    image_path: "assets/images/c2f.png"
+    icon_size: 48 # min:48, max:256, default: 48
+  macos:
+    generate: true
+    image_path: "assets/images/c2f.png"
+
+# Flutter Native Splash Screen Konfiguration  
+flutter_native_splash:
+  image: assets/images/c2f_splash.png  # Größere Version für Splash Screen
+  color: "#FFFFFF"
+  color_dark: "#000000"
+  android: true
+  ios: true
+  web: true
+  android_gravity: center
+  ios_content_mode: center
+  web_image_mode: center

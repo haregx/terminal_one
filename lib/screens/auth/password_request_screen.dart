@@ -11,6 +11,7 @@ import '../../components/inputs/input_email.dart';
 import '../../l10n/app_localizations.dart';
 import '../../widgets/app_logo.dart';
 import '../../widgets/glassmorphism_scaffold.dart';
+import '../../widgets/appbar_aware_safe_area.dart';
 
 import '../../components/switches/privacy.dart';
 import '../common/privacy.dart';
@@ -76,7 +77,8 @@ class _PasswordRequestScreenState extends State<PasswordRequestScreen> {
   Widget build(BuildContext context) {
     return GlassmorphismScaffold(
       title: Text(AppLocalizations.of(context)!.passwordRequest),
-      body: GestureDetector(
+      body: AppBarAwareSafeArea(
+        child: GestureDetector(
         onTap: () {
            // Hide keyboard and refocus email field if empty (simulator/dev convenience)
           FocusScope.of(context).unfocus();
@@ -175,6 +177,7 @@ class _PasswordRequestScreenState extends State<PasswordRequestScreen> {
               ],
             );
           },
+        ),
         ),
       ),
     );

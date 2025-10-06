@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:terminal_one/components/cards/promocode_card.dart';
-import 'package:terminal_one/widgets/glassmorphism_scaffold.dart';
+import '../../widgets/glassmorphism_scaffold.dart';
+import '../../widgets/appbar_aware_safe_area.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 
 class MoreGamesScreen extends StatefulWidget {
@@ -36,7 +37,7 @@ class _MoreGamesScreenState extends State<MoreGamesScreen> {
           },
         ),
       ],
-      body: SafeArea(
+      body: AppBarAwareSafeArea(
         child: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8),

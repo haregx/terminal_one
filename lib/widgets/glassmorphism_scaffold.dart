@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../components/web_status_bar.dart';
+import 'app_background.dart';
 
 /// Glassmorphism Scaffold - Wiederverwendbares Scaffold mit dezenten Glassmorphism-Effekten
 /// 
@@ -51,42 +52,31 @@ class GlassmorphismScaffold extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isWeb = Theme.of(context).platform == TargetPlatform.fuchsia || Theme.of(context).platform == TargetPlatform.linux || Theme.of(context).platform == TargetPlatform.windows;
-    return Scaffold(
-      backgroundColor: Theme.of(context).colorScheme.surface,
-      appBar: showAppBar ? (isWeb
-        ? PreferredSize(
-            preferredSize: const Size.fromHeight(44),
-            child: const WebStatusBar(),
-          )
-        : AppBar(
-            title: title,
-            centerTitle: centerTitle,
-            leading: leading,
-            actions: actions,
-            backgroundColor: Theme.of(context).colorScheme.surface.withAlpha(242),
-            elevation: 0,
-            scrolledUnderElevation: 0,
-          )
-      ) : null,
-      body: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [
-              Theme.of(context).colorScheme.surface,
-              Theme.of(context).colorScheme.surface.withAlpha(250), // 98% Sichtbarkeit
-              Theme.of(context).brightness == Brightness.dark 
-                ? Theme.of(context).colorScheme.primary.withAlpha(5) // Sehr subtil (2% Sichtbarkeit)
-                : Theme.of(context).colorScheme.primary.withAlpha(3), // Extrem subtil (1% Sichtbarkeit)
-            ],
-          ),
-        ),
-        child: body,
+    return AppBackground(
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        extendBodyBehindAppBar: true, // Lässt den Body hinter die AppBar reichen
+        appBar: showAppBar ? (isWeb
+          ? PreferredSize(
+              preferredSize: const Size.fromHeight(44),
+              child: const WebStatusBar(),
+            )
+          : AppBar(
+              title: title,
+              centerTitle: centerTitle,
+              leading: leading,
+              actions: actions,
+              backgroundColor: Colors.transparent, // Vollständig transparent
+              elevation: 0,
+              scrolledUnderElevation: 0,
+              foregroundColor: Theme.of(context).colorScheme.onSurface, // Sichtbare Textfarbe
+            )
+        ) : null,
+        body: body,
+        floatingActionButton: floatingActionButton,
+        bottomNavigationBar: bottomNavigationBar,
+        drawer: drawer,
       ),
-      floatingActionButton: floatingActionButton,
-      bottomNavigationBar: bottomNavigationBar,
-      drawer: drawer,
     );
   }
 }

@@ -5,7 +5,8 @@ import 'package:terminal_one/components/buttons/primary_button.dart';
 import 'package:terminal_one/l10n/app_localizations.dart';
 import 'package:terminal_one/utils/responsive_layout.dart';
 import 'package:terminal_one/widgets/app_logo.dart';
-import 'package:terminal_one/widgets/glassmorphism_scaffold.dart';
+import '../../widgets/glassmorphism_scaffold.dart';
+import '../../widgets/appbar_aware_safe_area.dart';
 import 'package:terminal_one/widgets/responsive_code_input.dart';
 
 class PincodeScreen extends StatefulWidget {
@@ -30,7 +31,7 @@ class _PincodeScreenState extends State<PincodeScreen> {
     final localizations = AppLocalizations.of(context)!;
     return GlassmorphismScaffold(
       title: Text(localizations.enterPin),
-      body: SafeArea(
+      body: AppBarAwareSafeArea(
         child: LayoutBuilder(
           builder: (context, constraints) {
             return SingleChildScrollView(

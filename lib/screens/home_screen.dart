@@ -14,6 +14,7 @@ import '../widgets/responsive_code_input.dart';
 import '../widgets/theme_toggle.dart';
 import '../widgets/glassmorphism_scaffold.dart';
 import '../widgets/app_logo.dart';
+import '../widgets/appbar_aware_safe_area.dart';
 import '../providers/theme_provider.dart';
 import '../l10n/app_localizations.dart';
 import 'auth/login_screen.dart';
@@ -98,7 +99,7 @@ class _HomeScreenState extends State<HomeScreen> {
             },
           ),
       ],
-      body: SafeArea(
+      body: AppBarAwareSafeArea(
         child: LayoutBuilder(
           builder: (context, constraints) {
             return SingleChildScrollView(

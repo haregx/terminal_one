@@ -3,6 +3,7 @@ import '../../l10n/app_localizations.dart';
 import '../../utils/responsive_layout.dart';
 import '../../widgets/glassmorphism_scaffold.dart';
 import '../../widgets/app_logo.dart';
+import '../../widgets/appbar_aware_safe_area.dart';
 import '../../components/buttons/primary_button.dart';
 import '../../components/inputs/input_email.dart';
 import '../../components/inputs/input_password.dart';
@@ -115,7 +116,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
       },
       child: GlassmorphismScaffold(
         title: Text(localizations.registerTitle),
-        body: SafeArea(
+        body: AppBarAwareSafeArea(
           child: LayoutBuilder(
             builder: (context, constraints) {
               return Column(

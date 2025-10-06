@@ -9,10 +9,15 @@ import 'providers/theme_provider.dart';
 import 'package:flutter/foundation.dart';
 import 'package:device_frame/device_frame.dart';
 import 'components/web_status_bar.dart';
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  
+  // Splash Screen beibehalten bis App fertig geladen ist
+  FlutterNativeSplash.preserve(widgetsBinding: WidgetsFlutterBinding.ensureInitialized());
+  
   final authProvider = AuthProvider();
   // Warten bis geladen
   while (!authProvider.isInitialized) {
@@ -26,6 +31,7 @@ void main() async {
   debugPrint(authProvider.isLoggedIn
     ? '✅ User is logged in.'
     : '🔒 No user logged in.');
+    
   runApp(
     MultiProvider(
       providers: [
@@ -46,6 +52,15 @@ class MainApp extends StatefulWidget {
 
 class _MainAppState extends State<MainApp> {
   // ThemeProvider wird jetzt über Provider bereitgestellt
+  
+  @override
+  void initState() {
+    super.initState();
+    // Splash Screen entfernen sobald die App bereit ist
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      FlutterNativeSplash.remove();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {

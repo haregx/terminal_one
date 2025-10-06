@@ -11,6 +11,7 @@ import 'package:terminal_one/providers/auth_provider.dart';
 import '../../utils/responsive_layout.dart';
 import '../../widgets/glassmorphism_scaffold.dart';
 import '../../widgets/app_logo.dart';
+import '../../widgets/appbar_aware_safe_area.dart';
 import '../../components/buttons/primary_button.dart';
 import '../../components/inputs/input_email.dart';
 import '../../components/inputs/input_password.dart';
@@ -155,7 +156,7 @@ class _LoginScreenState extends State<LoginScreen> {
       },
       child: GlassmorphismScaffold(
         title: Text(localizations.login),
-        body: SafeArea(
+        body: AppBarAwareSafeArea(
           child: LayoutBuilder(
             builder: (context, constraints) {
               return SingleChildScrollView(
