@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:terminal_one/api_models/auth/login_request.dart';
-import 'package:terminal_one/api_services/simple_https_post.dart';
+import 'package:terminal_one/api_services/https_post_service.dart';
 import 'package:terminal_one/config/api_config.dart';
 import 'package:terminal_one/api_models/api_request.dart';
 

@@ -55,7 +55,7 @@ class GlassmorphismScaffold extends StatelessWidget {
     return AppBackground(
       child: Scaffold(
         backgroundColor: Colors.transparent,
-        extendBodyBehindAppBar: true, // Lässt den Body hinter die AppBar reichen
+        extendBodyBehindAppBar: false, // Status Bar sichtbar lassen
         appBar: showAppBar ? (isWeb
           ? PreferredSize(
               preferredSize: const Size.fromHeight(44),
@@ -72,7 +72,10 @@ class GlassmorphismScaffold extends StatelessWidget {
               foregroundColor: Theme.of(context).colorScheme.onSurface, // Sichtbare Textfarbe
             )
         ) : null,
-        body: body,
+        body: SafeArea(
+          top: true, // Status Bar Bereich respektieren
+          child: body,
+        ),
         floatingActionButton: floatingActionButton,
         bottomNavigationBar: bottomNavigationBar,
         drawer: drawer,

@@ -50,13 +50,9 @@ class GlassmorphAppBar extends StatelessWidget implements PreferredSizeWidget {
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
     final brightness = Theme.of(context).brightness;
+    final isDark = brightness == Brightness.dark;
     
-    // Set status bar style based on theme
-    SystemChrome.setSystemUIOverlayStyle(
-      brightness == Brightness.dark
-          ? SystemUiOverlayStyle.light
-          : SystemUiOverlayStyle.dark,
-    );
+    // KEINE lokale Status Bar Konfiguration mehr - wird global gehandhabt
     
     return BackdropFilter(
       filter: ImageFilter.blur(sigmaX: blurIntensity, sigmaY: blurIntensity),
@@ -83,9 +79,7 @@ class GlassmorphAppBar extends StatelessWidget implements PreferredSizeWidget {
           elevation: 0,
           scrolledUnderElevation: 0,
           surfaceTintColor: Colors.transparent,
-          systemOverlayStyle: brightness == Brightness.dark
-              ? SystemUiOverlayStyle.light
-              : SystemUiOverlayStyle.dark,
+          // KEINE lokale systemOverlayStyle mehr
           titleTextStyle: Theme.of(context).textTheme.titleLarge?.copyWith(
             color: colorScheme.onSurface,
             fontWeight: FontWeight.w600,

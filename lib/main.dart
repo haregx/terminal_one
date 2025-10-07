@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'providers/auth_provider.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:terminal_one/screens/home_screen.dart';
+import 'package:terminal_one/screens/home/home_screen_router.dart';
 import 'l10n/app_localizations.dart';
 import 'themes/app_theme.dart';
 import 'providers/theme_provider.dart';
@@ -10,7 +11,6 @@ import 'package:flutter/foundation.dart';
 import 'package:device_frame/device_frame.dart';
 import 'components/web_status_bar.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
-
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -56,6 +56,13 @@ class _MainAppState extends State<MainApp> {
   @override
   void initState() {
     super.initState();
+    
+    // Status Bar Einstellungen aktivieren
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: [
+      SystemUiOverlay.top,
+      SystemUiOverlay.bottom,
+    ]);
+    
     // Splash Screen entfernen sobald die App bereit ist
     WidgetsBinding.instance.addPostFrameCallback((_) {
       FlutterNativeSplash.remove();
@@ -65,26 +72,35 @@ class _MainAppState extends State<MainApp> {
   @override
   Widget build(BuildContext context) {
     final themeProvider = Provider.of<ThemeProvider>(context);
-    Widget app = MaterialApp(
-      title: 'Terminal One',
-      theme: AppTheme.lightTheme,
-      darkTheme: AppTheme.darkTheme,
-      themeMode: themeProvider.themeMode,
-      localizationsDelegates: const [
-        AppLocalizations.delegate,
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-      ],
-      supportedLocales: const [
-        Locale('en'),
-        Locale('de'),
-        Locale('fr'),
-        Locale('it'),
-        Locale('pt'),
-        Locale('af'),
-      ],
-      home: const HomeScreen(),
+    
+    Widget app = AnnotatedRegion<SystemUiOverlayStyle>(
+      value: const SystemUiOverlayStyle(
+        statusBarColor: Colors.transparent,
+        statusBarIconBrightness: Brightness.light, // Immer weiße Icons
+        statusBarBrightness: Brightness.dark, // iOS
+        systemNavigationBarColor: Colors.transparent,
+      ),
+      child: MaterialApp(
+        title: 'Terminal One',
+        theme: AppTheme.lightTheme,
+        darkTheme: AppTheme.darkTheme,
+        themeMode: themeProvider.themeMode,
+        localizationsDelegates: const [
+          AppLocalizations.delegate,
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+        ],
+        supportedLocales: const [
+          Locale('en'),
+          Locale('de'),
+          Locale('fr'),
+          Locale('it'),
+          Locale('pt'),
+          Locale('af'),
+        ],
+        home: const HomeScreenRouter(),
+      ),
     );
     if (kIsWeb && (defaultTargetPlatform == TargetPlatform.macOS || defaultTargetPlatform == TargetPlatform.windows || defaultTargetPlatform == TargetPlatform.linux)) {
       return Directionality(

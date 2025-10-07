@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 import 'package:provider/provider.dart';
 import 'package:terminal_one/api_services/auth/login_service.dart';
-import 'package:terminal_one/api_services/simple_https_post.dart';
+import 'package:terminal_one/api_services/https_post_service.dart';
 import 'package:terminal_one/components/buttons/ghost_button.dart';
 import 'package:terminal_one/components/buttons/secondary_button.dart';
 import 'package:terminal_one/components/snackbars/fancy_success_snackbar.dart';
@@ -17,7 +17,7 @@ import '../../components/inputs/input_email.dart';
 import '../../components/inputs/input_password.dart';
 import '../../l10n/app_localizations.dart';
 import '../../utils/secure_storage.dart';
-import '../home_screen.dart';
+import '../home/home_screen_router.dart';
 import 'register_screen.dart';
 import 'password_request_screen.dart';
 import 'pincode_screen.dart';
@@ -127,7 +127,7 @@ class _LoginScreenState extends State<LoginScreen> {
             );
             Navigator.of(context).pushAndRemoveUntil(
               MaterialPageRoute(
-                builder: (context) => const HomeScreen(),
+                builder: (context) => const HomeScreenRouter(),
               ),
               (route) => false,
             );

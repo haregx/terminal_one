@@ -23,6 +23,7 @@ class AppBackground extends StatelessWidget {
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     final backgroundOpacity = opacity ?? (isDark ? 0.3 : 0.2);
+    final statusBarHeight = MediaQuery.of(context).padding.top;
     
     return Container(
       decoration: BoxDecoration(
@@ -59,6 +60,29 @@ class AppBackground extends StatelessWidget {
               },
             ),
           ),
+          
+          // Status Bar Overlay - dunkler Bereich oben für bessere Icon-Sichtbarkeit
+          if (!isDark) // Nur im Light Mode
+            Positioned(
+              top: 0,
+              left: 0,
+              right: 0,
+              height: statusBarHeight + 10, // Status Bar + 10px extra
+              child: Container(
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [
+                      Colors.black.withOpacity(0.3), // Dunkler oben für weiße Icons
+                      Colors.black.withOpacity(0.1), // Fade nach unten
+                      Colors.transparent, // Transparent am Ende
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          
           // Zusätzlicher weißer Overlay für Light Mode
           if (!isDark)
             Positioned.fill(

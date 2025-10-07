@@ -10,7 +10,7 @@ import '../../components/inputs/input_password.dart';
 import '../../components/inputs/input_password_confirm.dart';
 import '../../components/switches/privacy.dart';
 import 'package:terminal_one/api_services/auth/register_service.dart';
-import 'package:terminal_one/api_services/simple_https_post.dart';
+import 'package:terminal_one/api_services/https_post_service.dart';
 
 import '../common/privacy.dart';
 

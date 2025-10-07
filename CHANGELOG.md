@@ -15,10 +15,10 @@
   - Generated for Android, iOS, Web, Windows, and macOS
 
 - **Splash Screen**: Created native splash screen system using `flutter_native_splash`
-  - Uses enlarged version of app icon (`c2f_splash.png` - 512px)
-  - Theme-aware background colors (White for light mode, Black for dark mode)
-  - Automatic timing with app initialization
+  - Uses theme-matching button colors as background
+  - Fullscreen image display with `c2f_fullscreen.png` (1024px)
   - Cross-platform support (Android, iOS, Web)
+  - Automatic timing with app initialization
 
 ### Enhanced
 - **GlassmorphismScaffold**: Major redesign for background integration
@@ -40,9 +40,18 @@
   - `PasswordRequestScreen`: Fixed content positioning with `AppBarAwareSafeArea`
   - `PrivacyScreen`: Fixed content positioning with `AppBarAwareSafeArea`
 
+- **Splash Screen Optimization**: Enhanced for better visual impact
+  - Background colors now match theme primary button colors
+  - Light mode: `#2196F3` (primary button blue)
+  - Dark mode: `#90CAF9` (primary button blue for dark theme)
+  - Image scaling: `scaleAspectFill` for fullscreen coverage
+  - Enhanced image size: 1024px for crisp display on all devices
+
 ### Fixed
 - **Content Positioning**: Resolved text starting too high on password request and privacy screens
 - **Light Mode Optimization**: Improved background contrast in light mode with enhanced gradient overlay
+- **Splash Screen Colors**: Updated from generic white/black to theme-matching button colors
+- **Image Scaling**: Splash screen image now fills entire screen width instead of small centered display
 - **Dependencies**: Moved `flutter_native_splash` from dev_dependencies to dependencies for runtime usage
 
 ### Technical Details
@@ -50,10 +59,24 @@
 - **New Widgets**:
   - `AppBackground`: Centralized background management with theme awareness
   - `AppBarAwareSafeArea`: Custom SafeArea for transparent AppBar compatibility
-- **Image Processing**: Used macOS `sips` tool to create enlarged splash screen image
+- **Image Processing**: Used macOS `sips` tool to create multiple splash screen image sizes
+  - `c2f_splash.png` (512px) - initial large version
+  - `c2f_fullscreen.png` (1024px) - final fullscreen version
 - **Package Integrations**:
   - `flutter_launcher_icons: ^0.13.1` for app icon generation
   - `flutter_native_splash: ^2.4.1` for splash screen implementation
+
+### Splash Screen Configuration
+```yaml
+flutter_native_splash:
+  image: assets/images/c2f_fullscreen.png
+  color: "#2196F3"      # Light theme primary color
+  color_dark: "#90CAF9" # Dark theme primary color
+  android_gravity: fill
+  ios_content_mode: scaleAspectFill
+  web_image_mode: cover
+  fullscreen: true
+```
 
 ### Dependencies Added
 ```yaml

@@ -21,8 +21,15 @@ class AuthProvider extends ChangeNotifier {
   }
 
   Future<void> setLoggedIn(bool value) async {
+    debugPrint('🔄 AuthProvider: setLoggedIn called with value: $value');
+    debugPrint('🔄 AuthProvider: Current state before change: $_isLoggedIn');
+    
     _isLoggedIn = value;
     await _storage.write(key: _key, value: value.toString());
+    
+    debugPrint('🔄 AuthProvider: State changed to: $_isLoggedIn');
+    debugPrint('🔄 AuthProvider: Calling notifyListeners()...');
     notifyListeners();
+    debugPrint('🔄 AuthProvider: notifyListeners() completed');
   }
 }
