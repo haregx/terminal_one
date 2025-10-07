@@ -59,13 +59,13 @@ flutter_icons:
 
 # Flutter Native Splash Screen Konfiguration  
 flutter_native_splash:
-  image: assets/images/c2f_fullscreen.png  # Noch größere Version (1024px) für bildschirmfüllend
+  image: assets/images/c2f_fullscreen.png  # Reduzierte Version (400px)
   color: "#2196F3"      # Light theme primary color (Button-Farbe)
   color_dark: "#90CAF9" # Dark theme primary color (Button-Farbe)
   android: true
   ios: true
   web: true
-  android_gravity: fill # Bildschirmfüllend
-  ios_content_mode: scaleAspectFill # Bildschirmfüllend für iOS
-  web_image_mode: cover # Bildschirmfüllend für Web
-  fullscreen: true # Vollbild für größeres Bild
+  android_gravity: center # Zentriert statt bildschirmfüllend
+  ios_content_mode: scaleAspectFit # Passt das Bild ein ohne zu beschneiden
+  web_image_mode: center # Zentriert für Web
+  fullscreen: false # Kein Vollbild für kleineres Bild
