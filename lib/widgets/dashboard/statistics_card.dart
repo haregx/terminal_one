@@ -38,7 +38,7 @@ class StatisticCard extends StatelessWidget {
           Icon(
             icon,
             size: isTablet ? 28 : 20,
-            color: isDark ? Colors.white.withOpacity(0.9) : Colors.black87,
+            color: isDark ? Colors.white.withValues(alpha: 0.9) : Colors.black87,
           ),
           const SizedBox(height: 6),
           Text(
@@ -55,7 +55,7 @@ class StatisticCard extends StatelessWidget {
             label,
             style: TextStyle(
               fontSize: isTablet ? 12 : 10,
-              color: isDark ? Colors.white.withOpacity(0.8) : Colors.black54,
+              color: isDark ? Colors.white.withValues(alpha: 0.8) : Colors.black54,
             ),
             textAlign: TextAlign.center,
             maxLines: 1,

@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter/foundation.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 import 'package:provider/provider.dart';
 import 'package:terminal_one/components/snackbars/fancy_success_snackbar.dart';
@@ -206,14 +204,6 @@ class _HomeScreenLoggedInState extends State<HomeScreenLoggedIn>
           ),
         ),
     );
-  }
-
-  void _logout(BuildContext context) async {
-    debugPrint('🚪 User logged out.');
-    ScaffoldMessenger.of(context).showSnackBar(
-      FancySuccessSnackbar.build('Sie wurden erfolgreich abgemeldet.'),
-    );
-    await Provider.of<AuthProvider>(context, listen: false).setLoggedIn(false);
   }
 
   Widget _buildActionCard(

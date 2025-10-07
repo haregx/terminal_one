@@ -45,7 +45,7 @@ class QuickActionCard extends StatelessWidget {
             style: TextStyle(
               fontSize: isTablet ? 14 : 12,
               fontWeight: FontWeight.w500,
-              color: isDark ? Colors.white.withOpacity(0.9) : Colors.black87,
+              color: isDark ? Colors.white.withValues(alpha: 0.9) : Colors.black87,
             ),
             textAlign: TextAlign.center,
             maxLines: 2,

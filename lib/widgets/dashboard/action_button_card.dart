@@ -43,7 +43,7 @@ class ActionButtonCard extends StatelessWidget {
             ),
             child: Icon(
               icon,
-              color: isDark ? Colors.white.withOpacity(0.9) : Colors.black87,
+              color: isDark ? Colors.white.withValues(alpha: 0.9) : Colors.black87,
               size: isTablet ? 28 : 20,
             ),
           ),

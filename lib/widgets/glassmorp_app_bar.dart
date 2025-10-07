@@ -1,6 +1,5 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 /// GlassmorphAppBar - Glassmorphism AppBar for all screens
 /// 
@@ -49,8 +48,8 @@ class GlassmorphAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     final colorScheme = Theme.of(context).colorScheme;
-    final brightness = Theme.of(context).brightness;
-    final isDark = brightness == Brightness.dark;
+   // final brightness = Theme.of(context).brightness;
+   // final isDark = brightness == Brightness.dark;
     
     // KEINE lokale Status Bar Konfiguration mehr - wird global gehandhabt
     

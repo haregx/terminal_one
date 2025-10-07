@@ -74,8 +74,8 @@ class AppBackground extends StatelessWidget {
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter,
                     colors: [
-                      Colors.black.withOpacity(0.3), // Dunkler oben für weiße Icons
-                      Colors.black.withOpacity(0.1), // Fade nach unten
+                      Colors.black.withValues(alpha: 0.3), // Dunkler oben für weiße Icons
+                      Colors.black.withValues(alpha: 0.1), // Fade nach unten
                       Colors.transparent, // Transparent am Ende
                     ],
                   ),

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../widgets/fancy_background.dart';
+import '../widgets/app_background.dart';
 
 /// ResponsiveLayout - Universal responsive wrapper for all screens
 /// 
@@ -95,7 +95,7 @@ class ResponsiveLayout extends StatelessWidget {
 
     return SafeArea(
       child: enableFancyBackground 
-        ? FancyBackground(
+        ? AppBackground(
             child: Padding(
               padding: responsivePadding,
               child: content,

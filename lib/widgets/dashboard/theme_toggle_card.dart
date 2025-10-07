@@ -120,7 +120,7 @@ class ThemeToggleCard extends StatelessWidget {
                 style: TextStyle(
                   fontSize: isTablet ? 14 : 12,
                   fontWeight: FontWeight.w500,
-                  color: isDark ? Colors.white.withOpacity(0.9) : Colors.black87,
+                  color: isDark ? Colors.white.withValues(alpha: 0.9) : Colors.black87,
                 ),
                 textAlign: TextAlign.center,
               ),
@@ -129,7 +129,7 @@ class ThemeToggleCard extends StatelessWidget {
                 _getThemeLabel(themeProvider.themeMode),
                 style: TextStyle(
                   fontSize: isTablet ? 11 : 10,
-                  color: isDark ? Colors.white.withOpacity(0.7) : Colors.black54,
+                  color: isDark ? Colors.white.withValues(alpha: 0.7) : Colors.black54,
                 ),
                 textAlign: TextAlign.center,
               ),
