@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 import 'package:provider/provider.dart';
 import 'package:terminal_one/providers/theme_provider.dart';
-import 'package:terminal_one/providers/auth_provider.dart';
+import 'package:terminal_one/data/quick_actions_data.dart';
+import 'package:terminal_one/data/stats_data.dart';
+import 'package:terminal_one/screens/auth/logout_screen.dart';
+import 'package:terminal_one/utils/layout_constants.dart';
 import 'simple_card.dart';
 
 /// SimpleDashboard - Minimalistisches, übersichtliches Dashboard
@@ -13,12 +16,12 @@ class SimpleDashboard extends StatelessWidget {
   Widget build(BuildContext context) {
     // Responsive Größen für Schnelle Aktionen
     final screenWidth = MediaQuery.of(context).size.width;
-    final bool isTablet = screenWidth > 600; // iPad Erkennung
+    final bool isTablet = LayoutHelpers.isTablet(screenWidth);
     final double cardWidth = isTablet ? 237 : 140; // 69% größer auf iPad (140 * 1.69 = 237)
-    final double cardHeight = isTablet ? 304 : 180; // 69% größer auf iPad (180 * 1.69 = 304)
+    final double cardHeight = isTablet ? 324 : 194; // 69% größer auf iPad (180 * 1.69 = 304)
     
     // Responsive childAspectRatio für Statistiken (damit sie gleiche Höhe haben)
-    final double statCardAspectRatio = isTablet ? 0.78 : 0.85; // Angepasst für iPad
+    final double statCardAspectRatio = isTablet ? 1.3 : 1; // Angepasst für iPad
     
     return SingleChildScrollView(
       child: Column(
@@ -35,63 +38,20 @@ class SimpleDashboard extends StatelessWidget {
           const SizedBox(height: 12),
           SizedBox(
             height: cardHeight, // Responsive Höhe
-            child: ListView(
+            child: ListView.separated(
               scrollDirection: Axis.horizontal,
               physics: const BouncingScrollPhysics(),
               padding: const EdgeInsets.symmetric(horizontal: 16), // Nur für erste/letzte Card
-              children: [
-                SizedBox(
+              itemCount: QuickActionsData.actions.length,
+              separatorBuilder: (context, index) => const SizedBox(width: 0),
+              itemBuilder: (context, index) {
+                final actionData = QuickActionsData.actions[index];
+                
+                return SizedBox(
                   width: cardWidth, // Responsive Breite
-                  child: QuickAction(
-                    title: 'Spiele',
-                    icon: LucideIcons.gamepad2,
-                    onTap: () {
-                      Navigator.pushNamed(context, '/games');
-                    },
-                  ),
-                ),
-                const SizedBox(width: 8), // Reduzierter Abstand zwischen Cards
-                SizedBox(
-                  width: cardWidth, // Responsive Breite
-                  child: QuickAction(
-                    title: 'Profil',
-                    icon: LucideIcons.user,
-                    onTap: () {
-                      // TODO: Profile screen
-                    },
-                  ),
-                ),
-                const SizedBox(width: 8), // Reduzierter Abstand
-                SizedBox(
-                  width: cardWidth, // Responsive Breite
-                  child: QuickAction(
-                    title: 'Hilfe',
-                    icon: LucideIcons.helpCircle,
-                    onTap: () {
-                      // TODO: Help screen
-                    },
-                  ),
-                ),
-                const SizedBox(width: 8), // Reduzierter Abstand
-                SizedBox(
-                  width: cardWidth, // Responsive Breite
-                  child: Consumer<ThemeProvider>(
-                    builder: (context, themeProvider, child) {
-                      String themeName = themeProvider.themeMode == ThemeMode.dark
-                          ? 'Dark'
-                          : themeProvider.themeMode == ThemeMode.light
-                              ? 'Light'
-                              : 'Auto';
-                      
-                      return ThemeCard(
-                        onTap: () => themeProvider.toggleTheme(),
-                        currentTheme: themeName,
-                      );
-                    },
-                  ),
-                ),
-                const SizedBox(width: 16), // Abstand am Ende
-              ],
+                  child: _buildQuickActionCard(context, actionData),
+                );
+              },
             ),
           ),
           
@@ -115,23 +75,13 @@ class SimpleDashboard extends StatelessWidget {
               mainAxisSpacing: 8,
               crossAxisSpacing: 8,
               childAspectRatio: statCardAspectRatio, // Responsive Verhältnis
-                children: const [
-                  StatCard(
-                    value: '12',
-                    label: 'Spiele gespielt',
-                    icon: LucideIcons.trophy,
-                  ),
-                  StatCard(
-                    value: '3',
-                    label: 'Gewonnen',
-                    icon: LucideIcons.medal,
-                  ),
-                  StatCard(
-                    value: '89%',
-                    label: 'Erfolgsrate',
-                    icon: LucideIcons.trendingUp,
-                  ),
-                ],
+              children: StatsData.stats.map((stat) => StatCard(
+                value: stat.value,
+                label: stat.label,
+                icon: stat.icon,
+                color: stat.color,
+                iconColor: stat.iconColor,
+              )).toList(),
               ),
           ),
           
@@ -181,7 +131,8 @@ class SimpleDashboard extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: SimpleCard(
               onTap: () async {
-                await Provider.of<AuthProvider>(context, listen: false).setLoggedIn(false);
+                LogoutScreen.show(context);
+                //await Provider.of<AuthProvider>(context, listen: false).setLoggedIn(false);
               },
               child: const Row(
                 children: [
@@ -198,6 +149,43 @@ class SimpleDashboard extends StatelessWidget {
           const SizedBox(height: 16), // Bottom padding
         ],
       ),
+    );
+  }
+
+  /// Erstellt eine QuickAction Card basierend auf den Daten
+  Widget _buildQuickActionCard(BuildContext context, QuickActionData actionData) {
+    if (actionData.isThemeToggle) {
+      return Consumer<ThemeProvider>(
+        builder: (context, themeProvider, child) {
+          String themeName = themeProvider.themeMode == ThemeMode.dark
+              ? 'Dark'
+              : themeProvider.themeMode == ThemeMode.light
+                  ? 'Light'
+                  : 'Auto';
+          
+          return ThemeCard(
+            onTap: () => themeProvider.toggleTheme(),
+            currentTheme: themeName,
+          );
+        },
+      );
+    }
+
+    return QuickAction(
+      title: actionData.title,
+      icon: actionData.icon,
+      color: actionData.color,
+      iconColor: actionData.iconColor,
+      onTap: () {
+        if (actionData.route != null) {
+          Navigator.pushNamed(context, actionData.route!);
+        } else if (actionData.action != null) {
+          actionData.action!();
+        } else {
+          // TODO: Implementierung für ${actionData.title}
+          debugPrint('TODO: Implementierung für ${actionData.title}');
+        }
+      },
     );
   }
 }

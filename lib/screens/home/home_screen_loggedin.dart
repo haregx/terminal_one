@@ -61,7 +61,7 @@ class _HomeScreenLoggedInState extends State<HomeScreenLoggedIn>
     // Verwende ValueNotifier statt setState um Rebuilds zu vermeiden
     final shouldShow = _scrollController.offset > 50; // Reduziert von 100 auf 50px
     if (_showSmallLogo.value != shouldShow) {
-      print('Logo state changed: offset=${_scrollController.offset}, show=$shouldShow'); // Debug
+      debugPrint('Logo state changed: offset=${_scrollController.offset}, show=$shouldShow'); // Debug
       _showSmallLogo.value = shouldShow;
     }
   }
@@ -85,7 +85,7 @@ class _HomeScreenLoggedInState extends State<HomeScreenLoggedIn>
       title: ValueListenableBuilder<bool>(
         valueListenable: _showSmallLogo,
         builder: (context, showLogo, child) {
-          print('AppBar Logo showLogo: $showLogo'); // Debug
+          debugPrint('AppBar Logo showLogo: $showLogo'); // Debug
           return AnimatedOpacity(
             opacity: showLogo ? 1.0 : 0.0, // Zurück auf 0.0 für komplett transparent
             duration: const Duration(milliseconds: 300),

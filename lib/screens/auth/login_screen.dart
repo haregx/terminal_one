@@ -110,7 +110,7 @@ class _LoginScreenState extends State<LoginScreen> {
         );
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => PincodeScreen(pubGuid: result.data['pubGuid'].toString() ?? '', confirmedIdent: result.data['confirmedIdent'].toString() ?? '')),
+          MaterialPageRoute(builder: (context) => PincodeScreen(pubGuid: result.data['pubGuid'].toString(), confirmedIdent: result.data['confirmedIdent'].toString())),
         );
       } else {
         debugPrint('🗝️ Login JSON: ${result.data.toString()}');
@@ -126,10 +126,7 @@ class _LoginScreenState extends State<LoginScreen> {
               FancySuccessSnackbar.build('You have been successfully logged in!'),
             );
             Navigator.of(context).pushAndRemoveUntil(
-              MaterialPageRoute(
-                builder: (context) => const HomeScreenRouter(),
-              ),
-              (route) => false,
+              MaterialPageRoute(builder: (context) => const HomeScreenRouter(), ), (route) => false,
             );
           } catch (e, stack) {
             debugPrint('❌ Failed to save userGuid: $e\n$stack');
