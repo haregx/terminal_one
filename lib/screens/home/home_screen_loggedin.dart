@@ -111,7 +111,7 @@ class _HomeScreenLoggedInState extends State<HomeScreenLoggedIn>
                       duration: const Duration(milliseconds: 300),
                       opacity: showSmallLogo ? 0.0 : 1.0,
                       child: Container(
-                        height: 100,
+                        height: 60,
                         padding: const EdgeInsets.symmetric(horizontal: 24),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -120,7 +120,7 @@ class _HomeScreenLoggedInState extends State<HomeScreenLoggedIn>
                               size: LogoSize.large,
                               variant: LogoVariant.minimal,
                             ),
-                            const SizedBox(height: 16),
+                 /*           const SizedBox(height: 16),
                             Text(
                               'Was möchtest Du heute erledigen?',
                               style: Theme.of(context).textTheme.bodyMedium?.copyWith(
@@ -130,6 +130,7 @@ class _HomeScreenLoggedInState extends State<HomeScreenLoggedIn>
                               ),
                               textAlign: TextAlign.center,
                             ),
+                            */
                           ],
                         ),
                       ),

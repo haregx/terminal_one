@@ -85,19 +85,6 @@ class _HomeScreenState extends State<HomeScreen> {
             },
           ),
         ),
-        if (Provider.of<AuthProvider>(context).isLoggedIn)
-          IconButton(
-            icon: const Icon(Icons.logout),
-            tooltip: 'Logout',
-            onPressed: () async {
-              debugPrint('🚪 User logged out.');
-              if (!mounted) return;
-              ScaffoldMessenger.of(context).showSnackBar(
-                FancySuccessSnackbar.build('You have been logged out.'),
-              );
-              await Provider.of<AuthProvider>(context, listen: false).setLoggedIn(false);
-            },
-          ),
       ],
       body: AppBarAwareSafeArea(
         child: LayoutBuilder(
@@ -119,7 +106,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           children: [
                             SizedBox(height: ResponsiveSpacing.large(context)),
                             const AppLogo(
-                              size: LogoSize.extraLarge,
+                              size: LogoSize.large,
                               variant: LogoVariant.minimal,
                             ),
                             Text(

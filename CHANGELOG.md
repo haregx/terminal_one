@@ -1,6 +1,144 @@
 # CHANGELOG
 
-## [Unreleased] - 2025-10-06
+## [Unreleased] - 2025-10-08
+
+### Added
+- **Centralized Routing System**: Implemented comprehensive route management architecture
+  - New `AppRoutes` class with all route definitions as constants
+  - Type-safe navigation with helper methods for common routes
+  - Automatic route generation with argument handling
+  - Error route for unknown paths with user-friendly fallback
+  - Navigation examples and documentation for developers
+
+- **PromoCode Screen**: New dedicated promotional code entry interface
+  - Responsive code input system with configurable length (default 8 characters)
+  - Real-time validation and completion detection
+  - Demo codes integration (`WELCOME1`, `BONUS123`, `SPECIAL1`)
+  - Loading states with processing indicators
+  - Success/error feedback with animated snackbars
+  - Help dialog explaining promotional code functionality
+  - Smart navigation based on authentication status
+
+- **Enhanced Documentation**: Comprehensive project documentation
+  - Professional README.md with feature overview and setup instructions
+  - Technical architecture documentation with code examples
+  - Installation guides for all supported platforms
+  - Customization instructions for themes and assets
+
+### Enhanced
+- **Navigation Architecture**: Complete overhaul of app routing system
+  - Replaced direct widget navigation with named routes
+  - Centralized route management in `lib/core/app_routes.dart`
+  - Type-safe navigation helpers: `AppRoutes.navigateToLogin(context)`
+  - Argument passing support for complex routes (PromoCode with custom length)
+  - Debug utilities with route listing and validation
+
+- **Quick Actions Data**: Improved dashboard action configuration
+  - Enhanced action definitions with better categorization
+  - Improved icon mappings and color schemes
+  - Better integration with routing system
+
+- **Widget System**: Refined component architecture
+  - Enhanced `AppBarAwareSafeArea` for better layout consistency
+  - Improved `SimpleDashboard` component with responsive design
+  - Better integration between glass morphism effects and routing
+
+### Fixed
+- **Route Management**: Resolved navigation inconsistencies
+  - Fixed direct widget imports in main.dart
+  - Eliminated hard-coded navigation patterns
+  - Improved error handling for unknown routes
+  - Better argument validation and type safety
+
+- **Layout Stability**: Enhanced visual consistency
+  - Fixed context access issues in error routes
+  - Improved button state management in PromoCode screen
+  - Better loading state indicators with proper widget lifecycle
+
+### Technical Improvements
+- **Code Organization**: Better separation of concerns with dedicated routing layer
+- **Type Safety**: Enhanced compile-time route validation
+- **Maintainability**: Centralized navigation logic reduces code duplication
+- **Developer Experience**: Clear navigation patterns with helper methods
+- **Testing Support**: Route debugging utilities and comprehensive examples
+
+### Developer Tools
+- **Navigation Examples**: Created `lib/examples/navigation_examples.dart`
+  - Demonstrates different navigation patterns
+  - Shows argument passing techniques
+  - Provides debugging utilities for route management
+- **Route Constants**: All routes defined as typed constants
+- **Helper Methods**: Simplified navigation API for common use cases
+
+---
+
+## [Previous] - 2025-10-08
+
+### Added
+- **Logout Screen**: New dedicated logout confirmation screen with modern glassmorphism design
+  - Animated glass card interface with smooth transitions
+  - Confirmation dialog with proper user feedback
+  - Consistent theming with rest of the application
+
+- **Advanced AppBar Animation System**: Implemented collapsing toolbar with logo transitions
+  - Custom scroll-triggered logo animation (large → small)
+  - Standard AppBar positioning with proper Safe Area handling
+  - Smooth opacity transitions during scroll events
+  - Prevents content overlay and scroll position jumping
+
+- **Enhanced Glass Morphism Effects**: Comprehensive visual upgrade across all screens
+  - AppBar with gradient glass effects and transparent borders
+  - Background image support with proper asset management
+  - Improved visual hierarchy with consistent transparency levels
+  - Safe Area bottom padding for modern device compatibility
+
+### Enhanced
+- **Home Screen (Logged In)**: Complete redesign with modern UX patterns
+  - Replaced SliverAppBar with stable scroll animation system
+  - Fixed layout shifts that caused automatic scroll repositioning
+  - Standard AppBar logo animation (appears at 100px scroll offset)
+  - Glass morphism dashboard cards with improved visual feedback
+  - Proper background image integration with Stack layout
+  - Enhanced bottom safe area handling for all device types
+
+- **Authentication System**: Improved login flow and error handling
+  - Better API service integration for login/register workflows
+  - Enhanced password request service functionality
+  - Improved auth provider state management
+  - Fixed null safety issues in authentication flows
+
+- **Widget Architecture**: Major refactoring for better maintainability
+  - New `AnimatedGlassCard` component for consistent glass effects
+  - Enhanced `ScrollableDashboard` with better layout management
+  - Improved theme synchronization across logged-in/logged-out states
+  - Platform-specific widgets with responsive design patterns
+
+### Fixed
+- **Scroll Behavior**: Resolved automatic scroll position reset issues
+  - Fixed AnimatedContainer height changes causing layout shifts
+  - Stable scroll position maintenance during logo transitions
+  - Eliminated unexpected scroll jumps during animations
+
+- **Layout Consistency**: Standardized spacing and positioning
+  - Fixed double Safe Area spacing issues
+  - Corrected AppBar positioning with transparent backgrounds
+  - Resolved content overlay problems with collapsing headers
+  - Improved text overflow handling in dashboard cards
+
+- **Background System**: Enhanced background image rendering
+  - Fixed background visibility through transparent components
+  - Improved gradient fallbacks when images are unavailable
+  - Corrected asset path references for cross-platform compatibility
+
+### Technical Improvements
+- **Code Architecture**: Refactored screen components for better separation of concerns
+- **Animation Performance**: Optimized scroll-triggered animations for 60fps performance
+- **State Management**: Improved Provider synchronization between authentication states
+- **Error Handling**: Enhanced debugging and error reporting in authentication flows
+
+---
+
+## [Previous] - 2025-10-06
 
 ### Added
 - **Background System**: Implemented comprehensive background image system with `assets/background/backgound.png`

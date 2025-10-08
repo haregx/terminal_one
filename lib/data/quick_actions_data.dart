@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lucide_icons/lucide_icons.dart';
+import 'package:terminal_one/core/app_routes.dart';
 
 /// QuickActionData - Datenmodell für Schnelle Aktionen Karten
 class QuickActionData {
@@ -31,7 +32,7 @@ class QuickActionsData {
       id: 'code',
       title: 'Promo-Code eingeben',
       icon: LucideIcons.ticket, // Passender für Promo-Codes
-     // route: '/games',
+      route: AppRoutes.promoCode,
       color: Color(0xFF06B6D4), // Cyan - für Eingabe/Input
       iconColor: Colors.white,
     ),
@@ -39,7 +40,7 @@ class QuickActionsData {
       id: 'games',
       title: 'Mehr Promo-Codes',
       icon: LucideIcons.gift, // Geschenk-Icon für mehr Codes
-     // route: '/games',
+      route: AppRoutes.moreGames,
       color: Color(0xFF8B5CF6), // Violet - für Belohnungen
       iconColor: Colors.white,
     ),

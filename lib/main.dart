@@ -3,10 +3,10 @@ import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'providers/auth_provider.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:terminal_one/screens/home/home_screen_router.dart';
 import 'l10n/app_localizations.dart';
 import 'themes/app_theme.dart';
 import 'providers/theme_provider.dart';
+import 'core/app_routes.dart';
 import 'package:flutter/foundation.dart';
 import 'package:device_frame/device_frame.dart';
 import 'components/web_status_bar.dart';
@@ -99,7 +99,10 @@ class _MainAppState extends State<MainApp> {
           Locale('pt'),
           Locale('af'),
         ],
-        home: const HomeScreenRouter(),
+        // Use centralized routing
+        initialRoute: AppRoutes.home,
+        onGenerateRoute: AppRoutes.generateRoute,
+        // Remove explicit home parameter
       ),
     );
     if (kIsWeb && (defaultTargetPlatform == TargetPlatform.macOS || defaultTargetPlatform == TargetPlatform.windows || defaultTargetPlatform == TargetPlatform.linux)) {
