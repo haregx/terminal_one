@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../l10n/app_localizations.dart';
+import 'package:easy_localization/easy_localization.dart';
 import '../../utils/responsive_layout.dart';
 import '../../widgets/glassmorphism_scaffold.dart';
 import '../../widgets/app_logo.dart';
@@ -12,7 +12,7 @@ import '../../components/switches/privacy.dart';
 import 'package:terminal_one/api_services/auth/register_service.dart';
 import 'package:terminal_one/api_services/https_post_service.dart';
 
-import '../common/privacy.dart';
+import '../common/privacy_screen.dart';
 
 /// RegisterScreen - User registration form
 /// 
@@ -104,7 +104,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final localizations = AppLocalizations.of(context)!;
     return GestureDetector(
       onTap: () {
         FocusScope.of(context).unfocus();
@@ -115,7 +114,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
         });
       },
       child: GlassmorphismScaffold(
-        title: Text(localizations.registerTitle),
+        title: Text('auth.register_title'.tr()),
         body: AppBarAwareSafeArea(
           child: LayoutBuilder(
             builder: (context, constraints) {
@@ -136,7 +135,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 children: [
                                   const AppLogo(size: LogoSize.medium, variant: LogoVariant.minimal),
                                   Text(
-                                    localizations.registerDescription,
+                                    'auth.register_description'.tr(),
                                     style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                                       color: Theme.of(context).colorScheme.onSurface.withValues(alpha: 0.7),
                                     ),
@@ -198,7 +197,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                     label: 'I accept the privacy policy',
                                   ),
                                   PrimaryButton(
-                                    label: localizations.registerButton,
+                                    label: 'auth.register_button'.tr(),
                                     enabled: _canRegister && !_isLoading,
                                     onPressed: _canRegister && !_isLoading ? _handleRegistration : null,
                                   ),

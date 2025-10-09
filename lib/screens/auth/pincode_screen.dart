@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:lucide_icons/lucide_icons.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:terminal_one/components/buttons/ghost_button.dart';
 import 'package:terminal_one/components/buttons/primary_button.dart';
-import 'package:terminal_one/l10n/app_localizations.dart';
 import 'package:terminal_one/utils/responsive_layout.dart';
 import 'package:terminal_one/widgets/app_logo.dart';
 import '../../widgets/glassmorphism_scaffold.dart';
@@ -28,9 +28,8 @@ class _PincodeScreenState extends State<PincodeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final localizations = AppLocalizations.of(context)!;
     return GlassmorphismScaffold(
-      title: Text(localizations.enterPin),
+      title: Text('home.enter_pin'.tr()),
       body: AppBarAwareSafeArea(
         child: LayoutBuilder(
           builder: (context, constraints) {
@@ -72,7 +71,7 @@ class _PincodeScreenState extends State<PincodeScreen> {
                         },
                       ),
                       PrimaryButton(
-                        label: localizations.submit,
+                        label: 'common.submit'.tr(),
                         enabled: _pincode.length == 4,
                         onPressed: _pincode.length == 4
                             ? () {
@@ -87,7 +86,7 @@ class _PincodeScreenState extends State<PincodeScreen> {
                         onPressed: () {
                           
                         }, 
-                        label: AppLocalizations.of(context)!.clearCode,
+                        label: 'home.clear_code'.tr(),
                       ),
                       SizedBox(height: 16),
 

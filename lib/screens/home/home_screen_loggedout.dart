@@ -3,7 +3,6 @@ import 'package:lucide_icons/lucide_icons.dart';
 import 'package:provider/provider.dart';
 import 'package:terminal_one/components/buttons/ghost_button.dart';
 import 'package:terminal_one/components/buttons/secondary_button.dart';
-import 'package:terminal_one/components/snackbars/fancy_success_snackbar.dart';
 import 'package:terminal_one/components/spacer/separator_withtext.dart';
 import 'package:terminal_one/providers/auth_provider.dart';
 import 'package:terminal_one/utils/responsive_layout.dart';
@@ -11,12 +10,10 @@ import '../../components/buttons/primary_button.dart';
 import '../../components/inputs/input_code_group.dart';
 import '../../utils/platform_utils.dart';
 import '../../widgets/responsive_code_input.dart';
-import '../../widgets/theme_toggle.dart';
 import '../../widgets/glassmorphism_scaffold.dart';
 import '../../widgets/app_logo.dart';
 import '../../widgets/appbar_aware_safe_area.dart';
-import '../../providers/theme_provider.dart';
-import '../../l10n/app_localizations.dart';
+import 'package:easy_localization/easy_localization.dart';
 import '../auth/login_screen.dart';
 import '../games/more_games.dart';
 
@@ -40,9 +37,9 @@ class _HomeScreenState extends State<HomeScreen> {
   void _showPromoCodeInfo(BuildContext context) {
     PlatformUtils.showPlatformDialog(
       context: context,
-      title: Text(AppLocalizations.of(context)!.whatIsPromoCode),
+      title: Text('home.what_is_promo_code'.tr()),
       content: Text(
-        AppLocalizations.of(context)!.promoCodeExplanation,
+        'home.promo_code_explanation'.tr(),
         style: PlatformUtils.isIOSContext(context)
             ? const TextStyle(fontSize: 13.0)
             : Theme.of(context).textTheme.bodyMedium,
@@ -53,7 +50,7 @@ class _HomeScreenState extends State<HomeScreen> {
           onPressed: () {
             Navigator.of(context).pop();
           },
-          child: Text(AppLocalizations.of(context)!.understood),
+          child: Text('home.understood'.tr()),
         ),
       ],
     );
@@ -72,10 +69,9 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final themeProvider = Provider.of<ThemeProvider>(context);
     return GlassmorphismScaffold(
       title: Text(''),
-      actions: [
+     /* actions: [
         Padding(
           padding: const EdgeInsets.only(right: 16.0, left: 8.0),
           child: ThemeToggle(
@@ -85,7 +81,7 @@ class _HomeScreenState extends State<HomeScreen> {
             },
           ),
         ),
-      ],
+      ],*/
       body: AppBarAwareSafeArea(
         child: LayoutBuilder(
           builder: (context, constraints) {
@@ -110,20 +106,20 @@ class _HomeScreenState extends State<HomeScreen> {
                               variant: LogoVariant.minimal,
                             ),
                             Text(
-                              AppLocalizations.of(context)!.welcomeMessage,
+                              'home.welcome_message'.tr(),
                               style: Theme.of(context).textTheme.headlineMedium?.copyWith(
                                 fontWeight: FontWeight.bold,
                               ),
                               textAlign: TextAlign.center,
                             ),
                             Text(
-                              AppLocalizations.of(context)!.enterAccessCode,
+                              'home.enter_access_code'.tr(),
                               style: Theme.of(context).textTheme.bodyLarge,
                               textAlign: TextAlign.center,
                             ),
                             GhostButton(
                               leading: LucideIcons.helpCircle,
-                              label: AppLocalizations.of(context)!.whatIsPromoCode,
+                              label: 'home.what_is_promo_code'.tr(),
                               onPressed: () {
                                 _showPromoCodeInfo(context);
                               },
@@ -151,7 +147,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               },
                             ),
                             PrimaryButton(
-                              label: AppLocalizations.of(context)!.verifyCode,
+                              label: 'home.verify_code'.tr(),
                               enabled: _isCodeComplete,
                               onPressed: _isCodeComplete ? () {
                                 debugPrint('Verifying code: ${_codeInputKey.currentState?.code ?? ''}');
@@ -166,7 +162,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 });
                                 debugPrint('Code cleared');
                               },
-                              label: AppLocalizations.of(context)!.clearCode,
+                              label: 'home.clear_code'.tr(),
                             ),
                           ],
                         ),
@@ -180,7 +176,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               SeparatorWithText(
                                 text: Provider.of<AuthProvider>(context).isLoggedIn
                                   ? 'Mehr Promo-Codes?'
-                                  : AppLocalizations.of(context)!.promoCodeSignupText,
+                                  : 'home.promo_code_signup_text'.tr(),
                               ),
                               SecondaryButton(
                                 onPressed: () {
@@ -205,7 +201,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   : LucideIcons.logIn,
                                 label: Provider.of<AuthProvider>(context).isLoggedIn
                                   ? 'Mehr Promo-Codes'
-                                  : AppLocalizations.of(context)!.toLogin,
+                                  : 'home.to_login'.tr(),
                               ),
                             ],
                         

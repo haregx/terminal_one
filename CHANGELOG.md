@@ -1,6 +1,100 @@
 # CHANGELOG
 
-## [Unreleased] - 2025-10-08
+All notable changes to this project will be documented in this file.
+
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
+and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+## [Unreleased] - 2025-10-09
+
+### Added
+- **Complete Internationalization System**: Migrated from Flutter's built-in i18n to easy_localization
+  - Comprehensive German and English translations for all UI components
+  - JSON-based translation files in `assets/translations/`
+  - Support for parametrized translations with named arguments
+  - Runtime language switching capabilities
+  - Fallback translation system for missing keys
+
+- **Enhanced Dashboard Components**: Fully internationalized quick actions and statistics
+  - Dynamic title/label localization in `QuickActionData` and `StatData` models
+  - `getLocalizedTitle()` and `getLocalizedLabel()` methods for runtime translation
+  - Backward compatibility with fallback titles/labels
+  - Support for complex time-based translations (e.g., "Today at {time}", "Yesterday at {time}")
+
+- **Modern Color API Migration**: Updated from deprecated `withOpacity` to `withAlpha`
+  - Project-wide replacement of color opacity methods
+  - Precise alpha value calculations (e.g., 0.6 opacity → 153 alpha)
+  - Better performance and future compatibility
+  - Consistent color handling across all components
+
+### Enhanced
+- **Profile Screen Internationalization**: Complete translation of user profile interface
+  - All dialog titles, descriptions, and buttons translated
+  - Dynamic content with parametrized translations (member since dates)
+  - Proper German/English context switching
+  - Internationalized dummy data for consistent testing
+
+- **Settings Screen Localization**: Advanced hybrid translation system
+  - Combination of easy_localization and manual locale detection
+  - Reliable language/region selection interfaces
+  - Theme and preference descriptions in both languages
+  - Contextual help text and error messages
+
+- **Dashboard Activity Feed**: Localized recent activities display
+  - Time-relative translations ("Today at", "Yesterday at", "X days ago")
+  - Activity type descriptions in both languages
+  - Parametrized time formatting for different locales
+
+### Migrated
+- **Authentication Screens**: Converted from Flutter i18n to easy_localization
+  - `register_screen.dart`: Registration form with translated labels and descriptions
+  - `password_request_screen.dart`: Password reset interface with localized content
+  - `pincode_screen.dart`: PIN entry screen with translated button labels
+  - Removed dependencies on `AppLocalizations` class
+  - Updated import statements to use easy_localization
+
+### Removed
+- **Legacy Internationalization System**: Cleaned up old Flutter i18n infrastructure
+  - Deleted `lib/l10n/` directory and all ARB files
+  - Removed `l10n.yaml` configuration file
+  - Removed `generate: true` flag from `pubspec.yaml`
+  - Eliminated `AppLocalizations` class dependencies
+  - Streamlined translation architecture
+
+### Fixed
+- **Flutter 3.35.5 Compatibility**: Resolved API deprecation issues
+  - Fixed `TextDirection.ltr` compilation error with proper `dart:ui` import
+  - Updated color API usage throughout the codebase
+  - Resolved widget parameter naming conflicts
+
+- **Translation Key Coverage**: Comprehensive translation completeness
+  - Added missing translation keys for all hardcoded strings
+  - Fixed inconsistent key naming patterns
+  - Resolved context-specific translation issues
+
+### Technical Improvements
+- **Code Architecture**: Enhanced maintainability and consistency
+  - Unified translation approach across all screens
+  - Consistent parameter naming and structure
+  - Better separation of concerns between UI and localization
+  - Improved error handling for missing translations
+
+- **Performance Optimizations**: Reduced runtime overhead
+  - Eliminated redundant translation lookups
+  - Streamlined locale detection logic
+  - Optimized widget rebuild cycles for locale changes
+
+### Developer Experience
+- **Enhanced Debugging**: Better development tools and feedback
+  - Clear error messages for missing translation keys
+  - Consistent logging for locale changes
+  - Improved development workflow for adding new translations
+
+---
+
+## Previous Entries
+
+### [1.0.0] - 2025-10-08
 
 ### Added
 - **Centralized Routing System**: Implemented comprehensive route management architecture

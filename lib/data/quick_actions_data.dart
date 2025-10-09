@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:lucide_icons/lucide_icons.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:terminal_one/core/app_routes.dart';
 
 /// QuickActionData - Datenmodell für Schnelle Aktionen Karten
 class QuickActionData {
   final String id;
-  final String title;
+  final String title; // Fallback title 
+  final String? titleKey; // Übersetzungsschlüssel für Internationalisierung
   final IconData icon;
   final String? route;
   final VoidCallback? action;
@@ -16,6 +18,7 @@ class QuickActionData {
   const QuickActionData({
     required this.id,
     required this.title,
+    this.titleKey,
     required this.icon,
     this.route,
     this.action,
@@ -23,6 +26,14 @@ class QuickActionData {
     this.color,
     this.iconColor,
   });
+
+  /// Gibt den lokalisierten Titel zurück, falls titleKey vorhanden ist
+  String getLocalizedTitle() {
+    if (titleKey != null) {
+      return titleKey!.tr();
+    }
+    return title;
+  }
 }
 
 /// Zentrale Liste aller Schnelle Aktionen
@@ -30,7 +41,8 @@ class QuickActionsData {
   static const List<QuickActionData> actions = [
     QuickActionData(
       id: 'code',
-      title: 'Promo-Code eingeben',
+      title: 'Promo-Code eingeben', // Fallback
+      titleKey: 'quick_actions.enter_promo_code',
       icon: LucideIcons.ticket, // Passender für Promo-Codes
       route: AppRoutes.promoCode,
       color: Color(0xFF06B6D4), // Cyan - für Eingabe/Input
@@ -38,7 +50,8 @@ class QuickActionsData {
     ),
      QuickActionData(
       id: 'games',
-      title: 'Mehr Promo-Codes',
+      title: 'Mehr Promo-Codes', // Fallback
+      titleKey: 'quick_actions.more_promo_codes',
       icon: LucideIcons.gift, // Geschenk-Icon für mehr Codes
       route: AppRoutes.moreGames,
       color: Color(0xFF8B5CF6), // Violet - für Belohnungen
@@ -46,23 +59,26 @@ class QuickActionsData {
     ),
     QuickActionData(
       id: 'profile',
-      title: 'Profil bearbeiten',
+      title: 'Profil bearbeiten', // Fallback
+      titleKey: 'quick_actions.edit_profile',
       icon: LucideIcons.userCircle, // Besseres Profil-Icon
       color: Color(0xFF10B981), // Emerald - für persönliche Daten
       iconColor: Colors.white,
-      // TODO: Route wird später hinzugefügt
+      route: AppRoutes.profile
     ),
     QuickActionData(
       id: 'settings',
-      title: 'Einstellungen ändern',
+      title: 'Einstellungen ändern', // Fallback
+      titleKey: 'quick_actions.change_settings',
       icon: LucideIcons.settings2, // Moderneres Settings-Icon
       color: Color(0xFF6B7280), // Gray - neutral für Einstellungen
       iconColor: Colors.white,
-      // TODO: Route wird später hinzugefügt
+      route: AppRoutes.settings,
     ),
     QuickActionData(
       id: 'help',
-      title: 'Hilfe',
+      title: 'Hilfe', // Fallback
+      titleKey: 'quick_actions.help',
       icon: LucideIcons.helpCircle,
       color: Color(0xFFF59E0B), // Amber - aufmerksamkeitsstarb für Hilfe
       iconColor: Colors.white,
@@ -70,7 +86,8 @@ class QuickActionsData {
     ),
     QuickActionData(
       id: 'theme',
-      title: 'Theme',
+      title: 'Theme', // Fallback
+      titleKey: 'quick_actions.theme',
       icon: LucideIcons.palette, // Palette für Theme-Wechsel
       isThemeToggle: true,
       color: Color(0xFFEC4899), // Pink - kreativ für Theme

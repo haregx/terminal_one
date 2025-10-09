@@ -1,0 +1,127 @@
+import 'package:flutter/material.dart';
+
+/// Glass Card Widget - Simple glassmorphism-styled card component
+/// 
+/// Provides consistent glassmorphism styling for content cards:
+/// - Semi-transparent background with blur effect
+/// - Subtle border and shadow
+/// - Smooth animations with customizable delay
+class GlassCard extends StatefulWidget {
+  /// The child widget to display inside the card
+  final Widget child;
+  
+  /// Animation delay for the card appearance
+  final Duration delay;
+  
+  /// Custom padding for the card content
+  final EdgeInsets? padding;
+  
+  /// Custom margin for the card
+  final EdgeInsets? margin;
+  
+  /// Custom border radius
+  final BorderRadius? borderRadius;
+
+  const GlassCard({
+    super.key,
+    required this.child,
+    this.delay = Duration.zero,
+    this.padding,
+    this.margin,
+    this.borderRadius,
+  });
+
+  @override
+  State<GlassCard> createState() => _GlassCardState();
+}
+
+class _GlassCardState extends State<GlassCard>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _controller;
+  late Animation<double> _scaleAnimation;
+  late Animation<double> _opacityAnimation;
+
+  @override
+  void initState() {
+    super.initState();
+    
+    _controller = AnimationController(
+      duration: const Duration(milliseconds: 600),
+      vsync: this,
+    );
+
+    _scaleAnimation = Tween<double>(
+      begin: 0.8,
+      end: 1.0,
+    ).animate(CurvedAnimation(
+      parent: _controller,
+      curve: Curves.easeOutCubic,
+    ));
+
+    _opacityAnimation = Tween<double>(
+      begin: 0.0,
+      end: 1.0,
+    ).animate(CurvedAnimation(
+      parent: _controller,
+      curve: Curves.easeInOut,
+    ));
+
+    // Start animation with delay
+    Future.delayed(widget.delay, () {
+      if (mounted) {
+        _controller.forward();
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final isDark = Theme.of(context).brightness == Brightness.dark;
+    
+    return AnimatedBuilder(
+      animation: _controller,
+      builder: (context, child) {
+        return Transform.scale(
+          scale: _scaleAnimation.value,
+          child: Opacity(
+            opacity: _opacityAnimation.value,
+            child: Container(
+              margin: widget.margin,
+              decoration: BoxDecoration(
+                color: isDark
+                    ? Colors.white.withAlpha(13)
+                    : Colors.white.withAlpha(38),
+                borderRadius: widget.borderRadius ?? BorderRadius.circular(16),
+                border: Border.all(
+                  color: isDark
+                      ? Colors.white.withAlpha(26)
+                      : Colors.white.withAlpha(51),
+                  width: 1,
+                ),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withAlpha(isDark ? 77 : 26),
+                    blurRadius: 20,
+                    offset: const Offset(0, 8),
+                  ),
+                ],
+              ),
+              child: widget.padding != null
+                  ? Padding(
+                      padding: widget.padding!,
+                      child: widget.child,
+                    )
+                  : widget.child,
+            ),
+          ),
+        );
+      },
+    );
+  }
+}

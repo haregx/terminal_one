@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lucide_icons/lucide_icons.dart';
-import 'package:provider/provider.dart';
 import 'package:terminal_one/components/buttons/ghost_button.dart';
 import 'package:terminal_one/components/snackbars/fancy_success_snackbar.dart';
-import 'package:terminal_one/providers/auth_provider.dart';
 import 'package:terminal_one/utils/responsive_layout.dart';
 import '../../components/buttons/primary_button.dart';
 import '../../components/inputs/input_code_group.dart';
@@ -131,7 +129,6 @@ class _PromoCodeScreenState extends State<PromoCodeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final authProvider = Provider.of<AuthProvider>(context);
     
     return GlassmorphismScaffold(
       title: const Text('Promo Code'),

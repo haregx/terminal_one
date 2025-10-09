@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:terminal_one/screens/auth/login_screen.dart';
 import 'package:terminal_one/screens/auth/logout_screen.dart';
 import 'package:terminal_one/screens/auth/password_request_screen.dart';
+import 'package:terminal_one/screens/auth/profile_screen.dart';
 import 'package:terminal_one/screens/auth/register_screen.dart';
+import 'package:terminal_one/screens/common/settings_screen.dart';
 import 'package:terminal_one/screens/games/more_games.dart';
 import 'package:terminal_one/screens/games/promocode_screen.dart';
 import 'package:terminal_one/screens/home/home_screen_loggedin.dart';
@@ -21,6 +23,8 @@ class AppRoutes {
   static const String login = '/login';
   static const String register = '/register';
   static const String logout = '/logout';
+  static const String profile = '/profile';
+  static const String settings = '/settings';
   static const String passwordRequest = '/password-request';
   static const String moreGames = '/more-games';
   static const String promoCode = '/promo-code';
@@ -64,6 +68,18 @@ class AppRoutes {
       case logout:
         return MaterialPageRoute(
           builder: (_) => const LogoutScreen(),
+          settings: settings,
+        );
+
+      case profile:
+        return MaterialPageRoute(
+          builder: (_) => const ProfileScreen(),
+          settings: settings,
+        );
+
+      case AppRoutes.settings:
+        return MaterialPageRoute(
+          builder: (_) => const SettingsScreen(),
           settings: settings,
         );
 
@@ -158,6 +174,14 @@ class AppRoutes {
     Navigator.pushNamed(context, logout);
   }
 
+  static void navigateToProfile(BuildContext context) {
+    Navigator.pushNamed(context, profile);
+  }
+
+  static void navigateToSettings(BuildContext context) {
+    Navigator.pushNamed(context, settings);
+  }
+
   static void navigateToPasswordRequest(BuildContext context) {
     Navigator.pushNamed(context, passwordRequest);
   }
@@ -191,6 +215,8 @@ class AppRoutes {
       login,
       register,
       logout,
+      profile,
+      settings,
       passwordRequest,
       moreGames,
       promoCode,

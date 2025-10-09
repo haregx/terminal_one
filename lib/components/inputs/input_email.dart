@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 import '../../utils/layout_constants.dart';
-import '../../l10n/app_localizations.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'input_defaults.dart';
 
 /// Platform-aware email input component with comprehensive validation
@@ -138,11 +138,7 @@ class _InputEmailState extends State<InputEmail> {
   }
 
   String _getLocalizedErrorMessage() {
-    final localizations = AppLocalizations.of(context);
-    if (localizations != null) {
-      return localizations.emailValidationError;
-    }
-    return 'Please enter a valid email address';
+    return 'inputs.email_validation_error'.tr();
   }
 
   void _onChanged(String value) {
@@ -168,11 +164,10 @@ class _InputEmailState extends State<InputEmail> {
 
   InputDecoration _buildDecoration(BuildContext context) {
     final theme = Theme.of(context);
-    final localizations = AppLocalizations.of(context);
     
     return InputDecoration(
-      labelText: widget.label ?? localizations?.emailAddress ?? 'E-Mail-Adresse',
-      hintText: widget.hint ?? localizations?.emailHint ?? 'erika@example.com',
+      labelText: widget.label ?? 'inputs.email'.tr(),
+      hintText: widget.hint ?? 'inputs.email_hint'.tr(),
       errorText: _errorText,
       filled: true,
       fillColor: InputDefaults.getInputBackgroundColor(context),

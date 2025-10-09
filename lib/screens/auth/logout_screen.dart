@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 import 'package:provider/provider.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:terminal_one/components/snackbars/fancy_success_snackbar.dart';
 import 'package:terminal_one/providers/auth_provider.dart';
 import 'package:terminal_one/components/buttons/primary_button.dart';
@@ -27,6 +28,7 @@ class LogoutScreen extends StatelessWidget {
     
     return Container(
       height: screenHeight * 0.5, // Halbe Bildschirmhöhe
+      width: double.infinity,
       decoration: BoxDecoration(
         color: Theme.of(context).scaffoldBackgroundColor,
         borderRadius: const BorderRadius.only(
@@ -61,7 +63,7 @@ class LogoutScreen extends StatelessWidget {
             
             // Titel
             Text(
-              'Abmelden',
+              'auth.logout'.tr(),
               style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                 fontWeight: FontWeight.bold,
               ),
@@ -71,39 +73,33 @@ class LogoutScreen extends StatelessWidget {
             
             // Bestätigungstext
             Text(
-              'Möchtest Du dich wirklich abmelden?',
+              'auth.logout_confirmation'.tr(),
               style: Theme.of(context).textTheme.bodyLarge,
               textAlign: TextAlign.center,
             ),
             
             const SizedBox(height: 32),
             
-            // Logout Button
-            SizedBox(
-              width: double.infinity,
-              child: PrimaryButton(
-                label: 'Abmelden',
-                onPressed: () async {
-                  // Navigator schließen
-                  Navigator.of(context).pop();
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    FancySuccessSnackbar.build('You have been successfully logged out!'),
-                  );
-                  // Ausloggen
-                  await Provider.of<AuthProvider>(context, listen: false).setLoggedIn(false);
-                },
-              ),
+            // Logout Button - Nur so breit wie nötig
+            PrimaryButton(
+              label: 'auth.logout'.tr(),
+              onPressed: () async {
+                // Navigator schließen
+                Navigator.of(context).pop();
+                ScaffoldMessenger.of(context).showSnackBar(
+                  FancySuccessSnackbar.build('auth.logout_success'.tr()),
+                );
+                // Ausloggen
+                await Provider.of<AuthProvider>(context, listen: false).setLoggedIn(false);
+              },
             ),
             
             const SizedBox(height: 16),
             
             // Abbrechen Button
-            SizedBox(
-              width: double.infinity,
-              child: TextButton(
-                onPressed: () => Navigator.of(context).pop(),
-                child: const Text('Abbrechen'),
-              ),
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(),
+              child: Text('common.cancel'.tr()),
             ),
           ],
         ),

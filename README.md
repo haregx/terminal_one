@@ -1,53 +1,68 @@
 # Terminal.One
 
-A modern Flutter application with advanced glassmorphism UI design and seamless authentication workflows.
 
-## 🚀 Features
+A modern Flutter application featuring advanced glassmorphism UI design, comprehensive internationalization, and seamless cross-platform functionality.
+
+## ✨ Key Features
+
+### 🌍 Complete Internationalization
+- **Multi-language Support**: German and English with runtime language switching
+- **Easy Localization**: JSON-based translation system with parametrized messages
+- **Contextual Translation**: Smart locale detection with fallback mechanisms
+- **Dynamic Content**: Time-based and user-specific localized content
 
 ### 🎨 Modern UI/UX Design
-- **Glassmorphism Interface**: Beautiful glass-like components with transparency effects
-- **Animated Logo Transitions**: Smooth collapsing toolbar with scroll-triggered logo animations
-- **Responsive Layout**: Optimized for all screen sizes and orientations
-- **Theme Support**: Light and dark mode with automatic system detection
-- **Background System**: Dynamic background images with theme-aware opacity
+- **Glassmorphism Interface**: Beautiful glass-like components with advanced transparency effects
+- **Animated Dashboard**: Interactive quick actions and statistics with smooth transitions
+- **Responsive Layout**: Optimized for all screen sizes from mobile to desktop
+- **Theme System**: Comprehensive light/dark mode with automatic system detection
+- **Background Integration**: Dynamic background images with theme-aware opacity
 
-### 🔐 Authentication System
-- **Secure Login/Register**: Complete authentication flow with API integration
-- **Password Recovery**: Dedicated password request functionality
-- **Logout Confirmation**: Modern logout screen with user confirmation
-- **State Management**: Robust authentication state handling with Provider pattern
+### 🔐 Authentication & User Management
+- **Secure Authentication**: Complete login/register flow with API integration
+- **Profile Management**: Internationalized user profile with customizable settings
+- **Password Recovery**: Dedicated password reset functionality
+- **Settings Screen**: Advanced preferences with theme, language, and privacy controls
+- **State Persistence**: Robust authentication state with secure storage
 
-### 📱 Cross-Platform Support
-- **iOS**: Native design compliance with proper Safe Area handling
-- **Android**: Material Design 3 integration
-- **Web**: Responsive web interface
-- **Desktop**: Windows and macOS support
+### 📱 Cross-Platform Excellence
+- **Native Performance**: 60fps animations and optimized rendering across platforms
+- **Platform Compliance**: iOS design guidelines and Material Design 3 integration
+- **Responsive Web**: Full-featured web application with touch and desktop support
+- **Desktop Ready**: Windows and macOS native applications with proper window management
 
-### ⚡ Performance Features
-- **60fps Animations**: Optimized scroll animations and transitions
-- **Stable Scrolling**: Fixed layout shifts and position jumping
-- **Efficient Rendering**: Background image caching and optimization
-- **Memory Management**: Proper widget lifecycle management
+### 🚀 Performance & Architecture
+- **Modern Color API**: Updated to latest Flutter color system (withAlpha)
+- **Efficient State Management**: Provider-based architecture with optimized rebuilds
+- **Memory Optimization**: Smart widget lifecycle and resource management
+- **Error Handling**: Comprehensive error boundaries and user feedback systems
 
 ## 🛠️ Technical Stack
 
-### Core Technologies
-- **Flutter**: Latest stable version with null safety
-- **Dart**: Modern Dart language features
-- **Provider**: State management solution
-- **HTTP**: API communication and service integration
+### Core Framework
+- **Flutter 3.35.5**: Latest stable with null safety and modern APIs
+- **Dart 3.5.0**: Advanced language features and performance optimizations
+- **Easy Localization 3.0.7**: Comprehensive internationalization system
 
 ### Key Dependencies
 ```yaml
 dependencies:
   flutter:
     sdk: flutter
+  easy_localization: ^3.0.7
   provider: ^6.1.1
   lucide_icons: ^0.294.0
   http: ^1.1.2
-```
+  flutter_secure_storage: ^9.2.2
+  shared_preferences: ^2.2.2
 
-### Development Tools
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^5.0.0
+  flutter_launcher_icons: ^0.13.1
+  flutter_native_splash: ^2.4.1
+```
 - **flutter_launcher_icons**: App icon generation
 - **flutter_native_splash**: Native splash screen creation
 - **Analysis Options**: Strict linting and code quality
@@ -61,51 +76,100 @@ lib/
 │   ├── auth/             # Authentication services
 │   └── https_post_service.dart
 ├── components/           # Reusable UI components
+│   ├── buttons/         # Custom button components
+│   ├── inputs/          # Form input components
 │   └── snackbars/       # Custom snackbar implementations
 ├── core/                # Core application logic
-│   ├── platform_base_screen.dart
-│   └── platform_screen_mixin.dart
+│   ├── app_routes.dart  # Centralized routing system
+│   └── platform_*.dart  # Platform abstraction
+├── data/                # Data models and providers
+│   ├── quick_actions_data.dart  # Dashboard actions
+│   └── stats_data.dart         # Statistics data
 ├── providers/           # State management
 │   ├── auth_provider.dart
 │   └── theme_provider.dart
 ├── screens/             # Application screens
 │   ├── auth/           # Authentication screens
+│   ├── common/         # Shared screens (settings, etc.)
 │   └── home/           # Main application screens
+├── themes/             # Theme definitions
+├── utils/              # Utility functions
 ├── widgets/            # Custom widgets
 │   ├── dashboard/      # Dashboard components
 │   └── glassmorphism_scaffold.dart
 └── main.dart          # Application entry point
 ```
 
+### Internationalization Structure
+```
+assets/
+├── translations/
+│   ├── de.json         # German translations
+│   └── en.json         # English translations
+├── background/         # Background images
+└── images/            # App assets
+```
+
 ### Design Patterns
-- **Provider Pattern**: For state management
-- **Service Layer**: Separated API communication
-- **Component Architecture**: Reusable UI components
-- **Mixin Pattern**: Cross-cutting concerns
+- **Provider Pattern**: Global state management with reactive updates
+- **Repository Pattern**: Clean API service architecture
+- **Localization Pattern**: Easy Localization with JSON-based translations
+- **Service Layer**: Clean API communication architecture
+- **Component Architecture**: Reusable, composable UI components
+- **Mixin Pattern**: Cross-cutting concerns and shared functionality
 
 ## 🎯 Key Components
 
-### GlassmorphismScaffold
-A custom scaffold with glassmorphism effects and transparent AppBar support.
+### Core UI Components
 
-### AnimatedGlassCard
-Reusable glass card component with built-in animations and touch feedback.
+**GlassmorphismScaffold**
+- Custom scaffold with advanced glassmorphism effects
+- Transparent AppBar with automatic background handling
+- Theme-aware glass morphism with proper contrast ratios
 
-### ScrollableDashboard
-Advanced dashboard layout with grid-based component arrangement.
+**SimpleDashboard**
+- Internationalized dashboard with quick actions
+- Responsive grid layout for different screen sizes
+- Real-time statistics and activity feed
 
-### AppLogo
-Responsive logo component with multiple size variants and smooth transitions.
+**ThemeToggle**
+- Advanced theme switching (Light/Dark/System)
+- Persistent theme preferences with SharedPreferences
+- Smooth transitions between theme modes
+
+### Internationalization Components
+
+**Easy Localization Integration**
+- Runtime language switching (German/English)
+- Parametrized translations with named arguments
+- Context-aware fallback system for missing keys
+
+**Localized Data Models**
+- `QuickActionData` with `getLocalizedTitle()` method
+- `StatData` with `getLocalizedLabel()` method
+- Backward compatibility with fallback text
+
+### Advanced Features
+
+**Responsive Code Input**
+- Configurable length PIN/code entry system
+- Real-time validation and completion detection
+- Platform-specific input handling
+
+**Glass Card System**
+- Consistent glass morphism across all components
+- Animated transitions with delay support
+- Touch feedback and hover states
 
 ## 🚀 Getting Started
 
 ### Prerequisites
-- Flutter SDK (>=3.0.0)
-- Dart SDK (>=3.0.0)
-- iOS development: Xcode and iOS Simulator
-- Android development: Android Studio and Android SDK
+- **Flutter SDK**: 3.35.5 or higher
+- **Dart SDK**: 3.5.0 or higher
+- **iOS Development**: Xcode 15+ and iOS Simulator
+- **Android Development**: Android Studio with Android SDK 21+
 
-### Installation
+### Quick Installation
 
 1. **Clone the repository**
    ```bash
@@ -118,58 +182,277 @@ Responsive logo component with multiple size variants and smooth transitions.
    flutter pub get
    ```
 
-3. **Generate app icons** (optional)
+3. **Set up translations** (Easy Localization)
+   ```bash
+   # Translations are automatically loaded from assets/translations/
+   # No additional setup required - JSON files are included
+   ```
+
+4. **Generate app icons** (optional)
    ```bash
    flutter pub run flutter_launcher_icons
    ```
 
-4. **Generate splash screens** (optional)
+5. **Generate splash screens** (optional)
    ```bash
    flutter pub run flutter_native_splash:create
    ```
 
-5. **Run the application**
+6. **Run the application**
    ```bash
    flutter run
    ```
 
-### Build for Production
+### Platform-Specific Setup
 
-**iOS:**
+**iOS Setup**
 ```bash
-flutter build ios --release
+cd ios
+pod install
+cd ..
+flutter run -d ios
 ```
 
-**Android:**
+**Android Setup**
 ```bash
-flutter build apk --release
-# or for app bundle:
+flutter run -d android
+```
+
+**Web Setup**
+```bash
+flutter run -d web-server --web-port 8080
+```
+
+### Build for Production
+
+**iOS Release:**
+```bash
+flutter build ios --release
+open ios/Runner.xcworkspace
+# Use Xcode to archive and distribute
+```
+
+**Android APK:**
+```bash
+flutter build apk --release --split-per-abi
+```
+
+**Android App Bundle:**
+```bash
 flutter build appbundle --release
 ```
 
-**Web:**
+**Web Production:**
 ```bash
-flutter build web --release
+flutter build web --release --web-renderer canvaskit
+```
+
+**Desktop (macOS):**
+```bash
+flutter build macos --release
+```
+
+**Desktop (Windows):**
+```bash
+flutter build windows --release
+```
+
+## � Internationalization
+
+### Adding New Languages
+
+1. **Create translation file**
+   ```bash
+   # Add new file: assets/translations/fr.json
+   ```
+
+2. **Update main.dart**
+   ```dart
+   return EasyLocalization(
+     supportedLocales: [
+       Locale('en'),
+       Locale('de'), 
+       Locale('fr'), // Add new locale
+     ],
+     // ...
+   );
+   ```
+
+3. **Add translations**
+   ```json
+   {
+     "common": {
+       "ok": "D'accord",
+       "cancel": "Annuler"
+     }
+   }
+   ```
+
+### Translation Usage
+```dart
+// Simple translation
+Text('common.ok'.tr())
+
+// Parametrized translation
+Text('profile.member_since'.tr(namedArgs: {'year': '2025'}))
+
+// Fallback with manual locale detection
+Text(context.locale.languageCode == 'de' ? 'Deutsch' : 'English')
 ```
 
 ## 🎨 Customization
 
-### Theming
-The app supports comprehensive theming through the `ThemeProvider`:
+### Theme System
+The app features a comprehensive theme system with persistent preferences:
 
 ```dart
-// Toggle theme
-Provider.of<ThemeProvider>(context).toggleTheme();
+// Set specific theme mode
+themeProvider.setThemeMode(ThemeMode.dark);
+
+// Toggle between light and dark
+themeProvider.toggleTheme();
 
 // Check current theme
-bool isDark = Provider.of<ThemeProvider>(context).isDarkMode;
+bool isDark = Theme.of(context).brightness == Brightness.dark;
+
+// Use theme-aware colors
+color: isDark ? Colors.white.withAlpha(230) : Colors.black.withAlpha(230)
+```
+
+### Glass Morphism Customization
+```dart
+GlassCard(
+  delay: Duration(milliseconds: 200),
+  padding: EdgeInsets.all(16),
+  child: YourContent(),
+)
+```
+
+### Dashboard Customization
+Add new quick actions or statistics:
+
+```dart
+// In quick_actions_data.dart
+QuickActionData(
+  id: 'custom_action',
+  title: 'Custom Action',
+  titleKey: 'quick_actions.custom_action', // For i18n
+  icon: LucideIcons.customIcon,
+  color: Color(0xFF6366F1),
+  route: '/custom-route',
+)
+
+// In stats_data.dart  
+StatData(
+  id: 'custom_stat',
+  value: '100%',
+  label: 'Custom Stat',
+  labelKey: 'stats.custom_stat', // For i18n
+  icon: LucideIcons.customIcon,
+  color: Color(0xFF10B981),
+)
 ```
 
 ### Background Images
-Place your background images in `assets/images/` and update the `AppBackground` widget configuration.
+Place your background images in `assets/background/` and reference them in the `AppBackground` widget:
 
-### Glass Effects
-Customize glass morphism effects by modifying the `AnimatedGlassCard` widget parameters.
+```dart
+AppBackground(
+  imagePath: 'assets/background/your_background.png',
+  lightModeOpacity: 0.2,
+  darkModeOpacity: 0.3,
+)
+```
+
+## 🧪 Testing
+
+### Run Tests
+```bash
+flutter test
+```
+
+### Integration Tests
+```bash
+flutter test integration_test/
+```
+
+### Code Analysis
+```bash
+flutter analyze
+```
+
+## 📝 Development Guidelines
+
+### Code Style
+- Follow Dart/Flutter style guidelines
+- Use descriptive variable and function names
+- Add documentation comments for public APIs
+- Implement proper error handling
+
+### Internationalization Best Practices
+- Always use translation keys instead of hardcoded strings
+- Use parametrized translations for dynamic content
+- Provide fallback text for missing translations
+- Test with different locales during development
+
+### Performance Considerations
+- Use `const` constructors where possible
+- Implement proper widget keys for list items
+- Avoid rebuilding expensive widgets unnecessarily
+- Use `ListView.builder` for long lists
+
+## 🤝 Contributing
+
+1. **Fork the repository**
+2. **Create your feature branch**
+   ```bash
+   git checkout -b feature/amazing-feature
+   ```
+3. **Commit your changes**
+   ```bash
+   git commit -m 'Add some amazing feature'
+   ```
+4. **Push to the branch**
+   ```bash
+   git push origin feature/amazing-feature
+   ```
+5. **Open a Pull Request**
+
+### Development Setup
+```bash
+# Install dependencies
+flutter pub get
+
+# Run code generation (if needed)
+flutter packages pub run build_runner build
+
+# Run tests
+flutter test
+
+# Check code quality
+flutter analyze
+```
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 📞 Support
+
+- **Issues**: [GitHub Issues](https://github.com/haregx/terminal_one/issues)
+- **Documentation**: See the `/docs` folder for detailed documentation
+- **Discord**: Join our community server for discussions
+
+## 🙏 Acknowledgments
+
+- **Flutter Team**: For the amazing framework
+- **Easy Localization**: For the excellent internationalization package
+- **Lucide Icons**: For the beautiful icon set
+- **Community**: All contributors and testers who made this project better
+
+---
+
+**Built with ❤️ using Flutter**
 
 ## 📱 Screenshots
 

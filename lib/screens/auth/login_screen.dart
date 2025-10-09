@@ -15,7 +15,7 @@ import '../../widgets/appbar_aware_safe_area.dart';
 import '../../components/buttons/primary_button.dart';
 import '../../components/inputs/input_email.dart';
 import '../../components/inputs/input_password.dart';
-import '../../l10n/app_localizations.dart';
+import 'package:easy_localization/easy_localization.dart';
 import '../../utils/secure_storage.dart';
 import '../home/home_screen_router.dart';
 import 'register_screen.dart';
@@ -140,7 +140,6 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final localizations = AppLocalizations.of(context)!;
     return GestureDetector(
       onTap: () {
         // Hide keyboard and refocus email field if empty (simulator/dev convenience)
@@ -152,7 +151,7 @@ class _LoginScreenState extends State<LoginScreen> {
         });
       },
       child: GlassmorphismScaffold(
-        title: Text(localizations.login),
+        title: Text('auth.login'.tr()),
         body: AppBarAwareSafeArea(
           child: LayoutBuilder(
             builder: (context, constraints) {
@@ -182,7 +181,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                         variant: LogoVariant.minimal,
                                       ),
                                       Text(
-                                        localizations.loginDescription,
+                                        'auth.login_description'.tr(),
                                         style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                                           color: Theme.of(context).colorScheme.onSurface.withAlpha(180),
                                         ),
@@ -221,11 +220,11 @@ class _LoginScreenState extends State<LoginScreen> {
                                       GhostButton(
                                         leading: LucideIcons.helpCircle,
                                         onPressed: _navigateToPasswordRequest,
-                                        label: localizations.forgotPin,
+                                        label: 'auth.forgot_pin'.tr(),
                                       ),
                                       // Login button
                                       PrimaryButton(
-                                        label: localizations.login,
+                                        label: 'auth.login'.tr(),
                                         enabled: _canLogin,
                                         onPressed: _canLogin ? _handleLogin : null,
                                       ),
@@ -256,7 +255,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                     ),
                                   );
                                 },
-                                label: localizations.toRegistration,
+                                label: 'auth.to_registration'.tr(),
                               ),
                             ],
                           ),

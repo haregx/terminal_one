@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:terminal_one/providers/theme_provider.dart';
 import 'package:terminal_one/widgets/dashboard/simple_dashboard.dart';
+import 'package:terminal_one/widgets/glass_card.dart';
 import '../../widgets/glassmorphism_scaffold.dart';
 import '../../widgets/app_logo.dart';
 
@@ -76,8 +75,7 @@ class _HomeScreenLoggedInState extends State<HomeScreenLoggedIn>
 
   @override
   Widget build(BuildContext context) {
-    final themeProvider = Provider.of<ThemeProvider>(context);
-    final isDark = themeProvider.isDarkMode;
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     
     // KEINE lokale AnnotatedRegion mehr - wird global in main.dart gehandhabt
     return GlassmorphismScaffold(
@@ -96,6 +94,18 @@ class _HomeScreenLoggedInState extends State<HomeScreenLoggedIn>
           );
         },
       ),
+      actions: [
+      /*  IconButton(
+          icon: const Icon(LucideIcons.settings),
+          onPressed: () => AppRoutes.navigateToSettings(context),
+          tooltip: 'Settings',
+        ),
+        IconButton(
+          icon: const Icon(LucideIcons.user),
+          onPressed: () => AppRoutes.navigateToProfile(context),
+          tooltip: 'Profile',
+        ),*/
+      ],
       body: FadeTransition(
           opacity: _fadeAnimation,
           child: SingleChildScrollView(
@@ -110,28 +120,41 @@ class _HomeScreenLoggedInState extends State<HomeScreenLoggedIn>
                     return AnimatedOpacity(
                       duration: const Duration(milliseconds: 300),
                       opacity: showSmallLogo ? 0.0 : 1.0,
-                      child: Container(
-                        height: 60,
-                        padding: const EdgeInsets.symmetric(horizontal: 24),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            const AppLogo(
-                              size: LogoSize.large,
-                              variant: LogoVariant.minimal,
-                            ),
-                 /*           const SizedBox(height: 16),
-                            Text(
-                              'Was möchtest Du heute erledigen?',
-                              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                                color: isDark 
-                                    ? Colors.white.withValues(alpha: 0.7)
-                                    : Colors.black.withValues(alpha: 0.7),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+                        child: GlassCard(
+                          delay: const Duration(milliseconds: 200),
+                          padding: const EdgeInsets.all(32),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              const AppLogo(
+                                size: LogoSize.medium,
+                                variant: LogoVariant.minimal,
                               ),
-                              textAlign: TextAlign.center,
-                            ),
-                            */
-                          ],
+                              const SizedBox(height: 16),
+                              Text(
+                                'Willkommen zurück!',
+                                style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                                  fontWeight: FontWeight.bold,
+                                  color: isDark 
+                                      ? Colors.white.withAlpha(230)
+                                      : Colors.black.withAlpha(230),
+                                ),
+                                textAlign: TextAlign.center,
+                              ),
+                              const SizedBox(height: 8),
+                              Text(
+                                'Was möchten Sie heute erledigen?',
+                                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                                  color: isDark 
+                                      ? Colors.white.withAlpha(179)
+                                      : Colors.black.withAlpha(179),
+                                ),
+                                textAlign: TextAlign.center,
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     );

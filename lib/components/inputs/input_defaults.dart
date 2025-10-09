@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:lucide_icons/lucide_icons.dart';
-import '../../l10n/app_localizations.dart';
+import 'package:easy_localization/easy_localization.dart';
 import '../../utils/platform_utils.dart';
 
 /// Shared constants, utilities and styling for all input components
@@ -277,25 +277,25 @@ class PasswordRequirements {
   // Static instances to ensure same objects are used for comparison
   static final PasswordRequirement _minLength = PasswordRequirement(
     identifier: 'minLength',
-    getLabel: (context) => AppLocalizations.of(context)!.passwordMinLength,
+    getLabel: (context) => 'inputs.password_min_length'.tr(),
     validate: (password) => password.length >= 8,
   );
   
   static final PasswordRequirement _hasNumber = PasswordRequirement(
     identifier: 'hasNumber',
-    getLabel: (context) => AppLocalizations.of(context)!.passwordNeedNumber,
+    getLabel: (context) => 'inputs.password_need_number'.tr(),
     validate: (password) => RegExp(r'[0-9]').hasMatch(password),
   );
   
   static final PasswordRequirement _hasUppercase = PasswordRequirement(
     identifier: 'hasUppercase',
-    getLabel: (context) => AppLocalizations.of(context)!.passwordNeedUppercase,
+    getLabel: (context) => 'inputs.password_need_uppercase'.tr(),
     validate: (password) => RegExp(r'[A-Z]').hasMatch(password),
   );
   
   static final PasswordRequirement _hasLowercase = PasswordRequirement(
     identifier: 'hasLowercase',
-    getLabel: (context) => AppLocalizations.of(context)!.passwordNeedLowercase,
+    getLabel: (context) => 'inputs.password_need_lowercase'.tr(),
     validate: (password) => RegExp(r'[a-z]').hasMatch(password),
   );
   

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:lucide_icons/lucide_icons.dart';
-import '../../l10n/app_localizations.dart';
+import 'package:easy_localization/easy_localization.dart';
 import '../../utils/layout_constants.dart';
 import 'input_defaults.dart';
 
@@ -126,13 +126,11 @@ class _InputPasswordConfirmState extends State<InputPasswordConfirm> {
   }
 
   void _validatePassword(String confirmPassword) {
-    final localizations = AppLocalizations.of(context)!;
-    
     String? errorText;
     bool isValid = false;
     
     if (confirmPassword.isNotEmpty && confirmPassword != widget.originalPassword) {
-      errorText = localizations.passwordsDoNotMatch;
+      errorText = 'inputs.passwords_do_not_match'.tr();
     } else if (confirmPassword.isNotEmpty && confirmPassword == widget.originalPassword) {
       isValid = true;
     }
@@ -160,11 +158,10 @@ class _InputPasswordConfirmState extends State<InputPasswordConfirm> {
 
   InputDecoration _buildDecoration(BuildContext context) {
     final theme = Theme.of(context);
-    final localizations = AppLocalizations.of(context)!;
     
     return InputDecoration(
-      labelText: widget.label ?? localizations.confirmPassword,
-      hintText: widget.hint ?? localizations.confirmPasswordHint,
+      labelText: widget.label ?? 'inputs.confirm_password'.tr(),
+      hintText: widget.hint ?? 'inputs.confirm_password_hint'.tr(),
       errorText: _hasBeenFocused ? _errorText : null,
       filled: true,
       fillColor: InputDefaults.getInputBackgroundColor(context),
@@ -182,8 +179,8 @@ class _InputPasswordConfirmState extends State<InputPasswordConfirm> {
         ),
         onPressed: _togglePasswordVisibility,
         tooltip: _obscureText 
-            ? localizations.showPassword
-            : localizations.hidePassword,
+            ? 'inputs.show_password'.tr()
+            : 'inputs.hide_password'.tr(),
         splashRadius: 16,
         // Verhindere dass Tab-Navigation auf diesem Button stoppt
         focusNode: FocusNode(skipTraversal: true),

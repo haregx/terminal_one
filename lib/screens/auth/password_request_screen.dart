@@ -8,13 +8,13 @@ import 'package:terminal_one/utils/layout_constants.dart';
 import 'package:terminal_one/utils/responsive_layout.dart';
 import '../../components/buttons/primary_button.dart';
 import '../../components/inputs/input_email.dart';
-import '../../l10n/app_localizations.dart';
+import 'package:easy_localization/easy_localization.dart';
 import '../../widgets/app_logo.dart';
 import '../../widgets/glassmorphism_scaffold.dart';
 import '../../widgets/appbar_aware_safe_area.dart';
 
 import '../../components/switches/privacy.dart';
-import '../common/privacy.dart';
+import '../common/privacy_screen.dart';
 
 /// PasswordRequestScreen - Screen for requesting password reset
 /// 
@@ -76,7 +76,7 @@ class _PasswordRequestScreenState extends State<PasswordRequestScreen> {
   @override
   Widget build(BuildContext context) {
     return GlassmorphismScaffold(
-      title: Text(AppLocalizations.of(context)!.passwordRequest),
+      title: Text('auth.password_request'.tr()),
       body: AppBarAwareSafeArea(
         child: GestureDetector(
         onTap: () {
@@ -112,7 +112,8 @@ class _PasswordRequestScreenState extends State<PasswordRequestScreen> {
                                 ),
                                 SizedBox(height: ResponsiveSpacing.large(context)),
                                 // Description text
-                                Text(AppLocalizations.of(context)!.passwordRequestDescription,
+                                                                Text(
+                                  'auth.password_request_description'.tr(),
                                   textAlign: TextAlign.center,
                                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                                     color: Theme.of(context).colorScheme.onSurface.withAlpha(180),
@@ -162,7 +163,7 @@ class _PasswordRequestScreenState extends State<PasswordRequestScreen> {
                                 SizedBox(height: LayoutConstants.codeInputButtonSpacing),
                                 // Button to send password reset request
                                 PrimaryButton(
-                                  label: AppLocalizations.of(context)!.sendPasswordRequest,
+                                  label: 'auth.send_password_request'.tr(),
                                   enabled: _isEmailValid && _privacyAccepted,
                                   onPressed: _isEmailValid && _privacyAccepted ? _handlePasswordRequest : null,
                                 ),

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'dart:ui' as ui;
 import 'package:provider/provider.dart';
 import 'providers/auth_provider.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
-import 'l10n/app_localizations.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'themes/app_theme.dart';
 import 'providers/theme_provider.dart';
 import 'core/app_routes.dart';
@@ -14,6 +14,9 @@ import 'package:flutter_native_splash/flutter_native_splash.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  
+  // Easy Localization initialisieren
+  await EasyLocalization.ensureInitialized();
   
   // Splash Screen beibehalten bis App fertig geladen ist
   FlutterNativeSplash.preserve(widgetsBinding: WidgetsFlutterBinding.ensureInitialized());
@@ -33,12 +36,21 @@ void main() async {
     : '🔒 No user logged in.');
     
   runApp(
-    MultiProvider(
-      providers: [
-        ChangeNotifierProvider.value(value: authProvider),
-        ChangeNotifierProvider(create: (_) => ThemeProvider()),
+    EasyLocalization(
+      supportedLocales: const [
+        Locale('de'),
+        Locale('en'),
       ],
-      child: const MainApp(),
+      path: 'assets/translations',
+      fallbackLocale: const Locale('de'),
+      startLocale: const Locale('de'),
+      child: MultiProvider(
+        providers: [
+          ChangeNotifierProvider.value(value: authProvider),
+          ChangeNotifierProvider(create: (_) => ThemeProvider()),
+        ],
+        child: const MainApp(),
+      ),
     ),
   );
 }
@@ -85,20 +97,9 @@ class _MainAppState extends State<MainApp> {
         theme: AppTheme.lightTheme,
         darkTheme: AppTheme.darkTheme,
         themeMode: themeProvider.themeMode,
-        localizationsDelegates: const [
-          AppLocalizations.delegate,
-          GlobalMaterialLocalizations.delegate,
-          GlobalWidgetsLocalizations.delegate,
-          GlobalCupertinoLocalizations.delegate,
-        ],
-        supportedLocales: const [
-          Locale('en'),
-          Locale('de'),
-          Locale('fr'),
-          Locale('it'),
-          Locale('pt'),
-          Locale('af'),
-        ],
+        localizationsDelegates: context.localizationDelegates,
+        supportedLocales: context.supportedLocales,
+        locale: context.locale,
         // Use centralized routing
         initialRoute: AppRoutes.home,
         onGenerateRoute: AppRoutes.generateRoute,
@@ -107,7 +108,7 @@ class _MainAppState extends State<MainApp> {
     );
     if (kIsWeb && (defaultTargetPlatform == TargetPlatform.macOS || defaultTargetPlatform == TargetPlatform.windows || defaultTargetPlatform == TargetPlatform.linux)) {
       return Directionality(
-        textDirection: TextDirection.ltr,
+        textDirection: ui.TextDirection.ltr,
         child: Center(
           child: ConstrainedBox(
             constraints: const BoxConstraints(

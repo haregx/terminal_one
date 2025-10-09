@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lucide_icons/lucide_icons.dart';
-import '../../l10n/app_localizations.dart';
+import 'package:easy_localization/easy_localization.dart';
 import '../../utils/layout_constants.dart';
 import 'input_defaults.dart';
 
@@ -198,9 +198,9 @@ class _InputPasswordState extends State<InputPassword> {
           ),
           const SizedBox(height: 4),
           Text(
-            strength < 0.25 ? AppLocalizations.of(context)!.passwordStrengthWeak : 
-            strength < 0.5 ? AppLocalizations.of(context)!.passwordStrengthMedium : 
-            strength < 0.75 ? AppLocalizations.of(context)!.passwordStrengthGood : AppLocalizations.of(context)!.passwordStrengthStrong,
+            strength < 0.25 ? 'inputs.password_strength_weak'.tr() : 
+            strength < 0.5 ? 'inputs.password_strength_medium'.tr() : 
+            strength < 0.75 ? 'inputs.password_strength_good'.tr() : 'inputs.password_strength_strong'.tr(),
             style: Theme.of(context).textTheme.bodySmall?.copyWith(
               color: color,
               fontWeight: FontWeight.w500,
@@ -222,7 +222,7 @@ class _InputPasswordState extends State<InputPassword> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            AppLocalizations.of(context)!.passwordRequirements,
+            'inputs.password_requirements'.tr(),
             style: Theme.of(context).textTheme.bodySmall?.copyWith(
               fontWeight: FontWeight.w600,
             ),
@@ -263,11 +263,10 @@ class _InputPasswordState extends State<InputPassword> {
 
   InputDecoration _buildDecoration(BuildContext context) {
     final theme = Theme.of(context);
-    final localizations = AppLocalizations.of(context)!;
     
     return InputDecoration(
-      labelText: widget.label ?? localizations.password,
-      hintText: widget.hint ?? localizations.passwordHint,
+      labelText: widget.label ?? 'inputs.password'.tr(),
+      hintText: widget.hint ?? 'inputs.password_hint'.tr(),
       filled: true,
       fillColor: InputDefaults.getInputBackgroundColor(context),
       prefixIcon: Icon(
@@ -284,8 +283,8 @@ class _InputPasswordState extends State<InputPassword> {
         ),
         onPressed: _togglePasswordVisibility,
         tooltip: _obscureText 
-            ? localizations.showPassword
-            : localizations.hidePassword,
+            ? 'inputs.show_password'.tr()
+            : 'inputs.hide_password'.tr(),
         splashRadius: 16,
         // Verhindere dass Tab-Navigation auf diesem Button stoppt
         focusNode: FocusNode(skipTraversal: true),
