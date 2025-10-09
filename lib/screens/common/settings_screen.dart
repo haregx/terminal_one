@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 import 'package:provider/provider.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:terminal_one/components/buttons/ghost_button.dart';
 import 'package:terminal_one/providers/theme_provider.dart';
 import 'package:terminal_one/utils/responsive_layout.dart';
 import 'package:terminal_one/widgets/glass_card.dart';
@@ -27,6 +26,10 @@ class _SettingsScreenState extends State<SettingsScreen>
   late AnimationController _fadeController;
   late Animation<double> _fadeAnimation;
   
+  // Logo Animation wie bei Home Screen
+  late ScrollController _scrollController;
+  final ValueNotifier<bool> _showSmallLogo = ValueNotifier<bool>(false);
+  
   // Settings state variables
   bool _notificationsEnabled = true;
   bool _soundEnabled = true;
@@ -35,12 +38,11 @@ class _SettingsScreenState extends State<SettingsScreen>
   bool _crashReportsEnabled = true;
   String _selectedLanguageCode = 'en';
   String _selectedRegionCode = 'auto';
+  bool _isInitialized = false;
 
   @override
   void initState() {
     super.initState();
-    
-    // Language and region codes are already initialized
     
     _fadeController = AnimationController(
       duration: const Duration(milliseconds: 800),
@@ -55,6 +57,10 @@ class _SettingsScreenState extends State<SettingsScreen>
       curve: Curves.easeInOut,
     ));
 
+    // Logo Animation Setup
+    _scrollController = ScrollController();
+    _scrollController.addListener(_onScroll);
+
     // Start animation
     _fadeController.forward();
     
@@ -63,8 +69,29 @@ class _SettingsScreenState extends State<SettingsScreen>
   }
 
   @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    
+    // Initialize with current locale safely - only once
+    if (!_isInitialized && mounted) {
+      _selectedLanguageCode = context.locale.languageCode;
+      _isInitialized = true;
+    }
+  }
+
+  void _onScroll() {
+    final shouldShow = _scrollController.offset > 50;
+    if (_showSmallLogo.value != shouldShow) {
+      debugPrint('Settings Logo state changed: offset=${_scrollController.offset}, show=$shouldShow');
+      _showSmallLogo.value = shouldShow;
+    }
+  }
+
+  @override
   void dispose() {
     _fadeController.dispose();
+    _scrollController.dispose();
+    _showSmallLogo.dispose();
     super.dispose();
   }
 
@@ -194,8 +221,25 @@ class _SettingsScreenState extends State<SettingsScreen>
                   setState(() {
                     _selectedLanguageCode = languageCode;
                   });
+                  
+                  // Tatsächliche Sprachumschaltung
+                  final newLocale = Locale(languageCode);
+                  context.setLocale(newLocale);
+                  
                   Navigator.pop(context);
-                  _showComingSoonSnackbar('settings.feature_language_switching'.tr());
+                  
+                  // Erfolgs-Snackbar
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text(
+                        languageCode == 'de' 
+                            ? 'Sprache auf Deutsch geändert' 
+                            : 'Language changed to English'
+                      ),
+                      backgroundColor: Colors.green,
+                      duration: const Duration(seconds: 2),
+                    ),
+                  );
                 },
               ),
             ),
@@ -326,7 +370,36 @@ class _SettingsScreenState extends State<SettingsScreen>
     final isDark = Theme.of(context).brightness == Brightness.dark;
 
     return GlassmorphismScaffold(
-      title: Text('settings.title'.tr()),
+      // AppBar mit Logo Animation - analog zum Home Screen
+      title: ValueListenableBuilder<bool>(
+        valueListenable: _showSmallLogo,
+        builder: (context, showLogo, child) {
+          return AnimatedSwitcher(
+            duration: const Duration(milliseconds: 300),
+            child: showLogo
+                ? Row(
+                    key: const ValueKey('logo_title'),
+                    children: [
+                      const AppLogo(
+                        size: LogoSize.small,
+                        variant: LogoVariant.minimal,
+                      ),
+                      const SizedBox(width: 12),
+                      Text(
+                        'settings.title'.tr(),
+                        style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ],
+                  )
+                : Text(
+                    'settings.title'.tr(),
+                    key: const ValueKey('text_title'),
+                  ),
+          );
+        },
+      ),
     /*  actions: [
         Padding(
           padding: const EdgeInsets.only(right: 16.0, left: 8.0),
@@ -342,53 +415,107 @@ class _SettingsScreenState extends State<SettingsScreen>
         child: FadeTransition(
           opacity: _fadeAnimation,
           child: SingleChildScrollView(
+            controller: _scrollController,
             physics: const BouncingScrollPhysics(),
-            child: Padding(
-              padding: const EdgeInsets.all(24),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  // App Settings Header
-                  _buildHeaderSection(isDark),
+            child: Column(
+              children: [
+                // Header Bereich mit großem Logo (verschwindet beim Scrollen)
+                ValueListenableBuilder<bool>(
+                  valueListenable: _showSmallLogo,
+                  builder: (context, showSmallLogo, child) {
+                    return AnimatedOpacity(
+                      duration: const Duration(milliseconds: 300),
+                      opacity: showSmallLogo ? 0.0 : 1.0,
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+                        child: Container(
+                          padding: const EdgeInsets.all(32),
+                          decoration: BoxDecoration(
+                            color: isDark 
+                                ? Colors.transparent
+                                : Colors.white.withAlpha(30),
+                            borderRadius: BorderRadius.circular(16),
+                          ),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              const AppLogo(
+                                size: LogoSize.medium,
+                                variant: LogoVariant.minimal,
+                              ),
+                              const SizedBox(height: 16),
+                              Text(
+                                'settings.app_settings'.tr(),
+                                style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                                  fontWeight: FontWeight.bold,
+                                  color: isDark 
+                                      ? Colors.white.withAlpha(230)
+                                      : Colors.black.withAlpha(230),
+                                ),
+                                textAlign: TextAlign.center,
+                              ),
+                              const SizedBox(height: 8),
+                              Text(
+                                'settings.customize_experience'.tr(),
+                                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                                  color: isDark 
+                                      ? Colors.white.withAlpha(179)
+                                      : Colors.black.withAlpha(179),
+                                ),
+                                textAlign: TextAlign.center,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    );
+                  },
+                ),
+
+                // Settings content
+                Padding(
+                  padding: const EdgeInsets.all(24),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      // Appearance Settings
+                      _buildAppearanceSection(themeProvider, isDark),
+                      
+                      SizedBox(height: ResponsiveSpacing.large(context)),
+                      
+                      // Notifications Settings
+                      _buildNotificationsSection(isDark),
+                      
+                      SizedBox(height: ResponsiveSpacing.large(context)),
+                      
+                      // Privacy & Security
+                      _buildPrivacySection(isDark),
+                      
+                      SizedBox(height: ResponsiveSpacing.large(context)),
+                      
+                      // Language & Region
+                      _buildLanguageSection(isDark),
+                      
+                      SizedBox(height: ResponsiveSpacing.large(context)),
+                      
+                      // Storage & Cache
+                      _buildStorageSection(isDark),
+                      
+                      SizedBox(height: ResponsiveSpacing.large(context)),
+                      
+                      // About & Support
+                      _buildAboutSection(isDark),
                   
-                  SizedBox(height: ResponsiveSpacing.large(context)),
-                  
-                  // Appearance Settings
-                  _buildAppearanceSection(themeProvider, isDark),
-                  
-                  SizedBox(height: ResponsiveSpacing.large(context)),
-                  
-                  // Notifications Settings
-                  _buildNotificationsSection(isDark),
-                  
-                  SizedBox(height: ResponsiveSpacing.large(context)),
-                  
-                  // Privacy & Security
-                  _buildPrivacySection(isDark),
-                  
-                  SizedBox(height: ResponsiveSpacing.large(context)),
-                  
-                  // Language & Region
-                  _buildLanguageSection(isDark),
-                  
-                  SizedBox(height: ResponsiveSpacing.large(context)),
-                  
-                  // Storage & Cache
-                  _buildStorageSection(isDark),
-                  
-                  SizedBox(height: ResponsiveSpacing.large(context)),
-                  
-                  // About & Support
-                  _buildAboutSection(isDark),
-                  
-                  SizedBox(height: ResponsiveSpacing.large(context)),
-                  
-                  // Danger Zone
-                  _buildDangerZoneSection(isDark),
-                  
-                  const SizedBox(height: 40),
-                ],
-              ),
+                      SizedBox(height: ResponsiveSpacing.large(context)),
+                      
+                      // Danger Zone
+                      _buildDangerZoneSection(isDark),
+                      
+                      const SizedBox(height: 40),
+                    ],
+                  ),
+                ),
+              ],
             ),
           ),
         ),
@@ -396,49 +523,6 @@ class _SettingsScreenState extends State<SettingsScreen>
     );
   }
 
-  Widget _buildHeaderSection(bool isDark) {
-    return GlassCard(
-      delay: const Duration(milliseconds: 200),
-      padding: const EdgeInsets.all(24),
-      child: Column(
-        children: [
-          Icon(
-            LucideIcons.settings,
-            size: 48,
-            color: isDark 
-                ? Colors.white
-                : Colors.black.withAlpha(204),
-          ),
-          const SizedBox(height: 16),
-          Text(
-            'settings.app_settings'.tr(),
-            style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-              fontWeight: FontWeight.bold,
-              color: isDark 
-                  ? Colors.white.withAlpha(230)
-                  : Colors.black.withAlpha(230),
-            ),
-          ),
-          const SizedBox(height: 8),
-          Text(
-            'settings.customize_experience'.tr(),
-            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-              color: isDark 
-                  ? Colors.white.withAlpha(179)
-                  : Colors.black.withAlpha(179),
-            ),
-            textAlign: TextAlign.center,
-          ),
-          const SizedBox(height: 16),
-          GhostButton(
-            leading: LucideIcons.save,
-            label: 'settings.save_settings'.tr(),
-            onPressed: _saveSettings,
-          ),
-        ],
-      ),
-    );
-  }
 
   Widget _buildAppearanceSection(ThemeProvider themeProvider, bool isDark) {
     return Column(

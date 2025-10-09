@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dart:ui';
 
 /// Glass Card Widget - Simple glassmorphism-styled card component
 /// 
@@ -91,33 +92,42 @@ class _GlassCardState extends State<GlassCard>
           scale: _scaleAnimation.value,
           child: Opacity(
             opacity: _opacityAnimation.value,
-            child: Container(
-              margin: widget.margin,
-              decoration: BoxDecoration(
-                color: isDark
-                    ? Colors.white.withAlpha(13)
-                    : Colors.white.withAlpha(38),
-                borderRadius: widget.borderRadius ?? BorderRadius.circular(16),
-                border: Border.all(
-                  color: isDark
-                      ? Colors.white.withAlpha(26)
-                      : Colors.white.withAlpha(51),
-                  width: 1,
+            child: ClipRRect(
+              borderRadius: widget.borderRadius ?? BorderRadius.circular(16),
+              child: BackdropFilter(
+                filter: ImageFilter.blur(
+                  sigmaX: isDark ? 15 : 8,
+                  sigmaY: isDark ? 15 : 8,
                 ),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withAlpha(isDark ? 77 : 26),
-                    blurRadius: 20,
-                    offset: const Offset(0, 8),
+                child: Container(
+                  margin: widget.margin,
+                  decoration: BoxDecoration(
+                    color: isDark
+                        ? Colors.white.withAlpha(30)
+                        : Colors.white.withAlpha(90),
+                    borderRadius: widget.borderRadius ?? BorderRadius.circular(16),
+                    border: Border.all(
+                      color: isDark
+                          ? Colors.white.withAlpha(60)
+                          : Colors.white.withAlpha(120),
+                      width: 1,
+                    ),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withAlpha(isDark ? 77 : 26),
+                        blurRadius: 20,
+                        offset: const Offset(0, 8),
+                      ),
+                    ],
                   ),
-                ],
+                  child: widget.padding != null
+                      ? Padding(
+                          padding: widget.padding!,
+                          child: widget.child,
+                        )
+                      : widget.child,
+                ),
               ),
-              child: widget.padding != null
-                  ? Padding(
-                      padding: widget.padding!,
-                      child: widget.child,
-                    )
-                  : widget.child,
             ),
           ),
         );

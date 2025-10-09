@@ -5,24 +5,37 @@ A modern Flutter application featuring advanced glassmorphism UI design, compreh
 
 ## ✨ Key Features
 
-### 🌍 Complete Internationalization
-- **Multi-language Support**: German and English with runtime language switching
-- **Easy Localization**: JSON-based translation system with parametrized messages
-- **Contextual Translation**: Smart locale detection with fallback mechanisms
-- **Dynamic Content**: Time-based and user-specific localized content
-
-### 🎨 Modern UI/UX Design
-- **Glassmorphism Interface**: Beautiful glass-like components with advanced transparency effects
+### � Modern UI/UX Design
+- **Logo Animation System**: Dynamic logo behavior with smooth scroll-based transitions
+  - Logo displays in content header and migrates to AppBar when scrolling
+  - ValueNotifier-based implementation for optimal performance (50px scroll threshold)
+  - Consistent animation behavior across Home and Settings screens
+- **Glassmorphism Interface**: Beautiful glass-like components with optimized transparency effects
+  - Theme-aware blur effects: Light mode (8 sigma), Dark mode (15 sigma)
+  - Removed Glass effects from non-interactive informational cards
+  - Enhanced visual feedback for interactive elements
 - **Animated Dashboard**: Interactive quick actions and statistics with smooth transitions
 - **Responsive Layout**: Optimized for all screen sizes from mobile to desktop
 - **Theme System**: Comprehensive light/dark mode with automatic system detection
 - **Background Integration**: Dynamic background images with theme-aware opacity
 
+### 🌍 Complete Internationalization
+- **Enhanced Language Switching**: Real-time toggle between German and English
+  - Modal bottom sheet selection interface with EasyLocalization integration
+  - Success confirmation with localized messages and persistent storage
+  - Proper initialization handling for Widget lifecycle safety
+- **Easy Localization**: JSON-based translation system with parametrized messages
+- **Contextual Translation**: Smart locale detection with fallback mechanisms
+- **Dynamic Content**: Time-based and user-specific localized content
+
 ### 🔐 Authentication & User Management
 - **Secure Authentication**: Complete login/register flow with API integration
 - **Profile Management**: Internationalized user profile with customizable settings
 - **Password Recovery**: Dedicated password reset functionality
-- **Settings Screen**: Advanced preferences with theme, language, and privacy controls
+- **Enhanced Settings Screen**: Logo animation and improved UX
+  - Large logo in header area matching Home screen behavior
+  - Removed Glass effects from informational header sections
+  - Improved visual hierarchy and user experience
 - **State Persistence**: Robust authentication state with secure storage
 
 ### 📱 Cross-Platform Excellence
@@ -32,6 +45,10 @@ A modern Flutter application featuring advanced glassmorphism UI design, compreh
 - **Desktop Ready**: Windows and macOS native applications with proper window management
 
 ### 🚀 Performance & Architecture
+- **Performance Optimizations**: Enhanced widget caching and reduced rebuilds
+  - Performance monitoring tools and analyzers
+  - Optimized Glass morphism effects and blur calculations
+  - Fixed EasyLocalization initialization and dependency errors
 - **Modern Color API**: Updated to latest Flutter color system (withAlpha)
 - **Efficient State Management**: Provider-based architecture with optimized rebuilds
 - **Memory Optimization**: Smart widget lifecycle and resource management
@@ -122,10 +139,24 @@ assets/
 
 ### Core UI Components
 
+**Logo Animation System**
+- Dynamic logo behavior with smooth scroll-based transitions
+- Logo appears in content header and migrates to AppBar (50px threshold)
+- ValueNotifier-based implementation for optimal performance
+- Consistent animation across Home and Settings screens
+- 300ms animation duration with ScrollController integration
+
 **GlassmorphismScaffold**
-- Custom scaffold with advanced glassmorphism effects
+- Custom scaffold with optimized glassmorphism effects
+- Theme-aware blur: Light mode (8 sigma), Dark mode (15 sigma)
 - Transparent AppBar with automatic background handling
-- Theme-aware glass morphism with proper contrast ratios
+- Removed Glass effects from non-interactive informational cards
+
+**Enhanced Settings Screen**
+- Logo animation system matching Home screen behavior
+- Improved visual hierarchy and user experience
+- Real-time language switching with modal selection interface
+- EasyLocalization integration with persistent storage
 
 **SimpleDashboard**
 - Internationalized dashboard with quick actions
@@ -139,17 +170,29 @@ assets/
 
 ### Internationalization Components
 
+**Enhanced Language Switching**
+- Real-time toggle between German and English languages
+- Modal bottom sheet selection with success confirmation
+- EasyLocalization integration with `context.setLocale()`
+- Safe Widget lifecycle initialization for dependency handling
+
 **Easy Localization Integration**
-- Runtime language switching (German/English)
+- Runtime language switching with persistent storage
 - Parametrized translations with named arguments
 - Context-aware fallback system for missing keys
 
 **Localized Data Models**
 - `QuickActionData` with `getLocalizedTitle()` method
-- `StatData` with `getLocalizedLabel()` method
+- `StatData` with `getLocalizedLabel()` method (fixed API)
 - Backward compatibility with fallback text
 
 ### Advanced Features
+
+**Performance Optimizations**
+- Fixed EasyLocalization initialization and dependency errors
+- Enhanced widget caching and reduced rebuilds
+- Performance monitoring tools and analyzers
+- Optimized Glass morphism calculations
 
 **Responsive Code Input**
 - Configurable length PIN/code entry system

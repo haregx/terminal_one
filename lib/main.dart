@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'dart:ui' as ui;
 import 'package:provider/provider.dart';
 import 'providers/auth_provider.dart';
+import 'providers/settings_provider.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'themes/app_theme.dart';
 import 'providers/theme_provider.dart';
@@ -22,7 +23,12 @@ void main() async {
   FlutterNativeSplash.preserve(widgetsBinding: WidgetsFlutterBinding.ensureInitialized());
   
   final authProvider = AuthProvider();
-  // Warten bis geladen
+  final settingsProvider = SettingsProvider();
+  
+  // SettingsProvider laden und Sprache setzen
+  await settingsProvider.loadSettings();
+  
+  // Warten bis AuthProvider geladen
   while (!authProvider.isInitialized) {
     await Future.delayed(const Duration(milliseconds: 10));
   }
@@ -43,11 +49,12 @@ void main() async {
       ],
       path: 'assets/translations',
       fallbackLocale: const Locale('de'),
-      startLocale: const Locale('de'),
+      startLocale: Locale(settingsProvider.selectedLanguageCode),
       child: MultiProvider(
         providers: [
           ChangeNotifierProvider.value(value: authProvider),
           ChangeNotifierProvider(create: (_) => ThemeProvider()),
+          ChangeNotifierProvider.value(value: settingsProvider),
         ],
         child: const MainApp(),
       ),

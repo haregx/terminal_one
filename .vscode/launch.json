@@ -1,0 +1,29 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debug iPhone",
+            "type": "dart",
+            "request": "launch",
+            "program": "lib/main.dart",
+            "deviceId": "e279794ba90eb6ce5c7155baa21874a37d3655db",
+            "args": ["--debug"]
+        },
+        {
+            "name": "Debug iOS Simulator",
+            "type": "dart",
+            "request": "launch",
+            "program": "lib/main.dart",
+            "deviceId": "57F0E3C4-FF61-4D34-B0E3-1DC49E4352BD",
+            "args": ["--debug"]
+        },
+        {
+            "name": "Debug Android",
+            "type": "dart",
+            "request": "launch",
+            "program": "lib/main.dart",
+            "deviceId": "emulator-5554",
+            "args": ["--debug"]
+        }
+    ]
+}

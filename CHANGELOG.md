@@ -8,6 +8,26 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased] - 2025-10-09
 
 ### Added
+- **Logo Animation System**: Implemented dynamic logo behavior across app screens
+  - Logo appears in content header area when at top of scroll
+  - Smooth animation transition to AppBar when scrolling (50px threshold)
+  - ValueNotifier-based implementation for optimal performance
+  - Consistent behavior between Home and Settings screens
+  - ScrollController integration with 300ms animation duration
+
+- **Enhanced Language Switching**: Complete functional language toggle system
+  - Real-time switching between German and English
+  - EasyLocalization integration with `context.setLocale()`
+  - Modal bottom sheet selection interface
+  - Success confirmation with localized messages
+  - Persistent locale storage and restoration
+
+- **Performance Optimizations**: Glass morphism and UI performance improvements
+  - Optimized blur effects: Light mode (8 sigma), Dark mode (15 sigma)
+  - Removed Glass effects from non-interactive informational cards
+  - Enhanced widget caching and reduced rebuilds
+  - Performance monitoring tools and analyzers
+
 - **Complete Internationalization System**: Migrated from Flutter's built-in i18n to easy_localization
   - Comprehensive German and English translations for all UI components
   - JSON-based translation files in `assets/translations/`
@@ -28,6 +48,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Consistent color handling across all components
 
 ### Enhanced
+- **Settings Screen Redesign**: Logo animation and improved UX
+  - Large logo in header area matching Home screen behavior
+  - Logo migration to AppBar during scroll interaction
+  - Removed Glass effects from informational header card
+  - Improved visual hierarchy and user experience
+
+- **Glass Morphism Effects**: Refined visual effects based on theme and functionality
+  - Differentiated blur levels for Light/Dark themes
+  - Removed misleading Glass effects from non-clickable cards
+  - Enhanced visual feedback for interactive elements
+  - Consistent Glass card usage patterns
+
 - **Profile Screen Internationalization**: Complete translation of user profile interface
   - All dialog titles, descriptions, and buttons translated
   - Dynamic content with parametrized translations (member since dates)
@@ -44,6 +76,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Time-relative translations ("Today at", "Yesterday at", "X days ago")
   - Activity type descriptions in both languages
   - Parametrized time formatting for different locales
+
+### Fixed
+- **EasyLocalization Initialization**: Resolved Widget lifecycle dependency issues
+  - Fixed premature InheritedWidget access in initState()
+  - Implemented safe locale initialization in didChangeDependencies()
+  - Added mounted state checking for Widget safety
+  - Eliminated runtime dependency errors
+
+- **Performance Dashboard Errors**: Corrected method naming and API usage
+  - Fixed `StatsData.getStats()` to `StatsData.stats` 
+  - Corrected `getLocalizedTitle()` to `getLocalizedLabel()`
+  - Removed unused import dependencies
+  - Improved widget rendering performance
 
 ### Migrated
 - **Authentication Screens**: Converted from Flutter i18n to easy_localization

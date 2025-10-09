@@ -84,7 +84,7 @@ class QuickActionsData {
       iconColor: Colors.white,
       // TODO: Route wird später hinzugefügt
     ),
-    QuickActionData(
+   /* QuickActionData(
       id: 'theme',
       title: 'Theme', // Fallback
       titleKey: 'quick_actions.theme',
@@ -93,6 +93,7 @@ class QuickActionsData {
       color: Color(0xFFEC4899), // Pink - kreativ für Theme
       iconColor: Colors.white,
     ),
+    */
     // Weitere Aktionen können hier einfach hinzugefügt werden:
     // QuickActionData(
     //   id: 'settings',

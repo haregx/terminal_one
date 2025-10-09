@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:terminal_one/widgets/dashboard/simple_dashboard.dart';
-import 'package:terminal_one/widgets/glass_card.dart';
 import '../../widgets/glassmorphism_scaffold.dart';
 import '../../widgets/app_logo.dart';
 
@@ -98,12 +98,12 @@ class _HomeScreenLoggedInState extends State<HomeScreenLoggedIn>
       /*  IconButton(
           icon: const Icon(LucideIcons.settings),
           onPressed: () => AppRoutes.navigateToSettings(context),
-          tooltip: 'Settings',
+          tooltip: 'navigation.settings'.tr(),
         ),
         IconButton(
           icon: const Icon(LucideIcons.user),
           onPressed: () => AppRoutes.navigateToProfile(context),
-          tooltip: 'Profile',
+          tooltip: 'navigation.profile'.tr(),
         ),*/
       ],
       body: FadeTransition(
@@ -122,9 +122,14 @@ class _HomeScreenLoggedInState extends State<HomeScreenLoggedIn>
                       opacity: showSmallLogo ? 0.0 : 1.0,
                       child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
-                        child: GlassCard(
-                          delay: const Duration(milliseconds: 200),
+                        child: Container(
                           padding: const EdgeInsets.all(32),
+                          decoration: BoxDecoration(
+                            color: isDark 
+                                ? Colors.transparent
+                                : Colors.white.withAlpha(30),
+                            borderRadius: BorderRadius.circular(16),
+                          ),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
@@ -134,7 +139,7 @@ class _HomeScreenLoggedInState extends State<HomeScreenLoggedIn>
                               ),
                               const SizedBox(height: 16),
                               Text(
-                                'Willkommen zurück!',
+                                'home.welcome_back'.tr(),
                                 style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                                   fontWeight: FontWeight.bold,
                                   color: isDark 
@@ -145,7 +150,7 @@ class _HomeScreenLoggedInState extends State<HomeScreenLoggedIn>
                               ),
                               const SizedBox(height: 8),
                               Text(
-                                'Was möchten Sie heute erledigen?',
+                                'home.what_would_you_like_to_do'.tr(),
                                 style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                                   color: isDark 
                                       ? Colors.white.withAlpha(179)

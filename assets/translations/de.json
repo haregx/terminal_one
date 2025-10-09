@@ -61,6 +61,8 @@
   },
   "home": {
     "welcome": "Willkommen zurück",
+    "welcome_back": "Willkommen zurück!",
+    "what_would_you_like_to_do": "Was möchten Sie heute erledigen?",
     "dashboard": "Dashboard",
     "quick_actions": "Schnellzugriff",
     "recent_activity": "Kürzliche Aktivitäten",
@@ -162,6 +164,7 @@
     "reset_settings_desc": "Alle Einstellungen auf Standardwerte zurücksetzen",
     "select_language": "Sprache auswählen",
     "select_region": "Region auswählen",
+    "language_switched": "Sprache erfolgreich geändert",
     "reset_settings_dialog_title": "Einstellungen zurücksetzen",
     "reset_settings_confirmation": "Möchtest du alle Einstellungen auf die Standardwerte zurücksetzen?",
     "clear_cache_dialog_title": "Cache leeren",
