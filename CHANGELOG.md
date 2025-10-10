@@ -5,7 +5,41 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased] - 2025-10-09
+## [Unreleased] - 2025-10-10
+
+### Added
+- **Web iPhone Simulation with Live Status Bar**: Enhanced Web experience with iPhone DeviceFrame simulation
+  - Live time display in status bar with second-by-second updates using StreamBuilder
+  - WiFi and battery icons in status bar for authentic iPhone appearance  
+  - System theme-aware status bar colors (white icons/text in dark mode, black in light mode)
+  - Positioned overlay status bar that integrates seamlessly with DeviceFrame
+  - MediaQuery.platformBrightnessOf() for accurate system theme detection outside Provider context
+
+- **Performance Optimization Suite**: Comprehensive performance improvements across the application
+  - OptimizedGlassCard with reduced blur operations and cached decorations
+  - OptimizedSettingsTile with minimal rebuilds and cached theme lookups
+  - Performance benchmark tests for measuring widget render times
+  - Memory leak prevention through proper widget disposal
+
+- **Enhanced Testing Infrastructure**: Comprehensive test coverage for new features
+  - Widget tests for app initialization and component functionality
+  - Performance benchmark tests comparing original vs optimized widgets
+  - Animation performance validation with timing constraints
+  - EasyLocalization integration testing
+
+### Enhanced
+- **Web Platform Detection**: Improved Web vs Mobile platform handling
+  - GlassmorphismScaffold now uses `kIsWeb` for platform-specific SafeArea behavior
+  - Web platforms use `SafeArea(top: false)` while mobile uses `SafeArea(top: true)`
+  - Removed duplicate import statements and cleaned up code structure
+
+### Fixed
+- **Translation Consistency**: Updated brand name consistency across all translations
+  - Changed "Terminal One" to "Terminal.One" in German and English welcome messages
+  - Updated "access code" to "promo code" terminology in English translations
+  - Consistent brand representation across all user-facing text
+
+## [Previous Release] - 2025-10-09
 
 ### Added
 - **Logo Animation System**: Implemented dynamic logo behavior across app screens

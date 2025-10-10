@@ -10,7 +10,6 @@ import 'providers/theme_provider.dart';
 import 'core/app_routes.dart';
 import 'package:flutter/foundation.dart';
 import 'package:device_frame/device_frame.dart';
-import 'components/web_status_bar.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 
 void main() async {
@@ -126,10 +125,63 @@ class _MainAppState extends State<MainApp> {
               padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 8),
               child: DeviceFrame(
                 device: Devices.ios.iPhone16Pro,
-                screen: Column(
+                screen: Stack(
                   children: [
-                    const WebStatusBar(),
-                    Expanded(child: app),
+                    app, // Die Haupt-App
+                    // Status Bar mit System-Theme-Erkennung
+                    Positioned(
+                      top: 5,
+                      left: 20,
+                      right: 20,
+                      child: Builder(
+                        builder: (context) {
+                          // Verwende System-Theme oder harte Dark Mode Prüfung
+                          final isDark = MediaQuery.platformBrightnessOf(context) == Brightness.dark;
+                          
+                          return SizedBox(
+                            height: 44,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                // Zeit links
+                                StreamBuilder<DateTime>(
+                                  stream: Stream.periodic(const Duration(seconds: 1), (_) => DateTime.now()),
+                                  builder: (context, snapshot) {
+                                    final now = snapshot.data ?? DateTime.now();
+                                    final time = "${now.hour.toString().padLeft(2, '0')}:${now.minute.toString().padLeft(2, '0')}";
+                                    return Text(
+                                      time,
+                                      style: TextStyle(
+                                        color: isDark ? Colors.white : Colors.black,
+                                        fontWeight: FontWeight.w600,
+                                        fontSize: 16,
+                                      ),
+                                    );
+                                  },
+                                ),
+                                // Status-Icons rechts
+                                Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Icon(
+                                      Icons.wifi,
+                                      color: isDark ? Colors.white : Colors.black,
+                                      size: 18,
+                                    ),
+                                    const SizedBox(width: 6),
+                                    Icon(
+                                      Icons.battery_full,
+                                      color: isDark ? Colors.white : Colors.black,
+                                      size: 20,
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          );
+                        },
+                      ),
+                    ),
                   ],
                 ),
               ),

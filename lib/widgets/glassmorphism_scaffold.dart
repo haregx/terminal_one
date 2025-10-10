@@ -1,6 +1,5 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/foundation.dart';
 import 'app_background.dart';
 
 /// Glassmorphism Scaffold - Wiederverwendbares Scaffold mit dezenten Glassmorphism-Effekten
@@ -57,24 +56,22 @@ class GlassmorphismScaffold extends StatelessWidget {
     return AppBackground(
       child: Scaffold(
         backgroundColor: Colors.transparent,
-        extendBodyBehindAppBar: false, // Status Bar sichtbar lassen
+        extendBodyBehindAppBar: false,
         appBar: showAppBar ? AppBar(
-          title: title, // Für alle Plattformen gleich - keine WebStatusBar hier!
+          title: title,
           centerTitle: centerTitle,
           leading: leading,
           actions: actions,
-          backgroundColor: Colors.transparent, // Vollständig transparent
+          backgroundColor: Colors.transparent,
           elevation: 0,
           scrolledUnderElevation: 0,
-          foregroundColor: Theme.of(context).colorScheme.onSurface, // Sichtbare Textfarbe
-          toolbarHeight: kToolbarHeight, // Standard-Höhe für alle Plattformen
+          foregroundColor: Theme.of(context).colorScheme.onSurface,
+          toolbarHeight: kToolbarHeight,
         ) : null,
-        body: isWeb 
-          ? body // Web: Kein SafeArea, da kein nativer Status Bar
-          : SafeArea(
-              top: true, // Mobile: Status Bar Bereich respektieren
-              child: body,
-            ),
+        body: SafeArea(
+          top: !isWeb, // Web: false (kein SafeArea top), Mobile: true
+          child: body,
+        ),
         floatingActionButton: floatingActionButton,
         bottomNavigationBar: bottomNavigationBar,
         drawer: drawer,
