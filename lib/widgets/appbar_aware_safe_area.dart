@@ -23,14 +23,10 @@ class AppBarAwareSafeArea extends StatelessWidget {
       return SafeArea(child: child);
     }
     
-    // Berechne die AppBar-Höhe
-  //  final appBarHeight = kToolbarHeight;
-    
+    // Einfaches SafeArea ohne zusätzliches Padding
+    // Die AppBar-Höhe wird automatisch von Scaffold gehandhabt
     return SafeArea(
-      child: Padding(
-        padding: EdgeInsets.only(top: 0),// appBarHeight),
-        child: child,
-      ),
+      child: child,
     );
   }
 }

@@ -20,7 +20,7 @@ void main() {
             body: ListView.builder(
               itemCount: 100,
               itemBuilder: (context, index) => GlassCard(
-                child: Container(
+                child: SizedBox(
                   height: 100,
                   child: Text('Item $index'),
                 ),
@@ -42,7 +42,7 @@ void main() {
             body: ListView.builder(
               itemCount: 100,
               itemBuilder: (context, index) => OptimizedGlassCard(
-                child: Container(
+                child: SizedBox(
                   height: 100,
                   child: Text('Item $index'),
                 ),
@@ -54,12 +54,12 @@ void main() {
       
       await tester.pumpAndSettle();
       optimizedStopwatch.stop();
-      
-      print('📊 GlassCard Performance Comparison:');
-      print('🔸 Original: ${originalStopwatch.elapsedMilliseconds}ms');
-      print('🔸 Optimized: ${optimizedStopwatch.elapsedMilliseconds}ms');
-      print('🔸 Improvement: ${(originalStopwatch.elapsedMilliseconds - optimizedStopwatch.elapsedMilliseconds)}ms');
-      
+
+      debugPrint('📊 GlassCard Performance Comparison:');
+      debugPrint('🔸 Original: ${originalStopwatch.elapsedMilliseconds}ms');
+      debugPrint('🔸 Optimized: ${optimizedStopwatch.elapsedMilliseconds}ms');
+      debugPrint('🔸 Improvement: ${(originalStopwatch.elapsedMilliseconds - optimizedStopwatch.elapsedMilliseconds)}ms');
+
       // Optimierte Version sollte schneller oder gleich schnell sein
       expect(optimizedStopwatch.elapsedMilliseconds, 
              lessThanOrEqualTo(originalStopwatch.elapsedMilliseconds));
@@ -93,11 +93,11 @@ void main() {
       
       await tester.pumpAndSettle();
       optimizedStopwatch.stop();
-      
-      print('📊 Dashboard Performance Comparison:');
-      print('🔸 Original: ${originalStopwatch.elapsedMilliseconds}ms');
-      print('🔸 Optimized: ${optimizedStopwatch.elapsedMilliseconds}ms');
-      print('🔸 Improvement: ${(originalStopwatch.elapsedMilliseconds - optimizedStopwatch.elapsedMilliseconds)}ms');
+
+      debugPrint('📊 Dashboard Performance Comparison:');
+      debugPrint('🔸 Original: ${originalStopwatch.elapsedMilliseconds}ms');
+      debugPrint('🔸 Optimized: ${optimizedStopwatch.elapsedMilliseconds}ms');
+      debugPrint('🔸 Improvement: ${(originalStopwatch.elapsedMilliseconds - optimizedStopwatch.elapsedMilliseconds)}ms');
     });
 
     testWidgets('Memory Leak Test', (tester) async {
@@ -107,7 +107,7 @@ void main() {
           MaterialApp(
             home: Scaffold(
               body: GlassCard(
-                child: Container(
+                child: SizedBox(
                   height: 100,
                   child: Text('Iteration $i'),
                 ),
@@ -135,7 +135,7 @@ void main() {
           home: Scaffold(
             body: GlassCard(
               delay: Duration(milliseconds: 100),
-              child: Container(
+              child: SizedBox(
                 height: 100,
                 child: Text('Animated Widget'),
               ),
@@ -147,9 +147,9 @@ void main() {
       // Warte auf Animation
       await tester.pumpAndSettle();
       stopwatch.stop();
-      
-      print('🎬 Animation Performance: ${stopwatch.elapsedMilliseconds}ms');
-      
+
+      debugPrint('🎬 Animation Performance: ${stopwatch.elapsedMilliseconds}ms');
+
       // Animation sollte unter 1 Sekunde dauern
       expect(stopwatch.elapsedMilliseconds, lessThan(1000));
     });

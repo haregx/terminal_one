@@ -16,6 +16,8 @@ import '../../widgets/appbar_aware_safe_area.dart';
 import 'package:easy_localization/easy_localization.dart';
 import '../auth/login_screen.dart';
 import '../games/more_games.dart';
+import '../common/settings_screen.dart';
+import '../common/privacy_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   final int codeLength;
@@ -71,17 +73,32 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return GlassmorphismScaffold(
       title: Text(''),
-     /* actions: [
-        Padding(
-          padding: const EdgeInsets.only(right: 16.0, left: 8.0),
-          child: ThemeToggle(
-            themeMode: themeProvider.themeMode,
-            onThemeChanged: (ThemeMode newMode) {
-              themeProvider.setThemeMode(newMode);
-            },
-          ),
+      actions: [
+        IconButton(
+          icon: const Icon(LucideIcons.shield),
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const PrivacyScreen(),
+              ),
+            );
+          },
+          tooltip: 'navigation.privacy_policy'.tr(),
         ),
-      ],*/
+        IconButton(
+          icon: const Icon(LucideIcons.settings),
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const SettingsScreen(),
+              ),
+            );
+          },
+          tooltip: 'navigation.settings'.tr(),
+        ),
+      ],
       body: AppBarAwareSafeArea(
         child: LayoutBuilder(
           builder: (context, constraints) {

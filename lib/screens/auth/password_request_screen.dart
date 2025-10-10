@@ -158,7 +158,7 @@ class _PasswordRequestScreenState extends State<PasswordRequestScreen> {
                                       ),
                                     );
                                   },
-                                  label: 'I accept the privacy policy',
+                                  label: 'auth.privacy_policy_accept'.tr(),
                                 ),
                                 SizedBox(height: LayoutConstants.codeInputButtonSpacing),
                                 // Button to send password reset request
@@ -194,7 +194,7 @@ class _PasswordRequestScreenState extends State<PasswordRequestScreen> {
     if (!mounted) return;
     if (result.isSuccess) {
       ScaffoldMessenger.of(context).showSnackBar(
-        FancySuccessSnackbar.build('Dir wurde an deine E-Mail-Adresse ${_emailController.text.trim()} ein neues Kennwort gesendet.'),
+        FancySuccessSnackbar.build('auth.password_request_success'.tr(namedArgs: {'email': _emailController.text.trim()})),
       );
       Navigator.of(context).pop(_emailController.text.trim());
     } else {

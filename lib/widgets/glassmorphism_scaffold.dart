@@ -1,5 +1,6 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import '../components/web_status_bar.dart';
+import 'package:flutter/foundation.dart';
 import 'app_background.dart';
 
 /// Glassmorphism Scaffold - Wiederverwendbares Scaffold mit dezenten Glassmorphism-Effekten
@@ -51,31 +52,29 @@ class GlassmorphismScaffold extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isWeb = Theme.of(context).platform == TargetPlatform.fuchsia || Theme.of(context).platform == TargetPlatform.linux || Theme.of(context).platform == TargetPlatform.windows;
+    final isWeb = kIsWeb;
+    
     return AppBackground(
       child: Scaffold(
         backgroundColor: Colors.transparent,
         extendBodyBehindAppBar: false, // Status Bar sichtbar lassen
-        appBar: showAppBar ? (isWeb
-          ? PreferredSize(
-              preferredSize: const Size.fromHeight(44),
-              child: const WebStatusBar(),
-            )
-          : AppBar(
-              title: title,
-              centerTitle: centerTitle,
-              leading: leading,
-              actions: actions,
-              backgroundColor: Colors.transparent, // Vollständig transparent
-              elevation: 0,
-              scrolledUnderElevation: 0,
-              foregroundColor: Theme.of(context).colorScheme.onSurface, // Sichtbare Textfarbe
-            )
+        appBar: showAppBar ? AppBar(
+          title: title, // Für alle Plattformen gleich - keine WebStatusBar hier!
+          centerTitle: centerTitle,
+          leading: leading,
+          actions: actions,
+          backgroundColor: Colors.transparent, // Vollständig transparent
+          elevation: 0,
+          scrolledUnderElevation: 0,
+          foregroundColor: Theme.of(context).colorScheme.onSurface, // Sichtbare Textfarbe
+          toolbarHeight: kToolbarHeight, // Standard-Höhe für alle Plattformen
         ) : null,
-        body: SafeArea(
-          top: true, // Status Bar Bereich respektieren
-          child: body,
-        ),
+        body: isWeb 
+          ? body // Web: Kein SafeArea, da kein nativer Status Bar
+          : SafeArea(
+              top: true, // Mobile: Status Bar Bereich respektieren
+              child: body,
+            ),
         floatingActionButton: floatingActionButton,
         bottomNavigationBar: bottomNavigationBar,
         drawer: drawer,

@@ -94,7 +94,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
     if (!mounted) return;
     if (result.isSuccess) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Registrierung erfolgreich!')),
+        SnackBar(content: Text('auth.register_success'.tr())),
       );
       Navigator.of(context).pop(_emailController.text.trim());
     } else {
@@ -194,7 +194,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                           ),
                                         );
                                       },
-                                    label: 'I accept the privacy policy',
+                                    label: 'auth.privacy_policy_accept'.tr(),
                                   ),
                                   PrimaryButton(
                                     label: 'auth.register_button'.tr(),

@@ -182,7 +182,8 @@ class _SettingsScreenState extends State<SettingsScreen>
   }
 
   void _showLanguageSelector() {
-    final languageCodes = ['en', 'de', 'fr', 'es', 'it'];
+    //final languageCodes = ['en', 'de', 'fr', 'es', 'it'];
+    final languageCodes = ['en', 'de'];
     
     showModalBottomSheet(
       context: context,
@@ -370,33 +371,18 @@ class _SettingsScreenState extends State<SettingsScreen>
     final isDark = Theme.of(context).brightness == Brightness.dark;
 
     return GlassmorphismScaffold(
-      // AppBar mit Logo Animation - analog zum Home Screen
+      // AppBar mit Logo Animation - genau wie bei HomeScreenLoggedIn
       title: ValueListenableBuilder<bool>(
         valueListenable: _showSmallLogo,
         builder: (context, showLogo, child) {
-          return AnimatedSwitcher(
+          debugPrint('Settings AppBar Logo showLogo: $showLogo'); // Debug
+          return AnimatedOpacity(
+            opacity: showLogo ? 1.0 : 0.0, // Bei showLogo=false komplett transparent (leer)
             duration: const Duration(milliseconds: 300),
-            child: showLogo
-                ? Row(
-                    key: const ValueKey('logo_title'),
-                    children: [
-                      const AppLogo(
-                        size: LogoSize.small,
-                        variant: LogoVariant.minimal,
-                      ),
-                      const SizedBox(width: 12),
-                      Text(
-                        'settings.title'.tr(),
-                        style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                    ],
-                  )
-                : Text(
-                    'settings.title'.tr(),
-                    key: const ValueKey('text_title'),
-                  ),
+            child: const AppLogo(
+              size: LogoSize.small,
+              variant: LogoVariant.minimal,
+            ),
           );
         },
       ),
@@ -901,14 +887,15 @@ class _SettingsScreenState extends State<SettingsScreen>
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
+     /*   Text(
           'settings.danger_zone'.tr(),
           style: Theme.of(context).textTheme.titleMedium?.copyWith(
             fontWeight: FontWeight.w600,
             color: Colors.red.withAlpha(230),
           ),
         ),
-        const SizedBox(height: 16),
+        */
+        const SizedBox(height: 32),
         GlassCard(
           delay: const Duration(milliseconds: 900),
           padding: EdgeInsets.zero,

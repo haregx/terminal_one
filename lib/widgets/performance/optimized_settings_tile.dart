@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:lucide_icons/lucide_icons.dart';
 
 /// Optimized Settings Tile Widget
 /// 
@@ -28,7 +27,7 @@ class OptimizedSettingsTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // Cache theme data to avoid repeated theme lookups
-    final theme = Theme.of(context);
+    //final theme = Theme.of(context);
     
     return ListTile(
       leading: Icon(
