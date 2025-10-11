@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../widgets/glass_card.dart';
 
 class PromoCodeCard extends StatelessWidget {
   final String imageUrl;
@@ -24,14 +25,11 @@ class PromoCodeCard extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Center(
-        child: Card(
-          elevation: 6,
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-          clipBehavior: Clip.antiAlias,
-          color: Theme.of(context).brightness == Brightness.dark
-            ? Theme.of(context).colorScheme.onSurface.withAlpha(30)
-            : Theme.of(context).cardColor,
-          child: SizedBox(
+        child: GlassCard(
+          delay: const Duration(milliseconds: 200),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(16),
+            child: SizedBox(
             height: 200,
             child: Row(
               children: [
@@ -43,26 +41,20 @@ class PromoCodeCard extends StatelessWidget {
                       Positioned.fill(
                         child: ShaderMask(
                           shaderCallback: (rect) {
-                            final isDark = Theme.of(context).brightness == Brightness.dark;
                             return LinearGradient(
                               begin: Alignment.centerLeft,
                               end: Alignment.centerRight,
-                              stops: [0.0, 0.5, 0.75, 1.0],
+                              stops: [0.0, 0.6, 0.8, 0.95, 1.0],
                               colors: [
-                                Colors.transparent,
-                                isDark
-                                  ? Theme.of(context).colorScheme.surface.withAlpha(30)
-                                  : Theme.of(context).cardColor.withAlpha(6),
-                                isDark
-                                  ? Theme.of(context).colorScheme.surface.withAlpha(127)
-                                  : Theme.of(context).cardColor.withAlpha(127),
-                                isDark
-                                  ? Theme.of(context).colorScheme.surface
-                                  : Theme.of(context).cardColor,
+                                Colors.black, // Links: vollständig sichtbar
+                                Colors.black, // Großteil des Bildes sichtbar
+                                Colors.black.withAlpha(200), // Sanfter Fade beginnt
+                                Colors.black.withAlpha(100), // Starker Fade  
+                                Colors.black.withAlpha(0), // Rechts: transparent für weichen Übergang
                               ],
                             ).createShader(rect);
                           },
-                          blendMode: BlendMode.srcOver,
+                          blendMode: BlendMode.dstIn, // Ändere BlendMode für richtiges Masking
                           child: Image.network(
                             imageUrl,
                             fit: BoxFit.cover,
@@ -161,8 +153,9 @@ class PromoCodeCard extends StatelessWidget {
                 ),
               ],
             ),
-          ),
+          ), // ClipRRect schließen
         ),
+      ),
       ),
     );
   }

@@ -18,7 +18,7 @@ class SettingsProvider extends ChangeNotifier {
   bool _crashReportsEnabled = true;
   
   // Sprache & Region
-  String _selectedLanguageCode = 'en';
+  String _selectedLanguageCode = 'de';
   String _selectedRegionCode = 'auto';
 
   // SharedPreferences Keys
@@ -176,9 +176,6 @@ class SettingsProvider extends ChangeNotifier {
   static const Map<String, String> availableLanguages = {
     'en': 'English',
     'de': 'Deutsch',
-    'fr': 'Français',
-    'es': 'Español',
-    'it': 'Italiano',
   };
 
   /// Gibt alle verfügbaren Regionen zurück

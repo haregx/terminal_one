@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased] - 2025-10-10
+## [Unreleased] - 2025-10-11
 
 ### Added
 - **Web iPhone Simulation with Live Status Bar**: Enhanced Web experience with iPhone DeviceFrame simulation
@@ -27,6 +27,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Animation performance validation with timing constraints
   - EasyLocalization integration testing
 
+### Changed
+- **Responsive GridView for PromoCards**: Migrated from SingleChildScrollView/Wrap to a performant GridView with dynamic column count and configurable card width/height. Vertical spacing is now precisely controllable.
+- **Configurable Card Height**: Card height in the grid is now fixed and can be easily adjusted (e.g., 190px).
+- **Settings: Improved Language Initialization**: Language initialization in the settings is now safe and synchronized with the app locale.
+- **UI Polish**: Optimized spacing, padding, and visual consistency in grid and settings screens.
+
 ### Enhanced
 - **Web Platform Detection**: Improved Web vs Mobile platform handling
   - GlassmorphismScaffold now uses `kIsWeb` for platform-specific SafeArea behavior
@@ -38,6 +44,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Changed "Terminal One" to "Terminal.One" in German and English welcome messages
   - Updated "access code" to "promo code" terminology in English translations
   - Consistent brand representation across all user-facing text
+
+- **GridView Spacing**: Vertical spacing between cards now matches the desired value exactly, with no extra space due to aspect ratio or padding issues.
+- **Settings Language Switching**: Fixed a bug where the language was not correctly initialized or displayed.
 
 ## [Previous Release] - 2025-10-09
 

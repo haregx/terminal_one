@@ -36,7 +36,7 @@ class _SettingsScreenState extends State<SettingsScreen>
   bool _vibrationEnabled = true;
   bool _analyticsEnabled = false;
   bool _crashReportsEnabled = true;
-  String _selectedLanguageCode = 'en';
+  String _selectedLanguageCode = 'de';
   String _selectedRegionCode = 'auto';
   bool _isInitialized = false;
 
