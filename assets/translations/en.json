@@ -37,7 +37,7 @@
     "password_request": "Reset Password",
     "password_request_description": "Enter your email address to reset your password",
     "password_request_success": "A new password has been sent to your email address {email}.",
-    "send_password_request": "Send Reset",
+    "send_password_request": "Send Password",
     "no_account": "No account?"
   },
   "inputs": {
