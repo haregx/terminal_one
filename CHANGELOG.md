@@ -27,17 +27,56 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Animation performance validation with timing constraints
   - EasyLocalization integration testing
 
+- **Game Flow Screens**: Introduced new screens for game details, game play, and game results, including navigation logic and UI stubs.
+
+- **Promo Code Flow**: Updated promo code entry and verification to navigate to the new game details screen upon successful code entry.
+
+- **More Games Screen Refactor**: Migrated the responsive grid and promo card logic to `more_games_screen.dart` for better modularity.
+
 ### Changed
 - **Responsive GridView for PromoCards**: Migrated from SingleChildScrollView/Wrap to a performant GridView with dynamic column count and configurable card width/height. Vertical spacing is now precisely controllable.
 - **Configurable Card Height**: Card height in the grid is now fixed and can be easily adjusted (e.g., 190px).
 - **Settings: Improved Language Initialization**: Language initialization in the settings is now safe and synchronized with the app locale.
 - **UI Polish**: Optimized spacing, padding, and visual consistency in grid and settings screens.
+- **Routing Refactor**: Updated all route imports and navigation logic to use the new modular screen files (e.g., `more_games_screen.dart`).
+- **Fallback Locale**: Changed EasyLocalization fallback locale from German to English for better internationalization defaults.
+- **Promo Data Cleanup**: Removed German comments and improved code clarity in promo data model.
+- **UI Consistency**: Unified button and navigation logic in home and promo code screens for a consistent user experience.
 
 ### Enhanced
 - **Web Platform Detection**: Improved Web vs Mobile platform handling
   - GlassmorphismScaffold now uses `kIsWeb` for platform-specific SafeArea behavior
   - Web platforms use `SafeArea(top: false)` while mobile uses `SafeArea(top: true)`
   - Removed duplicate import statements and cleaned up code structure
+
+- **Settings Screen Redesign**: Logo animation and improved UX
+  - Large logo in header area matching Home screen behavior
+  - Logo migration to AppBar during scroll interaction
+  - Removed Glass effects from informational header card
+  - Improved visual hierarchy and user experience
+
+- **Glass Morphism Effects**: Refined visual effects based on theme and functionality
+  - Differentiated blur levels for Light/Dark themes
+  - Removed misleading Glass effects from non-clickable cards
+  - Enhanced visual feedback for interactive elements
+  - Consistent Glass card usage patterns
+
+- **Profile Screen Internationalization**: Complete translation of user profile interface
+  - All dialog titles, descriptions, and buttons translated
+  - Dynamic content with parametrized translations (member since dates)
+  - Proper German/English context switching
+  - Internationalized dummy data for consistent testing
+
+- **Settings Screen Localization**: Advanced hybrid translation system
+  - Combination of easy_localization and manual locale detection
+  - Reliable language/region selection interfaces
+  - Theme and preference descriptions in both languages
+  - Contextual help text and error messages
+
+- **Dashboard Activity Feed**: Localized recent activities display
+  - Time-relative translations ("Today at", "Yesterday at", "X days ago")
+  - Activity type descriptions in both languages
+  - Parametrized time formatting for different locales
 
 ### Fixed
 - **Translation Consistency**: Updated brand name consistency across all translations
@@ -47,6 +86,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - **GridView Spacing**: Vertical spacing between cards now matches the desired value exactly, with no extra space due to aspect ratio or padding issues.
 - **Settings Language Switching**: Fixed a bug where the language was not correctly initialized or displayed.
+- **Obsolete File Removal**: Deleted the old `more_games.dart` to avoid confusion and ensure only the new modular screen is used.
 
 ## [Previous Release] - 2025-10-09
 

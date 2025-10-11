@@ -1,7 +1,3 @@
-/// Promo Card Data Model und Sample Data
-/// 
-/// Zentrale Datenhaltung für PromoCode-Karten
-
 class PromoData {
   final String rowGuid;
   final String imageUrl;

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 import 'package:terminal_one/components/buttons/ghost_button.dart';
-import 'package:terminal_one/components/snackbars/fancy_success_snackbar.dart';
+import 'package:terminal_one/screens/games/game_details_screen.dart';
 import 'package:terminal_one/utils/responsive_layout.dart';
 import '../../components/buttons/primary_button.dart';
 import '../../components/inputs/input_code_group.dart';
@@ -51,82 +51,7 @@ class _PromoCodeScreenState extends State<PromoCodeScreen> {
     );
   }
 
-  Future<void> _redeemPromoCode() async {
-    if (!_isCodeComplete || _isProcessing) return;
-
-    setState(() {
-      _isProcessing = true;
-    });
-
-    try {
-      final code = _codeInputKey.currentState?.code ?? '';
-      debugPrint('🎁 Redeeming promo code: $code');
-      
-      // Simulate API call
-      await Future.delayed(const Duration(seconds: 2));
-      
-      // Simulate different responses based on code
-      if (code.toUpperCase() == 'WELCOME1' || 
-          code.toUpperCase() == 'BONUS123' || 
-          code.toUpperCase() == 'SPECIAL1') {
-        // Success
-        if (!mounted) return;
-        ScaffoldMessenger.of(context).showSnackBar(
-          FancySuccessSnackbar.build('🎉 Promo code redeemed successfully!'),
-        );
-        
-        // Clear the code
-        _codeInputKey.currentState?.clearAll();
-        setState(() {
-          _isCodeComplete = false;
-        });
-      } else {
-        // Invalid code
-        if (!mounted) return;
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: const Row(
-              children: [
-                Icon(LucideIcons.xCircle, color: Colors.white, size: 20),
-                SizedBox(width: 12),
-                Text('Invalid promo code. Please check and try again.'),
-              ],
-            ),
-            backgroundColor: Colors.red.shade600,
-            behavior: SnackBarBehavior.floating,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10),
-            ),
-          ),
-        );
-      }
-    } catch (e) {
-      if (!mounted) return;
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: const Row(
-            children: [
-              Icon(LucideIcons.alertCircle, color: Colors.white, size: 20),
-              SizedBox(width: 12),
-              Text('Failed to redeem code. Please try again later.'),
-            ],
-          ),
-          backgroundColor: Colors.orange.shade600,
-          behavior: SnackBarBehavior.floating,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(10),
-          ),
-        ),
-      );
-    } finally {
-      if (mounted) {
-        setState(() {
-          _isProcessing = false;
-        });
-      }
-    }
-  }
-
+ 
   @override
   Widget build(BuildContext context) {
     
@@ -200,7 +125,16 @@ class _PromoCodeScreenState extends State<PromoCodeScreen> {
                               label: _isProcessing ? 'Redeeming...' : 'Redeem Code',
                               enabled: _isCodeComplete && !_isProcessing,
                               leading: _isProcessing ? null : LucideIcons.gift,
-                              onPressed: _isCodeComplete && !_isProcessing ? _redeemPromoCode : null,
+                              onPressed: _isCodeComplete && !_isProcessing 
+                                ? () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => const GameDetailsScreen(),
+                                      ),
+                                    );
+                                  }
+                                : null,
                             ),
                             GhostButton(
                               leading: LucideIcons.x,

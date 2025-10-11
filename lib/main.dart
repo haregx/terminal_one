@@ -47,7 +47,7 @@ void main() async {
         Locale('en'),
       ],
       path: 'assets/translations',
-      fallbackLocale: const Locale('de'),
+      fallbackLocale: const Locale('en'),
       startLocale: Locale(settingsProvider.selectedLanguageCode),
       child: MultiProvider(
         providers: [

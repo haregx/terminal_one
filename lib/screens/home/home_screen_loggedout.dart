@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:lucide_icons/lucide_icons.dart';
-import 'package:provider/provider.dart';
 import 'package:terminal_one/components/buttons/ghost_button.dart';
 import 'package:terminal_one/components/buttons/secondary_button.dart';
 import 'package:terminal_one/components/spacer/separator_withtext.dart';
-import 'package:terminal_one/providers/auth_provider.dart';
+import 'package:terminal_one/screens/games/game_details_screen.dart';
 import 'package:terminal_one/utils/responsive_layout.dart';
 import '../../components/buttons/primary_button.dart';
 import '../../components/inputs/input_code_group.dart';
@@ -15,7 +14,6 @@ import '../../widgets/app_logo.dart';
 import '../../widgets/appbar_aware_safe_area.dart';
 import 'package:easy_localization/easy_localization.dart';
 import '../auth/login_screen.dart';
-import '../games/more_games.dart';
 import '../common/settings_screen.dart';
 import '../common/privacy_screen.dart';
 
@@ -168,6 +166,12 @@ class _HomeScreenState extends State<HomeScreen> {
                               enabled: _isCodeComplete,
                               onPressed: _isCodeComplete ? () {
                                 debugPrint('Verifying code: ${_codeInputKey.currentState?.code ?? ''}');
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => const GameDetailsScreen(),
+                                  ),
+                                );
                               } : null,
                             ),
                             GhostButton(
@@ -191,34 +195,19 @@ class _HomeScreenState extends State<HomeScreen> {
                             spacing: ResponsiveSpacing.large(context),
                             children: [
                               SeparatorWithText(
-                                text: Provider.of<AuthProvider>(context).isLoggedIn
-                                  ? 'Mehr Promo-Codes?'
-                                  : 'home.promo_code_signup_text'.tr(),
+                                  text: 'home.promo_code_signup_text'.tr(),
                               ),
                               SecondaryButton(
                                 onPressed: () {
-                                  if (Provider.of<AuthProvider>(context, listen: false).isLoggedIn) {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) => const MoreGamesScreen(),
-                                      ),
-                                    );
-                                  } else {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) => const LoginScreen(),
-                                      ),
-                                    );
-                                  }
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => const LoginScreen(),
+                                    ),
+                                  );
                                 },
-                                leading: Provider.of<AuthProvider>(context).isLoggedIn
-                                  ? LucideIcons.gamepad2
-                                  : LucideIcons.logIn,
-                                label: Provider.of<AuthProvider>(context).isLoggedIn
-                                  ? 'Mehr Promo-Codes'
-                                  : 'home.to_login'.tr(),
+                                leading: LucideIcons.logIn,
+                                label: 'home.to_login'.tr(),
                               ),
                             ],
                         

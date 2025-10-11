@@ -5,7 +5,7 @@ import 'package:terminal_one/screens/auth/password_request_screen.dart';
 import 'package:terminal_one/screens/auth/profile_screen.dart';
 import 'package:terminal_one/screens/auth/register_screen.dart';
 import 'package:terminal_one/screens/common/settings_screen.dart';
-import 'package:terminal_one/screens/games/more_games.dart';
+import 'package:terminal_one/screens/games/more_games_screen.dart';
 import 'package:terminal_one/screens/games/promocode_screen.dart';
 import 'package:terminal_one/screens/home/home_screen_loggedin.dart';
 import 'package:terminal_one/screens/home/home_screen_loggedout.dart';
