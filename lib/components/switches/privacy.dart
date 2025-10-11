@@ -17,7 +17,7 @@ class PrivacySwitch extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isIOS = Theme.of(context).platform == TargetPlatform.iOS;
+    final isIOS = Theme.of(context).platform == TargetPlatform.iOS || Theme.of(context).platform == TargetPlatform.macOS;
     return Row(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [

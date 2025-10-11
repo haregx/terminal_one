@@ -318,4 +318,8 @@ class PasswordRequirements {
     _hasUppercase,
     _hasLowercase,
   ];
+
+  static List<PasswordRequirement> get sinmpleRequirements => [
+    _minLength,
+  ];
 }

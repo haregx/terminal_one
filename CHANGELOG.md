@@ -33,6 +33,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - **More Games Screen Refactor**: Migrated the responsive grid and promo card logic to `more_games_screen.dart` for better modularity.
 
+- **PlatformSwitch Widget**: Introduced a new adaptive switch widget that automatically uses Material Switch on Android and CupertinoSwitch on iOS/macOS. Used throughout the settings and theme toggle for a native look.
+
+- **InputPasswordSimple & InputPasswordExtended**: Split password input into simple and extended variants for flexible validation and UI requirements.
+
 ### Changed
 - **Responsive GridView for PromoCards**: Migrated from SingleChildScrollView/Wrap to a performant GridView with dynamic column count and configurable card width/height. Vertical spacing is now precisely controllable.
 - **Configurable Card Height**: Card height in the grid is now fixed and can be easily adjusted (e.g., 190px).
@@ -42,6 +46,25 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Fallback Locale**: Changed EasyLocalization fallback locale from German to English for better internationalization defaults.
 - **Promo Data Cleanup**: Removed German comments and improved code clarity in promo data model.
 - **UI Consistency**: Unified button and navigation logic in home and promo code screens for a consistent user experience.
+- **Settings & Theme Toggle**: All switches in the settings and theme toggle now use the new PlatformSwitch for platform consistency.
+- **Login & Register Screens**: Updated to use new password input components and improved internationalization for all labels and buttons.
+- **Translation Files**: Added missing keys and improved English/German translation consistency for authentication and input flows.
+- **Input Defaults**: Added simple password requirements for InputPasswordSimple.
+- **PrivacySwitch**: Improved platform detection for iOS/macOS.
+
+### Removed
+- **Obsolete Files**: Deleted unused InputPassword and web_status_bar.dart files to clean up the codebase.
+
+### Fixed
+- **Translation Consistency**: Updated brand name consistency across all translations
+  - Changed "Terminal One" to "Terminal.One" in German and English welcome messages
+  - Updated "access code" to "promo code" terminology in English translations
+  - Consistent brand representation across all user-facing text
+
+- **GridView Spacing**: Vertical spacing between cards now matches the desired value exactly, with no extra space due to aspect ratio or padding issues.
+- **Settings Language Switching**: Fixed a bug where the language was not correctly initialized or displayed.
+- **Obsolete File Removal**: Deleted the old `more_games.dart` to avoid confusion and ensure only the new modular screen is used.
+- **UI Consistency**: All authentication and settings screens now use the correct input and switch components for a unified look and feel.
 
 ### Enhanced
 - **Web Platform Detection**: Improved Web vs Mobile platform handling
@@ -78,128 +101,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Activity type descriptions in both languages
   - Parametrized time formatting for different locales
 
-### Fixed
-- **Translation Consistency**: Updated brand name consistency across all translations
-  - Changed "Terminal One" to "Terminal.One" in German and English welcome messages
-  - Updated "access code" to "promo code" terminology in English translations
-  - Consistent brand representation across all user-facing text
-
-- **GridView Spacing**: Vertical spacing between cards now matches the desired value exactly, with no extra space due to aspect ratio or padding issues.
-- **Settings Language Switching**: Fixed a bug where the language was not correctly initialized or displayed.
-- **Obsolete File Removal**: Deleted the old `more_games.dart` to avoid confusion and ensure only the new modular screen is used.
-
-## [Previous Release] - 2025-10-09
-
-### Added
-- **Logo Animation System**: Implemented dynamic logo behavior across app screens
-  - Logo appears in content header area when at top of scroll
-  - Smooth animation transition to AppBar when scrolling (50px threshold)
-  - ValueNotifier-based implementation for optimal performance
-  - Consistent behavior between Home and Settings screens
-  - ScrollController integration with 300ms animation duration
-
-- **Enhanced Language Switching**: Complete functional language toggle system
-  - Real-time switching between German and English
-  - EasyLocalization integration with `context.setLocale()`
-  - Modal bottom sheet selection interface
-  - Success confirmation with localized messages
-  - Persistent locale storage and restoration
-
-- **Performance Optimizations**: Glass morphism and UI performance improvements
-  - Optimized blur effects: Light mode (8 sigma), Dark mode (15 sigma)
-  - Removed Glass effects from non-interactive informational cards
-  - Enhanced widget caching and reduced rebuilds
-  - Performance monitoring tools and analyzers
-
-- **Complete Internationalization System**: Migrated from Flutter's built-in i18n to easy_localization
-  - Comprehensive German and English translations for all UI components
-  - JSON-based translation files in `assets/translations/`
-  - Support for parametrized translations with named arguments
-  - Runtime language switching capabilities
-  - Fallback translation system for missing keys
-
-- **Enhanced Dashboard Components**: Fully internationalized quick actions and statistics
-  - Dynamic title/label localization in `QuickActionData` and `StatData` models
-  - `getLocalizedTitle()` and `getLocalizedLabel()` methods for runtime translation
-  - Backward compatibility with fallback titles/labels
-  - Support for complex time-based translations (e.g., "Today at {time}", "Yesterday at {time}")
-
-- **Modern Color API Migration**: Updated from deprecated `withOpacity` to `withAlpha`
-  - Project-wide replacement of color opacity methods
-  - Precise alpha value calculations (e.g., 0.6 opacity → 153 alpha)
-  - Better performance and future compatibility
-  - Consistent color handling across all components
-
-### Enhanced
-- **Settings Screen Redesign**: Logo animation and improved UX
-  - Large logo in header area matching Home screen behavior
-  - Logo migration to AppBar during scroll interaction
-  - Removed Glass effects from informational header card
-  - Improved visual hierarchy and user experience
-
-- **Glass Morphism Effects**: Refined visual effects based on theme and functionality
-  - Differentiated blur levels for Light/Dark themes
-  - Removed misleading Glass effects from non-clickable cards
-  - Enhanced visual feedback for interactive elements
-  - Consistent Glass card usage patterns
-
-- **Profile Screen Internationalization**: Complete translation of user profile interface
-  - All dialog titles, descriptions, and buttons translated
-  - Dynamic content with parametrized translations (member since dates)
-  - Proper German/English context switching
-  - Internationalized dummy data for consistent testing
-
-- **Settings Screen Localization**: Advanced hybrid translation system
-  - Combination of easy_localization and manual locale detection
-  - Reliable language/region selection interfaces
-  - Theme and preference descriptions in both languages
-  - Contextual help text and error messages
-
-- **Dashboard Activity Feed**: Localized recent activities display
-  - Time-relative translations ("Today at", "Yesterday at", "X days ago")
-  - Activity type descriptions in both languages
-  - Parametrized time formatting for different locales
-
-### Fixed
-- **EasyLocalization Initialization**: Resolved Widget lifecycle dependency issues
-  - Fixed premature InheritedWidget access in initState()
-  - Implemented safe locale initialization in didChangeDependencies()
-  - Added mounted state checking for Widget safety
-  - Eliminated runtime dependency errors
-
-- **Performance Dashboard Errors**: Corrected method naming and API usage
-  - Fixed `StatsData.getStats()` to `StatsData.stats` 
-  - Corrected `getLocalizedTitle()` to `getLocalizedLabel()`
-  - Removed unused import dependencies
-  - Improved widget rendering performance
-
-### Migrated
-- **Authentication Screens**: Converted from Flutter i18n to easy_localization
-  - `register_screen.dart`: Registration form with translated labels and descriptions
-  - `password_request_screen.dart`: Password reset interface with localized content
-  - `pincode_screen.dart`: PIN entry screen with translated button labels
-  - Removed dependencies on `AppLocalizations` class
-  - Updated import statements to use easy_localization
-
-### Removed
-- **Legacy Internationalization System**: Cleaned up old Flutter i18n infrastructure
-  - Deleted `lib/l10n/` directory and all ARB files
-  - Removed `l10n.yaml` configuration file
-  - Removed `generate: true` flag from `pubspec.yaml`
-  - Eliminated `AppLocalizations` class dependencies
-  - Streamlined translation architecture
-
-### Fixed
-- **Flutter 3.35.5 Compatibility**: Resolved API deprecation issues
-  - Fixed `TextDirection.ltr` compilation error with proper `dart:ui` import
-  - Updated color API usage throughout the codebase
-  - Resolved widget parameter naming conflicts
-
-- **Translation Key Coverage**: Comprehensive translation completeness
-  - Added missing translation keys for all hardcoded strings
-  - Fixed inconsistent key naming patterns
-  - Resolved context-specific translation issues
-
 ### Technical Improvements
 - **Code Architecture**: Enhanced maintainability and consistency
   - Unified translation approach across all screens
@@ -212,8 +113,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Streamlined locale detection logic
   - Optimized widget rebuild cycles for locale changes
 
-### Developer Experience
-- **Enhanced Debugging**: Better development tools and feedback
+- **Developer Experience**: Enhanced Debugging: Better development tools and feedback
   - Clear error messages for missing translation keys
   - Consistent logging for locale changes
   - Improved development workflow for adding new translations

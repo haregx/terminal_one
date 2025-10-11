@@ -14,7 +14,7 @@ import 'input_defaults.dart';
 /// - Password visibility toggle with proper accessibility
 /// - Consistent API with InputEmail component
 /// - Proper memory management
-class InputPassword extends StatefulWidget {
+class InputPasswordExtended extends StatefulWidget {
   /// Text controller for the password input
   final TextEditingController? controller;
   
@@ -54,7 +54,7 @@ class InputPassword extends StatefulWidget {
   /// Callback triggered when submit action is performed (Enter/Tab)
   final void Function(String password)? onSubmitted;
 
-  const InputPassword({
+  const InputPasswordExtended({
     super.key,
     this.controller,
     this.onValidationChanged,
@@ -72,10 +72,10 @@ class InputPassword extends StatefulWidget {
   });
 
   @override
-  State<InputPassword> createState() => _InputPasswordState();
+  State<InputPasswordExtended> createState() => _InputPasswordExtendedState();
 }
 
-class _InputPasswordState extends State<InputPassword> {
+class _InputPasswordExtendedState extends State<InputPasswordExtended> {
   late final TextEditingController _controller;
   late final FocusNode _focusNode;
   bool _obscureText = true;

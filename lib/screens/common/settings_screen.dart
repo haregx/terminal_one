@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 import 'package:provider/provider.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:terminal_one/components/switches/simple_switch.dart';
 import 'package:terminal_one/providers/theme_provider.dart';
 import 'package:terminal_one/utils/responsive_layout.dart';
 import 'package:terminal_one/widgets/glass_card.dart';
@@ -537,7 +538,7 @@ class _SettingsScreenState extends State<SettingsScreen>
                 LucideIcons.moonStar,
                 null,
                 isDark,
-                trailing: Switch(
+                trailing: PlatformSwitch(
                   value: themeProvider.themeMode == ThemeMode.system,
                   onChanged: (value) {
                     themeProvider.setThemeMode(
@@ -639,7 +640,7 @@ class _SettingsScreenState extends State<SettingsScreen>
                 LucideIcons.bell,
                 null,
                 isDark,
-                trailing: Switch(
+                trailing: PlatformSwitch(
                   value: _notificationsEnabled,
                   onChanged: (value) {
                     setState(() {
@@ -655,7 +656,7 @@ class _SettingsScreenState extends State<SettingsScreen>
                 LucideIcons.volume2,
                 null,
                 isDark,
-                trailing: Switch(
+                trailing: PlatformSwitch(
                   value: _soundEnabled,
                   onChanged: (value) {
                     setState(() {
@@ -671,7 +672,7 @@ class _SettingsScreenState extends State<SettingsScreen>
                 LucideIcons.smartphone,
                 null,
                 isDark,
-                trailing: Switch(
+                trailing: PlatformSwitch(
                   value: _vibrationEnabled,
                   onChanged: (value) {
                     setState(() {
@@ -712,7 +713,7 @@ class _SettingsScreenState extends State<SettingsScreen>
                 LucideIcons.barChart3,
                 null,
                 isDark,
-                trailing: Switch(
+                trailing: PlatformSwitch(
                   value: _analyticsEnabled,
                   onChanged: (value) {
                     setState(() {
@@ -728,7 +729,7 @@ class _SettingsScreenState extends State<SettingsScreen>
                 LucideIcons.bug,
                 null,
                 isDark,
-                trailing: Switch(
+                trailing: PlatformSwitch(
                   value: _crashReportsEnabled,
                   onChanged: (value) {
                     setState(() {

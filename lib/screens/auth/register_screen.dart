@@ -6,7 +6,7 @@ import '../../widgets/app_logo.dart';
 import '../../widgets/appbar_aware_safe_area.dart';
 import '../../components/buttons/primary_button.dart';
 import '../../components/inputs/input_email.dart';
-import '../../components/inputs/input_password.dart';
+import '../../components/inputs/input_password_extended.dart';
 import '../../components/inputs/input_password_confirm.dart';
 import '../../components/switches/privacy.dart';
 import 'package:terminal_one/api_services/auth/register_service.dart';
@@ -155,7 +155,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                   ),
                                   FocusTraversalOrder(
                                     order: const NumericFocusOrder(2),
-                                    child: InputPassword(
+                                    child: InputPasswordExtended(
                                       controller: _passwordController,
                                       focusNode: _passwordFocus,
                                       textInputAction: TextInputAction.next,

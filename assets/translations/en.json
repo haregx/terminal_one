@@ -27,7 +27,7 @@
     "logout_confirmation": "Do you really want to log out?",
     "logout_success": "You have been successfully logged out!",
     "login_description": "Sign in with your credentials",
-    "forgot_pin": "Forgot PIN?",
+    "forgot_pin": "Forgot password?",
     "to_registration": "To Registration",
     "register_title": "Register",
     "register_description": "Create a new account",
@@ -37,7 +37,8 @@
     "password_request": "Reset Password",
     "password_request_description": "Enter your email address to reset your password",
     "password_request_success": "A new password has been sent to your email address {email}.",
-    "send_password_request": "Send Reset"
+    "send_password_request": "Send Reset",
+    "no_account": "No account?"
   },
   "inputs": {
     "email": "Email",

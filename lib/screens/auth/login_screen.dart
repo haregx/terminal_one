@@ -5,6 +5,7 @@ import 'package:terminal_one/api_services/auth/login_service.dart';
 import 'package:terminal_one/api_services/https_post_service.dart';
 import 'package:terminal_one/components/buttons/ghost_button.dart';
 import 'package:terminal_one/components/buttons/secondary_button.dart';
+import 'package:terminal_one/components/inputs/input_password_simple.dart';
 import 'package:terminal_one/components/snackbars/fancy_success_snackbar.dart';
 import 'package:terminal_one/components/spacer/separator_withtext.dart';
 import 'package:terminal_one/providers/auth_provider.dart';
@@ -14,7 +15,6 @@ import '../../widgets/app_logo.dart';
 import '../../widgets/appbar_aware_safe_area.dart';
 import '../../components/buttons/primary_button.dart';
 import '../../components/inputs/input_email.dart';
-import '../../components/inputs/input_password.dart';
 import 'package:easy_localization/easy_localization.dart';
 import '../../utils/secure_storage.dart';
 import '../home/home_screen_router.dart';
@@ -205,7 +205,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                       ),
                                       FocusTraversalOrder(
                                         order: const NumericFocusOrder(2),
-                                        child: InputPassword(
+                                        child: InputPasswordSimple(
                                           controller: _passwordController,
                                           focusNode: _passwordFocus,
                                           textInputAction: TextInputAction.done,
@@ -243,7 +243,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             spacing: ResponsiveSpacing.large(context),
                             children: [
                               // Registration separator text (internationalized)
-                              SeparatorWithText(text: 'Noch kein Konto?'),
+                              SeparatorWithText(text: 'auth.no_account'.tr()),
                               // Registration button
                               SecondaryButton(
                                 leading: LucideIcons.userPlus,

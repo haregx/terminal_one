@@ -37,7 +37,8 @@
     "password_request": "Kennwort zurücksetzen",
     "password_request_description": "Gib deine E-Mail-Adresse ein, um dein Kennwort zurückzusetzen",
     "password_request_success": "Dir wurde an deine E-Mail-Adresse {email} ein neues Kennwort gesendet.",
-    "send_password_request": "Zurücksetzen senden"
+    "send_password_request": "Zurücksetzen senden",
+    "no_account": "Noch kein Konto?"
   },
   "inputs": {
     "email": "E-Mail",
