@@ -116,12 +116,13 @@ class _SettingsScreenState extends State<SettingsScreen>
           return 'Englisch';
         case 'de':
           return 'Deutsch';
-        case 'fr':
+  /*      case 'fr':
           return 'Französisch';
         case 'es':
           return 'Spanisch';
         case 'it':
           return 'Italienisch';
+        */
         default:
           return 'Englisch';
       }
@@ -132,12 +133,13 @@ class _SettingsScreenState extends State<SettingsScreen>
           return 'English';
         case 'de':
           return 'German';
-        case 'fr':
+     /*   case 'fr':
           return 'French';
         case 'es':
           return 'Spanish';
         case 'it':
           return 'Italian';
+          */
         default:
           return 'English';
       }
@@ -464,37 +466,20 @@ class _SettingsScreenState extends State<SettingsScreen>
                   padding: const EdgeInsets.all(24),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
+                    spacing: ResponsiveSpacing.large(context),
                     children: [
                       // Appearance Settings
                       _buildAppearanceSection(themeProvider, isDark),
-                      
-                      SizedBox(height: ResponsiveSpacing.large(context)),
-                      
                       // Notifications Settings
                       _buildNotificationsSection(isDark),
-                      
-                      SizedBox(height: ResponsiveSpacing.large(context)),
-                      
                       // Privacy & Security
                       _buildPrivacySection(isDark),
-                      
-                      SizedBox(height: ResponsiveSpacing.large(context)),
-                      
                       // Language & Region
                       _buildLanguageSection(isDark),
-                      
-                      SizedBox(height: ResponsiveSpacing.large(context)),
-                      
                       // Storage & Cache
                       _buildStorageSection(isDark),
-                      
-                      SizedBox(height: ResponsiveSpacing.large(context)),
-                      
                       // About & Support
                       _buildAboutSection(isDark),
-                  
-                      SizedBox(height: ResponsiveSpacing.large(context)),
-                      
                       // Danger Zone
                       _buildDangerZoneSection(isDark),
                       
@@ -856,7 +841,8 @@ class _SettingsScreenState extends State<SettingsScreen>
             children: [
               _buildSettingsTile(
                 'settings.app_version'.tr(),
-                '1.0.0', // Could be dynamic
+                // TODO make it dynamic
+                '0.1.1', // Could be dynamic
                 LucideIcons.info,
                 () => _showAboutDialog(),
                 isDark,
@@ -1022,11 +1008,13 @@ class _SettingsScreenState extends State<SettingsScreen>
     showAboutDialog(
       context: context,
       applicationName: 'Terminal.One',
-      applicationVersion: '1.0.0',
+      // TODO make it dynamic
+      applicationVersion: '0.1.1',
       applicationIcon: const AppLogo(
         size: LogoSize.small,
-        variant: LogoVariant.minimal,
+        variant: LogoVariant.iconOnly,
       ),
+   
       children: [
         Text('settings.app_description'.tr()),
         const SizedBox(height: 8),

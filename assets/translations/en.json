@@ -22,23 +22,23 @@
     "logout": "Logout"
   },
   "auth": {
-    "login": "Login",
+    "login": "Sign in",
     "logout": "Logout",
     "logout_confirmation": "Do you really want to log out?",
     "logout_success": "You have been successfully logged out!",
     "login_description": "Sign in with your credentials",
     "forgot_pin": "Forgot password?",
-    "to_registration": "To Registration",
-    "register_title": "Register",
+    "to_registration": "Sign up",
+    "register_title": "New account",
     "register_description": "Create a new account",
-    "register_button": "Create Account",
+    "register_button": "Create account",
     "register_success": "Registration successful!",
     "privacy_policy_accept": "I accept the privacy policy",
-    "password_request": "Reset Password",
+    "password_request": "Reset password",
     "password_request_description": "Enter your email address to reset your password",
     "password_request_success": "A new password has been sent to your email address {email}.",
-    "send_password_request": "Send Password",
-    "no_account": "No account?"
+    "send_password_request": "Reset password",
+    "no_account": "No account yet?"
   },
   "inputs": {
     "email": "Email",
@@ -81,8 +81,8 @@
     "understood": "Understood",
     "verify_code": "Verify code",
     "clear_code": "Clear code",
-    "promo_code_signup_text": "Don't have a promo code yet? Register here!",
-    "to_login": "To Login"
+    "promo_code_signup_text": "Sign in for more codes", 
+    "to_login": "Sign in"
   },
   "profile": {
     "title": "Profile",
@@ -119,8 +119,8 @@
     "delete_account_desc": "Permanently delete account",
     "delete_account_confirmation": "Are you sure you want to delete your account? This action cannot be undone.",
     "coming_soon_message": "{feature} functionality coming soon!",
-    "app_description": "A modern Flutter application with advanced glassmorphism UI design.",
-    "built_with_love": "Built with ❤️ using Flutter",
+    "app_description": "A modern application with advanced glassmorphism UI design.",
+    "built_with_love": "Built with ❤️",
     "feature_email_notifications": "Email notifications",
     "feature_privacy_settings": "Privacy settings",
     "feature_language_settings": "Language settings", 
@@ -193,7 +193,7 @@
     "feature_help_support": "Help & Support",
     "feature_app_rating": "App rating",
     "app_description": "A modern Flutter application with advanced glassmorphism UI design.",
-    "built_with_love": "Built with ❤️ using Flutter",
+    "built_with_love": "Built with ❤️",
     "copyright": "© 2025 Terminal.One. All rights reserved."
   },
   "promocode": {

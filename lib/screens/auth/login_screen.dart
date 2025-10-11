@@ -151,7 +151,7 @@ class _LoginScreenState extends State<LoginScreen> {
         });
       },
       child: GlassmorphismScaffold(
-        title: Text('auth.login'.tr()),
+       // title: Text('auth.login'.tr()),
         body: AppBarAwareSafeArea(
           child: LayoutBuilder(
             builder: (context, constraints) {

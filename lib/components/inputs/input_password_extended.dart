@@ -343,7 +343,7 @@ class _InputPasswordExtendedState extends State<InputPasswordExtended> {
               },
             ),
           ),
-          _buildStrengthIndicator(),
+         // _buildStrengthIndicator(),
           _buildRequirements(),
         ],
       ),

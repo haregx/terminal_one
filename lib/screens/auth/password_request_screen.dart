@@ -76,7 +76,7 @@ class _PasswordRequestScreenState extends State<PasswordRequestScreen> {
   @override
   Widget build(BuildContext context) {
     return GlassmorphismScaffold(
-      title: Text('auth.password_request'.tr()),
+    //  title: Text('auth.password_request'.tr()),
       body: AppBarAwareSafeArea(
         child: GestureDetector(
         onTap: () {

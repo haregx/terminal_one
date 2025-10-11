@@ -114,7 +114,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
         });
       },
       child: GlassmorphismScaffold(
-        title: Text('auth.register_title'.tr()),
+      //  title: Text('auth.register_title'.tr()),
         body: AppBarAwareSafeArea(
           child: LayoutBuilder(
             builder: (context, constraints) {

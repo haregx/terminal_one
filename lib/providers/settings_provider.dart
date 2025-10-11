@@ -49,7 +49,7 @@ class SettingsProvider extends ChangeNotifier {
     _vibrationEnabled = prefs.getBool(_keyVibration) ?? true;
     _analyticsEnabled = prefs.getBool(_keyAnalytics) ?? false;
     _crashReportsEnabled = prefs.getBool(_keyCrashReports) ?? true;
-    _selectedLanguageCode = prefs.getString(_keyLanguage) ?? 'en';
+    _selectedLanguageCode = prefs.getString(_keyLanguage) ?? 'de';
     _selectedRegionCode = prefs.getString(_keyRegion) ?? 'auto';
     
     _isLoaded = true;
@@ -173,17 +173,17 @@ class SettingsProvider extends ChangeNotifier {
   }
 
   /// Gibt alle verfügbaren Sprachen zurück
-  static const Map<String, String> availableLanguages = {
+ /* static const Map<String, String> availableLanguages = {
     'en': 'English',
     'de': 'Deutsch',
-  };
+  };*/
 
   /// Gibt alle verfügbaren Regionen zurück
-  static const Map<String, String> availableRegions = {
+ /* static const Map<String, String> availableRegions = {
     'auto': 'Automatic',
     'us': 'United States',
     'eu': 'Europe',
     'asia': 'Asia',
     'other': 'Other',
-  };
+  };*/
 }

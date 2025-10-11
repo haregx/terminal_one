@@ -221,13 +221,14 @@ class _InputPasswordSimpleState extends State<InputPasswordSimple> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
+       /*   Text(
             'inputs.password_requirements'.tr(),
             style: Theme.of(context).textTheme.bodySmall?.copyWith(
               fontWeight: FontWeight.w600,
             ),
           ),
           const SizedBox(height: 4),
+          */
           ..._requirements.map((requirement) {
             final isFailed = _failedRequirements.contains(requirement);
             final color = isFailed 
@@ -235,7 +236,7 @@ class _InputPasswordSimpleState extends State<InputPasswordSimple> {
                 : Theme.of(context).colorScheme.primary;
             
             return Padding(
-              padding: const EdgeInsets.only(bottom: 2.0),
+              padding: const EdgeInsets.only(bottom: 2.0, left: 24),
               child: Row(
                 children: [
                   Icon(

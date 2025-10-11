@@ -29,15 +29,15 @@
     "login_description": "Melde dich mit deinen Zugangsdaten an",
     "forgot_pin": "Kennwort vergessen?",
     "to_registration": "Zur Registrierung",
-    "register_title": "Registrieren",
+    "register_title": "Konto erstellen",
     "register_description": "Erstelle ein neues Konto",
     "register_button": "Konto erstellen",
-    "register_success": "Registrierung erfolgreich!",
+    "register_success": "Dein Konto wurde erfolgreich erstellt!",
     "privacy_policy_accept": "Ich akzeptiere die Datenschutzerklärung",
     "password_request": "Kennwort zurücksetzen",
     "password_request_description": "Gib deine E-Mail-Adresse ein, um dein Kennwort zurückzusetzen",
     "password_request_success": "Dir wurde an deine E-Mail-Adresse {email} ein neues Kennwort gesendet.",
-    "send_password_request": "Kennwort senden",
+    "send_password_request": "Kennwort zurücksetzen",
     "no_account": "Noch kein Konto?"
   },
   "inputs": {
@@ -120,7 +120,7 @@
     "delete_account_confirmation": "Bist du sicher, dass du dein Konto löschen möchtest? Diese Aktion kann nicht rückgängig gemacht werden.",
     "coming_soon_message": "{feature}-Funktionalität kommt bald!",
     "app_description": "Eine moderne Flutter-Anwendung mit fortschrittlichem Glassmorphismus-UI-Design.",
-    "built_with_love": "Mit ❤️ mit Flutter erstellt",
+    "built_with_love": "Mit viel ❤️ erstellt",
     "feature_email_notifications": "E-Mail-Benachrichtigungen",
     "feature_privacy_settings": "Datenschutzeinstellungen", 
     "feature_language_settings": "Spracheinstellungen",
@@ -192,8 +192,8 @@
     "feature_storage_details": "Speicher-Details",
     "feature_help_support": "Hilfe & Support",
     "feature_app_rating": "App-Bewertung",
-    "app_description": "Eine moderne Flutter-Anwendung mit fortschrittlichem Glassmorphismus-UI-Design.",
-    "built_with_love": "Mit ❤️ mit Flutter erstellt",
+    "app_description": "Eine moderne App mit fortschrittlichem Glassmorphismus-UI-Design.",
+    "built_with_love": "Mit viel ❤️ erstellt",
     "copyright": "© 2025 Terminal.One. Alle Rechte vorbehalten."
   },
   "promocode": {
