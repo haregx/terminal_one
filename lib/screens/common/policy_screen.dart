@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_html/flutter_html.dart';
 import 'package:terminal_one/components/buttons/ghost_button.dart';
 import 'package:terminal_one/components/buttons/primary_button.dart';
 import '../../widgets/glassmorphism_scaffold.dart';
 import '../../widgets/appbar_aware_safe_area.dart';
-import 'package:flutter_html/flutter_html.dart';
 
-class PrivacyScreen extends StatefulWidget {
-  const PrivacyScreen({
+class PolicyScreen extends StatefulWidget {
+  const PolicyScreen({
     super.key,
     required this.showBottomButtons,
   });
@@ -14,13 +14,10 @@ class PrivacyScreen extends StatefulWidget {
   final bool showBottomButtons;
 
   @override
-  State<PrivacyScreen> createState() => _PrivacyScreenState();
+  State<PolicyScreen> createState() => _PolicyScreenState();
 }
 
-class _PrivacyScreenState extends State<PrivacyScreen> {
-
-  late String htmlText = '';
-  late String title = '';
+class _PolicyScreenState extends State<PolicyScreen> {
 
   @override
   void initState() {
@@ -29,10 +26,13 @@ class _PrivacyScreenState extends State<PrivacyScreen> {
   }
 
 
+  late String htmlText = '';
+  late String title = '';
+
   @override
   Widget build(BuildContext context) {
     return GlassmorphismScaffold(
-      title: const Text('Privacy Policy'),
+      title: const Text('Policy'),
       body: AppBarAwareSafeArea(
         child: Padding(
           padding: const EdgeInsets.all(24.0),
@@ -78,7 +78,7 @@ class _PrivacyScreenState extends State<PrivacyScreen> {
   
   void fetchSite() {
     setState(() {
-      htmlText = '<h1>Privacy Policy</h1><p>404</p>'; 
+      htmlText = '<h1>Policy</h1><p>404</p>';
     });
   }
 }

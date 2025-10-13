@@ -9,7 +9,7 @@ class RegisterService {
     required String password,
     required String confirmPassword,
   }) async {
-    final url = '${ApiConfig.baseUrl}/Users/Register';
+    final url = '${ApiConfig.baseUrl}/Users/Add';
     final jsonBody = RegisterRequest(
       loginname: email.trim(),
       emailAddress: email.trim(),

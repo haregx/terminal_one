@@ -5,6 +5,26 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased] - 2025-10-13
+
+### Added
+- **HTML Policy & Privacy Support**: Added support for rendering HTML-based policy and privacy screens
+  - Added `flutter_html` dependency for HTML rendering in Flutter widgets
+  - Introduced `PolicyScreen` for displaying policies using HTML
+  - Refactored `PrivacyScreen` to use `flutter_html` and support bottom action buttons (Accept/Decline)
+  - All usages of `PrivacyScreen` now pass the `showBottomButtons` parameter for consistent UX
+  - Improved privacy policy acceptance flow: result of privacy screen updates acceptance state asynchronously
+
+### Changed
+- Changed registration API endpoint in `RegisterService` from `/Users/Register` to `/Users/Add`
+- Explicitly added `android.permission.INTERNET` to `AndroidManifest.xml`
+- Updated web splash script version in `web/index.html` for cache busting
+
+### Added (Dependencies)
+- Added new transitive dependency: `list_counter` (via pubspec.lock)
+
+---
+
 ## [Unreleased] - 2025-10-11
 
 ### Added

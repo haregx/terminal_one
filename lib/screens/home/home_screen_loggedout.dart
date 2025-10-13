@@ -78,7 +78,7 @@ class _HomeScreenState extends State<HomeScreen> {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => const PrivacyScreen(),
+                builder: (context) => const PrivacyScreen(showBottomButtons: false,),
               ),
             );
           },

@@ -151,12 +151,15 @@ class _PasswordRequestScreenState extends State<PasswordRequestScreen> {
                                   onChanged: (val) {
                                     setState(() { _privacyAccepted = val; });
                                   },
-                                  onLabelTap: () {
-                                    Navigator.of(context).push(
+                                  onLabelTap: () async {
+                                    var result = await Navigator.of(context).push(
                                       MaterialPageRoute(
-                                        builder: (context) => PrivacyScreen(),
+                                        builder: (context) => PrivacyScreen(showBottomButtons: true,),
                                       ),
                                     );
+                                    if (result != null) {
+                                      setState(() { _privacyAccepted = result; });
+                                    }
                                   },
                                   label: 'auth.privacy_policy_accept'.tr(),
                                 ),
