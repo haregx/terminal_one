@@ -5,9 +5,9 @@ import 'package:terminal_one/providers/theme_provider.dart';
 import 'package:terminal_one/data/quick_actions_data.dart';
 import 'package:terminal_one/data/stats_data.dart';
 import 'package:terminal_one/utils/layout_constants.dart';
-import '../performance/optimized_glass_card.dart';
-import '../performance/widget_cache.dart';
-import '../../utils/performance_analyzer.dart';
+import 'optimized_glass_card.dart';
+import 'widget_cache.dart';
+import '../utils/performance_analyzer.dart';
 
 /// Performance-optimierte Version des Simple Dashboard
 /// 

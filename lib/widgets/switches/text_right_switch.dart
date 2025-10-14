@@ -1,23 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 
-class PrivacySwitch extends StatelessWidget {
+class SimpleSwitchLeftWithText extends StatelessWidget {
   final bool value;
   final ValueChanged<bool> onChanged;
   final String label;
   final VoidCallback? onLabelTap;
 
-  const PrivacySwitch({
+  const SimpleSwitchLeftWithText({
     super.key,
     required this.value,
     required this.onChanged,
-    this.label = 'I accept the privacy policy',
+    required this.label,
     this.onLabelTap,
   });
 
   @override
   Widget build(BuildContext context) {
-    final isIOS = Theme.of(context).platform == TargetPlatform.iOS || Theme.of(context).platform == TargetPlatform.macOS;
+    final platform = Theme.of(context).platform;
+    final isIOS = platform == TargetPlatform.iOS || platform == TargetPlatform.macOS;
     return Row(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [

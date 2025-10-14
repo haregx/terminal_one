@@ -4,11 +4,11 @@ import '../../utils/responsive_layout.dart';
 import '../../widgets/glassmorphism_scaffold.dart';
 import '../../widgets/app_logo.dart';
 import '../../widgets/appbar_aware_safe_area.dart';
-import '../../components/buttons/primary_button.dart';
-import '../../components/inputs/input_email.dart';
-import '../../components/inputs/input_password_extended.dart';
-import '../../components/inputs/input_password_confirm.dart';
-import '../../components/switches/privacy.dart';
+import '../../widgets/buttons/primary_button.dart';
+import '../../widgets/inputs/input_email.dart';
+import '../../widgets/inputs/input_password_extended.dart';
+import '../../widgets/inputs/input_password_confirm.dart';
+import '../../widgets/switches/text_right_switch.dart';
 import 'package:terminal_one/api_services/auth/register_service.dart';
 import 'package:terminal_one/api_services/https_post_service.dart';
 
@@ -182,7 +182,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                       },
                                     ),
                                   ),
-                                  PrivacySwitch(
+                                  SimpleSwitchLeftWithText(
                                     value: _privacyAccepted,
                                     onChanged: (val) {
                                       setState(() { _privacyAccepted = val; });

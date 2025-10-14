@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../components/inputs/input_code_group.dart';
+import 'inputs/input_code_group.dart';
 import '../utils/responsive_layout.dart';
 
 /// ResponsiveCodeInput - Ready-to-use responsive code input widget

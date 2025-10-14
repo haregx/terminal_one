@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:terminal_one/components/buttons/ghost_button.dart';
-import 'package:terminal_one/components/buttons/primary_button.dart';
+import 'package:terminal_one/widgets/buttons/ghost_button.dart';
+import 'package:terminal_one/widgets/buttons/primary_button.dart';
 import 'package:terminal_one/core/app_routes.dart';
 import 'package:terminal_one/utils/responsive_layout.dart';
 import 'package:terminal_one/widgets/glass_card.dart';
@@ -21,8 +21,7 @@ class ProfileScreen extends StatefulWidget {
   State<ProfileScreen> createState() => _ProfileScreenState();
 }
 
-class _ProfileScreenState extends State<ProfileScreen>
-    with TickerProviderStateMixin {
+class _ProfileScreenState extends State<ProfileScreen> with TickerProviderStateMixin {
   late AnimationController _fadeController;
   late Animation<double> _fadeAnimation;
   

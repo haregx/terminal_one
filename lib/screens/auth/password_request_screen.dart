@@ -3,17 +3,17 @@ import 'package:flutter/services.dart';
 import 'package:flutter/foundation.dart';
 import 'package:terminal_one/api_services/auth/password_request_service.dart';
 import 'package:terminal_one/api_services/https_post_service.dart';
-import 'package:terminal_one/components/snackbars/fancy_success_snackbar.dart';
+import 'package:terminal_one/widgets/snackbars/fancy_success_snackbar.dart';
 import 'package:terminal_one/utils/layout_constants.dart';
 import 'package:terminal_one/utils/responsive_layout.dart';
-import '../../components/buttons/primary_button.dart';
-import '../../components/inputs/input_email.dart';
+import '../../widgets/buttons/primary_button.dart';
+import '../../widgets/inputs/input_email.dart';
 import 'package:easy_localization/easy_localization.dart';
 import '../../widgets/app_logo.dart';
 import '../../widgets/glassmorphism_scaffold.dart';
 import '../../widgets/appbar_aware_safe_area.dart';
 
-import '../../components/switches/privacy.dart';
+import '../../widgets/switches/text_right_switch.dart';
 import '../common/privacy_screen.dart';
 
 /// PasswordRequestScreen - Screen for requesting password reset
@@ -146,7 +146,7 @@ class _PasswordRequestScreenState extends State<PasswordRequestScreen> {
                                 ),
                                  SizedBox(height: LayoutConstants.codeInputButtonSpacing),
                                 // Privacy policy acceptance switch
-                                PrivacySwitch(
+                                SimpleSwitchLeftWithText(
                                   value: _privacyAccepted,
                                   onChanged: (val) {
                                     setState(() { _privacyAccepted = val; });

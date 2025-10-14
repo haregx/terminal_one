@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:terminal_one/components/buttons/ghost_button.dart';
-import 'package:terminal_one/components/buttons/primary_button.dart';
+import 'package:terminal_one/widgets/buttons/ghost_button.dart';
+import 'package:terminal_one/widgets/buttons/primary_button.dart';
 import '../../widgets/glassmorphism_scaffold.dart';
 import '../../widgets/appbar_aware_safe_area.dart';
 import 'package:flutter_html/flutter_html.dart';

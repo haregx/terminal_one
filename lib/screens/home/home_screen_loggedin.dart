@@ -12,8 +12,7 @@ class HomeScreenLoggedIn extends StatefulWidget {
   State<HomeScreenLoggedIn> createState() => _HomeScreenLoggedInState();
 }
 
-class _HomeScreenLoggedInState extends State<HomeScreenLoggedIn>
-    with TickerProviderStateMixin {
+class _HomeScreenLoggedInState extends State<HomeScreenLoggedIn> with TickerProviderStateMixin {
   late AnimationController _fadeController;
   late Animation<double> _fadeAnimation;
   

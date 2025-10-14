@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:terminal_one/components/switches/simple_switch.dart';
+import 'package:terminal_one/widgets/switches/simple_switch.dart';
 
 /// Theme toggle widget with smooth animation
 /// 
@@ -37,7 +37,7 @@ class _ThemeToggleState extends State<ThemeToggle> {
     final isDark = widget.themeMode == ThemeMode.dark;
     
     // Einfacher Switch ohne externe Icons
-    Widget button = PlatformSwitch(
+    Widget button = SimpleSwitch(
       value: isDark,
       onChanged: (value) {
         final newTheme = value ? ThemeMode.dark : ThemeMode.light;

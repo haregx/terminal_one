@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:lucide_icons/lucide_icons.dart';
-import 'package:terminal_one/components/buttons/ghost_button.dart';
-import 'package:terminal_one/components/buttons/secondary_button.dart';
-import 'package:terminal_one/components/spacer/separator_withtext.dart';
+import 'package:terminal_one/widgets/buttons/ghost_button.dart';
+import 'package:terminal_one/widgets/buttons/secondary_button.dart';
+import 'package:terminal_one/widgets/spacer/separator_withtext.dart';
 import 'package:terminal_one/screens/games/game_details_screen.dart';
 import 'package:terminal_one/utils/responsive_layout.dart';
-import '../../components/buttons/primary_button.dart';
-import '../../components/inputs/input_code_group.dart';
+import '../../widgets/buttons/primary_button.dart';
+import '../../widgets/inputs/input_code_group.dart';
 import '../../utils/platform_utils.dart';
 import '../../widgets/responsive_code_input.dart';
 import '../../widgets/glassmorphism_scaffold.dart';

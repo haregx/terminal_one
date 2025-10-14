@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../widgets/glass_card.dart';
+import '../glass_card.dart';
 
 class PromoCodeCard extends StatelessWidget {
   final String imageUrl;

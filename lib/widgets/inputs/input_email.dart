@@ -124,14 +124,11 @@ class _InputEmailState extends State<InputEmail> {
 
   void _validateEmail(String value) {
     final isValid = _isValidEmail(value);
-    final shouldShowError = !isValid && value.isNotEmpty && 
-                           (widget.validateRealTime || _hasBeenFocused);
+    final shouldShowError = !isValid && value.isNotEmpty && (widget.validateRealTime || _hasBeenFocused);
     
     setState(() {
       _isValid = isValid;
-      _errorText = shouldShowError 
-          ? (widget.customErrorMessage ?? _getLocalizedErrorMessage())
-          : null;
+      _errorText = shouldShowError ? (widget.customErrorMessage ?? _getLocalizedErrorMessage()) : null;
     });
     
     widget.onValidationChanged?.call(isValid);

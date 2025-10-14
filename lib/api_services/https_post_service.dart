@@ -4,7 +4,7 @@ import 'dart:io';
 import 'dart:async';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
-import 'package:terminal_one/components/snackbars/fancy_error_snackbar.dart';
+import 'package:terminal_one/widgets/snackbars/fancy_error_snackbar.dart';
 
 /// SimpleHttpsPost - Utility class for sending HTTPS POST requests with JSON body and receiving JSON response.
 class SimpleHttpsPost {

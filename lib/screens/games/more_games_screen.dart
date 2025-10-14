@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:terminal_one/components/cards/promocode_card.dart';
+import 'package:terminal_one/screens/games/game_details_screen.dart';
+import 'package:terminal_one/widgets/cards/promocode_card.dart';
 import '../../widgets/glassmorphism_scaffold.dart';
 import '../../widgets/appbar_aware_safe_area.dart';
 import '../../data/promo_data.dart';
@@ -118,7 +119,14 @@ class _MoreGamesScreenState extends State<MoreGamesScreen> {
         description: card.description,
         promoCode: card.promoCode,
         validity: card.validity,
-        onTap: () {},
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => GameDetailsScreen(),
+            ),
+          );
+        },
         // Entferne ggf. Padding/Margin in PromoCodeCard selbst, falls dort noch zusätzlicher Abstand ist!
       ),
     );

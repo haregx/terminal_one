@@ -1,9 +1,9 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter/material.dart';
 import 'package:terminal_one/widgets/glass_card.dart';
-import 'package:terminal_one/widgets/performance/optimized_glass_card.dart';
+import 'package:terminal_one/performance/optimized_glass_card.dart';
 import 'package:terminal_one/widgets/dashboard/simple_dashboard.dart';
-import 'package:terminal_one/widgets/performance/optimized_dashboard.dart';
+import 'package:terminal_one/performance/optimized_dashboard.dart';
 
 /// Performance Benchmark Tests
 /// 

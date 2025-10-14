@@ -5,6 +5,22 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+
+## [Unreleased] - 2025-10-14
+
+### Added
+- Added `circular_seek_bar` dependency for circular progress/seek bar widgets.
+
+- **New Input, Button, Switch, and Game UI Widgets**:
+  - Added switch widgets: `SimpleSwitch` and `SimpleSwitchLeftWithText` for adaptive Material/Cupertino toggles with label support.
+  - Added game UI widgets: `QuizButtonFlippable`, `QuizButtonsGroup`, `ClassicCircularProgress`, and `DotsProgressGroup` for quiz/game flows with animated progress and answer feedback.
+
+### Technical Improvements
+- Modularized and refactored input, button, switch, and game UI components for better maintainability and reusability.
+- Improved accessibility, theming, and platform adaptation across new widgets.
+
+---
+
 ## [Unreleased] - 2025-10-13
 
 ### Added

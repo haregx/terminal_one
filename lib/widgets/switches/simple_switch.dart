@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/foundation.dart';
 
 /// A simple adaptive switch that uses Material Switch on Android and CupertinoSwitch on iOS.
-class PlatformSwitch extends StatelessWidget {
+class SimpleSwitch extends StatelessWidget {
   final bool value;
   final ValueChanged<bool> onChanged;
 
 
-  const PlatformSwitch({
+  const SimpleSwitch({
     super.key,
     required this.value,
     required this.onChanged,
