@@ -41,7 +41,7 @@ class QuickActionsData {
   static const List<QuickActionData> actions = [
     QuickActionData(
       id: 'code',
-      title: 'Promo-Code eingeben', // Fallback
+      title: 'Promocode eingeben', // Fallback
       titleKey: 'quick_actions.enter_promo_code',
       icon: LucideIcons.ticket, // Passender für Promo-Codes
       route: AppRoutes.promoCode,
@@ -50,7 +50,7 @@ class QuickActionsData {
     ),
      QuickActionData(
       id: 'games',
-      title: 'Mehr Promo-Codes', // Fallback
+      title: 'Mehr Promocodes', // Fallback
       titleKey: 'quick_actions.more_promo_codes',
       icon: LucideIcons.gift, // Geschenk-Icon für mehr Codes
       route: AppRoutes.moreGames,

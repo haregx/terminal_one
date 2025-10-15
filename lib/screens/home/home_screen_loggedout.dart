@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lucide_icons/lucide_icons.dart';
+import 'package:terminal_one/widgets/buttons/button3d_primary.dart';
+import 'package:terminal_one/widgets/buttons/button3d_secondary.dart';
 import 'package:terminal_one/widgets/buttons/ghost_button.dart';
 import 'package:terminal_one/widgets/buttons/secondary_button.dart';
 import 'package:terminal_one/widgets/spacer/separator_withtext.dart';
@@ -31,6 +33,8 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   bool _isCodeComplete = false;
   final GlobalKey<InputCodeGroupState> _codeInputKey = GlobalKey<InputCodeGroupState>();
+  
+  bool _isProcessing = false;
   //final AuthService _authService = AuthService();
   //final AuthStateNotifier _authStateNotifier = AuthStateNotifier();
 
@@ -161,18 +165,21 @@ class _HomeScreenState extends State<HomeScreen> {
                                 debugPrint('Code validity changed: $isValid');
                               },
                             ),
-                            PrimaryButton(
-                              label: 'home.verify_code'.tr(),
-                              enabled: _isCodeComplete,
-                              onPressed: _isCodeComplete ? () {
-                                debugPrint('Verifying code: ${_codeInputKey.currentState?.code ?? ''}');
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => const GameDetailsScreen(),
-                                  ),
-                                );
-                              } : null,
+                            IntrinsicWidth(
+                              child: PrimaryButton3D(
+                                label: _isProcessing ? 'common.loading'.tr() : 'promocode.redeem'.tr(),
+                                leadingIcon: _isProcessing ? null : LucideIcons.gift,
+                                enabled: _isCodeComplete,
+                                onPressed: _isCodeComplete ? () {
+                                  debugPrint('Verifying code: ${_codeInputKey.currentState?.code ?? ''}');
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => const GameDetailsScreen(),
+                                    ),
+                                  );
+                                } : null,
+                              ),
                             ),
                             GhostButton(
                               leading: LucideIcons.x,
@@ -197,17 +204,19 @@ class _HomeScreenState extends State<HomeScreen> {
                               SeparatorWithText(
                                   text: 'home.promo_code_signup_text'.tr(),
                               ),
-                              SecondaryButton(
-                                onPressed: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => const LoginScreen(),
-                                    ),
-                                  );
-                                },
-                                leading: LucideIcons.logIn,
-                                label: 'home.to_login'.tr(),
+                              IntrinsicWidth(
+                                child: SecondaryButton3D(
+                                  onPressed: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => const LoginScreen(),
+                                      ),
+                                    );
+                                  },
+                                  leadingIcon: LucideIcons.logIn,
+                                  label: 'home.to_login'.tr(),
+                                ),
                               ),
                             ],
                         

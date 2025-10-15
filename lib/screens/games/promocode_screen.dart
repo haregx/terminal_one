@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lucide_icons/lucide_icons.dart';
+import 'package:terminal_one/widgets/buttons/button3d_primary.dart';
 import 'package:terminal_one/widgets/buttons/ghost_button.dart';
 import 'package:terminal_one/screens/games/game_details_screen.dart';
 import 'package:terminal_one/utils/responsive_layout.dart';
@@ -10,6 +11,7 @@ import '../../widgets/responsive_code_input.dart';
 import '../../widgets/glassmorphism_scaffold.dart';
 import '../../widgets/app_logo.dart';
 import '../../widgets/appbar_aware_safe_area.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 /// PromoCode Screen - Allows users to enter promotional codes
 /// 
@@ -34,10 +36,10 @@ class _PromoCodeScreenState extends State<PromoCodeScreen> {
   void _showPromoCodeInfo(BuildContext context) {
     PlatformUtils.showPlatformDialog(
       context: context,
-      title: const Text('What is a Promo Code?'),
-      content: const Text(
-        'Promo codes are special codes that give you access to exclusive content, bonuses, or rewards. Enter the code exactly as provided to unlock your benefits.',
-        style: TextStyle(fontSize: 14.0),
+      title: Text('home.what_is_promo_code'.tr()),
+      content: Text(
+        'home.promo_code_explanation'.tr(),
+        style: const TextStyle(fontSize: 14.0),
       ),
       actions: [
         PlatformDialogAction(
@@ -45,7 +47,7 @@ class _PromoCodeScreenState extends State<PromoCodeScreen> {
           onPressed: () {
             Navigator.of(context).pop();
           },
-          child: const Text('Got it!'),
+          child: Text('home.understood'.tr()),
         ),
       ],
     );
@@ -56,7 +58,7 @@ class _PromoCodeScreenState extends State<PromoCodeScreen> {
   Widget build(BuildContext context) {
     
     return GlassmorphismScaffold(
-      title: const Text('Promo Code'),
+      title: Text('navigation.promocode'.tr()),
       body: AppBarAwareSafeArea(
         child: LayoutBuilder(
           builder: (context, constraints) {
@@ -80,21 +82,15 @@ class _PromoCodeScreenState extends State<PromoCodeScreen> {
                               size: LogoSize.large,
                               variant: LogoVariant.minimal,
                             ),
+                           
                             Text(
-                              '🎁 Enter Promo Code',
-                              style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                                fontWeight: FontWeight.bold,
-                              ),
-                              textAlign: TextAlign.center,
-                            ),
-                            Text(
-                              'Enter your promotional code to unlock exclusive rewards and bonuses.',
+                              'home.enter_access_code'.tr(),
                               style: Theme.of(context).textTheme.bodyLarge,
                               textAlign: TextAlign.center,
                             ),
                             GhostButton(
                               leading: LucideIcons.helpCircle,
-                              label: 'What is a Promo Code?',
+                              label: 'home.what_is_promo_code'.tr(),
                               onPressed: () {
                                 _showPromoCodeInfo(context);
                               },
@@ -121,20 +117,22 @@ class _PromoCodeScreenState extends State<PromoCodeScreen> {
                                 debugPrint('Promo code validity changed: $isValid');
                               },
                             ),
-                            PrimaryButton(
-                              label: _isProcessing ? 'Redeeming...' : 'Redeem Code',
-                              enabled: _isCodeComplete && !_isProcessing,
-                              leading: _isProcessing ? null : LucideIcons.gift,
-                              onPressed: _isCodeComplete && !_isProcessing 
-                                ? () {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) => const GameDetailsScreen(),
-                                      ),
-                                    );
-                                  }
-                                : null,
+                            IntrinsicWidth(
+                              child: PrimaryButton3D(
+                                label: _isProcessing ? 'common.loading'.tr() : 'promocode.redeem'.tr(),
+                                enabled: _isCodeComplete && !_isProcessing,
+                                leadingIcon: _isProcessing ? null : LucideIcons.gift,
+                                onPressed: _isCodeComplete && !_isProcessing 
+                                  ? () {
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) => const GameDetailsScreen(),
+                                        ),
+                                      );
+                                    }
+                                  : null,
+                              ),
                             ),
                             GhostButton(
                               leading: LucideIcons.x,
@@ -145,7 +143,7 @@ class _PromoCodeScreenState extends State<PromoCodeScreen> {
                                 });
                                 debugPrint('Promo code cleared');
                               },
-                              label: 'Clear Code',
+                              label: 'home.clear_code'.tr(),
                             ),
                           ],
                         ),

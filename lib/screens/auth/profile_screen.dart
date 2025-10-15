@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:terminal_one/widgets/buttons/button3d_primary.dart';
 import 'package:terminal_one/widgets/buttons/ghost_button.dart';
 import 'package:terminal_one/widgets/buttons/primary_button.dart';
 import 'package:terminal_one/core/app_routes.dart';
@@ -505,9 +506,9 @@ class _ProfileScreenState extends State<ProfileScreen> with TickerProviderStateM
             textAlign: TextAlign.center,
           ),
           const SizedBox(height: 16),
-          PrimaryButton(
+          PrimaryButton3D(
             label: 'auth.logout'.tr(),
-            leading: LucideIcons.logOut,
+            leadingIcon: LucideIcons.logOut,
             onPressed: () => AppRoutes.navigateToLogout(context),
           ),
         ],

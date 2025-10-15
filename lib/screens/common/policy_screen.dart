@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
+import 'package:terminal_one/widgets/buttons/button3d_primary.dart';
 import 'package:terminal_one/widgets/buttons/ghost_button.dart';
 import 'package:terminal_one/widgets/buttons/primary_button.dart';
 import '../../widgets/glassmorphism_scaffold.dart';
@@ -58,12 +59,14 @@ class _PolicyScreenState extends State<PolicyScreen> {
                       Navigator.of(context).pop(false);
                     },
                   ),
-                  PrimaryButton(
-                    label: 'Akzeptieren',
-                    onPressed: () {
-                      Navigator.of(context).pop(true);
-                    },
-                    enabled: true,
+                  IntrinsicWidth(
+                    child: PrimaryButton3D(
+                      label: 'Akzeptieren',
+                      onPressed: () {
+                        Navigator.of(context).pop(true);
+                      },
+                      enabled: true,
+                    ),
                   ),
                 ],
               )

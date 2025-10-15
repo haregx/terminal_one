@@ -99,7 +99,7 @@ class _MainAppState extends State<MainApp> {
         systemNavigationBarColor: Colors.transparent,
       ),
       child: MaterialApp(
-        title: 'Terminal One',
+        title: 'Terminal.One',
         theme: AppTheme.lightTheme,
         darkTheme: AppTheme.darkTheme,
         themeMode: themeProvider.themeMode,

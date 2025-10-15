@@ -3,6 +3,8 @@ import 'package:lucide_icons/lucide_icons.dart';
 import 'package:provider/provider.dart';
 import 'package:terminal_one/api_services/auth/login_service.dart';
 import 'package:terminal_one/api_services/https_post_service.dart';
+import 'package:terminal_one/widgets/buttons/button3d_primary.dart';
+import 'package:terminal_one/widgets/buttons/button3d_secondary.dart';
 import 'package:terminal_one/widgets/buttons/ghost_button.dart';
 import 'package:terminal_one/widgets/buttons/secondary_button.dart';
 import 'package:terminal_one/widgets/inputs/input_password_simple.dart';
@@ -223,10 +225,12 @@ class _LoginScreenState extends State<LoginScreen> {
                                         label: 'auth.forgot_pin'.tr(),
                                       ),
                                       // Login button
-                                      PrimaryButton(
-                                        label: 'auth.login'.tr(),
-                                        enabled: _canLogin,
-                                        onPressed: _canLogin ? _handleLogin : null,
+                                      IntrinsicWidth(
+                                        child: PrimaryButton3D(
+                                          label: 'auth.login'.tr(),
+                                          enabled: _canLogin,
+                                          onPressed: _canLogin ? _handleLogin : null,
+                                        ),
                                       ),
                                     ],
                                   ),
@@ -245,17 +249,19 @@ class _LoginScreenState extends State<LoginScreen> {
                               // Registration separator text (internationalized)
                               SeparatorWithText(text: 'auth.no_account'.tr()),
                               // Registration button
-                              SecondaryButton(
-                                leading: LucideIcons.userPlus,
-                                onPressed: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => const RegisterScreen(),
-                                    ),
-                                  );
-                                },
-                                label: 'auth.to_registration'.tr(),
+                              IntrinsicWidth(
+                                child: SecondaryButton3D(
+                                  leadingIcon: LucideIcons.userPlus,
+                                  onPressed: () {
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => const RegisterScreen(),
+                                      ),
+                                    );
+                                  },
+                                  label: 'auth.to_registration'.tr(),
+                                ),
                               ),
                             ],
                           ),

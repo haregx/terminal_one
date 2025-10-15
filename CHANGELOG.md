@@ -6,6 +6,25 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 
+
+## [Unreleased] - 2025-10-15
+
+### Changed
+- All primary and secondary action buttons across the app now use new 3D-styled widgets (`PrimaryButton3D`, `SecondaryButton3D`) for a modern, consistent look and improved accessibility.
+- Updated all screens and dialogs to replace legacy `PrimaryButton` and `SecondaryButton` usages with the new 3D button components, including login, registration, password reset, promo code, game, and profile flows.
+- Improved button alignment and sizing by wrapping main action buttons in `IntrinsicWidth` for consistent minimum width.
+- Updated quick actions and translations for more consistent terminology (e.g., "Promo-Code" → "Promocode").
+- Changed app title to "Terminal.One" in `main.dart` for branding consistency.
+- Updated web splash script version in `web/index.html` for cache busting.
+
+### Added
+- Added new `PrimaryButton3D` and `SecondaryButton3D` widgets for 3D-styled, platform-adaptive buttons with gradients, shadows, and icon support.
+- Added all necessary imports and usages of the new button widgets throughout the codebase.
+
+### Fixed
+- Fixed minor translation inconsistencies in `de.json` and quick actions data (e.g., "Promo-Code" → "Promocode").
+- Fixed button label and icon alignment issues in several screens.
+
 ## [Unreleased] - 2025-10-14
 
 ### Added

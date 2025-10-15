@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter/foundation.dart';
 import 'package:terminal_one/api_services/auth/password_request_service.dart';
 import 'package:terminal_one/api_services/https_post_service.dart';
+import 'package:terminal_one/widgets/buttons/button3d_primary.dart';
 import 'package:terminal_one/widgets/snackbars/fancy_success_snackbar.dart';
 import 'package:terminal_one/utils/layout_constants.dart';
 import 'package:terminal_one/utils/responsive_layout.dart';
@@ -165,10 +166,12 @@ class _PasswordRequestScreenState extends State<PasswordRequestScreen> {
                                 ),
                                 SizedBox(height: LayoutConstants.codeInputButtonSpacing),
                                 // Button to send password reset request
-                                PrimaryButton(
-                                  label: 'auth.send_password_request'.tr(),
-                                  enabled: _isEmailValid && _privacyAccepted,
-                                  onPressed: _isEmailValid && _privacyAccepted ? _handlePasswordRequest : null,
+                                IntrinsicWidth(
+                                  child: PrimaryButton3D(
+                                    label: 'auth.send_password_request'.tr(),
+                                    enabled: _isEmailValid && _privacyAccepted,
+                                    onPressed: _isEmailValid && _privacyAccepted ? _handlePasswordRequest : null,
+                                  ),
                                 ),
                               ],
                             ),

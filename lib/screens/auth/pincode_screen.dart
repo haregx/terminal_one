@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:terminal_one/widgets/buttons/button3d_primary.dart';
 import 'package:terminal_one/widgets/buttons/ghost_button.dart';
 import 'package:terminal_one/widgets/buttons/primary_button.dart';
 import 'package:terminal_one/utils/responsive_layout.dart';
@@ -70,16 +71,18 @@ class _PincodeScreenState extends State<PincodeScreen> {
                           // Optional: handle validity
                         },
                       ),
-                      PrimaryButton(
-                        label: 'common.submit'.tr(),
-                        enabled: _pincode.length == 4,
-                        onPressed: _pincode.length == 4
-                            ? () {
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  SnackBar(content: Text('Pincode entered: $_pincode')),
-                                );
-                              }
-                            : null,
+                      IntrinsicWidth(
+                        child: PrimaryButton3D(
+                          label: 'common.submit'.tr(),
+                          enabled: _pincode.length == 4,
+                          onPressed: _pincode.length == 4
+                              ? () {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(content: Text('Pincode entered: $_pincode')),
+                                  );
+                                }
+                              : null,
+                        ),
                       ),
                       GhostButton(
                         leading: LucideIcons.x,
