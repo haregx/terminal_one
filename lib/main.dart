@@ -14,7 +14,13 @@ import 'package:flutter_native_splash/flutter_native_splash.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  
+
+  // Lock orientation to portrait only
+  await SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]);
+
   // Easy Localization initialisieren
   await EasyLocalization.ensureInitialized();
   
@@ -32,14 +38,10 @@ void main() async {
     await Future.delayed(const Duration(milliseconds: 10));
   }
   authProvider.addListener(() {
-    debugPrint(authProvider.isLoggedIn
-      ? '✅ User is logged in.'
-      : '🔒 No user logged in.');
+    debugPrint(authProvider.isLoggedIn ? '✅ User is logged in.' : '🔒 No user logged in.');
   });
-  debugPrint(authProvider.isLoggedIn
-    ? '✅ User is logged in.'
-    : '🔒 No user logged in.');
-    
+  debugPrint(authProvider.isLoggedIn ? '✅ User is logged in.' : '🔒 No user logged in.');
+
   runApp(
     EasyLocalization(
       supportedLocales: const [

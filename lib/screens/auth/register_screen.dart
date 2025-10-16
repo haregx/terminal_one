@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:terminal_one/widgets/buttons/button3d_primary.dart';
+import 'package:terminal_one/widgets/buttons/button3d.dart';
 import '../../utils/responsive_layout.dart';
 import '../../widgets/glassmorphism_scaffold.dart';
 import '../../widgets/app_logo.dart';
 import '../../widgets/appbar_aware_safe_area.dart';
-import '../../widgets/buttons/primary_button.dart';
 import '../../widgets/inputs/input_email.dart';
 import '../../widgets/inputs/input_password_extended.dart';
 import '../../widgets/inputs/input_password_confirm.dart';
@@ -201,7 +200,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                     label: 'auth.privacy_policy_accept'.tr(),
                                   ),
                                   IntrinsicWidth(
-                                    child: PrimaryButton3D(
+                                    child: Button3D(
                                       label: 'auth.register_button'.tr(),
                                       enabled: _canRegister && !_isLoading,
                                       onPressed: _canRegister && !_isLoading ? _handleRegistration : null,

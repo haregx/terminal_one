@@ -27,7 +27,7 @@ class RegisterRequest extends ApiRequest {
       emailAddress: emailAddress,
       password: password,
       apiKey: apiKey,
-      vendor: vendor ?? ApiRequest.kwizzi,
+      vendor: vendor ?? ApiRequest.terminalone,
     );
   }
 

@@ -23,7 +23,7 @@ class LoginRequest extends ApiRequest {
       loginname: loginname,
       password: password,
       apiKey: apiKey,
-      vendor: vendor ?? ApiRequest.kwizzi,
+      vendor: vendor ?? ApiRequest.terminalone,
     );
   }
 

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:terminal_one/widgets/buttons/primary_button.dart';
 import 'package:terminal_one/screens/games/game_result_screen.dart';
 import 'package:terminal_one/widgets/game/button_group.dart';
 import '../../widgets/glassmorphism_scaffold.dart';
@@ -38,40 +37,42 @@ class _GameScreenState extends State<GameScreen> {
       
       body: AppBarAwareSafeArea(
         child: Padding(
-          padding: const EdgeInsets.all(16),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(bottom: 24),
-                child: QuizButtonsGroup(
-                  callbackNextStep: (bool isCorrect) {
-
-                  },
-                  callbackNextPage: (int correctAnswers) {
-                    Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => GameResultScreen(
-                          correctAnswers: correctAnswers.toDouble(),
-                          questions: map.length.toDouble(),
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 24),
+                  child: QuizButtonsGroup(
+                    callbackNextStep: (bool isCorrect) {
+            
+                    },
+                    callbackNextPage: (int correctAnswers) {
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => GameResultScreen(
+                            correctAnswers: correctAnswers.toDouble(),
+                            questions: map.length.toDouble(),
+                          ),
                         ),
-                      ),
-                    );
-                  },
-                  callbackQuestionClicked: () {
-
-                  },
-                  categoryName: categoryName,
-                  map: map,
-                  sumQuestions: map.length,
-                  callbackExplanationClicked: (String question, String htmlText, bool hasKI) {
-
-                  },
+                      );
+                    },
+                    callbackQuestionClicked: () {
+            
+                    },
+                    categoryName: categoryName,
+                    map: map,
+                    sumQuestions: map.length,
+                    callbackExplanationClicked: (String question, String htmlText, bool hasKI) {
+            
+                    },
+                  ),
                 ),
-              ),
-              // Responsives Grid Layout mit GridView
-            ],
+                // Responsives Grid Layout mit GridView
+              ],
+            ),
           ),
         ),
       ),

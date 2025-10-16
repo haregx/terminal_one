@@ -15,7 +15,7 @@ class RegisterService {
       emailAddress: email.trim(),
       password: password,
       apiKey: ApiConfig.apiKey,
-      vendor: ApiRequest.kwizzi,
+      vendor: ApiRequest.terminalone,
     ).toJson();
 
     try {

@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:terminal_one/widgets/buttons/button3d_primary.dart';
+import 'package:terminal_one/widgets/buttons/button3d.dart';
 import 'package:terminal_one/widgets/buttons/ghost_button.dart';
-import 'package:terminal_one/widgets/buttons/primary_button.dart';
 import 'package:terminal_one/core/app_routes.dart';
 import 'package:terminal_one/utils/responsive_layout.dart';
 import 'package:terminal_one/widgets/glass_card.dart';
@@ -146,36 +145,21 @@ class _ProfileScreenState extends State<ProfileScreen> with TickerProviderStateM
             child: Padding(
               padding: const EdgeInsets.all(24),
               child: Column(
+                spacing: ResponsiveSpacing.large(context),
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   // Profile Header
                   _buildProfileHeader(isDark),
-                  
-                  SizedBox(height: ResponsiveSpacing.large(context)),
-                  
                   // Stats Cards
                   _buildStatsSection(isDark),
-                  
-                  SizedBox(height: ResponsiveSpacing.large(context)),
-                  
                   // Account Settings
                   _buildAccountSettingsSection(isDark),
-                  
-                  SizedBox(height: ResponsiveSpacing.large(context)),
-                  
                   // App Settings
                   _buildAppSettingsSection(isDark),
-                  
-                  SizedBox(height: ResponsiveSpacing.large(context)),
-                  
                   // Danger Zone
                   _buildDangerZoneSection(isDark),
-                  
-                  SizedBox(height: ResponsiveSpacing.large(context)),
-                  
                   // Logout Button
                   _buildLogoutSection(isDark),
-                  
                   const SizedBox(height: 40),
                 ],
               ),
@@ -199,10 +183,7 @@ class _ProfileScreenState extends State<ProfileScreen> with TickerProviderStateM
             decoration: BoxDecoration(
               shape: BoxShape.circle,
               gradient: LinearGradient(
-                colors: [
-                  Colors.blue.withAlpha(77),
-                  Colors.purple.withAlpha(77),
-                ],
+                colors: [Colors.blue.withAlpha(77),Colors.purple.withAlpha(77),],
               ),
               border: Border.all(
                 color: Colors.white.withAlpha(77),
@@ -223,9 +204,7 @@ class _ProfileScreenState extends State<ProfileScreen> with TickerProviderStateM
             _userName,
             style: Theme.of(context).textTheme.headlineSmall?.copyWith(
               fontWeight: FontWeight.bold,
-              color: isDark 
-                  ? Colors.white.withAlpha(230)
-                  : Colors.black.withAlpha(230),
+              color: isDark ? Colors.white.withAlpha(230) : Colors.black.withAlpha(230),
             ),
           ),
           
@@ -235,9 +214,7 @@ class _ProfileScreenState extends State<ProfileScreen> with TickerProviderStateM
           Text(
             _userEmail,
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-              color: isDark 
-                  ? Colors.white.withAlpha(179)
-                  : Colors.black.withAlpha(179),
+              color: isDark ? Colors.white.withAlpha(179) : Colors.black.withAlpha(179),
             ),
           ),
           
@@ -247,9 +224,7 @@ class _ProfileScreenState extends State<ProfileScreen> with TickerProviderStateM
           Text(
             'profile.member_since'.tr(namedArgs: {'year': _memberSince.year.toString()}),
             style: Theme.of(context).textTheme.bodySmall?.copyWith(
-              color: isDark 
-                  ? Colors.white.withAlpha(153)
-                  : Colors.black.withAlpha(153),
+              color: isDark ? Colors.white.withAlpha(153) : Colors.black.withAlpha(153),
             ),
           ),
           
@@ -328,18 +303,14 @@ class _ProfileScreenState extends State<ProfileScreen> with TickerProviderStateM
             value,
             style: Theme.of(context).textTheme.headlineMedium?.copyWith(
               fontWeight: FontWeight.bold,
-              color: isDark 
-                  ? Colors.white.withAlpha(230)
-                  : Colors.black.withAlpha(230),
+              color: isDark ? Colors.white.withAlpha(230) : Colors.black.withAlpha(230),
             ),
           ),
           const SizedBox(height: 4),
           Text(
             title,
             style: Theme.of(context).textTheme.bodySmall?.copyWith(
-              color: isDark 
-                  ? Colors.white.withAlpha(179)
-                  : Colors.black.withAlpha(179),
+              color: isDark ? Colors.white.withAlpha(179) : Colors.black.withAlpha(179),
             ),
             textAlign: TextAlign.center,
           ),
@@ -356,9 +327,7 @@ class _ProfileScreenState extends State<ProfileScreen> with TickerProviderStateM
           'profile.account_settings'.tr(),
           style: Theme.of(context).textTheme.titleMedium?.copyWith(
             fontWeight: FontWeight.w600,
-            color: isDark 
-                ? Colors.white.withAlpha(230)
-                : Colors.black.withAlpha(230),
+            color: isDark ? Colors.white.withAlpha(230) : Colors.black.withAlpha(230),
           ),
         ),
         const SizedBox(height: 16),
@@ -405,9 +374,7 @@ class _ProfileScreenState extends State<ProfileScreen> with TickerProviderStateM
           'profile.app_settings'.tr(),
           style: Theme.of(context).textTheme.titleMedium?.copyWith(
             fontWeight: FontWeight.w600,
-            color: isDark 
-                ? Colors.white.withAlpha(230)
-                : Colors.black.withAlpha(230),
+            color: isDark ? Colors.white.withAlpha(230) : Colors.black.withAlpha(230),
           ),
         ),
         const SizedBox(height: 16),
@@ -490,23 +457,19 @@ class _ProfileScreenState extends State<ProfileScreen> with TickerProviderStateM
             'profile.ready_to_go'.tr(),
             style: Theme.of(context).textTheme.titleMedium?.copyWith(
               fontWeight: FontWeight.w600,
-              color: isDark 
-                  ? Colors.white.withAlpha(230)
-                  : Colors.black.withAlpha(230),
+              color: isDark ? Colors.white.withAlpha(230) : Colors.black.withAlpha(230),
             ),
           ),
           const SizedBox(height: 8),
           Text(
             'profile.comeback_anytime'.tr(),
             style: Theme.of(context).textTheme.bodySmall?.copyWith(
-              color: isDark 
-                  ? Colors.white.withAlpha(179)
-                  : Colors.black.withAlpha(179),
+              color: isDark ? Colors.white.withAlpha(179) : Colors.black.withAlpha(179),
             ),
             textAlign: TextAlign.center,
           ),
           const SizedBox(height: 16),
-          PrimaryButton3D(
+          Button3D(
             label: 'auth.logout'.tr(),
             leadingIcon: LucideIcons.logOut,
             onPressed: () => AppRoutes.navigateToLogout(context),
@@ -526,15 +489,10 @@ class _ProfileScreenState extends State<ProfileScreen> with TickerProviderStateM
   }) {
     final titleColor = isDestructive 
         ? Colors.red.withAlpha(230)
-        : isDark 
-            ? Colors.white.withAlpha(230)
-            : Colors.black.withAlpha(230);
-    final iconColor = isDestructive 
-        ? Colors.red 
-        : isDark 
-            ? Colors.white.withAlpha(204)
-            : Colors.black.withAlpha(204);
-
+        : isDark ? Colors.white.withAlpha(230) : Colors.black.withAlpha(230);
+    final iconColor = isDestructive
+        ? Colors.red
+        : isDark ? Colors.white.withAlpha(204) : Colors.black.withAlpha(204); // isDark
     return InkWell(
       onTap: onTap,
       borderRadius: BorderRadius.circular(12),
@@ -562,9 +520,7 @@ class _ProfileScreenState extends State<ProfileScreen> with TickerProviderStateM
                   Text(
                     subtitle,
                     style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                      color: isDark 
-                          ? Colors.white.withAlpha(153)
-                          : Colors.black.withAlpha(153),
+                      color: isDark ? Colors.white.withAlpha(153) : Colors.black.withAlpha(153),
                     ),
                   ),
                 ],
@@ -573,9 +529,7 @@ class _ProfileScreenState extends State<ProfileScreen> with TickerProviderStateM
             Icon(
               LucideIcons.chevronRight,
               size: 20,
-              color: isDark 
-                  ? Colors.white.withAlpha(128)
-                  : Colors.black.withAlpha(128),
+              color: isDark ? Colors.white.withAlpha(128) : Colors.black.withAlpha(128),
             ),
           ],
         ),
@@ -587,9 +541,7 @@ class _ProfileScreenState extends State<ProfileScreen> with TickerProviderStateM
     final isDark = Theme.of(context).brightness == Brightness.dark;
     return Container(
       height: 1,
-      color: isDark 
-          ? Colors.white.withAlpha(26)
-          : Colors.black.withAlpha(26),
+      color: isDark ? Colors.white.withAlpha(26) : Colors.black.withAlpha(26),
       margin: const EdgeInsets.symmetric(horizontal: 16),
     );
   }

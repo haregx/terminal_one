@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:lucide_icons/lucide_icons.dart';
-import 'package:terminal_one/widgets/buttons/button3d_primary.dart';
+import 'package:terminal_one/widgets/buttons/button3d.dart';
 import 'package:terminal_one/widgets/buttons/ghost_button.dart';
 import 'package:terminal_one/screens/games/game_details_screen.dart';
 import 'package:terminal_one/utils/responsive_layout.dart';
-import '../../widgets/buttons/primary_button.dart';
 import '../../widgets/inputs/input_code_group.dart';
 import '../../utils/platform_utils.dart';
 import '../../widgets/responsive_code_input.dart';
@@ -30,8 +29,9 @@ class PromoCodeScreen extends StatefulWidget {
 
 class _PromoCodeScreenState extends State<PromoCodeScreen> {
   bool _isCodeComplete = false;
-  bool _isProcessing = false;
+  final bool _isProcessing = false;
   final GlobalKey<InputCodeGroupState> _codeInputKey = GlobalKey<InputCodeGroupState>();
+  String _codeValue = '';
 
   void _showPromoCodeInfo(BuildContext context) {
     PlatformUtils.showPlatformDialog(
@@ -101,6 +101,7 @@ class _PromoCodeScreenState extends State<PromoCodeScreen> {
                               onChanged: (value) {
                                 setState(() {
                                   _isCodeComplete = false;
+                                  _codeValue = value;
                                 });
                                 debugPrint('Promo code input: $value');
                               },
@@ -118,7 +119,7 @@ class _PromoCodeScreenState extends State<PromoCodeScreen> {
                               },
                             ),
                             IntrinsicWidth(
-                              child: PrimaryButton3D(
+                              child: Button3D(
                                 label: _isProcessing ? 'common.loading'.tr() : 'promocode.redeem'.tr(),
                                 enabled: _isCodeComplete && !_isProcessing,
                                 leadingIcon: _isProcessing ? null : LucideIcons.gift,
@@ -134,17 +135,20 @@ class _PromoCodeScreenState extends State<PromoCodeScreen> {
                                   : null,
                               ),
                             ),
-                            GhostButton(
-                              leading: LucideIcons.x,
-                              onPressed: _isProcessing ? null : () {
-                                _codeInputKey.currentState?.clearAll();
-                                setState(() {
-                                  _isCodeComplete = false;
-                                });
-                                debugPrint('Promo code cleared');
-                              },
-                              label: 'home.clear_code'.tr(),
-                            ),
+
+                            _codeValue.isNotEmpty
+                              ? GhostButton(
+                                  leading: LucideIcons.x,
+                                  onPressed: () {
+                                    _codeInputKey.currentState?.clearAll();
+                                    setState(() {
+                                      _isCodeComplete = false;
+                                    });
+                                    debugPrint('Code cleared');
+                                  },
+                                  label: 'home.clear_code'.tr(),
+                                )
+                              : const SizedBox.shrink(),
                           ],
                         ),
                       ),

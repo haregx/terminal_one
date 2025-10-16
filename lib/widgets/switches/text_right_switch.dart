@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
+//import 'package:flutter/cupertino.dart';
 
 class SimpleSwitchLeftWithText extends StatelessWidget {
   final bool value;
@@ -17,20 +17,21 @@ class SimpleSwitchLeftWithText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final platform = Theme.of(context).platform;
-    final isIOS = platform == TargetPlatform.iOS || platform == TargetPlatform.macOS;
+   // final platform = Theme.of(context).platform;
+    //final isIOS = platform == TargetPlatform.iOS || platform == TargetPlatform.macOS;
     return Row(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
-        isIOS
-            ? CupertinoSwitch(
-                value: value,
-                onChanged: onChanged,
-              )
-            : Switch(
-                value: value,
-                onChanged: onChanged,
-              ),
+        //isIOS
+        //  ? CupertinoSwitch(
+        //      value: value,
+        //      onChanged: onChanged,
+        //    )
+        //  : 
+        Switch.adaptive(
+            value: value,
+            onChanged: onChanged,
+          ),
         const SizedBox(width: 12),
         Expanded(
           child: GestureDetector(

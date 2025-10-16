@@ -73,9 +73,12 @@ class SeparatorWithText extends StatelessWidget {
           fontWeight: FontWeight.w500,
         );
     final Color effectiveLineColor = lineColor ?? 
-        (Theme.of(context).brightness == Brightness.dark
-            ? Theme.of(context).colorScheme.outline.withAlpha(200)
-            : Theme.of(context).colorScheme.onSurface.withAlpha(100)); // Theme-spezifische Sichtbarkeit
+        //(Theme.of(context).brightness == Brightness.dark
+        //    ? Theme.of(context).colorScheme.onSurface.withAlpha(100)
+        //    : 
+       Theme.of(context).colorScheme.onSurface.withAlpha(100);
+        //); // Leicht transparent für subtilen Effekt
+       //); // Theme-spezifische Sichtbarkeit
 
     return Padding(
       padding: EdgeInsets.symmetric(vertical: verticalPadding),

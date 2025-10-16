@@ -1,9 +1,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:lucide_icons/lucide_icons.dart';
-import 'package:terminal_one/widgets/buttons/button3d_primary.dart';
+import 'package:terminal_one/widgets/buttons/button3d.dart';
 import 'package:terminal_one/widgets/buttons/ghost_button.dart';
-import 'package:terminal_one/widgets/buttons/primary_button.dart';
 import 'package:terminal_one/widgets/game/button_flippable.dart';
 import 'package:terminal_one/widgets/game/circular_progress.dart';
 import 'package:terminal_one/widgets/game/dots_progress_group.dart';
@@ -302,12 +301,12 @@ class _QuizButtonsGroupState extends State<QuizButtonsGroup> {
                         label: 'Erlärung zur richtigen Antwort',
                         onPressed: () {
                           // Meldung nach außen, dass der GhostButton geklickt wurde
-                          print ('Warum? Button geklickt, Erklärung: $explanation');
+                          debugPrint ('Warum? Button geklickt, Erklärung: $explanation');
                           widget.callbackExplanationClicked(question, explanation, hasKI);
                         },
                       ),
                     IntrinsicWidth(
-                      child: PrimaryButton3D(
+                      child: Button3D(
                         leadingIcon: LucideIcons.stepForward,
                         label: isLastQuestion ? 'Zum Ergebnis' : 'Nächste Frage',
                         onPressed: !isLastQuestion ? _onNextQuestionPressed : _onShowResultPressed,

@@ -3,8 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:terminal_one/screens/common/policy_screen.dart';
 import 'package:terminal_one/screens/common/privacy_screen.dart';
 import 'package:terminal_one/utils/responsive_layout.dart';
-import 'package:terminal_one/widgets/buttons/button3d_primary.dart';
-import 'package:terminal_one/widgets/buttons/primary_button.dart';
+import 'package:terminal_one/widgets/buttons/button3d.dart';
 import 'package:terminal_one/screens/games/game_screen.dart';
 import 'package:terminal_one/widgets/switches/text_right_switch.dart';
 import '../../widgets/glassmorphism_scaffold.dart';
@@ -93,7 +92,7 @@ class _GameDetailsScreenState extends State<GameDetailsScreen> {
                       label: 'auth.policy_accept'.tr()
                     ),
                     IntrinsicWidth(
-                      child: PrimaryButton3D(
+                      child: Button3D(
                         enabled: _privacyAccepted && _policyAccepted,
                         label: 'Play',
                         onPressed: () {

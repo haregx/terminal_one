@@ -29,8 +29,7 @@ class OptimizedGlassCard extends StatefulWidget {
   State<OptimizedGlassCard> createState() => _OptimizedGlassCardState();
 }
 
-class _OptimizedGlassCardState extends State<OptimizedGlassCard>
-    with SingleTickerProviderStateMixin {
+class _OptimizedGlassCardState extends State<OptimizedGlassCard> with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _scaleAnimation;
   late Animation<double> _opacityAnimation;
@@ -96,14 +95,10 @@ class _OptimizedGlassCardState extends State<OptimizedGlassCard>
     if (_cachedDecoration != null) return _cachedDecoration!;
     
     _cachedDecoration = BoxDecoration(
-      color: isDark
-          ? Colors.white.withAlpha(30)
-          : Colors.white.withAlpha(90),
+      color: isDark ? Colors.white.withAlpha(30) : Colors.white.withAlpha(90),
       borderRadius: widget.borderRadius ?? ConstWidgets.borderRadius16,
       border: Border.all(
-        color: isDark
-            ? Colors.white.withAlpha(60)
-            : Colors.white.withAlpha(120),
+        color: isDark ? Colors.white.withAlpha(60) : Colors.white.withAlpha(120), 
         width: 1,
       ),
       boxShadow: [
@@ -202,14 +197,10 @@ class StaticGlassCard extends StatelessWidget {
         child: Container(
           margin: margin,
           decoration: BoxDecoration(
-            color: isDark
-                ? Colors.white.withAlpha(30)
-                : Colors.white.withAlpha(90),
+            color: isDark ? Colors.white.withAlpha(30) : Colors.white.withAlpha(90),
             borderRadius: borderRadius ?? ConstWidgets.borderRadius16,
             border: Border.all(
-              color: isDark
-                  ? Colors.white.withAlpha(60)
-                  : Colors.white.withAlpha(120),
+              color: isDark ? Colors.white.withAlpha(60) : Colors.white.withAlpha(120), 
               width: 1,
             ),
             boxShadow: [

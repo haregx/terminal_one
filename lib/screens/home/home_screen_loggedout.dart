@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:lucide_icons/lucide_icons.dart';
-import 'package:terminal_one/widgets/buttons/button3d_primary.dart';
-import 'package:terminal_one/widgets/buttons/button3d_secondary.dart';
+import 'package:terminal_one/widgets/buttons/button3d.dart';
 import 'package:terminal_one/widgets/buttons/ghost_button.dart';
-import 'package:terminal_one/widgets/buttons/secondary_button.dart';
 import 'package:terminal_one/widgets/spacer/separator_withtext.dart';
 import 'package:terminal_one/screens/games/game_details_screen.dart';
 import 'package:terminal_one/utils/responsive_layout.dart';
-import '../../widgets/buttons/primary_button.dart';
 import '../../widgets/inputs/input_code_group.dart';
 import '../../utils/platform_utils.dart';
 import '../../widgets/responsive_code_input.dart';
@@ -32,9 +29,10 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   bool _isCodeComplete = false;
+  String _codeValue = '';
   final GlobalKey<InputCodeGroupState> _codeInputKey = GlobalKey<InputCodeGroupState>();
   
-  bool _isProcessing = false;
+  final bool _isProcessing = false;
   //final AuthService _authService = AuthService();
   //final AuthStateNotifier _authStateNotifier = AuthStateNotifier();
 
@@ -120,10 +118,12 @@ class _HomeScreenState extends State<HomeScreen> {
                           spacing: ResponsiveSpacing.large(context),
                           children: [
                             SizedBox(height: ResponsiveSpacing.large(context)),
+                            
                             const AppLogo(
                               size: LogoSize.large,
                               variant: LogoVariant.minimal,
                             ),
+
                             Text(
                               'home.welcome_message'.tr(),
                               style: Theme.of(context).textTheme.headlineMedium?.copyWith(
@@ -131,11 +131,13 @@ class _HomeScreenState extends State<HomeScreen> {
                               ),
                               textAlign: TextAlign.center,
                             ),
+
                             Text(
                               'home.enter_access_code'.tr(),
                               style: Theme.of(context).textTheme.bodyLarge,
                               textAlign: TextAlign.center,
                             ),
+
                             GhostButton(
                               leading: LucideIcons.helpCircle,
                               label: 'home.what_is_promo_code'.tr(),
@@ -149,6 +151,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               onChanged: (value) {
                                 setState(() {
                                   _isCodeComplete = false;
+                                  _codeValue = value;
                                 });
                                 debugPrint('Code input: $value');
                               },
@@ -165,8 +168,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                 debugPrint('Code validity changed: $isValid');
                               },
                             ),
+                            
                             IntrinsicWidth(
-                              child: PrimaryButton3D(
+                              child: Button3D(
                                 label: _isProcessing ? 'common.loading'.tr() : 'promocode.redeem'.tr(),
                                 leadingIcon: _isProcessing ? null : LucideIcons.gift,
                                 enabled: _isCodeComplete,
@@ -181,17 +185,20 @@ class _HomeScreenState extends State<HomeScreen> {
                                 } : null,
                               ),
                             ),
-                            GhostButton(
-                              leading: LucideIcons.x,
-                              onPressed: () {
-                                _codeInputKey.currentState?.clearAll();
-                                setState(() {
-                                  _isCodeComplete = false;
-                                });
-                                debugPrint('Code cleared');
-                              },
-                              label: 'home.clear_code'.tr(),
-                            ),
+
+                            _codeValue.isNotEmpty
+                              ? GhostButton(
+                                  leading: LucideIcons.x,
+                                  onPressed: () {
+                                    _codeInputKey.currentState?.clearAll();
+                                    setState(() {
+                                      _isCodeComplete = false;
+                                    });
+                                    debugPrint('Code cleared');
+                                  },
+                                  label: 'home.clear_code'.tr(),
+                                )
+                              : const SizedBox.shrink(),
                           ],
                         ),
                       ),
@@ -205,7 +212,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                   text: 'home.promo_code_signup_text'.tr(),
                               ),
                               IntrinsicWidth(
-                                child: SecondaryButton3D(
+                                child: Button3D(
+                                  isSecondary: true,
                                   onPressed: () {
                                     Navigator.push(
                                       context,

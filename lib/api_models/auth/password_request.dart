@@ -19,7 +19,7 @@ class PasswordRequest extends ApiRequest {
     return PasswordRequest(
       loginname: loginname,
       apiKey: apiKey,
-      vendor: vendor ?? ApiRequest.kwizzi,
+      vendor: vendor ?? ApiRequest.terminalone,
     );
   }
 

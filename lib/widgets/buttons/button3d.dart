@@ -8,7 +8,16 @@ import 'package:flutter/foundation.dart';
 
 /// A 3D-styled customizable button for primary actions.
 /// Supports enabled/disabled state, platform-adaptive border radius and colors.
-class PrimaryButton3D extends StatefulWidget {
+class Button3D extends StatefulWidget {
+  // Primary color scheme (matches previous defaults)
+  static const List<Color> _primaryColorGradient = [ Color(0xFF4F8CFF), Color(0xFF2356C6) ];
+  static const Color _primaryShadowColor = Color(0x404F8CFF);
+  static const List<Color> _primaryInnerColorGradient = [ Color(0x7F8FCFFF), Color(0x002356C6) ];
+
+  // Secondary color scheme (matches SecondaryButton3D)
+  static const List<Color> _secondaryColorGradient = [ Color(0x77BDBDBD), Color(0x77757575) ];
+  static const Color _secondaryShadowColor = Color(0x40606060);
+  static const List<Color> _secondaryInnerColorGradient = [ Color(0x7FE0E0E0), Color(0x00757575) ];
   /// Optional leading icon (left of text).
   final IconData? leadingIcon;
   /// Optional trailing icon (right of text).
@@ -27,29 +36,32 @@ class PrimaryButton3D extends StatefulWidget {
   /// Horizontal padding for the label.
   final double paddingHorizontal;
   /// Gradient colors for the button background.
-  final List<Color> colors;
+ // final List<Color> colorGradient;
   /// Shadow color for the button.
-  final Color shadowColor;
+ // final Color shadowColor;
   /// Inner vertical gradient overlay colors.
-  final List<Color> innerColor;
+ // final List<Color> innerColorGradient;
   /// Whether the button is enabled (default: true).
   final bool enabled;
+  /// Whether the button uses the secondary color scheme (default: false).
+  final bool isSecondary;
 
   /// Creates a 3D-styled button with platform-adaptive border radius and disabled state.
-  PrimaryButton3D({
+  Button3D({
     super.key,
     required this.label,
-  this.height,
+    this.height,
     double? borderRadius,
     this.textStyle,
     this.paddingHorizontal = 32,
     this.onPressed,
-    this.colors = const [ Color(0xFF64B5F6), Color(0xFF1976D2)], // Blau-Gradient
-    this.shadowColor = const Color(0x803197C9), // Blauer Schatten
-    this.innerColor = const [ Color(0xFFBBDEFB), Color(0x003197C9)], // Helles Blau innen
-  this.enabled = true,
-  this.leadingIcon,
-  this.trailingIcon,
+  //  this.colorGradient = const [ Color(0xFF64B5F6), Color(0xFF1976D2)], // Blau-Gradient
+  //  this.shadowColor = const Color(0x803197C9), // Blauer Schatten
+  //  this.innerColorGradient = const [ Color(0x7FBBDEFB), Color(0x003197C9)], // Helles Blau innen
+    this.enabled = true,
+    this.leadingIcon,
+    this.trailingIcon,
+    this.isSecondary = false,
   }) : borderRadius = borderRadius ?? _defaultBorderRadius();
 
   /// Returns the default border radius for the current platform.
@@ -66,11 +78,11 @@ class PrimaryButton3D extends StatefulWidget {
   }
 
   @override
-  State<PrimaryButton3D> createState() => _PrimaryButton3DState();
+  State<Button3D> createState() => _Button3DState();
 }
 
 /// State for PrimaryButton3D, manages pressed and disabled visuals.
-class _PrimaryButton3DState extends State<PrimaryButton3D> {
+class _Button3DState extends State<Button3D> {
   /// Returns the platform-conform spacing between icon and text.
   double _iconTextSpacing() {
     switch (defaultTargetPlatform) {
@@ -116,9 +128,12 @@ class _PrimaryButton3DState extends State<PrimaryButton3D> {
       }
     }
     // Slightly darken when pressed
-    return _pressed
-        ? widget.colors.map((c) => _darken(c, 0.12)).toList()
-        : widget.colors;
+  final colors = widget.isSecondary
+    ? Button3D._secondaryColorGradient
+    : Button3D._primaryColorGradient;
+  return _pressed
+    ? colors.map((c) => _darken(c, 0.10)).toList()
+    : colors;
   }
 
   /// Returns the inner vertical gradient overlay colors depending on state and platform.
@@ -132,9 +147,12 @@ class _PrimaryButton3DState extends State<PrimaryButton3D> {
         return [Colors.grey.shade100, Colors.grey.shade400.withAlpha(0)];
       }
     }
-    return _pressed
-        ? widget.innerColor.map((c) => _darken(c, 0.10)).toList()
-        : widget.innerColor;
+  final colors = widget.isSecondary
+    ? Button3D._secondaryInnerColorGradient
+    : Button3D._primaryInnerColorGradient;
+  return _pressed
+    ? colors.map((c) => _darken(c, 0.08)).toList()
+    : colors;
   }
 
   /// Returns the shadow color depending on state and platform.
@@ -148,9 +166,12 @@ class _PrimaryButton3DState extends State<PrimaryButton3D> {
         return Colors.grey.shade400.withAlpha(64);
       }
     }
-    return _pressed
-        ? _darken(widget.shadowColor, 0.18)
-        : widget.shadowColor;
+  final color = widget.isSecondary
+    ? Button3D._secondaryShadowColor
+    : Button3D._primaryShadowColor;
+  return _pressed
+    ? _darken(color, 0.15)
+    : color;
   }
 
   /// Utility to darken a color by a given amount (0-1).

@@ -9,7 +9,7 @@ class PasswordRequestService {
     final jsonBody = PasswordRequest(
       loginname: email.trim(),
       apiKey: ApiConfig.apiKey,
-      vendor: ApiRequest.kwizzi,
+      vendor: ApiRequest.terminalone,
     ).toJson();
 
     try {

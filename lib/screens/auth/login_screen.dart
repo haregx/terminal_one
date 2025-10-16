@@ -3,10 +3,8 @@ import 'package:lucide_icons/lucide_icons.dart';
 import 'package:provider/provider.dart';
 import 'package:terminal_one/api_services/auth/login_service.dart';
 import 'package:terminal_one/api_services/https_post_service.dart';
-import 'package:terminal_one/widgets/buttons/button3d_primary.dart';
-import 'package:terminal_one/widgets/buttons/button3d_secondary.dart';
+import 'package:terminal_one/widgets/buttons/button3d.dart';
 import 'package:terminal_one/widgets/buttons/ghost_button.dart';
-import 'package:terminal_one/widgets/buttons/secondary_button.dart';
 import 'package:terminal_one/widgets/inputs/input_password_simple.dart';
 import 'package:terminal_one/widgets/snackbars/fancy_success_snackbar.dart';
 import 'package:terminal_one/widgets/spacer/separator_withtext.dart';
@@ -15,7 +13,6 @@ import '../../utils/responsive_layout.dart';
 import '../../widgets/glassmorphism_scaffold.dart';
 import '../../widgets/app_logo.dart';
 import '../../widgets/appbar_aware_safe_area.dart';
-import '../../widgets/buttons/primary_button.dart';
 import '../../widgets/inputs/input_email.dart';
 import 'package:easy_localization/easy_localization.dart';
 import '../../utils/secure_storage.dart';
@@ -226,7 +223,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                       ),
                                       // Login button
                                       IntrinsicWidth(
-                                        child: PrimaryButton3D(
+                                        child: Button3D(
                                           label: 'auth.login'.tr(),
                                           enabled: _canLogin,
                                           onPressed: _canLogin ? _handleLogin : null,
@@ -250,7 +247,8 @@ class _LoginScreenState extends State<LoginScreen> {
                               SeparatorWithText(text: 'auth.no_account'.tr()),
                               // Registration button
                               IntrinsicWidth(
-                                child: SecondaryButton3D(
+                                child: Button3D(
+                                  isSecondary: true,
                                   leadingIcon: LucideIcons.userPlus,
                                   onPressed: () {
                                     Navigator.push(

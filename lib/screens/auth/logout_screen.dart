@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 import 'package:provider/provider.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:terminal_one/widgets/buttons/button3d_primary.dart';
+import 'package:terminal_one/widgets/buttons/button3d.dart';
 import 'package:terminal_one/widgets/snackbars/fancy_success_snackbar.dart';
 import 'package:terminal_one/providers/auth_provider.dart';
-import 'package:terminal_one/widgets/buttons/primary_button.dart';
 
 /// LogoutScreen - Einfacher Logout-Bestätigungsscreen
 /// 
@@ -83,7 +82,7 @@ class LogoutScreen extends StatelessWidget {
             
             // Logout Button - Nur so breit wie nötig
             IntrinsicWidth(
-              child: PrimaryButton3D(
+              child: Button3D(
                 label: 'auth.logout'.tr(),
                 onPressed: () async {
                   // Navigator schließen

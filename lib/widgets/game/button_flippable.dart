@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
@@ -132,48 +134,66 @@ class _QuizButtonFlippableState extends State<QuizButtonFlippable> with SingleTi
               transform: Matrix4.identity()
                 ..setEntry(3, 2, 0.001)
                 ..rotateY(displayAngle),
-              child: ConstrainedBox(constraints: BoxConstraints(minHeight: widget.size * 12 / 16, maxHeight: widget.size *  12 / 16),
-                child: Container(
-                  width: math.min(widget.size, MediaQuery.of( context).size.width/2 - 24),
-               //   height: widget.size * 12 / 16, // Höhe ist jetzt im Verhältnis 16:10 zur Breite
-                decoration: BoxDecoration(
-                  gradient: RadialGradient(
-                    center: Alignment.center,
-                    radius: 0.75,
-                    colors: [
-                      displayColor.withAlpha(250),
-                      displayColor,
-                      darken(displayColor, 0.18),
-                    ],
-                    stops: const [0.0, 0.25, 1.0],
-                  ),
+              child: ConstrainedBox(
+                constraints: BoxConstraints(minHeight: widget.size * 12 / 16, maxHeight: widget.size * 12 / 16),
+                child: ClipRRect(
                   borderRadius: BorderRadius.circular(16),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withAlpha(25),
-                      offset: const Offset(8, 8),
-                      blurRadius: 16,
-                      spreadRadius: 1,
-                    ),
-                  ],
-                ),
-                alignment: Alignment.center,
-                child: Padding(
-                  padding: const EdgeInsets.all(12.0),
-                  child: Text(
-                    widget.text,
-                    style: (widget.textStyle ??
-                        TextStyle(
-                          fontSize: _getFontSize(widget.text),
-                          fontWeight: FontWeight.bold,
-                        )).copyWith(color: Colors.white),
-                    textAlign: TextAlign.center,
-                    maxLines: 7,
-                    overflow: TextOverflow.ellipsis,
+                  child: Stack(
+                    children: [
+                      // Glassmorphism background (blur + semi-transparent white overlay)
+                      Positioned.fill(
+                        child: BackdropFilter(
+                          filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+                          child: Container(
+                            color: Colors.white.withAlpha(10), // subtle glass overlay
+                          ),
+                        ),
+                      ),
+                      // Color gradient background (preserved)
+                      Container(
+                        width: math.min(widget.size, MediaQuery.of(context).size.width / 2 - 24),
+                        decoration: BoxDecoration(
+                          gradient: RadialGradient(
+                            center: Alignment.center,
+                            radius: 0.75,
+                            colors: [
+                              displayColor.withAlpha(250),
+                              displayColor,
+                              darken(displayColor, 0.18),
+                            ],
+                            stops: const [0.0, 0.25, 1.0],
+                          ),
+                          borderRadius: BorderRadius.circular(16),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withAlpha(25),
+                              offset: const Offset(8, 8),
+                              blurRadius: 16,
+                              spreadRadius: 1,
+                            ),
+                          ],
+                        ),
+                        alignment: Alignment.center,
+                        child: Padding(
+                          padding: const EdgeInsets.all(12.0),
+                          child: Text(
+                            widget.text,
+                            style: (widget.textStyle ??
+                                    TextStyle(
+                                      fontSize: _getFontSize(widget.text),
+                                      fontWeight: FontWeight.bold,
+                                    ))
+                                .copyWith(color: Colors.white),
+                            textAlign: TextAlign.center,
+                            maxLines: 7,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ),
-            )
             );
           },
         ),

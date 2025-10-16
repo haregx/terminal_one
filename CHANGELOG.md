@@ -6,6 +6,25 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 
+## [Unreleased] - 2025-10-16
+
+### Added
+- Added `isSecondary` property to `PrimaryButton3D` widget. When set to true, the button uses the secondary color scheme from `button3d_secondary.dart` for unified button logic.
+- Updated all usages of main action buttons to use the new `Button3D` widget with `isSecondary` where appropriate (e.g., login/signup navigation, home screen, promo code screen).
+
+### Changed
+- Refactored `HomeScreen` and `PromoCodeScreen` to use `Button3D` for both primary and secondary actions, improving consistency and maintainability.
+- Improved code structure and readability in `GlassCard` and `SimpleSwitchLeftWithText` widgets (formatting, adaptive switch usage, and minor cleanup).
+
+### Fixed
+- Fixed issues with code input clearing and button state updates in promo code and home screens.
+- Fixed minor formatting and code style issues in several widgets.
+
+### Technical Improvements
+- Removed unused imports and legacy button widgets from affected screens.
+- Improved widget property initialization and state handling for better reliability.
+
+---
 
 ## [Unreleased] - 2025-10-15
 

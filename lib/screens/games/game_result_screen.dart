@@ -1,7 +1,6 @@
 import 'package:circular_seek_bar/circular_seek_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:terminal_one/widgets/buttons/button3d_primary.dart';
-import 'package:terminal_one/widgets/buttons/primary_button.dart';
+import 'package:terminal_one/widgets/buttons/button3d.dart';
 import 'package:terminal_one/screens/home/home_screen_router.dart';
 import '../../widgets/glassmorphism_scaffold.dart';
 import '../../widgets/appbar_aware_safe_area.dart';
@@ -120,7 +119,7 @@ class _GameResultScreenState extends State<GameResultScreen> {
               ),
               Center(
                 child: IntrinsicWidth(
-                  child: PrimaryButton3D(
+                  child: Button3D(
                     label: 'Home',
                     onPressed: () {
                         Navigator.pushAndRemoveUntil(

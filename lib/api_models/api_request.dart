@@ -4,11 +4,11 @@ abstract class ApiRequest {
   final int vendor;
 
   // Vendor Codes (entspricht C# Classes.Codes.Vendors)
-  static const int kwizzi = 1; // Annahme - könnte angepasst werden
+  static const int terminalone = 2; // Annahme - könnte angepasst werden
 
   const ApiRequest({
     required this.apiKey,
-    this.vendor = kwizzi,
+    this.vendor = terminalone,
   });
 
   /// Convert zu JSON - muss von Subklassen implementiert werden

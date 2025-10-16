@@ -22,8 +22,7 @@ class SettingsScreen extends StatefulWidget {
   State<SettingsScreen> createState() => _SettingsScreenState();
 }
 
-class _SettingsScreenState extends State<SettingsScreen>
-    with TickerProviderStateMixin {
+class _SettingsScreenState extends State<SettingsScreen> with TickerProviderStateMixin {
   late AnimationController _fadeController;
   late Animation<double> _fadeAnimation;
   
@@ -236,9 +235,7 @@ class _SettingsScreenState extends State<SettingsScreen>
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
                       content: Text(
-                        languageCode == 'de' 
-                            ? 'Sprache auf Deutsch geändert' 
-                            : 'Language changed to English'
+                        languageCode == 'de' ? 'Sprache auf Deutsch geändert' : 'Language changed to English'
                       ),
                       backgroundColor: Colors.green,
                       duration: const Duration(seconds: 2),
@@ -504,9 +501,7 @@ class _SettingsScreenState extends State<SettingsScreen>
           'settings.appearance'.tr(),
           style: Theme.of(context).textTheme.titleMedium?.copyWith(
             fontWeight: FontWeight.w600,
-            color: isDark 
-                ? Colors.white.withAlpha(230)
-                : Colors.black.withAlpha(230),
+            color: isDark ? Colors.white.withAlpha(230) : Colors.black.withAlpha(230),      
           ),
         ),
         const SizedBox(height: 16),
@@ -545,9 +540,7 @@ class _SettingsScreenState extends State<SettingsScreen>
       child: Row(
         children: [
           Icon(
-            themeProvider.themeMode == ThemeMode.dark 
-                ? LucideIcons.moon 
-                : LucideIcons.sun,
+            themeProvider.themeMode == ThemeMode.dark ? LucideIcons.moon : LucideIcons.sun, 
             size: 24,
             color: isDark 
                 ? Colors.white
@@ -562,17 +555,13 @@ class _SettingsScreenState extends State<SettingsScreen>
                   'settings.theme'.tr(),
                   style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                     fontWeight: FontWeight.w600,
-                    color: isDark 
-                        ? Colors.white.withAlpha(230)
-                        : Colors.black.withAlpha(230),
+                    color: isDark ? Colors.white.withAlpha(230) : Colors.black.withAlpha(230),
                   ),
                 ),
                 Text(
                   _getThemeModeDescription(themeProvider.themeMode),
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    color: isDark 
-                        ? Colors.white.withAlpha(153)
-                        : Colors.black.withAlpha(153),
+                    color: isDark ? Colors.white.withAlpha(153) : Colors.black.withAlpha(153),
                   ),
                 ),
               ],
@@ -787,9 +776,7 @@ class _SettingsScreenState extends State<SettingsScreen>
           'settings.storage_cache'.tr(),
           style: Theme.of(context).textTheme.titleMedium?.copyWith(
             fontWeight: FontWeight.w600,
-            color: isDark 
-                ? Colors.white.withAlpha(230)
-                : Colors.black.withAlpha(230),
+            color: isDark ? Colors.white.withAlpha(230) : Colors.black.withAlpha(230),
           ),
         ),
         const SizedBox(height: 16),
@@ -910,14 +897,8 @@ class _SettingsScreenState extends State<SettingsScreen>
   }) {
     final titleColor = isDestructive 
         ? Colors.red.withAlpha(230)
-        : isDark 
-            ? Colors.white.withAlpha(230)
-            : Colors.black.withAlpha(230);
-    final iconColor = isDestructive 
-        ? Colors.red 
-        : isDark 
-            ? Colors.white.withAlpha(204)
-            : Colors.black.withAlpha(204);
+        : isDark ? Colors.white.withAlpha(230) : Colors.black.withAlpha(230);
+    final iconColor = isDestructive ? Colors.red  : isDark ? Colors.white.withAlpha(204) : Colors.black.withAlpha(204);
 
     return InkWell(
       onTap: onTap,
@@ -946,9 +927,7 @@ class _SettingsScreenState extends State<SettingsScreen>
                   Text(
                     subtitle,
                     style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                      color: isDark 
-                          ? Colors.white.withAlpha(153)
-                          : Colors.black.withAlpha(153),
+                      color: isDark ? Colors.white.withAlpha(153) : Colors.black.withAlpha(153),  
                     ),
                   ),
                 ],
@@ -960,9 +939,7 @@ class _SettingsScreenState extends State<SettingsScreen>
               Icon(
                 LucideIcons.chevronRight,
                 size: 20,
-                color: isDark 
-                    ? Colors.white.withAlpha(128)
-                    : Colors.black.withAlpha(128),
+                color: isDark ? Colors.white.withAlpha(128) : Colors.black.withAlpha(128),    
               ),
           ],
         ),

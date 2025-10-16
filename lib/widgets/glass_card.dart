@@ -36,8 +36,7 @@ class GlassCard extends StatefulWidget {
   State<GlassCard> createState() => _GlassCardState();
 }
 
-class _GlassCardState extends State<GlassCard>
-    with SingleTickerProviderStateMixin {
+class _GlassCardState extends State<GlassCard> with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _scaleAnimation;
   late Animation<double> _opacityAnimation;
@@ -102,14 +101,10 @@ class _GlassCardState extends State<GlassCard>
                 child: Container(
                   margin: widget.margin,
                   decoration: BoxDecoration(
-                    color: isDark
-                        ? Colors.white.withAlpha(30)
-                        : Colors.white.withAlpha(90),
+                    color: isDark ? Colors.white.withAlpha(30) : Colors.white.withAlpha(90),
                     borderRadius: widget.borderRadius ?? BorderRadius.circular(16),
                     border: Border.all(
-                      color: isDark
-                          ? Colors.white.withAlpha(60)
-                          : Colors.white.withAlpha(120),
+                      color: isDark ? Colors.white.withAlpha(60) : Colors.white.withAlpha(120),
                       width: 1,
                     ),
                     boxShadow: [

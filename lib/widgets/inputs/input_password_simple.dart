@@ -159,7 +159,7 @@ class _InputPasswordSimpleState extends State<InputPasswordSimple> {
   }
 
   /// Calculate password strength (0-1)
-  double _calculateStrength(String password) {
+ /* double _calculateStrength(String password) {
     if (password.isEmpty) return 0.0;
     
     final passedRequirements = _requirements
@@ -168,7 +168,9 @@ class _InputPasswordSimpleState extends State<InputPasswordSimple> {
     
     return passedRequirements / _requirements.length;
   }
+  */
 
+/*
   Color _getStrengthColor(double strength) {
     final theme = Theme.of(context);
     if (strength < 0.25) return theme.colorScheme.error;
@@ -176,11 +178,13 @@ class _InputPasswordSimpleState extends State<InputPasswordSimple> {
     if (strength < 0.75) return Colors.yellow.shade700;
     return theme.colorScheme.primary;
   }
+*/
 
-  Widget _buildStrengthIndicator() {
+ /* Widget _buildStrengthIndicator() {
     if (!widget.showStrengthIndicator || _controller.text.isEmpty) {
       return const SizedBox.shrink();
     }
+    
 
     final strength = _calculateStrength(_controller.text);
     final color = _getStrengthColor(strength);
@@ -210,6 +214,7 @@ class _InputPasswordSimpleState extends State<InputPasswordSimple> {
       ),
     );
   }
+  */
 
   Widget _buildRequirements() {
     if (!widget.showRequirements || (!_focusNode.hasFocus && _controller.text.isEmpty)) {
