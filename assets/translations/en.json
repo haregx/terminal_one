@@ -6,7 +6,8 @@
     "more_games_title": "More Games",
     "filter": "Filter",
     "score": "SCORE",
-    "validity": "Validity: {validity}"
+    "validity": "Validity: {validity}",
+    "tap_card_to_play": "Tap a card to play the game."
   },
   "navigation_examples": {
     "title": "Navigation Examples",

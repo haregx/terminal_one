@@ -6,7 +6,8 @@
     "more_games_title": "Plus de jeux",
     "filter": "Filtrer",
     "score": "SCORE",
-    "validity": "Validité : {validity}"
+    "validity": "Validité : {validity}",
+    "tap_card_to_play": "Tape sur la carte pour jouer"
   },
   "navigation_examples": {
     "title": "Exemples de navigation",
@@ -111,6 +112,7 @@
     "password_mismatch": "Les mots de passe ne correspondent pas",
     "email_invalid": "Adresse e-mail invalide",
     "field_required": "Ce champ est requis"
+ 
   },
   "home": {
     "welcome": "Bon retour",

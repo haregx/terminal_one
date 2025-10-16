@@ -39,7 +39,7 @@ class _MoreGamesScreenState extends State<MoreGamesScreen> {
         ),
         IconButton(
           icon: const Icon(LucideIcons.search),
-          tooltip: 'Search',
+          tooltip: 'common.search'.tr(),
           onPressed: () {
             // TODO: Implement search action
           },
@@ -54,7 +54,7 @@ class _MoreGamesScreenState extends State<MoreGamesScreen> {
               Padding(
                 padding: const EdgeInsets.only(bottom: 24),
                 child: Text(
-                  'Tap a card to play the game.',
+                  'game.tap_card_to_play'.tr(),
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                     color: Theme.of(context).colorScheme.onSurface.withAlpha(166),
                     fontWeight: FontWeight.w500,

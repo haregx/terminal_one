@@ -6,7 +6,8 @@
     "more_games_title": "Weitere Spiele",
     "filter": "Filter",
     "score": "PUNKTE",
-    "validity": "Gültigkeit: {validity}"
+    "validity": "Gültigkeit: {validity}",
+    "tap_card_to_play": "Karte tippen zum Spielen"
   },
   "navigation_examples": {
     "title": "Navigationsbeispiele",
