@@ -71,7 +71,7 @@
   "auth": {
     "login": "Anmelden",
     "logout": "Abmelden",
-    "logout_confirmation": "Möchtest Du dich wirklich abmelden?",
+    "logout_confirmation": "Möchtest du dich wirklich abmelden?",
     "logout_success": "Du wurdest erfolgreich abgemeldet!",
     "login_description": "Melde dich mit deinen Zugangsdaten an",
     "forgot_pin": "Kennwort vergessen?",
@@ -115,7 +115,7 @@
   "home": {
     "welcome": "Willkommen zurück",
     "welcome_back": "Willkommen zurück!",
-    "what_would_you_like_to_do": "Was möchtest Du heute erledigen?",
+    "what_would_you_like_to_do": "Was möchtest du heute erledigen?",
     "dashboard": "Dashboard",
     "quick_actions": "Schnellzugriff",
     "recent_activity": "Kürzliche Aktivitäten",

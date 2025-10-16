@@ -24,6 +24,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Extracted quiz questions to a central data file (`questions.dart`).
 - Improved privacy and policy screens to use translation keys for all labels and dates.
 - Updated button and label logic in game and quiz screens for full localization.
+- Updated all translation files for German (de.json), Spanish (es.json), and French (fr.json) to consistently use informal address (Du-Form / tuteo / tutoiement) throughout the app.
+- Replaced all formal forms (Sie/vous/usted) with informal forms (du/tu/tú) in all user-facing strings, including navigation, authentication, settings, and help texts.
+- Improved translation consistency and user experience for all supported languages by unifying the tone and addressing style.
+
 
 ### Fixed
 - Fixed issues with code input clearing and button state updates in promo code and home screens.
