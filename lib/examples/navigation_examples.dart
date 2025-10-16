@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../core/app_routes.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 /// Example of how to use the centralized AppRoutes system
 /// 
@@ -77,7 +78,7 @@ class ExampleNavigationWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Navigation Examples')),
+      appBar: AppBar(title: Text('navigation_examples.title'.tr())),
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: Column(
@@ -85,27 +86,27 @@ class ExampleNavigationWidget extends StatelessWidget {
           children: [
             ElevatedButton(
               onPressed: () => AppRoutes.navigateToLogin(context),
-              child: const Text('Go to Login'),
+              child: Text('navigation_examples.go_to_login'.tr()),
             ),
             const SizedBox(height: 8),
             ElevatedButton(
               onPressed: () => AppRoutes.navigateToRegister(context),
-              child: const Text('Go to Register'),
+              child: Text('navigation_examples.go_to_register'.tr()),
             ),
             const SizedBox(height: 8),
             ElevatedButton(
               onPressed: () => AppRoutes.navigateToPromoCode(context),
-              child: const Text('Enter Promo Code'),
+              child: Text('navigation_examples.enter_promo_code'.tr()),
             ),
             const SizedBox(height: 8),
             ElevatedButton(
               onPressed: () => AppRoutes.navigateToMoreGames(context),
-              child: const Text('More Games'),
+              child: Text('navigation_examples.more_games'.tr()),
             ),
             const SizedBox(height: 8),
             ElevatedButton(
               onPressed: () => AppRoutes.navigateToLogout(context),
-              child: const Text('Logout'),
+              child: Text('navigation_examples.logout'.tr()),
             ),
           ],
         ),

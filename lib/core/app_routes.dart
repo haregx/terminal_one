@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:terminal_one/screens/auth/login_screen.dart';
 import 'package:terminal_one/screens/auth/logout_screen.dart';
 import 'package:terminal_one/screens/auth/password_request_screen.dart';
@@ -115,7 +116,7 @@ class AppRoutes {
     return MaterialPageRoute(
       builder: (context) => Scaffold(
         appBar: AppBar(
-          title: const Text('Error'),
+          title: Text('app_routes.error'.tr()),
           backgroundColor: Colors.red,
           foregroundColor: Colors.white,
         ),
@@ -130,12 +131,12 @@ class AppRoutes {
               ),
               const SizedBox(height: 16),
               Text(
-                'Route not found',
+                'app_routes.route_not_found'.tr(),
                 style: Theme.of(context).textTheme.headlineSmall,
               ),
               const SizedBox(height: 8),
               Text(
-                'The route "${settings.name}" does not exist.',
+                'app_routes.route_does_not_exist'.tr(namedArgs: {'route': settings.name ?? ''}),
                 style: Theme.of(context).textTheme.bodyMedium,
                 textAlign: TextAlign.center,
               ),
@@ -147,7 +148,7 @@ class AppRoutes {
                     (route) => false,
                   );
                 },
-                child: const Text('Go to Home'),
+                child: Text('app_routes.go_to_home'.tr()),
               ),
             ],
           ),

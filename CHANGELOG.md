@@ -11,10 +11,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Added `isSecondary` property to `PrimaryButton3D` widget. When set to true, the button uses the secondary color scheme from `button3d_secondary.dart` for unified button logic.
 - Updated all usages of main action buttons to use the new `Button3D` widget with `isSecondary` where appropriate (e.g., login/signup navigation, home screen, promo code screen).
+- Added full internationalization (i18n) support for all user-facing strings in the app, including error messages, navigation, and example screens.
+- Added and completed translation files for French (`fr.json`) and Spanish (`es.json`).
 
 ### Changed
 - Refactored `HomeScreen` and `PromoCodeScreen` to use `Button3D` for both primary and secondary actions, improving consistency and maintainability.
 - Improved code structure and readability in `GlassCard` and `SimpleSwitchLeftWithText` widgets (formatting, adaptive switch usage, and minor cleanup).
+- Updated English (`en.json`) and German (`de.json`) translation files with new keys for game screens, navigation examples, error routes, and more.
+- Refactored all hardcoded UI strings to use translation keys and `.tr()` calls via `easy_localization`.
+- Ensured language switching and initialization logic supports English, German, French, and Spanish throughout the app.
+- Updated language selector in settings to include French and Spanish.
+- Extracted quiz questions to a central data file (`questions.dart`).
+- Improved privacy and policy screens to use translation keys for all labels and dates.
+- Updated button and label logic in game and quiz screens for full localization.
 
 ### Fixed
 - Fixed issues with code input clearing and button state updates in promo code and home screens.
@@ -197,44 +206,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## Previous Entries
 
 ### [1.0.0] - 2025-10-08
-
-### Added
-- **Centralized Routing System**: Implemented comprehensive route management architecture
-  - New `AppRoutes` class with all route definitions as constants
-  - Type-safe navigation with helper methods for common routes
-  - Automatic route generation with argument handling
-  - Error route for unknown paths with user-friendly fallback
-  - Navigation examples and documentation for developers
-
 - **PromoCode Screen**: New dedicated promotional code entry interface
   - Responsive code input system with configurable length (default 8 characters)
-  - Real-time validation and completion detection
-  - Demo codes integration (`WELCOME1`, `BONUS123`, `SPECIAL1`)
-  - Loading states with processing indicators
-  - Success/error feedback with animated snackbars
-  - Help dialog explaining promotional code functionality
-  - Smart navigation based on authentication status
-
-- **Enhanced Documentation**: Comprehensive project documentation
-  - Professional README.md with feature overview and setup instructions
   - Technical architecture documentation with code examples
   - Installation guides for all supported platforms
   - Customization instructions for themes and assets
 
-### Enhanced
-- **Navigation Architecture**: Complete overhaul of app routing system
   - Replaced direct widget navigation with named routes
   - Centralized route management in `lib/core/app_routes.dart`
-  - Type-safe navigation helpers: `AppRoutes.navigateToLogin(context)`
-  - Argument passing support for complex routes (PromoCode with custom length)
   - Debug utilities with route listing and validation
 
-- **Quick Actions Data**: Improved dashboard action configuration
-  - Enhanced action definitions with better categorization
   - Improved icon mappings and color schemes
   - Better integration with routing system
-
-- **Widget System**: Refined component architecture
   - Enhanced `AppBarAwareSafeArea` for better layout consistency
   - Improved `SimpleDashboard` component with responsive design
   - Better integration between glass morphism effects and routing

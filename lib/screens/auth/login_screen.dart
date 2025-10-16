@@ -174,18 +174,21 @@ class _LoginScreenState extends State<LoginScreen> {
                                     crossAxisAlignment: CrossAxisAlignment.center,
                                     spacing: ResponsiveSpacing.large(context),
                                     children: [
+
                                       // App logo
                                       const AppLogo(
                                         size: LogoSize.medium,
                                         variant: LogoVariant.minimal,
                                       ),
+
                                       Text(
                                         'auth.login_description'.tr(),
                                         style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                                           color: Theme.of(context).colorScheme.onSurface.withAlpha(180),
                                         ),
                                         textAlign: TextAlign.center,
-                                      ),
+                                      )
+                                      ,
                                       FocusTraversalOrder(
                                         order: const NumericFocusOrder(1),
                                         child: InputEmail(
@@ -202,6 +205,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                           },
                                         ),
                                       ),
+
                                       FocusTraversalOrder(
                                         order: const NumericFocusOrder(2),
                                         child: InputPasswordSimple(
@@ -216,11 +220,13 @@ class _LoginScreenState extends State<LoginScreen> {
                                           onSubmitted: (_) => _handleLogin(),
                                         ),
                                       ),
+
                                       GhostButton(
                                         leading: LucideIcons.helpCircle,
                                         onPressed: _navigateToPasswordRequest,
                                         label: 'auth.forgot_pin'.tr(),
                                       ),
+                                      
                                       // Login button
                                       IntrinsicWidth(
                                         child: Button3D(

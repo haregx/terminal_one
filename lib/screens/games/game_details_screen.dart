@@ -30,7 +30,7 @@ class _GameDetailsScreenState extends State<GameDetailsScreen> {
   @override
   Widget build(BuildContext context) {
     return GlassmorphismScaffold(
-      title: const Text('Game Details'),
+      title: Text('game.details_title'.tr()),
       
       body: AppBarAwareSafeArea(
         child: Padding(

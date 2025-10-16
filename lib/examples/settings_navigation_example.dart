@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:terminal_one/core/app_routes.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 /// Example demonstrating SettingsScreen navigation and customization
 /// 
@@ -11,7 +12,7 @@ class SettingsNavigationExample extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Settings Navigation Example')),
+      appBar: AppBar(title: Text('settings_navigation_example.title'.tr())),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -19,20 +20,17 @@ class SettingsNavigationExample extends StatelessWidget {
             // Method 1: Using AppRoutes helper method (Recommended)
             ElevatedButton(
               onPressed: () => AppRoutes.navigateToSettings(context),
-              child: const Text('Navigate to Settings (Recommended)'),
+              child: Text('settings_navigation_example.navigate_to_settings'.tr()),
             ),
-            
             const SizedBox(height: 16),
-            
             // Method 2: Using Navigator.pushNamed directly
             ElevatedButton(
               onPressed: () => Navigator.pushNamed(context, AppRoutes.settings),
-              child: const Text('Navigate using Route Name'),
+              child: Text('settings_navigation_example.navigate_using_route_name'.tr()),
             ),
-            
             const SizedBox(height: 16),
-            
             // Method 3: From AppBar action (as shown in HomeScreenLoggedIn)
+            // (This is a code sample, so we keep it as is)
             const Text(
               'Settings button in AppBar:\n'
               'IconButton(\n'

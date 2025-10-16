@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:terminal_one/screens/games/game_details_screen.dart';
 import 'package:terminal_one/widgets/cards/promocode_card.dart';
 import '../../widgets/glassmorphism_scaffold.dart';
@@ -27,11 +28,11 @@ class _MoreGamesScreenState extends State<MoreGamesScreen> {
   @override
   Widget build(BuildContext context) {
     return GlassmorphismScaffold(
-      title: const Text('More Games'),
+      title: Text('game.more_games_title'.tr()),
       actions: [
         IconButton(
           icon: const Icon(LucideIcons.slidersHorizontal),
-          tooltip: 'Filter',
+          tooltip: 'game.filter'.tr(),
           onPressed: () {
             // TODO: Implement filter action
           },

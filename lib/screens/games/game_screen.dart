@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:terminal_one/screens/games/game_result_screen.dart';
 import 'package:terminal_one/widgets/game/button_group.dart';
 import '../../widgets/glassmorphism_scaffold.dart';
 import '../../widgets/appbar_aware_safe_area.dart';
 import '../../data/promo_data.dart';
+import '../../data/questions.dart';
 
 class GameScreen extends StatefulWidget {
   
@@ -18,22 +20,19 @@ class GameScreen extends StatefulWidget {
 class _GameScreenState extends State<GameScreen> {
   // Lade Promo-Karten aus zentraler Datenquelle
   final List<PromoData> promoCards = PromoDataSource.getAllCards();
-  final Map<int, List<dynamic>> map = {};
   final String categoryName = 'Code';
+
 
   @override
   void initState() {
     super.initState();
-    map[0] = ['assets/images/bismarck.png', 'Wie lautet der Vorname dieses Herren?', 1, 'Otto', 'Claus', 'Thomas', 'Daniel', '', false, ''];
-    map[1] = ['assets/images/schokolade.png', 'Wer hat\'s erfunden?', 4, 'Die Franzosen', 'Die Griechen', 'Die Römer', 'Die Schweizer', '', false, ''];
-    map[2] = ['assets/images/ahorn.png', 'Zu welchem Baum passt dieses Blatt?', 3, 'Eiche', 'Buche', 'Ahorn', 'Kastanie', '', false, ''];
-    map[3] = ['assets/images/banana.png', 'Wie viele Bananen sieht man auf dem Bild', 2, '2', '4', '3', '12', '', false, ''];
+    // No longer initializing map here
   }
 
   @override
   Widget build(BuildContext context) {
     return GlassmorphismScaffold(
-      title: const Text('Game'),
+      title: Text('game.title'.tr()),
       
       body: AppBarAwareSafeArea(
         child: Padding(
@@ -54,7 +53,7 @@ class _GameScreenState extends State<GameScreen> {
                         MaterialPageRoute(
                           builder: (context) => GameResultScreen(
                             correctAnswers: correctAnswers.toDouble(),
-                            questions: map.length.toDouble(),
+                            questions: questionsMap.length.toDouble(),
                           ),
                         ),
                       );
@@ -63,8 +62,8 @@ class _GameScreenState extends State<GameScreen> {
             
                     },
                     categoryName: categoryName,
-                    map: map,
-                    sumQuestions: map.length,
+                    map: questionsMap,
+                    sumQuestions: questionsMap.length,
                     callbackExplanationClicked: (String question, String htmlText, bool hasKI) {
             
                     },

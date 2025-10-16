@@ -1,5 +1,6 @@
 import 'package:circular_seek_bar/circular_seek_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:terminal_one/widgets/buttons/button3d.dart';
 import 'package:terminal_one/screens/home/home_screen_router.dart';
 import '../../widgets/glassmorphism_scaffold.dart';
@@ -52,7 +53,7 @@ class _GameResultScreenState extends State<GameResultScreen> {
   @override
   Widget build(BuildContext context) {
     return GlassmorphismScaffold(
-      title: const Text('Game Result'),
+      title: Text('game.result_title'.tr()),
       
       body: AppBarAwareSafeArea(
         child: Padding(
@@ -108,7 +109,7 @@ class _GameResultScreenState extends State<GameResultScreen> {
                                     MainAxisSize.min,
                                 children: [
                                   Text('${value.round()}'),
-                                  Text('SCORE'),
+                                  Text('game.score'.tr()),
                                 ],
                               ),
                         ),

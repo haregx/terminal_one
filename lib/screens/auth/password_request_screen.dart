@@ -5,7 +5,6 @@ import 'package:terminal_one/api_services/auth/password_request_service.dart';
 import 'package:terminal_one/api_services/https_post_service.dart';
 import 'package:terminal_one/widgets/buttons/button3d.dart';
 import 'package:terminal_one/widgets/snackbars/fancy_success_snackbar.dart';
-import 'package:terminal_one/utils/layout_constants.dart';
 import 'package:terminal_one/utils/responsive_layout.dart';
 import '../../widgets/inputs/input_email.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -103,23 +102,25 @@ class _PasswordRequestScreenState extends State<PasswordRequestScreen> {
                           child: FocusTraversalGroup(
                             policy: OrderedTraversalPolicy(),
                             child: Column(
+                              spacing: ResponsiveSpacing.large(context),
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
+
                                 // App logo
                                 const AppLogo(
                                   size: LogoSize.medium,
                                   variant: LogoVariant.minimal,
                                 ),
-                                SizedBox(height: ResponsiveSpacing.large(context)),
+
                                 // Description text
-                                                                Text(
+                                Text(
                                   'auth.password_request_description'.tr(),
                                   textAlign: TextAlign.center,
                                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                                     color: Theme.of(context).colorScheme.onSurface.withAlpha(180),
                                   ),
                                 ),
-                                SizedBox(height: ResponsiveSpacing.large(context)),
+
                                 // Email input field with keyboard shortcut for submit
                                 FocusTraversalOrder(
                                   order: const NumericFocusOrder(1),
@@ -135,7 +136,7 @@ class _PasswordRequestScreenState extends State<PasswordRequestScreen> {
                                       onSubmitted: (_) => _handlePasswordRequest(),
                                       onValidationChanged: (isValid) {
                                         if (kDebugMode) {
-                                          print('Email validation changed: $isValid, text: "${_emailController.text}"');
+                                          debugPrint('Email validation changed: $isValid, text: "${_emailController.text}"');
                                         }
                                         setState(() {
                                           _isEmailValid = isValid;
@@ -144,7 +145,7 @@ class _PasswordRequestScreenState extends State<PasswordRequestScreen> {
                                     ),
                                   ),
                                 ),
-                                 SizedBox(height: LayoutConstants.codeInputButtonSpacing),
+
                                 // Privacy policy acceptance switch
                                 SimpleSwitchLeftWithText(
                                   value: _privacyAccepted,
@@ -163,7 +164,7 @@ class _PasswordRequestScreenState extends State<PasswordRequestScreen> {
                                   },
                                   label: 'auth.privacy_policy_accept'.tr(),
                                 ),
-                                SizedBox(height: LayoutConstants.codeInputButtonSpacing),
+
                                 // Button to send password reset request
                                 IntrinsicWidth(
                                   child: Button3D(

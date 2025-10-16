@@ -1,4 +1,47 @@
 {
+  "game": {
+    "title": "Spiel",
+    "result_title": "Spielergebnis",
+    "details_title": "Spieldetails",
+    "more_games_title": "Weitere Spiele",
+    "filter": "Filter",
+    "score": "PUNKTE",
+    "validity": "Gültigkeit: {validity}"
+  },
+  "navigation_examples": {
+    "title": "Navigationsbeispiele",
+    "open_12_digit_promo": "12-stelligen Promocode öffnen",
+    "go_to_login": "Zum Login",
+    "go_to_register": "Zur Registrierung",
+    "enter_promo_code": "Promocode eingeben",
+    "more_games": "Weitere Spiele",
+    "logout": "Abmelden"
+  },
+  "profile_navigation_example": {
+    "title": "Profil-Navigationsbeispiel",
+    "navigate_to_profile": "Zum Profil navigieren (empfohlen)",
+    "navigate_using_route_name": "Navigation per Routenname",
+    "custom_edit_profile": "Profil individuell bearbeiten",
+    "implement_custom_edit": "Hier eigene Profilbearbeitung implementieren",
+    "close": "Schließen"
+  },
+  "settings_navigation_example": {
+    "title": "Einstellungs-Navigationsbeispiel",
+    "navigate_to_settings": "Zu den Einstellungen (empfohlen)",
+    "navigate_using_route_name": "Navigation per Routenname"
+  },
+  "app_routes": {
+    "error": "Fehler",
+    "route_not_found": "Route nicht gefunden",
+    "route_does_not_exist": "Die Route \"{route}\" existiert nicht.",
+    "go_to_home": "Zur Startseite"
+  },
+  "quiz": {
+    "time_is_up": "Die {seconds} Sekunden sind abgelaufen!",
+    "explanation_button": "Erklärung zur richtigen Antwort",
+    "to_results": "Zum Ergebnis",
+    "next_question": "Nächste Frage"
+  },
   "common": {
     "cancel": "Abbrechen",
     "save": "Speichern",
@@ -11,13 +54,17 @@
     "error": "Fehler",
     "success": "Erfolg",
     "warning": "Warnung",
-    "info": "Information"
+    "info": "Information",
+    "accept" : "Akzeptieren",
+    "decline" : "Ablehnen",
+    "last_updated": "Zuletzt aktualisiert: {date}"
   },
   "navigation": {
     "home": "Startseite",
     "profile": "Profil",
     "settings": "Einstellungen",
     "privacy_policy": "Datenschutzerklärung",
+    "policy": "Teilnahmebedingungen",
     "promocode": "Promocode",
     "logout": "Abmelden"
   },
@@ -34,6 +81,7 @@
     "register_button": "Konto erstellen",
     "register_success": "Dein Konto wurde erfolgreich erstellt!",
     "privacy_policy_accept": "Ich akzeptiere die Datenschutzerklärung",
+    "policy_accept": "Ich akzeptiere die Teilnahmebedingungen",
     "password_request": "Kennwort zurücksetzen",
     "password_request_description": "Gib deine E-Mail-Adresse ein, um dein Kennwort zurückzusetzen",
     "password_request_success": "Dir wurde an deine E-Mail-Adresse {email} ein neues Kennwort gesendet.",

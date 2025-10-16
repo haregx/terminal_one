@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:lucide_icons/lucide_icons.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:terminal_one/widgets/buttons/button3d.dart';
 import 'package:terminal_one/widgets/buttons/ghost_button.dart';
 import 'package:terminal_one/widgets/game/button_flippable.dart';
@@ -48,7 +49,7 @@ class _QuizButtonsGroupState extends State<QuizButtonsGroup> {
   List<bool> isClickableList = [true, true, true, true];
   late List<int> statusList = List.filled(widget.sumQuestions, -1);
   final ClassicCircularProgressController _controller = ClassicCircularProgressController();
-  final int _startSeconds = 60;
+  int _startSeconds = 60;
 
   bool showNextStepButton = false;
   bool isLastQuestion = false;
@@ -61,6 +62,7 @@ class _QuizButtonsGroupState extends State<QuizButtonsGroup> {
     super.initState();
       WidgetsBinding.instance.addPostFrameCallback((_) {
       _controller.start();
+      _startSeconds = kDebugMode ? 10 : _startSeconds;
     });
   }
 
@@ -83,7 +85,7 @@ class _QuizButtonsGroupState extends State<QuizButtonsGroup> {
       widget.callbackNextStep(false); // <-- Antwort als falsch melden!
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Center(child: Text('Die $_startSeconds Sekunden sind abgelaufen!')),
+          content: Center(child: Text('quiz.time_is_up'.tr(namedArgs: {'seconds': '$_startSeconds'}))),
           duration: Duration(seconds: 3),
         ),
       );
@@ -297,18 +299,17 @@ class _QuizButtonsGroupState extends State<QuizButtonsGroup> {
                     explanation.isEmpty 
                       ? SizedBox(height: 44,) 
                       : GhostButton(
-                        leading: LucideIcons.info,
-                        label: 'Erlärung zur richtigen Antwort',
-                        onPressed: () {
-                          // Meldung nach außen, dass der GhostButton geklickt wurde
-                          debugPrint ('Warum? Button geklickt, Erklärung: $explanation');
-                          widget.callbackExplanationClicked(question, explanation, hasKI);
-                        },
-                      ),
+                          leading: LucideIcons.info,
+                          label: 'quiz.explanation_button'.tr(),
+                          onPressed: () {
+                            debugPrint ('Warum? Button geklickt, Erklärung: $explanation');
+                            widget.callbackExplanationClicked(question, explanation, hasKI);
+                          },
+                        ),
                     IntrinsicWidth(
                       child: Button3D(
                         leadingIcon: LucideIcons.stepForward,
-                        label: isLastQuestion ? 'Zum Ergebnis' : 'Nächste Frage',
+                        label: isLastQuestion ? 'quiz.to_results'.tr() : 'quiz.next_question'.tr(),
                         onPressed: !isLastQuestion ? _onNextQuestionPressed : _onShowResultPressed,
                         enabled: true,
                       ),

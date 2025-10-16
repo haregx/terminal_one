@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:easy_localization/easy_localization.dart';
 import '../glass_card.dart';
 
 class PromoCodeCard extends StatelessWidget {
@@ -146,7 +147,7 @@ class PromoCodeCard extends StatelessWidget {
                             ),
                           ),
                         ),
-                        Center(child: Text('Gültigkeit: $validity', style: Theme.of(context).textTheme.bodySmall?.copyWith(fontSize: 14))),
+                        Center(child: Text('game.validity'.tr(namedArgs: {'validity': validity}), style: Theme.of(context).textTheme.bodySmall?.copyWith(fontSize: 14))),
                       ],
                     ),
                   ),

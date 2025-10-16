@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:terminal_one/core/app_routes.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 /// Example demonstrating ProfileScreen navigation
 /// 
@@ -11,7 +12,7 @@ class ProfileNavigationExample extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Profile Navigation Example')),
+      appBar: AppBar(title: Text('profile_navigation_example.title'.tr())),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -19,20 +20,17 @@ class ProfileNavigationExample extends StatelessWidget {
             // Method 1: Using AppRoutes helper method (Recommended)
             ElevatedButton(
               onPressed: () => AppRoutes.navigateToProfile(context),
-              child: const Text('Navigate to Profile (Recommended)'),
+              child: Text('profile_navigation_example.navigate_to_profile'.tr()),
             ),
-            
             const SizedBox(height: 16),
-            
             // Method 2: Using Navigator.pushNamed directly
             ElevatedButton(
               onPressed: () => Navigator.pushNamed(context, AppRoutes.profile),
-              child: const Text('Navigate using Route Name'),
+              child: Text('profile_navigation_example.navigate_using_route_name'.tr()),
             ),
-            
             const SizedBox(height: 16),
-            
             // Method 3: From AppBar action (as shown in HomeScreenLoggedIn)
+            // (This is a code sample, so we keep it as is)
             const Text(
               'Profile button in AppBar:\n'
               'IconButton(\n'
@@ -73,12 +71,12 @@ class CustomProfileScreenExample {
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text('Custom Edit Profile'),
-        content: const Text('Implement your custom profile editing here'),
+        title: Text('profile_navigation_example.custom_edit_profile'.tr()),
+        content: Text('profile_navigation_example.implement_custom_edit'.tr()),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context),
-            child: const Text('Close'),
+            child: Text('profile_navigation_example.close'.tr()),
           ),
         ],
       ),

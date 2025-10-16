@@ -107,42 +107,24 @@ class _SettingsScreenState extends State<SettingsScreen> with TickerProviderStat
 
   String _getLanguageDisplayName(String languageCode) {
     // Dynamisch basierend auf aktueller Locale
-    final currentLocale = context.locale.languageCode;
+   // final currentLocale = context.locale.languageCode;
     
-    if (currentLocale == 'de') {
+  
       switch (languageCode) {
         case 'en':
-          return 'Englisch';
+          return 'English';
         case 'de':
           return 'Deutsch';
-  /*      case 'fr':
-          return 'Französisch';
+        case 'fr':
+          return 'Francais';
         case 'es':
-          return 'Spanisch';
-        case 'it':
+          return 'Espańol';
+/*        case 'it':
           return 'Italienisch';
         */
         default:
           return 'Englisch';
       }
-    } else {
-      // Englisch als Fallback
-      switch (languageCode) {
-        case 'en':
-          return 'English';
-        case 'de':
-          return 'German';
-     /*   case 'fr':
-          return 'French';
-        case 'es':
-          return 'Spanish';
-        case 'it':
-          return 'Italian';
-          */
-        default:
-          return 'English';
-      }
-    }
   }
 
   String _getRegionDisplayName(String regionCode) {
@@ -185,7 +167,7 @@ class _SettingsScreenState extends State<SettingsScreen> with TickerProviderStat
 
   void _showLanguageSelector() {
     //final languageCodes = ['en', 'de', 'fr', 'es', 'it'];
-    final languageCodes = ['en', 'de'];
+    final languageCodes = ['en', 'de', 'fr', 'es'];
     
     showModalBottomSheet(
       context: context,

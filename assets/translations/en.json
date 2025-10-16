@@ -1,4 +1,47 @@
 {
+  "game": {
+    "title": "Game",
+    "result_title": "Game Result",
+    "details_title": "Game Details",
+    "more_games_title": "More Games",
+    "filter": "Filter",
+    "score": "SCORE",
+    "validity": "Validity: {validity}"
+  },
+  "navigation_examples": {
+    "title": "Navigation Examples",
+    "open_12_digit_promo": "Open 12-digit Promo Code",
+    "go_to_login": "Go to Login",
+    "go_to_register": "Go to Register",
+    "enter_promo_code": "Enter Promo Code",
+    "more_games": "More Games",
+    "logout": "Logout"
+  },
+  "profile_navigation_example": {
+    "title": "Profile Navigation Example",
+    "navigate_to_profile": "Navigate to Profile (Recommended)",
+    "navigate_using_route_name": "Navigate using Route Name",
+    "custom_edit_profile": "Custom Edit Profile",
+    "implement_custom_edit": "Implement your custom profile editing here",
+    "close": "Close"
+  },
+  "settings_navigation_example": {
+    "title": "Settings Navigation Example",
+    "navigate_to_settings": "Navigate to Settings (Recommended)",
+    "navigate_using_route_name": "Navigate using Route Name"
+  },
+  "app_routes": {
+    "error": "Error",
+    "route_not_found": "Route not found",
+    "route_does_not_exist": "The route \"{route}\" does not exist.",
+    "go_to_home": "Go to Home"
+  },
+ "quiz": {
+    "time_is_up": "Time is up! {seconds} seconds have passed!",
+    "explanation_button": "Explanation for the correct answer",
+    "to_results": "To results",
+    "next_question": "Next question"
+  },
   "common": {
     "cancel": "Cancel",
     "save": "Save",
@@ -11,13 +54,17 @@
     "error": "Error",
     "success": "Success",
     "warning": "Warning",
-    "info": "Information"
+    "info": "Information",
+    "accept": "Accept",
+    "decline": "Decline",
+    "last_updated": "Last updated: {date}"
   },
   "navigation": {
     "home": "Home",
     "profile": "Profile",
     "settings": "Settings",
     "privacy_policy": "Privacy Policy",
+    "policy": "Terms of Service",
     "promocode": "Promo Code",
     "logout": "Logout"
   },
@@ -34,6 +81,7 @@
     "register_button": "Create account",
     "register_success": "Registration successful!",
     "privacy_policy_accept": "I accept the privacy policy",
+    "policy_accept": "I accept the terms of service",
     "password_request": "Reset password",
     "password_request_description": "Enter your email address to reset your password",
     "password_request_success": "A new password has been sent to your email address {email}.",

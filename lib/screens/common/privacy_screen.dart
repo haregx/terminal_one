@@ -4,6 +4,7 @@ import 'package:terminal_one/widgets/buttons/ghost_button.dart';
 import '../../widgets/glassmorphism_scaffold.dart';
 import '../../widgets/appbar_aware_safe_area.dart';
 import 'package:flutter_html/flutter_html.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class PrivacyScreen extends StatefulWidget {
   const PrivacyScreen({
@@ -32,7 +33,7 @@ class _PrivacyScreenState extends State<PrivacyScreen> {
   @override
   Widget build(BuildContext context) {
     return GlassmorphismScaffold(
-      title: const Text('Privacy Policy'),
+      title: Text('navigation.privacy_policy'.tr()),
       body: AppBarAwareSafeArea(
         child: Padding(
           padding: const EdgeInsets.all(24.0),
@@ -44,23 +45,23 @@ class _PrivacyScreenState extends State<PrivacyScreen> {
                 ),
               ),
               const SizedBox(height: 16),
-              const Text(
-                'Last updated: January 1, 2023',
-                style: TextStyle(fontSize: 12, color: Colors.grey),
+              Text(
+                'common.last_updated'.tr(namedArgs: {'date': 'January, 2023'}),
+                style: const TextStyle(fontSize: 12, color: Colors.grey),
               ),
               const SizedBox(height: 16),
               widget.showBottomButtons ? Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   GhostButton(
-                    label: 'Ablehnen',
+                    label: 'common.decline'.tr(),
                     onPressed: () {
                       Navigator.of(context).pop(false);
                     },
                   ),
                   IntrinsicWidth(
                     child: Button3D(
-                      label: 'Akzeptieren',
+                      label: 'common.accept'.tr(),
                       onPressed: () {
                         Navigator.of(context).pop(true);
                       },
