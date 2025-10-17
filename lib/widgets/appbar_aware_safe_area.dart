@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-/// AppBarAwareSafeArea - SafeArea das die transparente AppBar berücksichtigt
+/// AppBarAwareSafeArea - SafeArea that takes a transparent AppBar into account
 /// 
-/// Dieses Widget stellt sicher, dass der Inhalt nicht unter der transparenten
-/// AppBar verschwindet, während der Hintergrund trotzdem sichtbar bleibt.
+/// This widget ensures that content does not disappear under a transparent
+/// AppBar, while still allowing the background to remain visible.
 class AppBarAwareSafeArea extends StatelessWidget {
   /// Das Kind-Widget
   final Widget child;
@@ -19,12 +19,18 @@ class AppBarAwareSafeArea extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (!respectAppBar) {
+
+    // TODO: Implement for respectAppBar
+
+/*    if (!respectAppBar) {
       return SafeArea(child: child);
     }
+*/
     
     // Einfaches SafeArea ohne zusätzliches Padding
     // Die AppBar-Höhe wird automatisch von Scaffold gehandhabt
+    // Simple SafeArea without extra padding
+    // The AppBar height is automatically handled by Scaffold
     return SafeArea(
       child: child,
     );

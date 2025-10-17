@@ -18,7 +18,7 @@ class _HomeScreenLoggedInState extends State<HomeScreenLoggedIn> with TickerProv
   
   late ScrollController _scrollController;
   
-  // ValueNotifier für Logo-Animation ohne setState
+  // ValueNotifier for logo animation without setState
   final ValueNotifier<bool> _showSmallLogo = ValueNotifier<bool>(false);
 
   @override
@@ -44,20 +44,20 @@ class _HomeScreenLoggedInState extends State<HomeScreenLoggedIn> with TickerProv
     // Start animation
     _fadeController.forward();
     
-    // KEINE lokale Status Bar Konfiguration mehr
+  // NO local status bar configuration anymore
   }
   
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    // KEINE lokale Status Bar Konfiguration mehr
+  // NO local status bar configuration anymore
   }
   
-  // Entfernte _updateStatusBar Methode da nicht mehr benötigt
+  // Removed _updateStatusBar method as it is no longer needed
 
   void _onScroll() {
-    // Verwende ValueNotifier statt setState um Rebuilds zu vermeiden
-    final shouldShow = _scrollController.offset > 50; // Reduziert von 100 auf 50px
+  // Use ValueNotifier instead of setState to avoid rebuilds
+  final shouldShow = _scrollController.offset > 50; // Reduced from 100 to 50px
     if (_showSmallLogo.value != shouldShow) {
       debugPrint('Logo state changed: offset=${_scrollController.offset}, show=$shouldShow'); // Debug
       _showSmallLogo.value = shouldShow;
@@ -68,7 +68,7 @@ class _HomeScreenLoggedInState extends State<HomeScreenLoggedIn> with TickerProv
   void dispose() {
     _fadeController.dispose();
     _scrollController.dispose();
-    _showSmallLogo.dispose(); // ValueNotifier auch disposen
+  _showSmallLogo.dispose(); // Also dispose ValueNotifier
     super.dispose();
   }
 
@@ -76,9 +76,9 @@ class _HomeScreenLoggedInState extends State<HomeScreenLoggedIn> with TickerProv
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     
-    // KEINE lokale AnnotatedRegion mehr - wird global in main.dart gehandhabt
+  // NO local AnnotatedRegion anymore - handled globally in main.dart
     return GlassmorphismScaffold(
-      // AppBar mit Logo Animation - nur sichtbar beim Scrollen
+  // AppBar with logo animation - only visible when scrolling
       title: ValueListenableBuilder<bool>(
         valueListenable: _showSmallLogo,
         builder: (context, showLogo, child) {
@@ -112,7 +112,7 @@ class _HomeScreenLoggedInState extends State<HomeScreenLoggedIn> with TickerProv
             physics: const BouncingScrollPhysics(),
             child: Column(
               children: [
-                // Header Bereich mit großem Logo (verschwindet beim Scrollen)
+                // Header area with large logo (disappears when scrolling)
                 ValueListenableBuilder<bool>(
                   valueListenable: _showSmallLogo,
                   builder: (context, showSmallLogo, child) {
@@ -165,7 +165,7 @@ class _HomeScreenLoggedInState extends State<HomeScreenLoggedIn> with TickerProv
                   },
                 ),
 
-                // Einfaches Dashboard
+                // Simple dashboard
                 const SimpleDashboard(),
                 
                 // Bottom safe area spacing

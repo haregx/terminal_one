@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'dart:ui';
 
+import 'package:terminal_one/utils/platform_utils.dart';
+
 /// Glass Card Widget - Simple glassmorphism-styled card component
 /// 
 /// Provides consistent glassmorphism styling for content cards:
@@ -23,10 +25,14 @@ class GlassCard extends StatefulWidget {
   /// Custom border radius
   final BorderRadius? borderRadius;
 
+  // Animation Duration
+  final Duration animationDuration;
+
   const GlassCard({
     super.key,
     required this.child,
     this.delay = Duration.zero,
+    this.animationDuration = const Duration(milliseconds: 600),
     this.padding,
     this.margin,
     this.borderRadius,
@@ -46,12 +52,12 @@ class _GlassCardState extends State<GlassCard> with SingleTickerProviderStateMix
     super.initState();
     
     _controller = AnimationController(
-      duration: const Duration(milliseconds: 600),
+      duration: widget.animationDuration,
       vsync: this,
     );
 
     _scaleAnimation = Tween<double>(
-      begin: 0.8,
+      begin: 0.6,
       end: 1.0,
     ).animate(CurvedAnimation(
       parent: _controller,
@@ -83,6 +89,9 @@ class _GlassCardState extends State<GlassCard> with SingleTickerProviderStateMix
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    //final isIOs = PlatformUtils.isIOS; // Theme.of(context).platform == TargetPlatform.iOS || Theme.of(context).platform == TargetPlatform.macOS;
+
+    final double borderRadius = PlatformUtils.isIOS ? 20 : 12;
     
     return AnimatedBuilder(
       animation: _controller,
@@ -92,7 +101,7 @@ class _GlassCardState extends State<GlassCard> with SingleTickerProviderStateMix
           child: Opacity(
             opacity: _opacityAnimation.value,
             child: ClipRRect(
-              borderRadius: widget.borderRadius ?? BorderRadius.circular(16),
+              borderRadius: widget.borderRadius ?? BorderRadius.circular(borderRadius),
               child: BackdropFilter(
                 filter: ImageFilter.blur(
                   sigmaX: isDark ? 15 : 8,
@@ -102,7 +111,7 @@ class _GlassCardState extends State<GlassCard> with SingleTickerProviderStateMix
                   margin: widget.margin,
                   decoration: BoxDecoration(
                     color: isDark ? Colors.white.withAlpha(30) : Colors.white.withAlpha(90),
-                    borderRadius: widget.borderRadius ?? BorderRadius.circular(16),
+                    borderRadius: widget.borderRadius ?? BorderRadius.circular(borderRadius),
                     border: Border.all(
                       color: isDark ? Colors.white.withAlpha(60) : Colors.white.withAlpha(120),
                       width: 1,

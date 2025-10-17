@@ -26,7 +26,7 @@ class _SettingsScreenState extends State<SettingsScreen> with TickerProviderStat
   late AnimationController _fadeController;
   late Animation<double> _fadeAnimation;
   
-  // Logo Animation wie bei Home Screen
+  // Logo animation as in Home Screen
   late ScrollController _scrollController;
   final ValueNotifier<bool> _showSmallLogo = ValueNotifier<bool>(false);
   
@@ -57,7 +57,7 @@ class _SettingsScreenState extends State<SettingsScreen> with TickerProviderStat
       curve: Curves.easeInOut,
     ));
 
-    // Logo Animation Setup
+  // Logo animation setup
     _scrollController = ScrollController();
     _scrollController.addListener(_onScroll);
 
@@ -108,18 +108,18 @@ class _SettingsScreenState extends State<SettingsScreen> with TickerProviderStat
   String _getLanguageDisplayName(String languageCode) {
     // Dynamisch basierend auf aktueller Locale
    // final currentLocale = context.locale.languageCode;
-    
-  
+
+      // TODO: Change language display names
       switch (languageCode) {
         case 'en':
           return 'English';
         case 'de':
           return 'Deutsch';
-        case 'fr':
+ /*       case 'fr':
           return 'Francais';
         case 'es':
           return 'Espańol';
-/*        case 'it':
+        case 'it':
           return 'Italienisch';
         */
         default:
@@ -166,8 +166,9 @@ class _SettingsScreenState extends State<SettingsScreen> with TickerProviderStat
   }
 
   void _showLanguageSelector() {
-    //final languageCodes = ['en', 'de', 'fr', 'es', 'it'];
-    final languageCodes = ['en', 'de', 'fr', 'es'];
+    // TODO: Change language selection
+    // final languageCodes = ['en', 'de', 'fr', 'es'];
+    final languageCodes = ['en', 'de'];
     
     showModalBottomSheet(
       context: context,

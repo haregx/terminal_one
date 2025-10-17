@@ -3,17 +3,17 @@ import 'package:lucide_icons/lucide_icons.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:terminal_one/core/app_routes.dart';
 
-/// QuickActionData - Datenmodell für Schnelle Aktionen Karten
+/// QuickActionData - Data model for Quick Actions cards
 class QuickActionData {
   final String id;
-  final String title; // Fallback title 
-  final String? titleKey; // Übersetzungsschlüssel für Internationalisierung
+  final String title; // Fallback title
+  final String? titleKey; // Translation key for internationalization
   final IconData icon;
   final String? route;
   final VoidCallback? action;
   final bool isThemeToggle;
-  final Color? color; // Neue Eigenschaft für Kartenfarbe
-  final Color? iconColor; // Neue Eigenschaft für Icon-Farbe
+  final Color? color; // New property for card color
+  final Color? iconColor; // New property for icon color
 
   const QuickActionData({
     required this.id,
@@ -27,7 +27,7 @@ class QuickActionData {
     this.iconColor,
   });
 
-  /// Gibt den lokalisierten Titel zurück, falls titleKey vorhanden ist
+  /// Returns the localized title if titleKey is present
   String getLocalizedTitle() {
     if (titleKey != null) {
       return titleKey!.tr();
@@ -36,26 +36,26 @@ class QuickActionData {
   }
 }
 
-/// Zentrale Liste aller Schnelle Aktionen
+/// Central list of all quick actions
 class QuickActionsData {
   static const List<QuickActionData> actions = [
     QuickActionData(
       id: 'code',
-      title: 'Promocode eingeben', // Fallback
-      titleKey: 'quick_actions.enter_promo_code',
-      icon: LucideIcons.ticket, // Passender für Promo-Codes
-      route: AppRoutes.promoCode,
-      color: Color(0xFF06B6D4), // Cyan - für Eingabe/Input
-      iconColor: Colors.white,
+  title: 'Promocode eingeben', // Fallback
+  titleKey: 'quick_actions.enter_promo_code',
+  icon: LucideIcons.ticket, // Suitable for promo codes
+  route: AppRoutes.promoCode,
+  color: Color(0xFF06B6D4), // Cyan - for input
+  iconColor: Colors.white,
     ),
      QuickActionData(
       id: 'games',
-      title: 'Mehr Promocodes', // Fallback
-      titleKey: 'quick_actions.more_promo_codes',
-      icon: LucideIcons.gift, // Geschenk-Icon für mehr Codes
-      route: AppRoutes.moreGames,
-      color: Color(0xFF8B5CF6), // Violet - für Belohnungen
-      iconColor: Colors.white,
+  title: 'Mehr Promocodes', // Fallback
+  titleKey: 'quick_actions.more_promo_codes',
+  icon: LucideIcons.gift, // Gift icon for more codes
+  route: AppRoutes.moreGames,
+  color: Color(0xFF8B5CF6), // Violet - for rewards
+  iconColor: Colors.white,
     ),
     QuickActionData(
       id: 'profile',
@@ -82,7 +82,7 @@ class QuickActionsData {
       icon: LucideIcons.helpCircle,
       color: Color(0xFFF59E0B), // Amber - aufmerksamkeitsstarb für Hilfe
       iconColor: Colors.white,
-      // TODO: Route wird später hinzugefügt
+      // TODO: add Route 
     ),
    /* QuickActionData(
       id: 'theme',

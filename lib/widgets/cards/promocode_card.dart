@@ -75,9 +75,7 @@ class PromoCodeCard extends StatelessWidget {
                                 width: 120,
                                 height: 120,
                                 decoration: BoxDecoration(
-                                  color: Theme.of(context).brightness == Brightness.dark
-                                    ? Colors.deepOrange
-                                    : Colors.redAccent,
+                                  color: Theme.of(context).brightness == Brightness.dark ? Colors.deepOrange : Colors.redAccent,
                                   shape: BoxShape.circle,
                                 ),
                               ),
@@ -140,9 +138,7 @@ class PromoCodeCard extends StatelessWidget {
                               promoCode,
                               style: Theme.of(context).textTheme.titleMedium?.copyWith(
                                 letterSpacing: 2,
-                                color: Theme.of(context).brightness == Brightness.dark
-                                  ? Colors.white
-                                  : Colors.black,
+                                color: Theme.of(context).brightness == Brightness.dark ? Colors.white : Colors.black,
                               ),
                             ),
                           ),

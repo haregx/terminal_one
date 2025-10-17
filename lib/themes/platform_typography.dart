@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
-import '../utils/platform_stub.dart'
-    if (dart.library.io) '../utils/platform_io.dart' as platform;
+import 'package:terminal_one/utils/platform_utils.dart';
 
 /// Platform-aware typography that automatically uses the appropriate
 /// font families following iOS and Android design guidelines
@@ -13,7 +12,7 @@ class PlatformTypography {
     if (kIsWeb) {
       return 'Roboto';
     }
-  if (platform.Platform.isIOS || platform.Platform.isMacOS) {
+  if (PlatformUtils.isIOS) {
       return '.SF UI Text';
     } else {
       return 'Roboto';
@@ -25,7 +24,7 @@ class PlatformTypography {
     if (kIsWeb) {
       return 'Roboto';
     }
-  if (platform.Platform.isIOS || platform.Platform.isMacOS) {
+  if (PlatformUtils.isIOS) {
       return '.SF UI Display';
     } else {
       return 'Roboto';
@@ -68,7 +67,7 @@ class PlatformTypography {
 
   /// Create platform-appropriate TextTheme
   static TextTheme createTextTheme(Brightness brightness) {
-  final bool isIOS = !kIsWeb && (platform.Platform.isIOS || platform.Platform.isMacOS);
+  final bool isIOS = !kIsWeb && PlatformUtils.isIOS;
     final String fontFamily = primaryFontFamily;
     final String displayFontFamily = PlatformTypography.displayFontFamily;
     

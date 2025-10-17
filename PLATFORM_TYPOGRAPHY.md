@@ -64,7 +64,7 @@ Die App verwendet jetzt **platform-bewusste Typografie**, die automatisch zwisch
 ### Automatische Platform-Erkennung
 ```dart
 static String get primaryFontFamily {
-  if (Platform.isIOS || Platform.isMacOS) {
+  if (PlatformUtils.isIOS) {
     return '.SF UI Text'; // San Francisco font for iOS
   } else {
     return 'Roboto'; // Roboto font for Android/others
@@ -121,10 +121,10 @@ Text(
 ### Custom Font Properties
 ```dart
 // Platform-spezifische Letter Spacing
-double spacing = PlatformTypography.getLetterSpacing(16.0, isIOS: Platform.isIOS);
+double spacing = PlatformTypography.getLetterSpacing(16.0, isIOS: PlatformUtils.isIOS);
 
 // Platform-spezifische Line Height
-double height = PlatformTypography.getLineHeight(16.0, isIOS: Platform.isIOS);
+double height = PlatformTypography.getLineHeight(16.0, isIOS: PlatformUtils.isIOS);
 ```
 
 ## ✅ Guidelines-Konformität

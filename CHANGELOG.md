@@ -6,6 +6,19 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 
+## [Unreleased] - 2025-10-17
+
+### Changed
+- Translated all code comments from German to English in all main Dart files for consistency and maintainability.
+- Ensured all user-facing strings in `home_screen_loggedin.dart` are fully internationalized and use translation keys.
+- Improved translation consistency and informal address style in all supported languages (English, German, French, Spanish).
+- Updated documentation and code comments to be fully in English across the codebase.
+- Minor code cleanup and formatting in widgets and screens.
+
+### Technical Improvements
+- Improved code readability and maintainability by unifying comment language and translation usage.
+
+
 ## [Unreleased] - 2025-10-16
 
 ### Added

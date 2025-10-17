@@ -21,19 +21,19 @@ void main() async {
     DeviceOrientation.portraitDown,
   ]);
 
-  // Easy Localization initialisieren
+  // Initialize Easy Localization
   await EasyLocalization.ensureInitialized();
   
-  // Splash Screen beibehalten bis App fertig geladen ist
+  // Keep splash screen until app is fully loaded
   FlutterNativeSplash.preserve(widgetsBinding: WidgetsFlutterBinding.ensureInitialized());
   
   final authProvider = AuthProvider();
   final settingsProvider = SettingsProvider();
   
-  // SettingsProvider laden und Sprache setzen
+  // Load SettingsProvider and set language
   await settingsProvider.loadSettings();
   
-  // Warten bis AuthProvider geladen
+  // Wait until AuthProvider is loaded
   while (!authProvider.isInitialized) {
     await Future.delayed(const Duration(milliseconds: 10));
   }
@@ -44,11 +44,12 @@ void main() async {
 
   runApp(
     EasyLocalization(
+      // TODO: set supported locales
       supportedLocales: const [
         Locale('de'),
         Locale('en'),
-        Locale('fr'),
-        Locale('es'),
+   //     Locale('fr'),
+   //     Locale('es'),
       ],
       path: 'assets/translations',
       fallbackLocale: const Locale('en'),
@@ -104,6 +105,7 @@ class _MainAppState extends State<MainApp> {
       ),
       child: MaterialApp(
         title: 'Terminal.One',
+        debugShowCheckedModeBanner: false,
         theme: AppTheme.lightTheme,
         darkTheme: AppTheme.darkTheme,
         themeMode: themeProvider.themeMode,
