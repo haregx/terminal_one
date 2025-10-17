@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/foundation.dart'; // for kIsWeb
 import 'dart:convert';
 import 'dart:io';
@@ -99,84 +100,78 @@ class SimpleHttpsPostMethodNotAllowedException implements Exception {
 class ErrorCodes {
   static String translate(int code) {
     switch (code) {
-      case 10000: // BadApi
-        return 'Ungültige API-Anfrage';
-      case 10001: // BadModel
-        return 'Ungültiges Datenmodell';
-      case 10002: // DatabaseError
-        return 'Datenbankfehler';
-      case 10003: // NullRequest
-        return 'Leere Anfrage';
-      case 10004: // EmptyRequest
-        return 'Leere Anfrage';
-
-      case 1000: // BadUser
-        return 'Ungültiger Benutzer';
-      case 1001: // UserLocked
-        return 'Benutzer ist gesperrt';
-      case 1002: // UserDeleted
-        return 'Benutzer wurde gelöscht';
-      case 1003: // UserNotConfirmedByUser
-        return 'Benutzer nicht bestätigt';
-      case 1004: // UserNotConfirmedByAdmin
-        return 'Benutzer nicht von Admin bestätigt';
-      case 1005: // BadPassword
-        return 'Falsches Passwort';
-      case 1006: // BadConfirmCode
-        return 'Ungültiger Bestätigungscode';
-      case 1007: // ConfirmCodeExpired
-        return 'Bestätigungscode abgelaufen';
-      case 1008: // IsConfirmed
-        return 'Benutzer ist bestätigt';
-      case 1009: // NoAdmin
-        return 'Keine Admin-Berechtigung';
-      case 1010: // BadContact
-        return 'Ungültiger Kontakt';
-      case 1012: // BadEmail
-        return 'Ungültige E-Mail-Adresse';
-      case 1013: // BadPhone
-        return 'Ungültige Telefonnummer';
-      case 1014: // BadToken
-        return 'Ungültiger Token';
-      case 1015: // BadQrCode
-        return 'Ungültiger QR-Code';
-      case 1016: // BadQrCodeExpired
-        return 'QR-Code abgelaufen';
-
-      case 1404: // NotFound
-        return 'Nicht gefunden';
-      case 1111: // ContactModified
-        return 'Kontakt wurde geändert';
-
-      case 1500: // TooManyLogins
-        return 'Zu viele Login-Versuche';
-      case 1600: // SingleSignonFailed
-        return 'Single-Sign-On fehlgeschlagen';
-      case 1601: // JobFailed
-        return 'Job fehlgeschlagen';
-
-      case 2000: // DuplicateLogin
-        return 'Login bereits vorhanden';
-      case 2001: // DuplicateEmail
-        return 'E-Mail bereits vorhanden';
-      case 2002: // DuplicatePhone
-        return 'Telefonnummer bereits vorhanden';
-
-      case 3000: // ExcelError
-        return 'Excel-Fehler';
-      case 4000: // ConfirmCodeNotSend / MailNotSend
-        return 'Bestätigungscode oder E-Mail konnte nicht gesendet werden';
-
-      case 5404: // ContactNotFound
-        return 'Kontakt nicht gefunden';
-      case 5405: // ContactQRCodeExpired
-        return 'Kontakt-QR-Code abgelaufen';
-      case 6000: // AIError
-        return 'KI-Fehler';
-      case 999999: // NullResult
-        return 'Kein Ergebnis';
+      case 10000:
+        return 'error.bad_api'.tr();
+      case 10001:
+        return 'error.bad_model'.tr();
+      case 10002:
+        return 'error.database_error'.tr();
+      case 10003:
+        return 'error.null_request'.tr();
+      case 10004:
+        return 'error.empty_request'.tr();
+      case 1000:
+        return 'error.bad_user'.tr();
+      case 1001:
+        return 'error.user_locked'.tr();
+      case 1002:
+        return 'error.user_deleted'.tr();
+      case 1003:
+        return 'error.user_not_confirmed_by_user'.tr();
+      case 1004:
+        return 'error.user_not_confirmed_by_admin'.tr();
+      case 1005:
+        return 'error.bad_password'.tr();
+      case 1006:
+        return 'error.bad_confirm_code'.tr();
+      case 1007:
+        return 'error.confirm_code_expired'.tr();
+      case 1008:
+        return 'error.is_confirmed'.tr();
+      case 1009:
+        return 'error.no_admin'.tr();
+      case 1010:
+        return 'error.bad_contact'.tr();
+      case 1012:
+        return 'error.bad_email'.tr();
+      case 1013:
+        return 'error.bad_phone'.tr();
+      case 1014:
+        return 'error.bad_token'.tr();
+      case 1015:
+        return 'error.bad_qr_code'.tr();
+      case 1016:
+        return 'error.bad_qr_code_expired'.tr();
+      case 1404:
+        return 'error.not_found'.tr();
+      case 1111:
+        return 'error.contact_modified'.tr();
+      case 1500:
+        return 'error.too_many_logins'.tr();
+      case 1600:
+        return 'error.single_signon_failed'.tr();
+      case 1601:
+        return 'error.job_failed'.tr();
+      case 2000:
+        return 'error.duplicate_login'.tr();
+      case 2001:
+        return 'error.duplicate_email'.tr();
+      case 2002:
+        return 'error.duplicate_phone'.tr();
+      case 3000:
+        return 'error.excel_error'.tr();
+      case 4000:
+        return 'error.confirm_code_not_send'.tr();
+      case 5404:
+        return 'error.contact_not_found'.tr();
+      case 5405:
+        return 'error.contact_qr_code_expired'.tr();
+      case 6000:
+        return 'error.ai_error'.tr();
+      case 999999:
+        return 'error.null_result'.tr();
       default:
-        return 'Fehler Code: $code';
+        return 'error.code'.tr(namedArgs: {'code': code.toString()});
     }
   }
 }
@@ -198,17 +193,17 @@ class HttpsErrorHandler {
     } else if (e is SimpleHttpsPostNotFoundException) {
       debugPrint('❌ SimpleHttpsPostNotFoundException: $e');
       ScaffoldMessenger.of(context).showSnackBar(
-        FancyErrorSnackbar.build('Die angeforderte Ressource wurde nicht gefunden.'),
+        FancyErrorSnackbar.build('error.not_found'.tr()),
       );
     } else if (e is SimpleHttpsPostNetworkException) {
       debugPrint('❌ SimpleHttpsPostNetworkException: $e');
       ScaffoldMessenger.of(context).showSnackBar(
-        FancyErrorSnackbar.build('Keine Internetverbindung oder Server nicht erreichbar.'),
+        FancyErrorSnackbar.build('error.network'.tr()),
       );
     } else {
       debugPrint('❌ Unexpected error: $e');
       ScaffoldMessenger.of(context).showSnackBar(
-        FancyErrorSnackbar.build('Ein unerwarteter Fehler ist aufgetreten.'),
+        FancyErrorSnackbar.build('error.unexpected'.tr()),
       );
     }
   }

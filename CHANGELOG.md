@@ -8,15 +8,25 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased] - 2025-10-17
 
+### Added
+- Added full internationalization for all error messages in the app and translation files (`en.json`, `de.json`, `fr.json`, `es.json`).
+- Introduced new translation keys under the `error` section for all supported languages.
+
 ### Changed
 - Translated all code comments from German to English in all main Dart files for consistency and maintainability.
 - Ensured all user-facing strings in `home_screen_loggedin.dart` are fully internationalized and use translation keys.
 - Improved translation consistency and informal address style in all supported languages (English, German, French, Spanish).
 - Updated documentation and code comments to be fully in English across the codebase.
 - Minor code cleanup and formatting in widgets and screens.
+- Updated `https_post_service.dart` to use translation keys for all error messages, removing hardcoded German strings.
+- Ensured all error handling and user-facing error messages are now localized and consistent across all languages.
+
 
 ### Technical Improvements
 - Improved code readability and maintainability by unifying comment language and translation usage.
+- Improved translation file structure and maintainability by centralizing error messages.
+- Enhanced user experience with fully localized error feedback.
+
 
 ---
 
