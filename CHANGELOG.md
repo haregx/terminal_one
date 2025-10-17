@@ -18,6 +18,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Technical Improvements
 - Improved code readability and maintainability by unifying comment language and translation usage.
 
+---
 
 ## [Unreleased] - 2025-10-16
 

@@ -123,7 +123,7 @@ class _SettingsScreenState extends State<SettingsScreen> with TickerProviderStat
           return 'Italienisch';
         */
         default:
-          return 'Englisch';
+          return 'English';
       }
   }
 
@@ -260,7 +260,7 @@ class _SettingsScreenState extends State<SettingsScreen> with TickerProviderStat
             Padding(
               padding: const EdgeInsets.all(16),
               child: Text(
-                context.locale.languageCode == 'de' ? 'Region auswählen' : 'Select Region',
+                'settings.select_region'.tr(),
                 style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
               ),
             ),
