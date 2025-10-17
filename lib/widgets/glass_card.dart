@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'dart:ui';
 
@@ -91,7 +92,8 @@ class _GlassCardState extends State<GlassCard> with SingleTickerProviderStateMix
     final isDark = Theme.of(context).brightness == Brightness.dark;
     //final isIOs = PlatformUtils.isIOS; // Theme.of(context).platform == TargetPlatform.iOS || Theme.of(context).platform == TargetPlatform.macOS;
 
-    final double borderRadius = PlatformUtils.isIOS ? 20 : 12;
+    // need to add kIsWeb as otherwise got an exeption on web
+    final double borderRadius = kIsWeb || PlatformUtils.isIOS ? 20 : 12;
     
     return AnimatedBuilder(
       animation: _controller,
