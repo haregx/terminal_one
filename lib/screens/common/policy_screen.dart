@@ -79,9 +79,19 @@ class _PolicyScreenState extends State<PolicyScreen> {
     );
   }
   
+  // TODO: Replace with actual privacy policy content fetching logic
   void fetchSite() {
     setState(() {
-      htmlText = '<h1>Policy</h1><p>404</p>';
+      htmlText = '''
+        <h1>Lorem Ipsum</h1>
+        <p><strong>Lorem ipsum dolor sit amet</strong>, consectetur adipiscing elit. <em>Etiam euismod</em> tincidunt velit, nec facilisis massa dictum nec.</p>
+        <ul>
+          <li>Curabitur blandit tempus porttitor.</li>
+          <li>Maecenas faucibus mollis interdum.</li>
+          <li>Nullam quis risus eget urna mollis ornare vel eu leo.</li>
+        </ul>
+        <p>Donec ullamcorper nulla non metus auctor fringilla. <a href="#">Learn more</a></p>
+      ''';
     });
   }
 }

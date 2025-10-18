@@ -17,6 +17,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added new responsive spacing widget (responsive_spacer.dart) and improved divider widget (dividors.dart).
 - Added new profile screen implementation in `screens/profile/profile_screen.dart`.
 - Added new register confirmation screen in `screens/auth/register_confirm_screen.dart`.
+- Added new translation keys for game actions:
+  - `game.start` ("Spiel starten", "Start Game", "Iniciar juego", "Démarrer le jeu") for the start/play button in game details screen
+  - `game.home` ("Zur Startseite", "Home", "Inicio", "Accueil") for the home button in game result screen
+
+- Updated game details screen:
+  - Replaced placeholder with a full-width image and scrollable HTML content
+  - Internationalized play button label using `game.start` translation key
+
+- Updated game result screen:
+  - Internationalized home button label using `game.home` translation key
 
 ### Changed
 - Refactored settings screen to use modular section builders and callback-based state management for all settings.

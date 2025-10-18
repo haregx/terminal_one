@@ -121,7 +121,7 @@ class _GameResultScreenState extends State<GameResultScreen> {
               Center(
                 child: IntrinsicWidth(
                   child: Button3D(
-                    label: 'Home',
+                    label: 'application.home'.tr(),
                     onPressed: () {
                         Navigator.pushAndRemoveUntil(
                           context,

@@ -22,7 +22,7 @@ class PromoDataSource {
     PromoData(
       rowGuid: 'ABCD',
       imageUrl: 'https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=400&q=80',
-      title: 'Test Card 1',
+      title: 'App-Akademie Schokolade',
       description: 'This is the description of Card 1 with a long long text that should be truncated',
       promoCode: '123456',
       validity: '31.12.2023',

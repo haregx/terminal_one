@@ -1,6 +1,7 @@
 {
   "application": {
-    "name": "Terminal.One"
+    "name": "Terminal.One",
+    "home": "A inicio"
   },
   "register_confirm": {
     "instructions": "Para confirmar tu registro, ingresa el PIN que te enviamos a tu correo electrónico {email}.",
@@ -55,7 +56,8 @@
     "filter": "Filtrar",
     "score": "PUNTOS",
     "validity": "Validez: {validity}",
-    "tap_card_to_play": "Toca una carta para jugar"
+      "tap_card_to_play": "Toca una carta para jugar",
+    "start": "Iniciar juego"
   },
   "navigation_examples": {
     "title": "Ejemplos de navegación",

@@ -1,6 +1,7 @@
 {
   "application": {
-    "name": "Terminal.One"
+    "name": "Terminal.One",
+    "home": "To Home"
   },
   "register_confirm": {
     "instructions": "To confirm your registration, enter the PIN we sent to your email address {email}.",
@@ -55,7 +56,8 @@
     "filter": "Filter",
     "score": "SCORE",
     "validity": "Validity: {validity}",
-    "tap_card_to_play": "Tap a card to play the game."
+    "tap_card_to_play": "Tap a card to play the game.",
+    "start": "Start Game"
   },
   "navigation_examples": {
     "title": "Navigation Examples",
