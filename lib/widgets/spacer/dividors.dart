@@ -115,3 +115,13 @@ class SeparatorWithText extends StatelessWidget {
     );
   }
 }
+
+Widget buildDivider(bool isDark) {
+  return Divider(
+    indent: 16,
+    endIndent: 16,
+    height: 1,
+    color: isDark ? Colors.white.withAlpha(56) : Colors.black.withAlpha(56),
+    //margin: const EdgeInsets.symmetric(horizontal: 16),
+  );
+}

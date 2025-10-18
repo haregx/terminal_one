@@ -1,4 +1,12 @@
 {
+  "application": {
+    "name": "Terminal.One"
+  },
+  "register_confirm": {
+    "instructions": "Zur Bestätigung deiner Registrierung gib die PIN ein, die wir dir an deine E-Mail-Adresse {email} gesendet haben.",
+    "pincode_entered": "Pincode eingegeben: {pincode}",
+    "resend_code": "Code neu zusenden lassen"
+  },
   "error": {
     "bad_api": "Ungültige API-Anfrage",
     "bad_model": "Ungültiges Datenmodell",
@@ -225,8 +233,8 @@
     "theme_light": "Helles Design aktiv",
     "theme_dark": "Dunkles Design aktiv",
     "theme_system": "Folgt Systemeinstellungen",
-    "auto_dark_mode": "Automatischer Modus",
-    "auto_dark_mode_desc": "Folge den System-Einstellungen",
+    "auto_theme_mode": "Automatischer Modus",
+    "custom_theme_desc": "Folgt Benutzereinstellungen",
     "notifications": "Benachrichtigungen",
     "push_notifications": "Push-Benachrichtigungen",
     "push_notifications_desc": "App-Benachrichtigungen erhalten",
@@ -258,6 +266,7 @@
     "reset_settings_desc": "Alle Einstellungen auf Standardwerte zurücksetzen",
     "select_language": "Sprache auswählen",
     "select_region": "Region auswählen",
+    "language": "Sprache",
     "language_switched": "Sprache erfolgreich geändert",
     "reset_settings_dialog_title": "Einstellungen zurücksetzen",
     "reset_settings_confirmation": "Möchtest du alle Einstellungen auf die Standardwerte zurücksetzen?",
@@ -267,11 +276,11 @@
     "feature_language_switching": "Sprachwechsel",
     "feature_region_switching": "Regionswechsel", 
     "feature_cache_clearing": "Cache-Leerung",
-    "language_english": "Englisch",
-    "language_deutsch": "Deutsch",
-    "language_francais": "Französisch",
-    "language_espanol": "Spanisch",
-    "language_italiano": "Italienisch",
+    "language_en": "Englisch",
+    "language_de": "Deutsch",
+    "language_fr": "Französisch",
+    "language_es": "Spanisch",
+    "language_it": "Italienisch",
     "region_automatic": "Automatisch",
     "region_united_states": "Vereinigte Staaten",
     "region_europe": "Europa",
@@ -318,7 +327,7 @@
     "last_activity": "Letzte Aktivität",
     "logout": "Abmelden",
     "activity_code_scanned": "PromoCode verwendet",
-    "activity_settings_changed": "Settings geändert",
+    "activity_settings_changed": "Einstellungen geändert",
     "activity_profile_updated": "Profil aktualisiert",
     "time_today_at": "Heute um {time}",
     "time_yesterday_at": "Gestern um {time}",

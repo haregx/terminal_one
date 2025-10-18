@@ -1,4 +1,12 @@
 {
+  "application": {
+    "name": "Terminal.One"
+  },
+  "register_confirm": {
+    "instructions": "To confirm your registration, enter the PIN we sent to your email address {email}.",
+    "pincode_entered": "Pincode entered: {pincode}",
+    "resend_code": "Resend code"
+  },
   "error": {
     "bad_api": "Invalid API request",
     "bad_model": "Invalid data model",
@@ -225,8 +233,8 @@
     "theme_light": "Light theme active",
     "theme_dark": "Dark theme active",
     "theme_system": "Follows system settings",
-    "auto_dark_mode": "System mode",
-    "auto_dark_mode_desc": "Follow system mode settings",
+    "auto_theme_mode": "System mode",
+    "custom_theme_desc": "Follows user settings",
     "notifications": "Notifications",
     "push_notifications": "Push Notifications",
     "push_notifications_desc": "Receive app notifications",
@@ -257,6 +265,7 @@
     "reset_settings": "Reset All Settings",
     "reset_settings_desc": "Reset all settings to default values",
     "select_language": "Select Language",
+    "language": "Language",
     "select_region": "Select Region",
     "language_switched": "Language changed successfully",
     "reset_settings_dialog_title": "Reset Settings",
@@ -267,11 +276,11 @@
     "feature_language_switching": "Language switching",
     "feature_region_switching": "Region switching",
     "feature_cache_clearing": "Cache clearing",
-    "language_english": "English",
-    "language_deutsch": "Deutsch",
-    "language_francais": "Français",
-    "language_espanol": "Español",
-    "language_italiano": "Italiano",
+    "language_en": "English",
+    "language_de": "Deutsch",
+    "language_fr": "Français",
+    "language_es": "Español",
+    "language_it": "Italiano",
     "region_automatic": "Automatic",
     "region_united_states": "United States",
     "region_europe": "Europe",

@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'package:terminal_one/widgets/buttons/button3d.dart';
+import 'package:terminal_one/screens/settings/functions/build_tile.dart';
+import 'package:terminal_one/screens/settings/functions/show_about.dart';
+import 'package:terminal_one/screens/settings/functions/show_snackbars.dart';
 import 'package:terminal_one/widgets/buttons/ghost_button.dart';
-import 'package:terminal_one/core/app_routes.dart';
-import 'package:terminal_one/utils/responsive_layout.dart';
 import 'package:terminal_one/widgets/glass_card.dart';
-import 'package:terminal_one/widgets/app_logo.dart';
 import 'package:terminal_one/widgets/appbar_aware_safe_area.dart';
 import 'package:terminal_one/widgets/glassmorphism_scaffold.dart';
+import 'package:terminal_one/widgets/spacer/dividors.dart';
+import 'package:terminal_one/widgets/spacer/responsive_spacer.dart';
 
 /// Profile Screen - User profile management and settings
 /// 
@@ -157,9 +158,8 @@ class _ProfileScreenState extends State<ProfileScreen> with TickerProviderStateM
                   // App Settings
                   _buildAppSettingsSection(isDark),
                   // Danger Zone
+                  SizedBox(height: ResponsiveSpacing.small(context)),
                   _buildDangerZoneSection(isDark),
-                  // Logout Button
-                  _buildLogoutSection(isDark),
                   const SizedBox(height: 40),
                 ],
               ),
@@ -336,27 +336,30 @@ class _ProfileScreenState extends State<ProfileScreen> with TickerProviderStateM
           padding: EdgeInsets.zero,
           child: Column(
             children: [
-              _buildSettingsTile(
+              buildSettingsTile(
+                context,
                 'profile.change_password'.tr(),
                 'profile.change_password_desc'.tr(),
                 LucideIcons.lock,
-                _showChangePasswordDialog,
+                () => _showChangePasswordDialog(),
                 isDark,
               ),
-              _buildDivider(),
-              _buildSettingsTile(
+              buildDivider(isDark),
+              buildSettingsTile(
+                context,
                 'profile.email_notifications'.tr(),
                 'profile.email_notifications_desc'.tr(),
                 LucideIcons.mail,
-                () => _showComingSoonSnackbar('profile.feature_email_notifications'.tr()),
+                () => showComingSoonSnackbar(context, 'profile.feature_email_notifications'.tr()),
                 isDark,
               ),
-              _buildDivider(),
-              _buildSettingsTile(
+              buildDivider(isDark),
+              buildSettingsTile(
+                context,
                 'profile.privacy_settings'.tr(),
                 'profile.privacy_settings_desc'.tr(),
                 LucideIcons.shield,
-                () => _showComingSoonSnackbar('profile.feature_privacy_settings'.tr()),
+                () => showComingSoonSnackbar(context, 'profile.feature_privacy_settings'.tr()),
                 isDark,
               ),
             ],
@@ -371,7 +374,7 @@ class _ProfileScreenState extends State<ProfileScreen> with TickerProviderStateM
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'profile.app_settings'.tr(),
+          'settings.about_support'.tr(),
           style: Theme.of(context).textTheme.titleMedium?.copyWith(
             fontWeight: FontWeight.w600,
             color: isDark ? Colors.white.withAlpha(230) : Colors.black.withAlpha(230),
@@ -383,27 +386,31 @@ class _ProfileScreenState extends State<ProfileScreen> with TickerProviderStateM
           padding: EdgeInsets.zero,
           child: Column(
             children: [
-              _buildSettingsTile(
+            /*  buildSettingsTile(
+                context,
                 'profile.language'.tr(),
                 'profile.language_desc'.tr(),
                 LucideIcons.globe,
-                () => _showComingSoonSnackbar('profile.feature_language_settings'.tr()),
+                () => showComingSoonSnackbar(context, 'profile.feature_language_settings'.tr()),
                 isDark,
               ),
-              _buildDivider(),
-              _buildSettingsTile(
+              buildDivider(isDark),
+              */
+              buildSettingsTile(
+                context,
                 'profile.about'.tr(),
                 'profile.about_desc'.tr(),
                 LucideIcons.info,
-                () => _showAboutDialog(),
+                () => showAbout(context),
                 isDark,
               ),
-              _buildDivider(),
-              _buildSettingsTile(
+              buildDivider(isDark),
+              buildSettingsTile(
+                context,
                 'profile.help_support'.tr(),
                 'profile.help_support_desc'.tr(),
                 LucideIcons.helpCircle,
-                () => _showComingSoonSnackbar('profile.feature_help_support'.tr()),
+                () => showComingSoonSnackbar(context, 'profile.feature_help_support'.tr()),
                 isDark,
               ),
             ],
@@ -417,18 +424,11 @@ class _ProfileScreenState extends State<ProfileScreen> with TickerProviderStateM
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          'profile.danger_zone'.tr(),
-          style: Theme.of(context).textTheme.titleMedium?.copyWith(
-            fontWeight: FontWeight.w600,
-            color: Colors.red.withAlpha(230),
-          ),
-        ),
-        const SizedBox(height: 16),
         GlassCard(
           delay: const Duration(milliseconds: 700),
           padding: EdgeInsets.zero,
-          child: _buildSettingsTile(
+          child: buildSettingsTile(
+            context,
             'profile.delete_account'.tr(),
             'profile.delete_account_desc'.tr(),
             LucideIcons.trash2,
@@ -437,141 +437,6 @@ class _ProfileScreenState extends State<ProfileScreen> with TickerProviderStateM
             isDestructive: true,
           ),
         ),
-      ],
-    );
-  }
-
-  Widget _buildLogoutSection(bool isDark) {
-    return GlassCard(
-      delay: const Duration(milliseconds: 800),
-      padding: const EdgeInsets.all(20),
-      child: Column(
-        children: [
-          const Icon(
-            LucideIcons.logOut,
-            size: 32,
-            color: Colors.orange,
-          ),
-          const SizedBox(height: 12),
-          Text(
-            'profile.ready_to_go'.tr(),
-            style: Theme.of(context).textTheme.titleMedium?.copyWith(
-              fontWeight: FontWeight.w600,
-              color: isDark ? Colors.white.withAlpha(230) : Colors.black.withAlpha(230),
-            ),
-          ),
-          const SizedBox(height: 8),
-          Text(
-            'profile.comeback_anytime'.tr(),
-            style: Theme.of(context).textTheme.bodySmall?.copyWith(
-              color: isDark ? Colors.white.withAlpha(179) : Colors.black.withAlpha(179),
-            ),
-            textAlign: TextAlign.center,
-          ),
-          const SizedBox(height: 16),
-          Button3D(
-            label: 'auth.logout'.tr(),
-            leadingIcon: LucideIcons.logOut,
-            onPressed: () => AppRoutes.navigateToLogout(context),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildSettingsTile(
-    String title,
-    String subtitle,
-    IconData icon,
-    VoidCallback onTap,
-    bool isDark, {
-    bool isDestructive = false,
-  }) {
-    final titleColor = isDestructive 
-        ? Colors.red.withAlpha(230)
-        : isDark ? Colors.white.withAlpha(230) : Colors.black.withAlpha(230);
-    final iconColor = isDestructive
-        ? Colors.red
-        : isDark ? Colors.white.withAlpha(204) : Colors.black.withAlpha(204); // isDark
-    return InkWell(
-      onTap: onTap,
-      borderRadius: BorderRadius.circular(12),
-      child: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Row(
-          children: [
-            Icon(
-              icon,
-              size: 24,
-              color: iconColor,
-            ),
-            const SizedBox(width: 16),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    title,
-                    style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                      fontWeight: FontWeight.w600,
-                      color: titleColor,
-                    ),
-                  ),
-                  Text(
-                    subtitle,
-                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                      color: isDark ? Colors.white.withAlpha(153) : Colors.black.withAlpha(153),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Icon(
-              LucideIcons.chevronRight,
-              size: 20,
-              color: isDark ? Colors.white.withAlpha(128) : Colors.black.withAlpha(128),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildDivider() {
-    final isDark = Theme.of(context).brightness == Brightness.dark;
-    return Container(
-      height: 1,
-      color: isDark ? Colors.white.withAlpha(26) : Colors.black.withAlpha(26),
-      margin: const EdgeInsets.symmetric(horizontal: 16),
-    );
-  }
-
-  void _showComingSoonSnackbar(String feature) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text('profile.coming_soon_message'.tr(namedArgs: {'feature': feature})),
-        backgroundColor: Colors.blue.shade600,
-        behavior: SnackBarBehavior.floating,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10),
-        ),
-      ),
-    );
-  }
-
-  void _showAboutDialog() {
-    showAboutDialog(
-      context: context,
-      applicationName: 'Terminal.One',
-      applicationVersion: '1.0.0',
-      applicationIcon: const AppLogo(
-        size: LogoSize.small,
-        variant: LogoVariant.minimal,
-      ),
-      children: [
-        Text('profile.app_description'.tr()),
-        const SizedBox(height: 8),
-        Text('profile.built_with_love'.tr()),
       ],
     );
   }

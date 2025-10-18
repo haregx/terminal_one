@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:terminal_one/widgets/buttons/button3d.dart';
-import '../../utils/responsive_layout.dart';
+import 'package:terminal_one/widgets/spacer/responsive_spacer.dart';
 import '../../widgets/glassmorphism_scaffold.dart';
 import '../../widgets/app_logo.dart';
 import '../../widgets/appbar_aware_safe_area.dart';

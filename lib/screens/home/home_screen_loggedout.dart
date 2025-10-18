@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 import 'package:terminal_one/widgets/buttons/button3d.dart';
 import 'package:terminal_one/widgets/buttons/ghost_button.dart';
-import 'package:terminal_one/widgets/spacer/separator_withtext.dart';
+import 'package:terminal_one/widgets/spacer/dividors.dart';
 import 'package:terminal_one/screens/games/game_details_screen.dart';
-import 'package:terminal_one/utils/responsive_layout.dart';
+import 'package:terminal_one/widgets/spacer/responsive_spacer.dart';
 import '../../widgets/inputs/input_code_group.dart';
 import '../../utils/platform_utils.dart';
 import '../../widgets/responsive_code_input.dart';
@@ -13,7 +13,7 @@ import '../../widgets/app_logo.dart';
 import '../../widgets/appbar_aware_safe_area.dart';
 import 'package:easy_localization/easy_localization.dart';
 import '../auth/login_screen.dart';
-import '../common/settings_screen.dart';
+import '../settings/settings_screen.dart';
 import '../common/privacy_screen.dart';
 
 class HomeScreen extends StatefulWidget {

@@ -5,7 +5,7 @@ import 'package:terminal_one/api_services/auth/password_request_service.dart';
 import 'package:terminal_one/api_services/https_post_service.dart';
 import 'package:terminal_one/widgets/buttons/button3d.dart';
 import 'package:terminal_one/widgets/snackbars/fancy_success_snackbar.dart';
-import 'package:terminal_one/utils/responsive_layout.dart';
+import 'package:terminal_one/widgets/spacer/responsive_spacer.dart';
 import '../../widgets/inputs/input_email.dart';
 import 'package:easy_localization/easy_localization.dart';
 import '../../widgets/app_logo.dart';

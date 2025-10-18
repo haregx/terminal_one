@@ -1,4 +1,12 @@
 {
+  "application": {
+    "name": "Terminal.One"
+  },
+  "register_confirm": {
+    "instructions": "Pour confirmer ton inscription, entre le code PIN que nous t'avons envoyé à l'adresse e-mail {email}.",
+    "pincode_entered": "Code PIN saisi : {pincode}",
+    "resend_code": "Renvoyer le code"
+  },
   "error": {
     "bad_api": "Requête API invalide",
     "bad_model": "Modèle de données invalide",
@@ -226,8 +234,8 @@
     "theme_light": "Thème clair activé",
     "theme_dark": "Thème sombre activé",
     "theme_system": "Suit les paramètres système",
-    "auto_dark_mode": "Mode système",
-    "auto_dark_mode_desc": "Suit les paramètres du mode système",
+    "auto_theme_mode": "Mode système",
+    "custom_mode_desc": "Suit les paramètres du mode personnalisé",
     "notifications": "Notifications",
     "push_notifications": "Notifications push",
     "push_notifications_desc": "Reçois les notifications de l'application",
@@ -258,6 +266,7 @@
     "reset_settings": "Réinitialise tous les paramètres",
     "reset_settings_desc": "Réinitialise tous les paramètres par défaut",
     "select_language": "Sélectionne la langue",
+    "language": "Langue",
     "select_region": "Sélectionne la région",
     "language_switched": "Langue changée avec succès",
     "reset_settings_dialog_title": "Réinitialise les paramètres",
@@ -268,11 +277,11 @@
     "feature_language_switching": "Changement de langue",
     "feature_region_switching": "Changement de région",
     "feature_cache_clearing": "Vide le cache",
-    "language_english": "Anglais",
-    "language_deutsch": "Allemand",
-    "language_francais": "Français",
-    "language_espanol": "Espagnol",
-    "language_italiano": "Italien",
+    "language_en": "Anglais",
+    "language_de": "Allemand",
+    "language_fr": "Français",
+    "language_es": "Espagnol",
+    "language_it": "Italien",
     "region_automatic": "Automatique",
     "region_united_states": "États-Unis",
     "region_europe": "Europe",

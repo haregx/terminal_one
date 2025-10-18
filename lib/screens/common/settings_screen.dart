@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 import 'package:provider/provider.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:terminal_one/languages_regions/regions.dart';
+import 'package:terminal_one/widgets/spacer/responsive_spacer.dart';
 import 'package:terminal_one/widgets/switches/simple_switch.dart';
 import 'package:terminal_one/providers/theme_provider.dart';
-import 'package:terminal_one/utils/responsive_layout.dart';
 import 'package:terminal_one/widgets/glass_card.dart';
 import 'package:terminal_one/widgets/app_logo.dart';
 import 'package:terminal_one/widgets/appbar_aware_safe_area.dart';
@@ -127,43 +128,7 @@ class _SettingsScreenState extends State<SettingsScreen> with TickerProviderStat
       }
   }
 
-  String _getRegionDisplayName(String regionCode) {
-    // Dynamisch basierend auf aktueller Locale
-    final currentLocale = context.locale.languageCode;
-    
-    if (currentLocale == 'de') {
-      switch (regionCode) {
-        case 'auto':
-          return 'Automatisch';
-        case 'us':
-          return 'Vereinigte Staaten';
-        case 'eu':
-          return 'Europa';
-        case 'asia':
-          return 'Asien';
-        case 'other':
-          return 'Andere';
-        default:
-          return 'Automatisch';
-      }
-    } else {
-      // Englisch als Fallback
-      switch (regionCode) {
-        case 'auto':
-          return 'Automatic';
-        case 'us':
-          return 'United States';
-        case 'eu':
-          return 'Europe';
-        case 'asia':
-          return 'Asia';
-        case 'other':
-          return 'Other';
-        default:
-          return 'Automatic';
-      }
-    }
-  }
+ 
 
   void _showLanguageSelector() {
     // TODO: Change language selection
@@ -266,7 +231,7 @@ class _SettingsScreenState extends State<SettingsScreen> with TickerProviderStat
             ),
             ...regionCodes.map(
               (regionCode) => ListTile(
-                title: Text(_getRegionDisplayName(regionCode)),
+                title: Text(Regions.getRegionDisplayName(regionCode)),
                 trailing: _selectedRegionCode == regionCode
                     ? const Icon(LucideIcons.check, color: Colors.green)
                     : null,
@@ -739,7 +704,7 @@ class _SettingsScreenState extends State<SettingsScreen> with TickerProviderStat
               _buildDivider(),
               _buildSettingsTile(
                 context.locale.languageCode == 'de' ? 'Region' : 'Region',
-                _getRegionDisplayName(_selectedRegionCode),
+                Regions.getRegionDisplayName(_selectedRegionCode),
                 LucideIcons.mapPin,
                 _showRegionSelector,
                 isDark,

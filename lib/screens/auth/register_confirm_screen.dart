@@ -9,8 +9,8 @@ import '../../widgets/glassmorphism_scaffold.dart';
 import '../../widgets/appbar_aware_safe_area.dart';
 import 'package:terminal_one/widgets/responsive_code_input.dart';
 
-class PincodeScreen extends StatefulWidget {
-  const PincodeScreen({
+class RegisterConfirmScreen extends StatefulWidget {
+  const RegisterConfirmScreen({
     super.key, 
     required this.pubGuid, 
     required this.confirmedIdent
@@ -20,10 +20,10 @@ class PincodeScreen extends StatefulWidget {
   final String confirmedIdent;
 
   @override
-  State<PincodeScreen> createState() => _PincodeScreenState();
+  State<RegisterConfirmScreen> createState() => _RegisterConfirmScreenState();
 }
 
-class _PincodeScreenState extends State<PincodeScreen> {
+class _RegisterConfirmScreenState extends State<RegisterConfirmScreen> {
   String _pincode = '';
 
   @override
@@ -47,13 +47,13 @@ class _PincodeScreenState extends State<PincodeScreen> {
                         size: LogoSize.medium,
                         variant: LogoVariant.minimal,
                       ),
-                       Text(
-                          'Zur Bestätigund Deiner Registrierung gib die PIN ein, die wir Dir an Deine E-Mail-Adresse ${widget.confirmedIdent} gesendet haben.',
-                          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                            color: Theme.of(context).colorScheme.onSurface.withAlpha(180),
-                          ),
-                          textAlign: TextAlign.center,
+                      Text(
+                        'register_confirm.instructions'.tr(namedArgs: {'email': widget.confirmedIdent}),
+                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                          color: Theme.of(context).colorScheme.onSurface.withAlpha(180),
                         ),
+                        textAlign: TextAlign.center,
+                      ),
                       ResponsiveCodeInput(
                         codeLength: 4,
                         onChanged: (value) {
@@ -75,12 +75,12 @@ class _PincodeScreenState extends State<PincodeScreen> {
                           label: 'common.submit'.tr(),
                           enabled: _pincode.length == 4,
                           onPressed: _pincode.length == 4
-                              ? () {
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                    SnackBar(content: Text('Pincode entered: $_pincode')),
-                                  );
-                                }
-                              : null,
+                            ? () {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(content: Text('register_confirm.pincode_entered'.tr(namedArgs: {'pincode': _pincode}))),
+                                );
+                              }
+                            : null,
                         ),
                       ),
                       GhostButton(
@@ -97,7 +97,7 @@ class _PincodeScreenState extends State<PincodeScreen> {
                         onPressed: () {
                           
                         }, 
-                        label: 'Code neu zusenden lassen',
+                        label: 'register_confirm.resend_code'.tr(),
                       ),
                     ],
                   ),

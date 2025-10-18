@@ -7,9 +7,9 @@ import 'package:terminal_one/widgets/buttons/button3d.dart';
 import 'package:terminal_one/widgets/buttons/ghost_button.dart';
 import 'package:terminal_one/widgets/inputs/input_password_simple.dart';
 import 'package:terminal_one/widgets/snackbars/fancy_success_snackbar.dart';
-import 'package:terminal_one/widgets/spacer/separator_withtext.dart';
+import 'package:terminal_one/widgets/spacer/dividors.dart';
 import 'package:terminal_one/providers/auth_provider.dart';
-import '../../utils/responsive_layout.dart';
+import 'package:terminal_one/widgets/spacer/responsive_spacer.dart';
 import '../../widgets/glassmorphism_scaffold.dart';
 import '../../widgets/app_logo.dart';
 import '../../widgets/appbar_aware_safe_area.dart';
@@ -19,7 +19,7 @@ import '../../utils/secure_storage.dart';
 import '../home/home_screen_router.dart';
 import 'register_screen.dart';
 import 'password_request_screen.dart';
-import 'pincode_screen.dart';
+import 'register_confirm_screen.dart';
 
 /// LoginScreen - Enhanced login screen with consistent design
 ///
@@ -109,7 +109,7 @@ class _LoginScreenState extends State<LoginScreen> {
         );
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => PincodeScreen(pubGuid: result.data['pubGuid'].toString(), confirmedIdent: result.data['confirmedIdent'].toString())),
+          MaterialPageRoute(builder: (context) => RegisterConfirmScreen(pubGuid: result.data['pubGuid'].toString(), confirmedIdent: result.data['confirmedIdent'].toString())),
         );
       } else {
         debugPrint('🗝️ Login JSON: ${result.data.toString()}');
@@ -226,7 +226,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                         onPressed: _navigateToPasswordRequest,
                                         label: 'auth.forgot_pin'.tr(),
                                       ),
-                                      
+
                                       // Login button
                                       IntrinsicWidth(
                                         child: Button3D(

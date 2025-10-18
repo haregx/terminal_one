@@ -3,7 +3,7 @@ import 'package:lucide_icons/lucide_icons.dart';
 import 'package:terminal_one/widgets/buttons/button3d.dart';
 import 'package:terminal_one/widgets/buttons/ghost_button.dart';
 import 'package:terminal_one/screens/games/game_details_screen.dart';
-import 'package:terminal_one/utils/responsive_layout.dart';
+import 'package:terminal_one/widgets/spacer/responsive_spacer.dart';
 import '../../widgets/inputs/input_code_group.dart';
 import '../../utils/platform_utils.dart';
 import '../../widgets/responsive_code_input.dart';

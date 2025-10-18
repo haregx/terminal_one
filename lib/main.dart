@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'dart:ui' as ui;
 import 'package:provider/provider.dart';
+import 'package:terminal_one/languages_regions/languages.dart';
 import 'providers/auth_provider.dart';
 import 'providers/settings_provider.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -44,15 +45,9 @@ void main() async {
 
   runApp(
     EasyLocalization(
-      // TODO: set supported locales
-      supportedLocales: const [
-        Locale('de'),
-        Locale('en'),
-   //     Locale('fr'),
-   //     Locale('es'),
-      ],
+      supportedLocales: Languages.supportedLanguages.map((code) => Locale(code)).toList(),
       path: 'assets/translations',
-      fallbackLocale: const Locale('en'),
+      fallbackLocale: Locale(Languages.fallbackLanguageCode),
       startLocale: Locale(settingsProvider.selectedLanguageCode),
       child: MultiProvider(
         providers: [

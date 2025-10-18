@@ -6,6 +6,37 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 
+## [Unreleased] - 2025-10-18
+
+### Added
+- Modularized settings screen: Split settings logic into multiple function files (e.g., build_about_section.dart, build_appearence_section.dart, build_language_section.dart, build_notofication_section.dart, build_privacy_section.dart, build_reset_all_section.dart, build_storage_section.dart, build_tile.dart, show_about.dart, show_language_selector.dart, show_region_selector.dart, show_snackbars.dart, clear_cache.dart, reset_settings.dart, save_settings.dart, load_settings.dart).
+- Added new settings sections: Appearance, Notifications, Privacy & Security, Language & Region, Storage & Cache, About & Support, and Danger Zone (reset all settings).
+- Added new region and language selector logic using async modal bottom sheets with return values.
+- Added new translation keys for region and language names (e.g., settings.language_en, settings.region_europe, etc.) and for new settings features.
+- Added new region/language display logic using translation keys in `languages.dart` and `regions.dart`.
+- Added new responsive spacing widget (responsive_spacer.dart) and improved divider widget (dividors.dart).
+- Added new profile screen implementation in `screens/profile/profile_screen.dart`.
+- Added new register confirmation screen in `screens/auth/register_confirm_screen.dart`.
+
+### Changed
+- Refactored settings screen to use modular section builders and callback-based state management for all settings.
+- Refactored region and language display to be fully internationalized and dynamic.
+- Updated translation files (en.json, de.json, fr.json, es.json) with new keys and improved structure for settings, regions, and languages.
+- Updated imports throughout the app to use new modularized settings and utility files.
+- Improved code structure and maintainability by removing old settings logic and splitting into focused files.
+- Improved UI/UX for settings, language, and region selection.
+- Updated fallback and supported locales logic in main.dart to use Languages.supportedLanguages and fallbackLanguageCode.
+
+### Removed
+- Removed old profile screen and settings screen implementations.
+- Removed deprecated responsive_layout.dart spacing logic and separator_withtext.dart.
+
+### Technical Improvements
+- Improved maintainability and scalability of settings and localization logic.
+- Enhanced modularity and separation of concerns in settings and utility code.
+
+---
+
 ## [Unreleased] - 2025-10-17
 
 ### Added
