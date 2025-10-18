@@ -13,7 +13,7 @@ import '../../widgets/glassmorphism_scaffold.dart';
 import '../../widgets/appbar_aware_safe_area.dart';
 
 import '../../widgets/switches/text_right_switch.dart';
-import '../common/privacy_screen.dart';
+import '../statics/privacy_screen.dart';
 
 /// PasswordRequestScreen - Screen for requesting password reset
 /// 

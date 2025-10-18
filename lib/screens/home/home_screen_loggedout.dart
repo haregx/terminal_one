@@ -14,7 +14,7 @@ import '../../widgets/appbar_aware_safe_area.dart';
 import 'package:easy_localization/easy_localization.dart';
 import '../auth/login_screen.dart';
 import '../settings/settings_screen.dart';
-import '../common/privacy_screen.dart';
+import '../statics/privacy_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   final int codeLength;

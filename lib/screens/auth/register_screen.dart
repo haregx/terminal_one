@@ -12,7 +12,7 @@ import '../../widgets/switches/text_right_switch.dart';
 import 'package:terminal_one/api_services/auth/register_service.dart';
 import 'package:terminal_one/api_services/https_post_service.dart';
 
-import '../common/privacy_screen.dart';
+import '../statics/privacy_screen.dart';
 
 /// RegisterScreen - User registration form
 /// 

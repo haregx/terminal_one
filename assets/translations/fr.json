@@ -56,8 +56,8 @@
     "filter": "Filtrer",
     "score": "SCORE",
     "validity": "Validité : {validity}",
-     "tap_card_to_play": "Tape sur la carte pour jouer",
-    "start": "Démarrer le jeu",
+    "tap_card_to_play": "Tape sur la carte pour jouer",
+    "start": "Démarrer le jeu"
   },
   "navigation_examples": {
     "title": "Exemples de navigation",

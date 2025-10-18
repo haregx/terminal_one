@@ -1,8 +1,8 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
-import 'package:terminal_one/screens/common/policy_screen.dart';
-import 'package:terminal_one/screens/common/privacy_screen.dart';
+import 'package:terminal_one/screens/statics/policy_screen.dart';
+import 'package:terminal_one/screens/statics/privacy_screen.dart';
 import 'package:terminal_one/widgets/buttons/button3d.dart';
 import 'package:terminal_one/screens/games/game_screen.dart';
 import 'package:terminal_one/widgets/spacer/responsive_spacer.dart';
