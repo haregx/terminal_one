@@ -61,35 +61,13 @@ class _ProfileScreenState extends State<ProfileScreen> with TickerProviderStateM
   }
 
   void _showEditProfileDialog() {
-    showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: Text('profile.edit_profile_dialog_title'.tr()),
-        content: Text('profile.edit_profile_coming_soon'.tr()),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(context),
-            child: Text('common.ok'.tr()),
-          ),
-        ],
-      ),
-    );
+    // TODO: Implement edit profile functionality
+    showComingSoonSnackbar(context, 'profile.feature_help_support'.tr());
   }
 
   void _showChangePasswordDialog() {
-    showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: Text('profile.change_password_dialog_title'.tr()),
-        content: Text('profile.change_password_coming_soon'.tr()),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(context),
-            child: Text('common.ok'.tr()),
-          ),
-        ],
-      ),
-    );
+    // TODO: Implement change password functionality
+    showComingSoonSnackbar(context, 'profile.change_password_coming_soon'.tr());
   }
 
   void _showDeleteAccountDialog() {
@@ -106,12 +84,8 @@ class _ProfileScreenState extends State<ProfileScreen> with TickerProviderStateM
           TextButton(
             onPressed: () {
               Navigator.pop(context);
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  content: Text('profile.delete_account_coming_soon'.tr()),
-                  backgroundColor: Colors.orange,
-                ),
-              );
+              // TODO: Implement account deletion functionality
+              showComingSoonSnackbar(context, 'profile.delete_account_coming_soon'.tr());
             },
             style: TextButton.styleFrom(foregroundColor: Colors.red),
             child: Text('common.delete'.tr()),
@@ -127,17 +101,6 @@ class _ProfileScreenState extends State<ProfileScreen> with TickerProviderStateM
 
     return GlassmorphismScaffold(
       title: Text('profile.title'.tr()),
-     /* actions: [
-        Padding(
-          padding: const EdgeInsets.only(right: 16.0, left: 8.0),
-          child: ThemeToggle(
-            themeMode: themeProvider.themeMode,
-            onThemeChanged: (ThemeMode newMode) {
-              themeProvider.setThemeMode(newMode);
-            },
-          ),
-        ),
-      ],*/
       body: AppBarAwareSafeArea(
         child: FadeTransition(
           opacity: _fadeAnimation,
