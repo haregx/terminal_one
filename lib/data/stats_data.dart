@@ -37,28 +37,28 @@ class StatsData {
     StatData(
       id: 'games_played',
       value: '12',
-      label: 'Spiele gespielt', // Fallback
+      label: 'Games played', // Fallback
       labelKey: 'stats.games_played',
       icon: LucideIcons.gamepad2,
-      color: Color(0xFF3B82F6), // Blue - für Spiele
+      color: Color(0xFF3B82F6), // Blue - for games
       iconColor: Colors.white,
     ),
     StatData(
       id: 'games_won',
       value: '3',
-      label: 'Gewonnen', // Fallback
+      label: 'Games won', // Fallback
       labelKey: 'stats.games_won',
       icon: LucideIcons.trophy,
-      color: Color(0xFFF59E0B), // Amber/Gold - für Siege
+      color: Color(0xFFF59E0B), // Amber/Gold - for wins
       iconColor: Colors.white,
     ),
     StatData(
       id: 'success_rate',
       value: '89%',
-      label: 'Erfolgsrate', // Fallback
+      label: 'Success rate', // Fallback
       labelKey: 'stats.success_rate',
       icon: LucideIcons.trendingUp,
-      color: Color(0xFF10B981), // Emerald - für Erfolg/Wachstum
+      color: Color(0xFF10B981), // Emerald - for success/growth
       iconColor: Colors.white,
     ),
   ];

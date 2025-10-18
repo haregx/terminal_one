@@ -8,6 +8,7 @@ import 'package:terminal_one/data/stats_data.dart';
 import 'package:terminal_one/screens/auth/logout_screen.dart';
 import 'package:terminal_one/utils/layout_constants.dart';
 import 'package:terminal_one/widgets/glass_card.dart';
+import 'package:terminal_one/widgets/spacer/responsive_spacer.dart';
 
 /// SimpleDashboard - Minimalistisches, übersichtliches Dashboard
 class SimpleDashboard extends StatelessWidget {
@@ -24,58 +25,42 @@ class SimpleDashboard extends StatelessWidget {
       padding: const EdgeInsets.all(16),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
+        spacing: ResponsiveSpacing.large(context),
         children: [
           // Schnelle Aktionen Header
           Text(
             'dashboard.quick_actions'.tr(),
             style: Theme.of(context).textTheme.titleLarge?.copyWith(
               fontWeight: FontWeight.bold,
-              color: isDark 
-                  ? Colors.white.withAlpha(230)
-                  : Colors.black.withAlpha(230),
+              color: isDark ? Colors.white.withAlpha(230) : Colors.black.withAlpha(230),
             ),
           ),
-          const SizedBox(height: 16),
-          
+
           // Schnelle Aktionen Grid
-          _buildQuickActionsGrid(context, isTablet, isDark),
-          
-          const SizedBox(height: 32),
+         _buildQuickActionsGrid(context, isTablet, isDark),
           
           // Statistiken
           Text(
             'dashboard.statistics'.tr(),
             style: Theme.of(context).textTheme.titleLarge?.copyWith(
               fontWeight: FontWeight.bold,
-              color: isDark 
-                  ? Colors.white.withAlpha(230)
-                  : Colors.black.withAlpha(230),
+              color: isDark ? Colors.white.withAlpha(230) : Colors.black.withAlpha(230),
             ),
           ),
-          const SizedBox(height: 16),
           _buildStatsGrid(context, isDark),
-          
-          const SizedBox(height: 32),
-          
           // Aktivität
           Text(
             'dashboard.last_activity'.tr(),
             style: Theme.of(context).textTheme.titleLarge?.copyWith(
               fontWeight: FontWeight.bold,
-              color: isDark 
-                  ? Colors.white.withAlpha(230)
-                  : Colors.black.withAlpha(230),
+              color: isDark ? Colors.white.withAlpha(230) : Colors.black.withAlpha(230),
             ),
           ),
-          const SizedBox(height: 16),
           _buildActivityCard(context, isDark),
           
-          const SizedBox(height: 32),
-          
+          SizedBox(height: ResponsiveSpacing.tiny(context)),
           // Logout Button
           _buildLogoutCard(context, isDark),
-          
-          const SizedBox(height: 24),
         ],
       ),
     );
@@ -186,18 +171,14 @@ class SimpleDashboard extends StatelessWidget {
                 stat.value,
                 style: Theme.of(context).textTheme.titleMedium?.copyWith(
                   fontWeight: FontWeight.bold,
-                  color: isDark 
-                      ? Colors.white.withAlpha(230)
-                      : Colors.black.withAlpha(230),
+                  color: isDark ? Colors.white.withAlpha(230) : Colors.black.withAlpha(230),
                 ),
               ),
               const SizedBox(height: 4),
               Text(
                 stat.getLocalizedLabel(),
                 style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                  color: isDark 
-                      ? Colors.white.withAlpha(179)
-                      : Colors.black.withAlpha(179),
+                  color: isDark ? Colors.white.withAlpha(179) : Colors.black.withAlpha(179),
                 ),
                 textAlign: TextAlign.center,
                 maxLines: 2,
@@ -230,9 +211,7 @@ class SimpleDashboard extends StatelessWidget {
                 'dashboard.last_activity'.tr(),
                 style: Theme.of(context).textTheme.titleMedium?.copyWith(
                   fontWeight: FontWeight.w600,
-                  color: isDark 
-                      ? Colors.white.withAlpha(230)
-                      : Colors.black.withAlpha(230),
+                  color: isDark ? Colors.white.withAlpha(230) : Colors.black.withAlpha(230),
                 ),
               ),
             ],
@@ -301,17 +280,13 @@ class SimpleDashboard extends StatelessWidget {
                 title,
                 style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                   fontWeight: FontWeight.w500,
-                  color: isDark 
-                      ? Colors.white.withAlpha(230)
-                      : Colors.black.withAlpha(230),
+                  color: isDark ? Colors.white.withAlpha(230) : Colors.black.withAlpha(230),
                 ),
               ),
               Text(
                 time,
                 style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                  color: isDark 
-                      ? Colors.white.withAlpha(153)
-                      : Colors.black.withAlpha(153),
+                  color: isDark ? Colors.white.withAlpha(153) : Colors.black.withAlpha(153),
                 ),
               ),
             ],
@@ -355,18 +330,14 @@ class SimpleDashboard extends StatelessWidget {
                 'dashboard.logout'.tr(),
                 style: Theme.of(context).textTheme.titleMedium?.copyWith(
                   fontWeight: FontWeight.w600,
-                  color: isDark 
-                      ? Colors.white.withAlpha(230)
-                      : Colors.black.withAlpha(230),
+                  color: isDark ? Colors.white.withAlpha(230) : Colors.black.withAlpha(230),
                 ),
               ),
             ),
             Icon(
               LucideIcons.chevronRight,
               size: 20,
-              color: isDark 
-                  ? Colors.white.withAlpha(128)
-                  : Colors.black.withAlpha(128),
+              color: isDark ? Colors.white.withAlpha(128) : Colors.black.withAlpha(128),
             ),
           ],
         ),

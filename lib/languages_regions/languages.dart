@@ -4,6 +4,7 @@ class Languages {
 
   Languages._();
 
+  //static const List<String> supportedLanguages = ['en', 'de', 'fr', 'es', 'af', 'zh'];
   static const List<String> supportedLanguages = ['en', 'de'];
 
   static String get fallbackLanguageCode => 'en';

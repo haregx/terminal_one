@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:terminal_one/widgets/dashboard/simple_dashboard.dart';
+import 'package:terminal_one/widgets/spacer/responsive_spacer.dart';
 import '../../widgets/glassmorphism_scaffold.dart';
 import '../../widgets/app_logo.dart';
 
@@ -120,13 +121,11 @@ class _HomeScreenLoggedInState extends State<HomeScreenLoggedIn> with TickerProv
                       duration: const Duration(milliseconds: 300),
                       opacity: showSmallLogo ? 0.0 : 1.0,
                       child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+                        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
                         child: Container(
                           padding: const EdgeInsets.all(32),
                           decoration: BoxDecoration(
-                            color: isDark 
-                                ? Colors.transparent
-                                : Colors.white.withAlpha(30),
+                            color: isDark ? Colors.transparent : Colors.white.withAlpha(30),  
                             borderRadius: BorderRadius.circular(16),
                           ),
                           child: Column(
@@ -136,24 +135,20 @@ class _HomeScreenLoggedInState extends State<HomeScreenLoggedIn> with TickerProv
                                 size: LogoSize.medium,
                                 variant: LogoVariant.minimal,
                               ),
-                              const SizedBox(height: 16),
+                              SizedBox(height: ResponsiveSpacing.medium(context)),
                               Text(
                                 'home.welcome_back'.tr(),
                                 style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                                   fontWeight: FontWeight.bold,
-                                  color: isDark 
-                                      ? Colors.white.withAlpha(230)
-                                      : Colors.black.withAlpha(230),
+                                  color: isDark ? Colors.white.withAlpha(230) : Colors.black.withAlpha(230),  
                                 ),
                                 textAlign: TextAlign.center,
                               ),
-                              const SizedBox(height: 8),
+                              SizedBox(height: ResponsiveSpacing.medium(context)),
                               Text(
                                 'home.what_would_you_like_to_do'.tr(),
                                 style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                                  color: isDark 
-                                      ? Colors.white.withAlpha(179)
-                                      : Colors.black.withAlpha(179),
+                                  color: isDark ? Colors.white.withAlpha(179) : Colors.black.withAlpha(179),
                                 ),
                                 textAlign: TextAlign.center,
                               ),
@@ -167,9 +162,6 @@ class _HomeScreenLoggedInState extends State<HomeScreenLoggedIn> with TickerProv
 
                 // Simple dashboard
                 const SimpleDashboard(),
-                
-                // Bottom safe area spacing
-                SizedBox(height: MediaQuery.of(context).padding.bottom + 40),
               ],
             ),
           ),

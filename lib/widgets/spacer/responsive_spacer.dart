@@ -2,6 +2,12 @@ import 'package:flutter/material.dart';
 
 /// ResponsiveSpacing - Provides device-appropriate spacing
 class ResponsiveSpacing {
+
+  static double tiny(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    return screenWidth > 600 ? 8.0 : 4.0;
+  }
+
   static double small(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
     return screenWidth > 600 ? 12.0 : 8.0;
@@ -15,5 +21,10 @@ class ResponsiveSpacing {
   static double large(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
     return screenWidth > 600 ? 32.0 : 24.0;
+  }
+
+  static double veryLarge(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    return screenWidth > 600 ? 48.0 : 32.0;
   }
 }
